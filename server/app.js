@@ -3,11 +3,32 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 const app = express();
 const cookieParser = require('cookie-parser');
 
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
+
+app.use(express.static(path.join(__dirname, '../user/build')));
+app.use(express.static(path.join(__dirname, '../admin/build')));
+
+app.use(function (req, res, next) {
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin');
+  res.header(
+    'Access-Control-Allow-Origin',
+    'www.sunflowerworld.shop',
+    'sunflowerworld.shop',
+    'admin.sunflowerworld.shop',
+    '62.72.12.52'
+  ); // update to match the domain you will make the request from
+  next();
+});
 
 const userRoutes = require('./routes/userRoutes');
 const articleRoutes = require('./routes/articleRoutes');
@@ -46,15 +67,28 @@ app.use('/naturalFlowers', naturalFlowerRoutes);
 app.use('/naturalFlowersOrders', naturalFlowerOrderRoutes);
 app.use('/bands', bandRoutes);
 app.use('/papers', paperRoutes);
-app.use('/shoppingCart' , shoppingCartRoutes);
+app.use('/shoppingCart', shoppingCartRoutes);
 app.use('/offers', offerRoutes);
-app.use('/cities',cityRoutes);
-app.use('/messages',messageRoutes);
-app.use('/aboutus',aboutUsRoutes);
-app.use('/settings',settingRoutes);
+app.use('/cities', cityRoutes);
+app.use('/messages', messageRoutes);
+app.use('/aboutus', aboutUsRoutes);
+app.use('/settings', settingRoutes);
+
+app.get('*', function (req, res) {
+  res.sendFile(
+    path.join(__dirname, '../user/build/index.html'),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
 
 app.all('*', (req, res, next) => {
-  next(new AppError(`Can't find this route ${req.originalUrl} on this server`,404));
+  next(
+    new AppError(`Can't find this route ${req.originalUrl} on this server`, 404)
+  );
 });
 
 app.use(globalErrorHandler);
