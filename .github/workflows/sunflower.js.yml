@@ -36,15 +36,3 @@ jobs:
           NODE_OPTIONS=--max-old-space-size=4096 npm install
           NODE_OPTIONS=--max-old-space-size=4096 npm run build
 
-      - name: Install Server Dependencies
-        working-directory: ./server
-        run: |
-          NODE_OPTIONS=--max-old-space-size=4096 npm install
-
-      - name: Restart The Server
-        working-directory: ./server
-        run: |
-          pm2 stop 0
-          pm2 start 0
-          pm2 save
-          sudo service nginx restart
