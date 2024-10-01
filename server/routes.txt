@@ -1,0 +1,148 @@
+                    -- ARTICLES --
+Add Article : POST : localhost:5000/articles <description , image or video> [ADMIN]
+Update Article : PatCH : localhost:5000/articles/:id  <updated fields>  [ADMIN]
+Get All Articles : GET : localhost:5000/articles/
+Get Article By Id : GET : localhost:5000/articles/:id
+Delete Article : PATCH : localhost:5000/articles/delete/:id <password for delete>  [ADMIN]
+Like Or UnLike Article : PATCH : localhost:5000/articles/like/:id <empty Object In Body> [Login]
+
+                    -- BANDS --
+Add Band : POST : localhost:5000/bands <color>  [ADMIN]
+Get All Bands : GET : localhost:5000/bands
+Delete Band : DELETE : localhost:5000/bands/:id [ADMIN]
+
+                    -- CATEGORY --
+Add Category : POST : localhost:5000/category <name , image> [ADMIN]
+Get All Categories : Get : localhost:5000/category
+Get Category By Id : Get : localhost:5000/category/:id 
+Update Category : PATCH : localhost:5000/category/:id <updated fields>  [ADMIN]
+Delete Category : PATCH : localhost:5000/category/delete/:id <password for delete>  [ADMIN]
+Change Category State :  PATCH : localhost:5000/category/changeState/:id <empty Object In Body> [ADMIN]
+
+                    -- CHOCOLATE --
+Add Chocolate : POST : localhost:5000/chocolate <name , image , size , price>   [ADMIN]
+Get All Chocolates : Get : localhost:5000/chocolate
+Update Chocolate : PATCH : localhost:5000/chocolate/:id <updated fields>    [ADMIN]
+Delete Chocolate : DELETE : localhost:5000/chocolate/:id    [ADMIN]
+
+                    -- PRODUCTS --
+Add Product : POST : localhost:5000/products <name , images , description , [colors] , category (id) , sizes>   [ADMIN]
+sizes is array of objects {
+    size,
+    price,
+    pointsEarned,
+    priceInPoints,
+    isAvailableToSellInPoints
+}
+Get All Products : GET : localhost:5000/products
+Get Product By Id : GET : localhost:5000/products/:id
+Get Product By Category : GET :  localhost:5000/products/category=categoryName
+Update Product : PATCH : localhost:5000/products/:id <updated fields>   [ADMIN]
+Search For Products GET : localhost:5000/products/search?query=mugs
+
+                    -- PAPER --
+Add Paper : POST : localhost:5000/papers <color>    [ADMIN]
+Get All Papers : GET : localhost:5000/papers   
+Delete Paper : DELETE : localhost:5000/papers/:id   [ADMIN]
+
+                    -- NATURAL FLOWERS --
+Add Natural Flower : POST : localhost:5000/naturalFlowers <count , price , description , image> [ADMIN]
+Get All Natural Flowers : GET : localhost:5000/naturalFlowers
+Update Natural Flower : PATCH : localhost:5000/naturalFlowers/:id <updated fields>  [ADMIN]
+Delete Natural Flower : PATCH : localhost:5000/naturalFlowers/:id <password for delete> [ADMIN]
+
+                    -- PERFUME --
+Add The Perfume : POST : localhost:5000/perfume <description , images , variants>   [ADMIN]
+variants is array of objects {
+    size,
+    price
+}
+Get The Perfume : GET : localhost:5000/perfume/:id
+Add New Size : POST : localhost:5000/perfume/addNewSize/:id {size,price}
+Update Perfume : PATCH : localhost:5000/perfume <updated fields (name,description,images)>
+Update variants <Later , بدها شرح>
+
+                    -- USER --
+Signup :  POST : localhost:5000/users/signup     <email , password ,confirmPassword, username , phone , image>
+Login : POST :   localhost:5000/users/login <email , password>
+Add To Favorite : PATCH :localhost:5000/users/addTofavorite <productId>    
+Handle Favorite : PATCH :localhost:5000/users/handleFavorite <productId>    
+Remove From Favorite : PATCH :localhost:5000/users/removeFromFavorite <productId>
+Get Favorite Products : GET : localhost:5000/users/getFavorite    
+Empty The Favorite : PATCH : localhost:5000/users/emptyFavorite    <empty body {}>
+Get Me : GET : localhost:5000/users/me
+
+                    -- SHOPPING CART --
+Add Product To Shopping Cart : POST : localhost:5000/shoppingCart <product , size ,color,paymentMethod, quantity(optional by default = 1)>
+Update Quantity Of Existing Product : localhost:5000/shoppingCart <product , size ,color,paymentMethod ,quantity>
+Remove Product From Shopping Cart : POST : localhost:5000/shoppingCart/delete/id <paymentMethod>
+Empty the Shopping Cart : PATCH : localhost:5000/shoppingCart/emptyTheBasket <empty body {}>
+Add Offer To shoppingCart : POST : localhost:5000/shoppingCart/offers <offerId>
+Edit The Quantity Of Offer In shoppingCart : POST : localhost:5000/shoppingCart/offers <offerId , quantity>
+Delete Offer From shoppingCart : DELETE : POST : localhost:5000/shoppingCart/offers/:id
+
+                    -- CITY --
+Add City : POST : localhost:5000/cities <name , array of neighborhoods> (حاكيني بس توصلا)     [ADMIN]
+Get All Cities : GET : localhost:5000/cities
+Get City By Id : GET : localhost:5000/cities/:id
+Update City : PATCH :  localhost:5000/:id <updated fields>      [ADMIN]
+Delete City : DELETE : localhost:5000/:id       [ADMIN]
+
+                    -- NATURAL FLOWER ORDER --
+Add Natural Flower Order : POST : localhost:5000/naturalFlowersOrders <
+  naturalFlower(id) , details:{band : bandId , paper : paperId} , chocolate : array of ids , totalPrice,message >
+
+                    -- PERFUME ORDER --
+Add Perfume Order : POST : localhost:5000/perfumeOrder <perfumeOrderVariant : [{size , count}] , withCard (boolean) , message , totalPrice>
+Delete Perfume Order : POST : localhost:5000/:id
+Update Perfume Order : PATCH : localhost:5000/perfumeOrder/updateVariants/perfumeId 
+EX : {
+    variantId : 6690328acad4880a8006bc9c,
+    count : 4,
+    size : medium,
+    totalPrice : 700 (new total price after updating)
+}
+
+                    -- MESSAGE --
+Send Message : POST : localhost:5000/messages <message>
+Reply To Message : POST : localhost:5000/messages/reply/:id <reply> [ADMIN]
+Get All Messages : GET : localhost:5000/messages  [ADMIN]
+Get Message By Id : GET : localhost:5000/messages/:id  
+Get My Messages : GET : localhost:5000/messages/me  
+
+                    -- OFFER --
+Add Offer : POST : localhost:5000/offers [ADMIN]
+BODY : {
+    name : String,
+    description : String,
+    priceB(optional) : Number,
+    priceA : Number,
+    withPriceB : boolean,
+    mainImage,
+    discount : Number,
+}
+
+Get All Offers : GET : localhost:5000/offers 
+Get Offer By Id : GET : localhost:5000/offers/:id 
+Update Offer : PATCH : localhost:5000/offers/:id <updated fields>   [ADMIN]
+Delete Offer : DELETE : localhost:5000/offers/:id   [ADMIN]
+Add Product To Offer : POST : localhost:5000/offers/:id     [ADMIN]
+BODY : {
+    image,name,description
+}
+Update Product In Offer : PATCH : localhost:5000/offers/:offerId/products/:productId <updated fields>   [ADMIN]
+Delete Product From Offer : DELETE : localhost:5000/offers/:offerId/products/:productId [ADMIN]
+Change Offer State : PATCH : localhost:5000/offers/changeState/:id  [ADMIN]
+                    
+                    -- ABOUT US --
+Add : POST : http://localhost:5000/aboutus <title , description> [ADMIN]
+Get All : GET : http://localhost:5000/aboutus
+Get By Id : GET : http://localhost:5000/aboutus/:id
+Update : PATCH : http://localhost:5000/aboutus/:id <updated fields> [ADMIN]
+Delete : DELETE : http://localhost:5000/aboutus/:id     [ADMIN]
+
+                    -- SETTING --
+Get Initial Setting : GET : http://localhost:5000/settings (run this route first)
+Update Setting : PATCH : http://localhost:5000/settings <updated fields (not slider 😡)> [ADMIN]
+Add images To Slider : POST : http://localhost:5000/settings <صورة أو عدة صور المهم بمصفوفة , لو في صور قديمة بخليها وبضيف الجديد> [ADMIN]
+Delete Image From Slider : DELETE : http://localhost:5000/settings/:id (image ID)   [ADMIN]

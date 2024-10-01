@@ -1,0 +1,239 @@
+.editeCategory {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    gap: 10px;
+}
+
+.editeCategoryTitle {
+    width: 98%;
+    max-width: 1480px;
+    height: 54px;
+    background-color: #202126;
+    color: white;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+
+
+}
+
+.editeCategoryContener {
+    box-sizing: border-box;
+    width: 98%;
+    max-width: 1480px;
+    border-radius: 16px;
+    border: 5px solid #F1C92F;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+
+}
+
+.newImageCategory {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    border: 5px solid white;
+    box-shadow: 4px 5px 12px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffd300;
+    overflow: hidden;
+    position: relative;
+}
+
+.newTitleCategory {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    box-shadow: 4px 5px 12px black;
+    background: #F1C92F;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: xX-large;
+    color: black;
+    position: relative;
+    overflow: hidden;
+}
+
+.nameTop {
+    position: absolute;
+    width: 100%;
+    /* height: 100%; */
+    font-size: xX-large;
+    ;
+    background-color: #F1C92F;
+}
+
+.imageCat {
+    width: 100%;
+}
+
+.imageCatTop {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.newCategory {
+    width: 100%;
+    min-height: 200px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: grid;
+    grid-auto-columns: (max-content 4);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: stretch;
+    justify-items: center;
+    gap: 20px;
+
+}
+
+.displayNewCategory {
+    width: 300px;
+    height: 425px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+}
+
+@media (max-width : 1080px) {
+    .displayNewCategory {
+        grid-column: 2 span;
+    }
+}
+
+
+.addCategory {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-around;
+    background-color: #202126;
+    border-radius: 8px;
+    padding: 20px;
+    color: aliceblue;
+    grid-column: span 2
+}
+
+.addCategory2,
+.addCategory1 {
+    width: 100%;
+    /* display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-around;
+    background-color: #202126;
+    border-radius: 8px;
+    padding: 20px;
+    color: aliceblue; */
+}
+
+.produtsByCategory {
+    width: 98%;
+    max-width: 1480px;
+    border-radius: 16px;
+    border: 5px solid #F1C92F;
+    padding: 10px;
+    padding-top: 50px;
+    align-items: center;
+    gap: 10px;
+    display: grid;
+    grid-auto-columns: (max-content 4);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: center;
+    box-sizing: border-box;
+
+
+}
+
+
+
+.editInfo {
+    border: none;
+    transition: all 5ms ease-in-out;
+    display: flex;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #F1C92F;
+    border: none;
+    color: #202126;
+    border-radius: 8px;
+}
+
+.editInfo:active {
+    transform: scale(0.8, 0.8);
+}
+
+.onOff {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.activeFalse {
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 50px;
+    /* background-color: red; */
+    z-index: 100;
+    border-radius: 8px;
+    right: 0px;
+}
+
+.activeTrue {
+    position: absolute;
+    top: 0;
+    width: 75px;
+    height: 75px;
+    background-color: green;
+    z-index: 100;
+    border-radius: 8px;
+    right: 0px;
+}
+
+.productsTitle {
+    width: 30%;
+    /* height: 86px; */
+    padding: 11px;
+    background-color: #202126;
+    color: white;
+    border-radius: 8px;
+    font-family: Script MT;
+    font-weight: bold;
+    font: size 1.2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: -35px;
+    z-index: 100;
+}

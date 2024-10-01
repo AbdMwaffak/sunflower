@@ -1,0 +1,95 @@
+.myCoupons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myCouponsTitle {
+    width: 98%;
+    height: 54px;
+    background-color: #202126;
+    color: white;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.myCouponsNot {
+    width: 98%;
+    min-height: 100px;
+    background-color: #202126;
+    color: white;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.myCouponsContener {
+    width: 98%;
+    border-radius: 16px;
+    border: 5px solid #F1C92F;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+
+}
+
+.coupons {
+    width: 98%;
+    display: grid;
+    grid-auto-columns: (max-content 4);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: center;
+}
+
+.outerTap {
+    width: 90%;
+    height: 25px;
+    background-color: aliceblue;
+    border-radius: 16px;
+    padding: 3px;
+    margin-bottom: 70px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.inerTap {
+    width: 50%;
+    height: 100%;
+    background-color: #F1C92F;
+    border-radius: 16px;
+}
+
+.couponsInfo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.coInfo {
+    color: aliceblue;
+}
+
+.coImg {
+    width: 20%;
+    min-width: 120px;
+}

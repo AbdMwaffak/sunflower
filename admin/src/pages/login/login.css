@@ -1,0 +1,96 @@
+.register {
+    width: 100%;
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxRegister {
+    margin-top: 100px;
+    width: 400px;
+    aspect-ratio: 4 / 5;
+    background-color: white;
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: 3px 4px 16px 6px #272626;
+    border: 4px solid #F1C92F;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-evenly;
+    margin-left: 60px;
+}
+
+.formFooter,
+.formHeader {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #202126;
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+
+.formBody {
+    height: 200px;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.hiddenBassWorld {
+    position: absolute;
+    top: 0;
+    right: 23px;
+    height: 100%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.formButtonLogin {
+    width: 100%;
+    height: 40px;
+    background-color: #F1C92F;
+    border: none;
+    color: #202126;
+    border-radius: 8px;
+    transition: all 0.5ns ease-in-out;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.formButtonLogin:hover {
+    border: 4px solid white;
+    box-shadow: 3px 4px 16px 6px #F1C92F;
+
+}
+
+.formButtonLogin:active {
+    transform: scale(0.98, 0.98);
+}
+
+
+.form-label {
+    display: flex;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.passsWorlContent {
+    position: relative;
+
+}
+
+.hdiddenIcon {
+    display: none;
+}
+
+.unhdiddenIcon {
+    display: block;
+}

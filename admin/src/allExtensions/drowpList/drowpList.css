@@ -1,0 +1,47 @@
+.drowpListT {
+    min-width: 200px;
+    /* width: 20%; */
+    min-height: 100px;
+    background-color: #c6c9cb;
+    position: absolute;
+    top: 52px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+}
+
+.drowpListF {
+    /* min-width: 200px;
+    width: 20%;
+    min-height: 100px;
+    background-color: rgb(250, 255, 240);
+    position: absolute;
+    top: 52px;
+    border-radius: 8px; */
+    display: none;
+}
+
+.linkDL {
+    text-decoration: none;
+    color: #000;
+    width: 100%;
+}
+
+.listItem {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.listItem:hover {
+
+    background-color: #F1C92F;
+}

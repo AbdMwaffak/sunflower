@@ -1,0 +1,54 @@
+.drowpListT {
+    min-width: 200px;
+    /* width: 20%; */
+    min-height: 100px;
+    background-color: #c6c9cb;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+}
+
+.drowpListF {
+    display: none;
+}
+
+.linkDL {
+    text-decoration: none;
+    color: #000;
+    width: 100%;
+}
+
+.listItem {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.listItem:hover {
+    background-color: #F1C92F;
+}
+
+.login {
+    width: 100%;
+    height: 40px;
+    background-color: #F1C92F;
+    color: #202126;
+    border: 0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: larger;
+}

@@ -1,0 +1,130 @@
+.sid-active {
+    width: 200px;
+    background-color: rgba(2, 1, 0, 0.795);
+    height: 50%;
+    position: fixed;
+    z-index: 102;
+    transition: all 0.005s linear;
+    top: 58px;
+    border-radius: 8px;
+}
+
+.sid-unactive {
+    height: 0px;
+    width: 0px;
+    position: fixed;
+    z-index: 101;
+    transition: all 0.005s linear;
+    top: 0;
+    visibility: hidden;
+    top: 58px;
+    border-radius: 8px;
+}
+
+.fl {
+    height: 50%;
+    width: 200px;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    z-index: 1001;
+    top: 58px;
+    border-radius: 8px;
+}
+
+.haderSB {
+    color: #000;
+}
+
+.close {
+    cursor: pointer;
+    font-weight: 500;
+
+}
+
+.bodySB {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.divButton {
+    background-color: #fff;
+    width: 96%;
+    height: 40px;
+    color: #363535;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.close {
+    cursor: pointer;
+
+}
+
+.fsButtonn {
+    width: 80px;
+    height: 80px;
+    display: flix;
+    border-radius: 100%;
+    background-color: #363535;
+    box-shadow: 0px 0 10px #fdfdfd78, inset -1px -1px 3px #ffffffc7, inset 0px 0px 19px 6px #191918;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    font-family: fantasy;
+    font-size: x-large;
+
+}
+
+.flButtonn {
+    left: 300px;
+    top: 30%;
+    background-color: rgb(249, 100, 2);
+    height: 187px;
+    width: 51px;
+    position: absolute;
+    border-top-right-radius: 53px 53px;
+    border-bottom-right-radius: 10px;
+    color: aliceblue;
+    writing-mode: vertical-lr;
+    align-items: center;
+    font-size: 2rem;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s linear;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.flButtonn:hover {}
+
+.babutton {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    border-radius: 100%;
+    background-color: #151515;
+    flex-direction: column;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px -3px 6px 3px #ffffff8f, inset -3px -2px 6px #484644ad;
+    border: none;
+    text-shadow: 1px 1px 7px #151515;
+    margin: 10px;
+}
+
+.btTitle {
+    text-shadow: 0px 0px 8px rgb(27, 26, 26);
+}

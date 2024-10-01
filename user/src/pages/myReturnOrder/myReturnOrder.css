@@ -1,0 +1,33 @@
+.myOrder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myOrderTitle {
+    width: 98%;
+    height: 54px;
+    background-color: #202126;
+    color: white;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.myOrderContener {
+    width: 98%;
+    border-radius: 16px;
+    border: 5px solid #F1C92F;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+}

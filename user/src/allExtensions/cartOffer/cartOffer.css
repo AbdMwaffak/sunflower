@@ -1,0 +1,252 @@
+.cartBroduct {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: stretch;
+    gap: 5px;
+    margin-bottom: 5px;
+    background-color: #30323f;
+    border-radius: 8px;
+    padding: 0 10px 0 0
+}
+
+.cartBroductImage {
+    width: 100px;
+    min-width: 100px;
+    aspect-ratio: 1/1;
+    background-color: #F1C92F;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.cartImage {
+    height: 100%;
+    aspect-ratio: 1/1;
+}
+
+.cartImgs button {
+    display: none;
+}
+
+.cartBroductName,
+.cartBroductPrice,
+.cartBroductQuantity,
+.cartBroductTotal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px;
+    text-align: center;
+    background-color: #30323f;
+    color: white;
+}
+
+.cartBroductQuantity {
+    gap: 5px;
+    border-radius: 50px;
+    flex-direction: row;
+}
+
+.cartBroductTotal {
+    width: 80px;
+    border-radius: 8px;
+}
+
+.cartBroductName {
+    width: calc(100% - 172px);
+    align-items: flex-start;
+}
+
+.cartName {
+    font-weight: 600;
+}
+
+.qq {
+    width: 100%;
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartColor {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cartColor1 {
+    width: 100px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cartColorSquer {
+    height: 20px;
+    aspect-ratio: 1/1;
+    border-radius: 4px;
+}
+
+.cartDelete {
+    width: 50px;
+    display: flex;
+    align-items: flex-end;
+    color: red;
+    padding-bottom: 4px;
+    justify-content: space-around;
+}
+
+.increaseQuantity,
+.decreaseQuantity {
+    width: 25%;
+    min-width: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    border: 4px solid #F1C92F;
+    background-color: #202126;
+    color: #F1C92F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.decreaseICon,
+.increaseICon {
+    width: 55%;
+    height: 55%;
+    margin: 0;
+}
+
+.red {
+    width: 30px;
+    aspect-ratio: 1/1;
+    color: red;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.green {
+    width: 30px;
+    aspect-ratio: 1/1;
+    color: green;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.red:hover,
+.green:hover {
+    background-color: #8f90954f;
+}
+
+.red:active,
+.green:active {
+    animation: skew-y-shakeing 0.4s infinite;
+}
+
+@keyframes skew-y-shakeing {
+    0% {
+        transform: skewY(-15deg);
+    }
+
+    5% {
+        transform: skewY(15deg);
+    }
+
+    10% {
+        transform: skewY(-15deg);
+    }
+
+    15% {
+        transform: skewY(15deg);
+    }
+
+    20% {
+        transform: skewY(0deg);
+    }
+
+    100% {
+        transform: skewY(0deg);
+    }
+}
+
+@keyframes shaking {
+    0% {
+        transform: translateX(-10px);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+
+    70% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    90% {
+        transform: translateX(-10px);
+    }
+}
+
+.offerDiv {
+    width: 100px;
+    height: 40px;
+    background-color: red;
+    border-radius: 8px;
+    border: 3px solid white;
+    color: white;
+    font-size: large;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+
+}
+
+.offerDiv:hover {
+    animation: hithere 1s ease infinite;
+}
+
+@keyframes hithere {
+    30% {
+        transform: scale(1.2);
+    }
+
+    40%,
+    60% {
+        transform: rotate(-20deg) scale(1.2);
+    }
+
+    50% {
+        transform: rotate(20deg) scale(1.2);
+    }
+
+    70% {
+        transform: rotate(0deg) scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

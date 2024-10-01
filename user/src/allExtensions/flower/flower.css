@@ -1,0 +1,212 @@
+.flower {
+    height: 100%;
+    top: 0;
+    margin: 0;
+    position: fixed;
+    z-index: 200;
+}
+
+.totalT {
+    top: 0;
+    margin: 0;
+    position: fixed;
+    z-index: 200;
+    background-color: #00000082;
+    width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease-in-out;
+    left: -200px;
+}
+
+.totalF {
+    top: 0;
+    margin: 0;
+    position: fixed;
+    z-index: 200;
+    background-color: #00000082;
+    width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease-in-out;
+    left: -1000px;
+}
+
+.ss {
+    width: 90px;
+    height: 90px;
+    background-color: #000;
+    border-radius: 100%;
+    color: #000;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    font-size: x-large;
+    border: 5px solid #F1C92F;
+}
+
+.petals1F,
+.petals2F,
+.petals3F,
+.petals4F,
+.petals5F {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #fff;
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    background-color: #F1C92F;
+    transition: all 1s ease-in-out;
+    border-radius: 0% 100px 0% 100px;
+    transform: translateX(0) translatey(-145px) rotate(45deg);
+    text-decoration: none;
+}
+
+.petals1F>.linkSB {
+    transform: rotate(-45deg);
+    text-decoration: none;
+    color: #000;
+}
+
+.petals2F>.linkSB {
+    transform: rotate(-90deg);
+    text-decoration: none;
+    color: #000;
+}
+
+.petals3F>.linkSB {
+    transform: rotate(-135deg);
+    text-decoration: none;
+    color: #000;
+}
+
+.petals4F>.linkSB {
+    transform: rotate(-180deg);
+    text-decoration: none;
+    color: #000;
+}
+
+.petals5F>.linkSB {
+    transform: rotate(-225deg);
+    text-decoration: none;
+    color: #000;
+}
+
+.petals1T,
+.petals2T,
+.petals3T,
+.petals4T,
+.petals5T {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    border: 4px solid #000;
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    background-color: #F1C92F;
+    transition: all 1s ease-in-out 0.5s;
+    border-radius: 0% 100px 0% 100px;
+    font-weight: bold;
+    transform: translateX(0px) translateY(145px) rotate(225deg);
+    text-decoration: none;
+}
+
+.petals1T {
+    transform: translateX(0) translatey(-145px) rotate(45deg);
+}
+
+.petals2T {
+    transform: translateX(105px) translateY(-105px) rotate(90deg);
+}
+
+.petals3T {
+    transform: translateX(145px) translateY(0px) rotate(135deg);
+}
+
+.petals4T {
+    transform: translateX(105px) translateY(105px) rotate(180deg);
+}
+
+.petals5T {
+    transform: translateX(0px) translateY(145px) rotate(225deg);
+}
+
+.petals1T>.linkSB {
+    transform: rotate(-45deg);
+    text-decoration: none;
+    color: inherit;
+}
+
+.petals2T>.linkSB {
+    transform: rotate(-90deg);
+    text-decoration: none;
+    color: inherit;
+}
+
+.petals3T>.linkSB {
+    transform: rotate(-135deg);
+    text-decoration: none;
+    color: inherit;
+}
+
+.petals4T>.linkSB {
+    transform: rotate(-180deg);
+    text-decoration: none;
+    color: inherit;
+}
+
+.petals5T>.linkSB {
+    transform: rotate(-225deg);
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.petals1T:hover {
+    box-shadow: 0px 0px 20px #F1C92F;
+    transition: all 0.1s ease-in-out;
+    border: 4px solid white;
+    transform: translateX(0) translatey(-155px) rotate(45deg);
+}
+
+.petals2T:hover {
+    box-shadow: 0px 0px 20px #F1C92F;
+    transition: all 0.1s ease-in-out;
+    border: 4px solid white;
+    transform: translateX(115px) translateY(-115px) rotate(90deg);
+}
+
+
+.petals3T:hover {
+    box-shadow: 0px 0px 20px #F1C92F;
+    transition: all 0.1s ease-in-out;
+    border: 4px solid white;
+    transform: translateX(155px) translateY(0px) rotate(135deg);
+}
+
+.petals4T:hover {
+    box-shadow: 0px 0px 20px #F1C92F;
+    transition: all 0.1s ease-in-out;
+    border: 4px solid white;
+    transform: translateX(115px) translateY(115px) rotate(180deg);
+}
+
+.petals5T:hover {
+    box-shadow: 0px 0px 20px #F1C92F;
+    transition: all 0.1s ease-in-out;
+    border: 4px solid white;
+    transform: translateX(0px) translateY(155px) rotate(225deg);
+}

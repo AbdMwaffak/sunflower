@@ -1,0 +1,249 @@
+.naturalFlowers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.naturalFlowersTitle {
+    width: 98%;
+    height: 54px;
+    background-color: #202126;
+    color: white;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    z-index: 50;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.Bouquet {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.flowersBouquetTitle {
+    width: 30%;
+    padding: 11px;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: -29px;
+    z-index: 100;
+}
+
+.flowersBouquet {
+    width: 98%;
+    border-radius: 16px;
+    border: 5px solid #F1C92F;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+.flowersBouquetMain {
+    width: 100%;
+    display: grid;
+    grid-auto-columns: (max-content 2);
+    grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
+    gap: 20px;
+    padding-bottom: 10px;
+    align-items: stretch;
+    justify-content: space-evenly;
+    justify-items: center;
+}
+
+.flowersBouquetExtra {
+    padding: 20px 10px;
+    width: 98%;
+    background-color: #202126;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 30px;
+    border-radius: 8px;
+}
+
+.input1 {
+    width: 98%;
+    background-color: #202126;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.inputImage {
+    width: 98%;
+    aspect-ratio: 1 / 1;
+    background-color: #202126;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    border: 5px solid #ffffff;
+    position: relative;
+}
+
+.cbatsha {
+    width: 90%;
+    background: #dbbc4673;
+    position: absolute;
+    bottom: 5px;
+    border-radius: 8px;
+}
+
+.imgNaturalFlowers {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.input2 {
+    width: 100%;
+    background-color: #202126;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.input3 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 10px;
+    background-color: #30323f;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.input5 {
+    width: 100%;
+}
+
+.yesNo {
+    color: aliceblue;
+    margin-top: 18px;
+}
+
+.input6 {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 40px;
+}
+
+.vvcheck {
+    width: 20%;
+}
+
+.vv1 {
+    color: #F1C92F;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.vv2 {
+    color: white;
+    width: 98%;
+    font-size: large;
+}
+
+.vvBut {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 10px;
+    gap: 10px;
+}
+
+.cc {
+    color: white;
+    width: 15%;
+    font-size: large;
+}
+
+.chocolate {
+    width: 96%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.totalCost {
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    border-radius: 8px;
+    font-size: large;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.addToCartIcon {
+    width: 20px;
+    margin-left: 30px;
+    transition: all 0.3s linear;
+}
+
+.boint {
+    margin-right: -60px;
+    margin-left: 20px;
+    display: none;
+    transition: all 0.9s linear;
+}
+
+.addToCart:hover .addToCartIcon {
+    margin-right: -30px;
+    margin-left: 60px;
+    rotate: 45deg;
+    rotate: -45deg;
+}
+
+.addToCart:hover .boint {
+    display: block;
+    margin-left: 40px;
+}
+
+.addToCart:hover {
+    box-shadow: 0px 0px 13px #F1C92F;
+}
+
+.colorSelect {
+    width: 50px;
+    height: 20px;
+    border-radius: 8px;
+    color: #ffffff;
+}

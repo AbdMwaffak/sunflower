@@ -1,0 +1,171 @@
+.offerModel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.offerModel2 {
+    width: 100%;
+    min-height: 200px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: grid;
+    grid-auto-columns: (max-content 2);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    align-items: center;
+    justify-items: center;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.offerInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    border-radius: 8px;
+    color: aliceblue;
+    grid-column: span 2;
+    gap: 10px;
+}
+
+.offerTitle {
+    background-color: #202126;
+    border-radius: 8px;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offerDescription {
+    height: 83px;
+    background-color: #202126;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offerDisPrice {
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.offerPrice2 {
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.prevPrice,
+.currPrice {
+    width: 50%;
+    background-color: #F1C92F;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-weight: 600;
+}
+
+.lineThrough {
+    text-decoration: line-through;
+}
+
+.mainImageOffer {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+}
+
+@media (max-width : 993px) {
+    .mainImageOffer {
+        grid-column: 2 span;
+    }
+}
+
+.produtsByOffer {
+    padding-top: 10px;
+    width: 100%;
+    max-width: 1480px;
+    border-radius: 16px;
+    align-items: center;
+    gap: 10px;
+    display: grid;
+    grid-auto-columns: (max-content 4);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-items: center;
+    box-sizing: border-box;
+}
+
+.offerPro {
+    width: 200px;
+    height: 320px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    box-shadow: 4px 5px 12px black;
+    transition: all 0.1s linear;
+}
+
+.offerPro:hover {
+    scale: 1.05;
+    box-shadow: 4px 4px 20px black;
+}
+
+.arrayImg {
+    width: 190px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.arrayName {
+    width: 100%;
+    background-color: rgb(223, 220, 220);
+    border-radius: 8px;
+    font-size: 12px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrayDesc {
+    width: 100%;
+    background-color: rgb(223, 220, 220);
+    border-radius: 8px;
+    font-size: 12px;
+    height: calc(100% - 215px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

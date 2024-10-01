@@ -1,0 +1,360 @@
+.myNaturalFlower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    gap: 10px;
+}
+
+.myNaturalFlowerTitle {
+    width: 98%;
+    max-width: 1480px;
+    height: 54px;
+    background-color: #202126;
+    color: white;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+
+
+}
+
+.myNaturalFlowerContener {
+    box-sizing: border-box;
+    width: 98%;
+    max-width: 1480px;
+    border-radius: 16px;
+    border: 5px solid #F1C92F;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+
+}
+
+.newImageFlower {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+    border: 5px solid white;
+    box-shadow: 4px 5px 12px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffd300;
+    overflow: hidden;
+
+
+}
+
+
+
+.imageFlower {
+    width: 100%;
+}
+
+.info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: bold;
+    font-size: large;
+}
+
+.newNaturalFlower {
+    width: 100%;
+    min-height: 200px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: grid;
+    grid-auto-columns: (max-content 4);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: stretch;
+    justify-items: center;
+    gap: 10px;
+}
+
+.displayNowFlower {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+@media (max-width : 1080px) {
+    .displayNowFlower {
+        grid-column: 2 span;
+    }
+}
+
+.accessories {
+    width: 100%;
+    min-height: 200px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    padding: 10px;
+    display: grid;
+    grid-auto-columns: (max-content 4);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.addBand,
+.addPaper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #202126;
+    border-radius: 8px;
+    padding: 20px;
+    color: aliceblue;
+}
+
+.addNaturalFlower {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-around;
+    background-color: #202126;
+    border-radius: 8px;
+    padding: 20px;
+    color: aliceblue;
+    grid-column: 2 span;
+}
+
+.currentBouquets {
+    width: 98%;
+    max-width: 1480px;
+    border-radius: 16px;
+    padding: 10px;
+    padding-top: 50px;
+    align-items: center;
+    gap: 20px;
+    display: grid;
+    grid-auto-columns: (max-content 4);
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    justify-items: center;
+    border: 5px solid #F1C92F;
+    box-sizing: border-box;
+}
+
+.bouquetsquer {
+    width: 400px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    background-color: #F1C92F;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.fogDis {
+    width: 90%;
+    min-height: 100px;
+    /* background-color: #F1C92F; */
+    position: absolute;
+    bottom: -120px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    transform: all 5ns esyin;
+    color: #ffff;
+
+}
+
+.fogEdit {
+    width: 100px;
+    height: 40px;
+    background-color: #F1C92F;
+    position: absolute;
+    top: -50px;
+    left: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.bouquetsquer:hover .fogDis {
+    /* display: flex; */
+    bottom: 25px;
+    transition: all 0.2s ease-out;
+}
+
+.bouquetsquer:hover .fogEdit {
+    /* display: flex; */
+    top: 10px;
+    transition: all 0.2s ease-out;
+}
+
+.fogEdit:hover {
+    border: 4px solid black;
+    transition: all 0s ease-out;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+
+}
+
+.addBandForm,
+.addPaperForm {
+    width: 100%;
+}
+
+.displayColr {
+    width: 200px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+/* ///////////////// */
+
+.colorsAvailable {
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    border: 3px solid #F1C92F;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 30px;
+}
+
+
+.bandColor1 {
+    margin-top: 10px;
+    width: 100%;
+    /* width: calc(100% - 6px); */
+    height: 300px;
+    background-color: #f1eef0;
+    transition: all 0.5s linear;
+
+    /* padding: 10px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-between; */
+    border-radius: 8px;
+    overflow: hidden;
+    gap: 5px;
+}
+
+.bandColor2 {
+    margin-top: 10px;
+    width: 100%;
+    /* width: calc(100% - 6px); */
+    height: 0px;
+    background-color: #f1eef0;
+    transition: all 0.5s linear;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    overflow: hidden;
+    gap: 5px;
+}
+
+.orderArrwClose {
+    /* transform: rotate(-90deg); */
+    transition: all 0.5s ease-in-out;
+    padding: 5px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.orderArrwOpen:hover {
+    background-color: #5457684f;
+}
+
+.orderArrwClose:hover {
+    background-color: #5457684f;
+}
+
+.orderArrwOpen {
+    transform: rotate(180deg);
+    transition: all 0.5s ease-in-out;
+    padding: 5px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.pItameOn {
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10%;
+}
+
+.pItameOff {
+    width: 98%;
+    display: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10%;
+    overflow: hidden;
+}
+
+.pItameColor {
+    width: 100%;
+    height: 40px;
+    transition: all 0.5s ease-in-out;
+    border-radius: 8px;
+}
+
+/* .pItameColorOff {
+    width: 100%;
+    height: 0px;
+    transition: all 0.5s ease-in-out;
+} */
+.inDiv {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    margin-top: 10px;
+    background-color: #f1eef0;
+    transition: all 0.5s linear;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    gap: 5px;
+}

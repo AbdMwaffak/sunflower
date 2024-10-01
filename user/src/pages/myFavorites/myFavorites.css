@@ -1,0 +1,127 @@
+.myFavorites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.myFavoritesTitle {
+    width: 98%;
+    max-width: 1480px;
+    height: 54px;
+    background-color: #202126;
+    color: white;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.myFavoritesContener {
+    width: 98%;
+    max-width: 1480px;
+    min-height: 500px;
+    border-radius: 16px;
+    border: 5px solid #F1C92F;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+
+}
+
+.prevMonth,
+.recently {
+    width: 100%;
+    max-width: 1480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenerManth {
+    width: 98%;
+    border-radius: 16px;
+    display: grid;
+    grid-auto-columns: (max-content 4);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-items: center;
+    gap: 30px;
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+.prevMonthTitle,
+.recentlyTitle {
+    width: 100%;
+    height: 54px;
+    background-color: #202126;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: white;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.deletAll {
+    width: 100px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: red;
+    color: aliceblue;
+    font-family: none;
+    transition: all 0.01s linear;
+    border: none;
+}
+
+.deletAll:active {
+    transform: scale(0.9);
+    transition: all 0.01s linear;
+    border: none;
+}
+
+.deletAll:hover {
+    border: 3px solid white;
+    border: none;
+}
+
+.hrMyFavorites {
+    width: 98%;
+}
+
+
+.heart {
+    animation: hithere 1s ease infinite;
+}
+
+@keyframes hithere {
+    30% {
+        transform: scale(1.2);
+    }
+
+    40%,
+    60% {
+        transform: rotate(-20deg) scale(1.2);
+    }
+
+    50% {
+        transform: rotate(20deg) scale(1.2);
+    }
+
+    70% {
+        transform: rotate(0deg) scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,119 @@
+.mySettings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    gap: 10px;
+}
+
+
+.mySettingsContener {
+    box-sizing: border-box;
+    width: 98%;
+    max-width: 1480px;
+    border-radius: 16px;
+    border: 5px solid #F1C92F;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+}
+
+.mySettingsTitle {
+    width: 98%;
+    max-width: 1480px;
+    height: 54px;
+    background-color: #202126;
+    color: white;
+    font-family: Script MT;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.currentSlider {
+    width: 98%;
+    max-width: 1480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid #F1C92F;
+    border-radius: 16px;
+    padding: 10px;
+    padding-top: 50px;
+    gap: 20px;
+}
+
+.textarea2 {
+    max-height: 200px;
+}
+
+.newimgSlider {
+    width: 100%;
+    min-height: 200px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    display: flex;
+    align-items: stretch;
+    padding: 10px;
+    justify-content: space-around;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+.sliderxhom {
+    width: 100%;
+}
+
+.currentImgs {
+    width: 98%;
+    border-radius: 16px;
+    border: 5px solid #F1C92F;
+    padding: 10px;
+    padding-top: 50px;
+    align-items: center;
+    gap: 20px;
+    display: grid;
+    grid-auto-columns: (max-content 4);
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    justify-items: center;
+    box-sizing: border-box;
+}
+
+.sliderItame {
+    width: 300px;
+    aspect-ratio: 21/9;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteImageSlider {
+    position: absolute;
+    color: white;
+    background-color: #0000009a;
+    width: 65px;
+    height: 65px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    display: none;
+    transition: all 1s;
+}
+
+.sliderItame:hover>.deleteImageSlider {
+    display: flex;
+    transition: all 1s ease-in-out;
+
+}

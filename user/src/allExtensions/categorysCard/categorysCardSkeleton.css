@@ -1,0 +1,38 @@
+.skeleton1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    box-shadow: 4px 5px 12px black;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 52px;
+    border-radius: 16px;
+    box-shadow: 4px 5px 12px black;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(202, 12%, 68%);
+    }
+
+    100% {
+        background-color: hsl(0, 7%, 80%);
+    }
+}
+
+.logoSkeleton {
+    width: 90px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
