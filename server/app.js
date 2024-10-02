@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
     'sunflowerworld.shop',
     'admin.sunflowerworld.shop',
     '62.72.12.52'
-  ); // update to match the domain you will make the request from
+  ); // update to match the domain you will make the request from 😎
   next();
 });
 
@@ -84,7 +84,7 @@ app.get('*', function (req, res) {
     }
   );
 });
-
+// dunia121247
 app.all('*', (req, res, next) => {
   next(
     new AppError(`Can't find this route ${req.originalUrl} on this server`, 404)
