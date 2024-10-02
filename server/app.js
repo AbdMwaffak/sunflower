@@ -74,26 +74,14 @@ app.use('/messages', messageRoutes);
 app.use('/aboutus', aboutUsRoutes);
 app.use('/settings', settingRoutes);
 
-app.get('*', (req, res) => {
-  const host = req.headers.host;
-
-  if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
-    // Serve user application
-    res.sendFile(path.join(__dirname, '../user/dist/index.html'), (err) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-    });
-  } else if (host === 'admin.sunflowerworld.shop') {
-    // Serve admin application
-    res.sendFile(path.join(__dirname, '../admin/dist/index.html'), (err) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-    });
+app.get('*', function (req, res, next) {
+  const host = req.hostname;
+  if (host === 'dunia.sunflowerworld.shop') {
+    // Serve the admin page for admin subdomain
+    res.sendFile(path.join(__dirname, '../admin/dist/index.html'));
   } else {
-    // Handle other hostnames or return 404
-    res.status(404).send('Not Found');
+    // Serve the user page for main domain
+    res.sendFile(path.join(__dirname, '../user/dist/index.html'));
   }
 });
 // dunia121247
