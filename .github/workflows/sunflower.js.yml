@@ -41,7 +41,7 @@ jobs:
         run: |
           NODE_OPTIONS=--max-old-space-size=4096 npm install
 
-      - name: Restart The Server
+      - name: Restarting Server
         working-directory: ./server
         run: |
           pm2 stop 0
