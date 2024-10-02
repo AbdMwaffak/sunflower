@@ -11,7 +11,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Split vendor and large dependencies into separate chunks
+          // Split vendor and large dependencies into separate chunks --
           if (id.includes('node_modules')) {
             return 'vendor';
           }

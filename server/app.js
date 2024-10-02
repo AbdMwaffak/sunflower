@@ -76,7 +76,7 @@ app.use('/settings', settingRoutes);
 
 // app.get('*', function (req, res) {
 //   res.sendFile(path.join(__dirname, '../user/dist/index.html'), function (err) {
-//     if (err) {
+// if (err) {
 //       res.status(500).send(err);
 //     }
 //   });
