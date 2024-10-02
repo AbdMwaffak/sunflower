@@ -10,8 +10,8 @@ const cookieParser = require('cookie-parser');
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 
-app.use(express.static(path.join(__dirname, '../user/dist')));
 app.use(express.static(path.join(__dirname, '../admin/dist')));
+app.use(express.static(path.join(__dirname, '../user/dist')));
 
 app.use(function (req, res, next) {
   res.header(
@@ -75,7 +75,8 @@ app.use('/settings', settingRoutes);
 
 app.get('*', (req, res) => {
   const host = req.headers.host;
-
+  console.log('HOST : ', host);
+  console.log('TYPE : ', typeof host);
   if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
     // Serve user application
     res.sendFile(path.join(__dirname, '../user/dist/index.html'), (err) => {
@@ -83,7 +84,7 @@ app.get('*', (req, res) => {
         res.status(500).send(err);
       }
     });
-  } else if (host === 'admin.sunflowerworld.shop') {
+  } else if (host === 'dunia.sunflowerworld.shop') {
     // Serve admin application
     res.sendFile(path.join(__dirname, '../admin/dist/index.html'), (err) => {
       if (err) {
