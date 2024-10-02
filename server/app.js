@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
     'sunflowerworld.shop',
     'admin.sunflowerworld.shop',
     '62.72.12.52'
-  ); // update to match the domain you will make the request from
+  ); // update to match the domain you will make the request from 😎
   next();
 });
 
