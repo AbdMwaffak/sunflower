@@ -47,8 +47,17 @@ const messageRoutes = require('./routes/messageRoutes');
 const aboutUsRoutes = require('./routes/aboutUsRoutes');
 const settingRoutes = require('./routes/settingRoutes');
 
+const corsOptions = {
+  origin: [
+    'https://sunflowerworld.shop',
+    'https://www.sunflowerworld.shop',
+    'https://dunia.sunflowerworld.shop',
+  ],
+  optionsSuccessStatus: 200,
+};
+
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
