@@ -1,2 +1,2 @@
-const Api = 'http://localhost:5000';
+const Api = 'dunia.sunflowerworld.shop';
 export default Api;

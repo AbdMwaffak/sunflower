@@ -2,7 +2,6 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const path = require('path');
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -47,17 +46,7 @@ const messageRoutes = require('./routes/messageRoutes');
 const aboutUsRoutes = require('./routes/aboutUsRoutes');
 const settingRoutes = require('./routes/settingRoutes');
 
-const corsOptions = {
-  origin: [
-    'https://sunflowerworld.shop',
-    'https://www.sunflowerworld.shop',
-    'https://dunia.sunflowerworld.shop',
-  ],
-  optionsSuccessStatus: 200,
-};
-
 app.use(morgan('dev'));
-app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -84,8 +73,6 @@ app.use('/settings', settingRoutes);
 
 app.get('*', (req, res) => {
   const host = req.headers.host;
-  console.log('HOST : ', host);
-  console.log('TYPE : ', typeof host);
   if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
     // Serve user application
     res.sendFile(path.join(__dirname, '../user/dist/index.html'), (err) => {
