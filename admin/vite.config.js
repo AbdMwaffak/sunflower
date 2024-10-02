@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'dist', // Output directory for production build
+    outDir: 'dist', // Output directory for production builds
     minify: 'esbuild', // Minify the build (default is esbuild, which is fast)
     sourcemap: false, // Set to 'true' if you want source maps for debugging
     rollupOptions: {
