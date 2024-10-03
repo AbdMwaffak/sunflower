@@ -23,7 +23,8 @@ app.use(function (req, res, next) {
     'Access-Control-Allow-Origin',
     'www.sunflowerworld.shop',
     'sunflowerworld.shop',
-    'dunia.sunflowerworld.shop'
+    'dunia.sunflowerworld.shop',
+    '62.72.12.52'
   ); // update to match the domain you will make the request from 😎
   next();
 });
