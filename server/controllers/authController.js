@@ -30,6 +30,7 @@ exports.signUp = catchAsync(async (req, res, next) => {
     phone: req.body.phone,
     gender: req.body.gender,
     image: req.file?.filename,
+    role: req.body.role,
   });
 
   res.locals._ = encrypt(newUser.id);

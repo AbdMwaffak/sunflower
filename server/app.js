@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
+app.use(cors());
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 

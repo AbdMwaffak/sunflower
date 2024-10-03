@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-
 /////////////
 const cookies = new Cookies();
 let token = '';
@@ -15,7 +14,7 @@ export const getCategories = createAsyncThunk(
     const response = await axios.get(`/category`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
+    console.log(response);
     return response.data;
   }
 );
