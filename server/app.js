@@ -12,20 +12,53 @@ const AppError = require('./utils/appError');
 app.use(express.static(path.join(__dirname, '../admin/dist')));
 app.use(express.static(path.join(__dirname, '../user/dist')));
 
-app.use(function (req, res, next) {
-  res.header(
+// app.use(function (req, res, next) {
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Origin, X-Requested-With, Content-Type, Accept'
+//   );
+//   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+//   res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin');
+//   res.header(
+//     'Access-Control-Allow-Origin',
+//     'www.sunflowerworld.shop',
+//     'sunflowerworld.shop',
+//     'dunia.sunflowerworld.shop',
+//     '62.72.12.52'
+//   ); // update to match the domain you will make the request from 😎
+//   next();
+// });
+const allowedOrigins = [
+  'www.sunflowerworld.shop',
+  'sunflowerworld.shop',
+  'dunia.sunflowerworld.shop',
+  '62.72.12.52',
+];
+
+// Middleware for handling CORS
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+
+  // Check if the incoming origin is in the list of allowed origins
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
+  // Set other headers that might be needed
+  res.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
   );
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-  res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin');
-  res.header(
-    'Access-Control-Allow-Origin',
-    'www.sunflowerworld.shop',
-    'sunflowerworld.shop',
-    'dunia.sunflowerworld.shop',
-    '62.72.12.52'
-  ); // update to match the domain you will make the request from 😎
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PATCH, DELETE, OPTIONS'
+  );
+
+  // If the client sends a preflight request with OPTIONS, respond with status 200
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200); // CORS preflight response
+  }
+
   next();
 });
 
