@@ -36,7 +36,7 @@ function AppUser() {
         <ScrollToTop />
         <Routes>
           <Route path='/*' element={<NoMatch />} />
-          <Route path='/Home' element={<Home numCounter={numCounter} />} />
+          <Route path='/' element={<Home numCounter={numCounter} />} />
           <Route
             path='/NaturalFlowers'
             element={<Naturalflowers numCounter={numCounter} />}
