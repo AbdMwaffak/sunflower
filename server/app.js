@@ -11,25 +11,23 @@ app.use(cors());
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 
-app.use(express.static(path.join(__dirname, '../admin/dist')));
-app.use(express.static(path.join(__dirname, '../user/dist')));
+// app.use(express.static(path.join(__dirname, '../admin/dist')));
+// a0pp.use(express.static(path.join(__dirname, '../user/dist')));
 
-// app.use(function (req, res, next) {
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept'
-//   );
-//   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-//   res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin');
-//   res.header(
-//     'Access-Control-Allow-Origin',
-//     'www.sunflowerworld.shop',
-//     'sunflowerworld.shop',
-//     'dunia.sunflowerworld.shop',
-//     '62.72.12.52'
-//   ); // update to match the domain you will make the request from 😎
-//   next();
-// });
+app.use((req, res, next) => {
+  const host = req.headers.host;
+  // Check for user domain
+  if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
+    app.use(express.static(path.join(__dirname, '../user/dist')));
+  }
+  // Check for admin domain
+  else if (host === 'dunia.sunflowerworld.shop') {
+    app.use(express.static(path.join(__dirname, '../admin/dist')));
+  }
+
+  next();
+});
+
 const allowedOrigins = [
   'www.sunflowerworld.shop',
   'sunflowerworld.shop',
@@ -86,7 +84,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
 app.use('/users', userRoutes);
@@ -109,7 +108,6 @@ app.use('/settings', settingRoutes);
 
 app.get('*', (req, res) => {
   const host = req.headers.host;
-  console.log(host);
   if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
     // Serve user application
     res.sendFile(path.join(__dirname, '../user/dist/index.html'), (err) => {
