@@ -41,6 +41,11 @@ jobs:
         run: |
           NODE_OPTIONS=--max-old-space-size=4096 npm install
 
+      - name: Deploy Server
+        working-directory: ./server
+        run: |
+          rsync -avz --exclude='public/' --exclude='.git/' ./server/ root@62.72.12.52:/var/www/sunflower/_work/sunflower/sunflower/server/
+
       - name: Restarting Server
         working-directory: ./server
         run: |
