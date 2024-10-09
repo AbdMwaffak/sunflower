@@ -44,7 +44,7 @@ jobs:
       - name: Deploy Server
         working-directory: ./server
         run: |
-          rsync -avz -e "ssh -i ~/.ssh/sunflower-ssh --exclude='public/' --exclude='.git/' ./server/ root@62.72.12.52:/var/www/sunflower/_work/sunflower/sunflower/server/
+          rsync -avz -e "ssh -i ~/.ssh/sunflower-ssh" --exclude='public/' --exclude='.git/' ./server/ root@62.72.12.52:/var/www/sunflower/_work/sunflower/sunflower/server/
 
       - name: Restarting Server
         working-directory: ./server
