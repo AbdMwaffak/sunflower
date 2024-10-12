@@ -1,4 +1,3 @@
-// const dotenv = require('dotenv');
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -10,9 +9,6 @@ const cors = require('cors');
 app.use(cors());
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
-
-// app.use(express.static(path.join(__dirname, '../admin/dist')));
-// a0pp.use(express.static(path.join(__dirname, '../user/dist')));
 
 app.use((req, res, next) => {
   const host = req.headers.host;
