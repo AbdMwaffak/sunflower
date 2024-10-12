@@ -24,6 +24,9 @@ jobs:
       - name: Check Node.js version
         run: node -v
 
+      - name: Backup public/images
+        run: mkdir -p backup && cp -r ./server/public backup/
+
       - name: Install Client Dependencies
         working-directory: ./user
         run: |
@@ -41,10 +44,8 @@ jobs:
         run: |
           NODE_OPTIONS=--max-old-space-size=4096 npm install
 
-      - name: Deploy Server
-        working-directory: ./server
-        run: |
-          rsync -avz -e "ssh -i ~/.ssh/sunflower-ssh" --exclude='public/' --exclude='.git/' ./server/ root@62.72.12.52:/var/www/sunflower/_work/sunflower/sunflower/server/
+      - name: Restore public/images
+        run: cp -r backup/public ./server
 
       - name: Restarting Server
         working-directory: ./server
