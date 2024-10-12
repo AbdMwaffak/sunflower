@@ -14,6 +14,12 @@ jobs:
         node-version: [18.19.1] # Use Node.js 18.19.1 to match the server
 
     steps:
+      # 1. نسخ مجلد public الحالي على السيرفر إلى مكان مؤقت قبل النشر
+      - name: Backup Public Folder from Server
+        run: |
+          mkdir -p /var/www/sunflower/_work/public-backup
+          if [ -d "/var/www/sunflower/_work/sunflower/sunflower/server/public" ]; then cp -r /var/www/sunflower/_work/sunflower/sunflower/server/public /var/www/sunflower/_work/public-backup/; fi
+
       - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
@@ -24,20 +30,13 @@ jobs:
       - name: Check Node.js version
         run: node -v
 
-      # 1. نسخ مجلد public لحفظه مؤقتًا قبل التحديث
-      - name: Backup Public Folder
-        working-directory: ./server
-        run: |
-          mkdir -p ../public-backup
-          if [ -d "./public" ]; then cp -r ./public ../public-backup/; fi
-
       - name: Install Client Dependencies
         working-directory: ./user
         run: |
           NODE_OPTIONS=--max-old-space-size=4096 npm install
           NODE_OPTIONS=--max-old-space-size=4096 npm run build
 
-      - name: Install Client Dependencies
+      - name: Install Admin Dependencies
         working-directory: ./admin
         run: |
           NODE_OPTIONS=--max-old-space-size=4096 npm install
@@ -48,13 +47,12 @@ jobs:
         run: |
           npm install
 
-      # 2. استعادة مجلد public بعد التحديث
-      - name: Restore Public Folder
-        working-directory: ./server
+      # 2. استعادة مجلد public من النسخة الاحتياطية بعد التحديث
+      - name: Restore Public Folder on Server
         run: |
-          if [ -d "../public-backup/public" ]; then cp -r ../public-backup/public ./; fi
+          if [ -d "/var/www/sunflower/_work/public-backup/public" ]; then cp -r /var/www/sunflower/_work/public-backup/public /var/www/sunflower/_work/sunflower/sunflower/server/; fi
 
-      # 3. إعادة تشغيل الخادم
+      # 3. إعادة تشغيل السيرفر
       - name: Restarting Server
         working-directory: ./server
         run: |
