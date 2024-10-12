@@ -42,7 +42,7 @@ jobs:
       - name: Install Server Dependencies
         working-directory: ./server
         run: |
-          NODE_OPTIONS=--max-old-space-size=4096 npm install
+          npm install
 
       - name: Restore public/images
         run: cp -r backup/public ./server
