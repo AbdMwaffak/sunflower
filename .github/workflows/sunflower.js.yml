@@ -24,8 +24,12 @@ jobs:
       - name: Check Node.js version
         run: node -v
 
-      - name: Backup public/images
-        run: mkdir -p backup && cp -r ./server/public backup/
+      # 1. نسخ مجلد public لحفظه مؤقتًا قبل التحديث
+      - name: Backup Public Folder
+        working-directory: ./server
+        run: |
+          mkdir -p ../public-backup
+          if [ -d "./public" ]; then cp -r ./public ../public-backup/; fi
 
       - name: Install Client Dependencies
         working-directory: ./user
@@ -44,9 +48,13 @@ jobs:
         run: |
           npm install
 
-      - name: Restore public/images
-        run: cp -r backup/public ./server
+      # 2. استعادة مجلد public بعد التحديث
+      - name: Restore Public Folder
+        working-directory: ./server
+        run: |
+          if [ -d "../public-backup/public" ]; then cp -r ../public-backup/public ./; fi
 
+      # 3. إعادة تشغيل الخادم
       - name: Restarting Server
         working-directory: ./server
         run: |
