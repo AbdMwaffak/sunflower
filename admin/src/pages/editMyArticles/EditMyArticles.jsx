@@ -70,10 +70,10 @@ const EditMyArticles = () => {
         <>
             <Toaster />
             <div className='editeCategory'>
-                <div className='editeCategoryTitle'>
+                <div className='title'>
                     Edit My Articles
                 </div>
-                <div className='editeCategoryContener'>
+                <div className='editeContener'>
                     <div className='nowArticle'>
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addCategory'>
                             <Form.Group className="mb-3" controlId="validationCustom02">
@@ -117,16 +117,21 @@ const EditMyArticles = () => {
 
                     </div>
                 </div >
-                <EDitPost
-                    key={articel._id}
-                    id={articel._id}
-                    image={articel?.image}
-                    description={articel.description}
-                    date={articel?.createdAt}
-                    like={articel.likeCount}
-                    share={articel.shareCount}
-                    filetype={articel.filetype}
-                />
+                <div className='supTitle'>
+                    The final result
+                </div>
+                <div className='currentBouquets '>
+                    <EDitPost
+                        key={articel._id}
+                        id={articel._id}
+                        image={articel?.image}
+                        description={articel.description}
+                        date={articel?.createdAt}
+                        like={articel.likeCount}
+                        share={articel.shareCount}
+                        filetype={articel.filetype}
+                    />
+                </div>
             </div >
         </>
     )

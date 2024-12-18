@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { deleteaboutById } from '../../RTK/about/deleteaboutByIdSlice';
+import { useTranslation } from 'react-i18next';
 
 function DeleteAboutModel(props) {
     const [show, setShow] = useState(false);
@@ -16,9 +17,11 @@ function DeleteAboutModel(props) {
         props.handelReload()
         setShow(false);
     }
+    ///////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
-            <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  >  delete element </div>
+            <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  > {t('about.deleteElement')} </div>
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -26,18 +29,18 @@ function DeleteAboutModel(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>DELETE ELEMENT</Modal.Title>
+                    <Modal.Title>{t('public.deleteItem')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className='delelteBody'>
-                        Are you sure you want to delete this post?
+                        {t('about.message1')}?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('public.close')}
                     </Button>
-                    <button className='send' onClick={handleDelete}>delete</button>
+                    <button className='send' onClick={handleDelete}>{t('public.delete')}</button>
                 </Modal.Footer>
             </Modal>
         </>

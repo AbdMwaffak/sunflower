@@ -3,12 +3,7 @@ import './productCard.css'
 import { Link, useNavigate } from 'react-router-dom';
 
 const ProductCard = (props) => {
-    //////////////////
-    const hanelAddToFavorite = () => {
-        // dispatch(addToFavorite(props.id))
-        // console.log(props.id)
-    }
-    //////////////////
+
     return (
         <div className='productCard'>
             <div className='imageCard'>
@@ -17,7 +12,7 @@ const ProductCard = (props) => {
                     <img className='image-Card' src={props.image} />
                 </Link>
                 <div className='imgNum'>
-                    1/4
+                    1/{props?.imageNum}
                 </div>
             </div>
 

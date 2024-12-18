@@ -7,6 +7,7 @@ import { postArticle } from '../../RTK/arcticles/postArticleSlice';
 import Post from '../../allExtensions/post/Post'
 import SuccessfulMessage from '../../allExtensions/successfulMessage/SuccessfulMessage';
 import { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 const MyArticles = () => {
     const articels = useSelector(state => state.getArticles).data
     const addState = useSelector(state => state.postArticle)
@@ -36,7 +37,6 @@ const MyArticles = () => {
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         event.preventDefault();
-        // event.stopPropagation();
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
@@ -71,6 +71,7 @@ const MyArticles = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [])
     ////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
             <Toaster />
@@ -84,15 +85,14 @@ const MyArticles = () => {
                 />
             } */}
             <div className='editeCategory'>
-                <div className='editeCategoryTitle'>
-                    My Articles
+                <div className='title'>
+                    {t('articles.title')}
                 </div>
-                <div className='editeCategoryContener'>
+                <div className='editeContener'>
                     <div className='nowArticle'>
-
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addCategory'>
                             <Form.Group className="mb-3" controlId="validationCustom02">
-                                <Form.Label>Add image or video</Form.Label>
+                                <Form.Label> {t('articles.addImageOrVideo')}</Form.Label>
                                 <Form.Control
                                     type="file"
                                     placeholder="Category Name"
@@ -101,8 +101,20 @@ const MyArticles = () => {
                                 />
                             </Form.Group>
                             {/* ///////// */}
+                            {/* <Form.Group className="mb-3 " controlId="validationCustom02">
+                                <Form.Label>{t('articles.addDescriptionAr')} </Form.Label>
+                                <Form.Control
+                                    className='textarea1'
+                                    as="textarea"
+                                    type="text"
+                                    placeholder="write description here "
+                                    required
+                                    onChange={(e) => setDescription(e.target.value)}
+                                />
+                            </Form.Group> */}
+                            {/* ///////// */}
                             <Form.Group className="mb-3 " controlId="validationCustom02">
-                                <Form.Label>Add description </Form.Label>
+                                <Form.Label>{t('articles.addDescriptionEn')} </Form.Label>
                                 <Form.Control
                                     className='textarea1'
                                     as="textarea"
@@ -112,23 +124,24 @@ const MyArticles = () => {
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
                             </Form.Group>
-                            <hr />
-                            <button type="submit" className='formButton'>Submit form</button>
-
+                            <hr className='tapp' />
+                            <button type="submit" className='formButton'>{t('public.addButton')}</button>
                         </Form>
-
-
+                        {/* <div className='displayNewCategory'> */}
                         <div className='newImageArticle' style={{ display: imageType != "video" ? "flex" : "none" }} >
                             <img className='imageCat' src={imageSquer} />
                         </div>
+                        {/* </div> */}
                         <div className='newImageArticle' style={{ display: imageType == "video" ? "flex" : "none" }}>
                             {/* <VideoPlayer videoUrl={imageSquer} /> */}
                             <video src={imageSquer} width="100%" height="100%" controls>
                             </video>
                         </div>
-
                     </div>
                 </div >
+                <div className='supTitle'>
+                    {t('articles.supTitle')}
+                </div>
                 <div className='currentArticles'>
                     {articels?.map((articel) => (
                         <Post
@@ -141,16 +154,9 @@ const MyArticles = () => {
                             share={articel.shareCount}
                             filetype={articel.filetype}
                             handelReload={handelReload}
-
                         />
-
                     ))}
-
-
-
                 </div>
-
-
             </div>
         </>
     )

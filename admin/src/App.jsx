@@ -2,7 +2,6 @@ import './App.css';
 import ScrollToTop from './ScrollToTop';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/home/Home'
-// import MyNav from './allExtensions/nav/MyNav';
 import MyCategory from './pages/myCategory/MyCategory';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/login/Login'
@@ -26,6 +25,12 @@ import ProtectedRoutes from './allExtensions/ProtectedRoutes';
 import Cookies from 'universal-cookie';
 import { useDispatch } from 'react-redux';
 import Settings from './pages/settings/Settings';
+import { UserContextProvider } from './allExtensions/UserContext';
+import Orders from './pages/orders/Orders';
+import { useTranslation } from 'react-i18next';
+
+
+
 function App() {
   const cookies = new Cookies();
   //////////////////////////
@@ -34,6 +39,10 @@ function App() {
   const sidBarButtom = () => {
     setSid(!sid)
   }
+
+  ////////////////////////////////////
+  const { t, i18n } = useTranslation();
+  const lng = cookies.get("i18next") || "en";
   ///////////////////////
   const dispatch = useDispatch()
   ///////////////////////
@@ -42,48 +51,53 @@ function App() {
       setLogin(true)
     }
     else { setLogin(false) }
-  }, [dispatch])
+    window.document.dir = i18n.dir();
+    console.log(lng)
+  }, [dispatch, lng])
+  //////////////////// 
 
-  ////////////////////  
+
   return (
-    <div className="App">
-      <Router>
-        {login &&
-          <MyNav sidBarButtom={sidBarButtom} />
-        }
-
-        <div className='appContainer'>
-
+    <UserContextProvider>
+      <div className="App">
+        <Router>
           {login &&
-            <SidBar sid={sid} />
+            <MyNav sidBarButtom={sidBarButtom} />
           }
-          <ScrollToTop />
-          <div className={sid ? 'pageContainer2' : 'pageContainer1'}>
-            <Routes>
-              <Route path="/*" element={<NoMatch />} />
-              <Route path='/' element={<Login />} />
-              <Route element={<ProtectedRoutes />}>
-                <Route path='/Home' element={<Home />} />
-                <Route path='/MyCategory' element={<MyCategory />} />
-                <Route path='/EditeCategory/:CategortyId' element={<EditeCategory />} />
-                <Route path='/EditProduct/:productId' element={<EditProduct />} />
-                <Route path='/MyArticles' element={<MyArticles />} />
-                <Route path='/EditMyArticles/:ArticalId' element={<EditMyArticles />} />
-                <Route path='/MyNaturalFlower' element={<MyNaturalFlower />} />
-                <Route path='/EditMyNaturalFlower/:NaturalFlowerId' element={<EditMyNaturalFlower />} />
-                <Route path='/MyPerfume' element={<MyPerfume />} />
-                <Route path='/Chocolate' element={<Chocolate />} />
-                <Route path='/Messages' element={<Messages />} />
-                <Route path='/About' element={<About />} />
-                <Route path='/MyOffers' element={<MyOffers />} />
-                <Route path='/EditeOffer/:MyOffersId' element={<EditeOffer />} />
-                <Route path='/Setting' element={<Settings />} />
-              </Route>
-            </Routes>
+          <div className='appContainer'>
+            {login &&
+              <SidBar sid={sid} />
+            }
+            <ScrollToTop />
+            <div className={sid ? 'pageContainer2' : 'pageContainer1'}>
+              <Routes>
+                <Route path="/*" element={<NoMatch />} />
+                <Route path='/' element={<Login />} />
+                <Route element={<ProtectedRoutes />}>
+                  <Route path='/Homee' element={<Home />} />
+                  <Route path='/MyCategory' element={<MyCategory />} />
+                  <Route path='/EditeCategory/:CategortyId' element={<EditeCategory />} />
+                  <Route path='/EditProduct/:productId' element={<EditProduct />} />
+                  <Route path='/MyArticles' element={<MyArticles />} />
+                  <Route path='/EditMyArticles/:ArticalId' element={<EditMyArticles />} />
+                  <Route path='/MyNaturalFlower' element={<MyNaturalFlower />} />
+                  <Route path='/EditMyNaturalFlower/:NaturalFlowerId' element={<EditMyNaturalFlower />} />
+                  <Route path='/MyPerfume' element={<MyPerfume />} />
+                  <Route path='/Chocolate' element={<Chocolate />} />
+                  <Route path='/Messages' element={<Messages />} />
+                  <Route path='/About' element={<About />} />
+                  <Route path='/MyOffers' element={<MyOffers />} />
+                  <Route path='/EditeOffer/:MyOffersId' element={<EditeOffer />} />
+                  <Route path='/Setting' element={<Settings />} />
+                  <Route path='/Orders' element={<Orders />} />
+                </Route>
+              </Routes>
+            </div>
           </div>
-        </div>
-      </Router >
-    </div>
+        </Router >
+      </div>
+    </UserContextProvider>
+
   );
 }
 

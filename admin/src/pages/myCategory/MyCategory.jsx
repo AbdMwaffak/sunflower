@@ -6,7 +6,7 @@ import { postNewCategory } from '../../RTK/categories/postNewCategorySlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../RTK/categories/getCategoriesSlice ';
 import { Toaster } from 'react-hot-toast';
-
+import { useTranslation } from 'react-i18next';
 
 const MyCategory = () => {
     const allCategories = useSelector(state => state.getCategories).data
@@ -58,7 +58,6 @@ const MyCategory = () => {
     useEffect(() => {
         dispatch(getCategories())
     }, [dispatch, reload])
-    const notify = () => toast('Here is your toast.');
     ////////////////////////////////////
     useEffect(
         function () {
@@ -66,6 +65,7 @@ const MyCategory = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [allCategories])
     ////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
             <Toaster />
@@ -79,16 +79,17 @@ const MyCategory = () => {
                 />
             } */}
             <div className='myCategory'>
-                <div className='myCategoryTitle'>
-                    My Category
+
+                <div className='title'>
+                    {t('myCategory.title')}
                 </div>
-                <div className='myCategoryContener'>
-                    <div className='nowCategory'>
+                <div className='editeContener'>
+                    <div className='newCategory'>
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addCategory'>
-                            <div className='activeTitel'> Add new category</div>
-                            <hr />
+                            <div className='activeTitel'>  {t('myCategory.addNew')}</div>
+                            <hr className='tapp' />
                             <Form.Group className="mb-3" controlId="validationCustom01">
-                                <Form.Label>First name</Form.Label>
+                                <Form.Label> {t('myCategory.addImage')}</Form.Label>
                                 <Form.Control
                                     required
                                     type="file"
@@ -99,7 +100,7 @@ const MyCategory = () => {
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="validationCustom03">
-                                <Form.Label>Category Name</Form.Label>
+                                <Form.Label> {t('myCategory.addNameEn')}</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="Category Name"
@@ -107,31 +108,33 @@ const MyCategory = () => {
                                     onChange={(e) => setName(e.target.value)}
                                 />
                             </Form.Group>
+                            {/* <Form.Group className="mb-3" controlId="validationCustom03">
+                                <Form.Label> {t('myCategory.addNameAr')}</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Category Name"
+                                    required
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                            </Form.Group> */}
 
-                            <hr />
-                            <button type="submit" className='formButton'>add new category </button>
+                            <hr className='tapp' />
+                            <button type="submit" className='formButton'> {t('public.addButton')} </button>
                         </Form>
 
-
-
-                        {/* </div> */}
-                        <div className='displayNowCategory'>
-
-
+                        <div className='displayNewCategory'>
                             <div className='newImageCategory'>
                                 <img className='imageCat' src={imageSquer} />
                             </div>
                             <div className='newTitleCategory'>
                                 {name}
                             </div>
-
-
                         </div>
 
                     </div>
                 </div>
-                <div className='productsTitle'>
-                    Current Category
+                <div className='supTitle'>
+                    {t('myCategory.supTitle')}
                 </div>
                 <div className='currentCategory'>
                     {allCategories?.map((category) => (

@@ -1,33 +1,42 @@
 const mongoose = require('mongoose');
 
 const perfumeVariant = new mongoose.Schema({
-    size : String,
-    price : Number,
-    available : {
-        type : Boolean,
-        default : true
-    }
-  });
+  size: String,
+  price: Number,
+  available: {
+    type: Boolean,
+    default: true,
+  },
+});
 
 const perfumeSchema = new mongoose.Schema({
-    name : {
-        type : String,
-        trim : true,
-        default : 'Sunflower'
-    },
-    description : {
-        type : String,
-        required : true,
-        trim : true
-    },
-    images : {
-        type : [String],
-    },
-    variants : [perfumeVariant]
-    
-})
+  name: {
+    type: String,
+    trim: true,
+    default: 'Sunflower',
+  },
+  description: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  // nameAr : {
+  //     type : String,
+  //     trim : true,
+  //     default : 'Sunflower'
+  // },
+  descriptionAr: {
+    type: String,
+    // required: true,
+    trim: true,
+  },
+  images: {
+    type: [String],
+  },
+  variants: [perfumeVariant],
+});
 
-const Perfume = mongoose.model('Perfume' , perfumeSchema);
+const Perfume = mongoose.model('Perfume', perfumeSchema);
 
 module.exports = Perfume;
 

@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { deleteArticelById } from '../../RTK/arcticles/deleteArticelByIdSlice';
+import { useTranslation } from 'react-i18next';
 
 function DeletePostModel(props) {
     const [pass, setPass] = useState(false);
@@ -22,9 +23,11 @@ function DeletePostModel(props) {
         props.handelReload()
         setShow(false);
     }
+    ////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
-            <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  >  delete element </div>
+            <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  >  {t('public.deleteItem')} </div>
 
             <Modal
                 show={show}
@@ -33,7 +36,7 @@ function DeletePostModel(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title> {t('public.deleteItem')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {/* <div className='delelteBody'>
@@ -42,7 +45,7 @@ function DeletePostModel(props) {
                     <div
                     //  className={props.type == "name" ? "tt" : "ff"}
                     >
-                        <Form.Label>  If you are sure to delete this item, enter the password :</Form.Label>
+                        <Form.Label> {t('articles.message1')} :</Form.Label>
                         <Form.Control className='input6' type="text" aria-label="With textarea"
                             onChange={(e) => setPass(e.target.value)}
                             placeholder='write here '
@@ -53,9 +56,11 @@ function DeletePostModel(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('public.close')}
                     </Button>
-                    <button className='send' onClick={handleDelete}>delete</button>
+                    <button className='deleteButten' onClick={handleDelete}>
+                        {t('public.delete')}
+                    </button>
                 </Modal.Footer>
             </Modal>
         </>

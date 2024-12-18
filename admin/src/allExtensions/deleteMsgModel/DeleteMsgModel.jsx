@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { deleteMessage } from '../../RTK/message/deleteMessageSlice';
+import { useTranslation } from 'react-i18next';
 
 function DeleteMsgModel(props) {
     const [show, setShow] = useState(false);
@@ -17,9 +18,11 @@ function DeleteMsgModel(props) {
         props.handelReload()
         setShow(false);
     }
+    ////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
-            <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  >  delete message </div>
+            <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  > {t('messages.deleteMessage')} </div>
 
             <Modal
                 show={show}
@@ -28,20 +31,20 @@ function DeleteMsgModel(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>    {t('messages.deleteElement')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className='delelteBody'>
-                        Are you sure you want to delete this message?
+                        {t('messages.message1')}?
                     </div>
 
 
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('public.close')}
                     </Button>
-                    <button className='send' onClick={handleDelete}>delete</button>
+                    <button className='deleteButten' onClick={handleDelete}> {t('public.delete')}</button>
                 </Modal.Footer>
             </Modal>
         </>

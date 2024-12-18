@@ -12,65 +12,80 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: space-around;
-    background-color: #202126;
+    background-color: var(--component-Color);
     border-radius: 8px;
     padding: 20px;
-    color: aliceblue;
+    color: var(--component-textColor);
     grid-column: 2 span
 }
 
-
-disblayOffer {
+/* displayNewCategory */
+.disblayOffer {
     width: 100%;
-    background-color: #F1C92F;
     padding: 5px;
     border-radius: 8px;
     overflow: hidden;
-    /* border: 5px solid white; */
-    box-shadow: 4px 5px 12px black;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 10px;
+    box-shadow: var(--component-shadow);
+    padding: 20px;
+    border-radius: 8px;
 }
 
-.myOffersTitle {
-    width: 98%;
-    max-width: 1480px;
-    height: 54px;
-    background-color: #202126;
-    color: white;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: x-large;
+.newImageOffer {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    border: 5px solid var(--border-color);
+    box-shadow: 4px 5px 12px black;
     display: flex;
     align-items: center;
-    flex-direction: column;
     justify-content: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    background-color: var(--primary-yellow);
+    overflow: hidden;
+}
+
+.editOfferInfo {
+    width: 100%;
+    min-height: 20%;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
     border-radius: 8px;
+    box-shadow: 4px 5px 12px black;
+    background: #202126;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
 }
 
 .currentOffers {
     width: 98%;
     max-width: 1480px;
     border-radius: 16px;
-    border: 5px solid #F1C92F;
+    border: 5px solid var(--primary-yellow);
     padding: 10px;
     padding-top: 50px;
     display: grid;
     grid-auto-columns: (max-content 4);
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     align-items: center;
     justify-items: center;
     gap: 10px;
     align-items: stretch;
     box-sizing: border-box;
-
-
 }
 
+@media (max-width : 900px) {
+    .disblayOffer {
+        grid-column: 2 span;
+        width: 50%;
+    }
+}
 
 .textarea2 {
     max-height: 200px;
@@ -79,24 +94,18 @@ disblayOffer {
 .newOffer {
     width: 100%;
     min-height: 200px;
-    background-color: aliceblue;
+    background-color: var(--component-Color);
+    color: var(--component-textColor);
     border-radius: 8px;
     padding: 10px;
     box-sizing: border-box;
     display: grid;
     grid-auto-columns: (max-content 4);
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     align-items: stretch;
     justify-items: center;
     gap: 10px;
-}
-
-.newImageOffer {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background-color: aliceblue;
-    border-radius: 8px;
-    overflow: hidden;
+    box-shadow: var(--component-shadow);
 }
 
 .offerProducts {
@@ -107,10 +116,10 @@ disblayOffer {
     flex-direction: row;
     align-items: flex-start;
     gap: 10px;
-    background-color: aliceblue;
+    background-color: var(--component-Color);
     border-radius: 8px;
     overflow: hidden;
-
+    box-shadow: var(--component-shadow);
 }
 
 .offerProducts1 {

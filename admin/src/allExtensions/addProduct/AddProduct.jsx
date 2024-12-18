@@ -4,6 +4,7 @@ import { Col, Form, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { postProduct } from '../../RTK/product/postProductSlice';
 import { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 const AddProduct = (props) => {
 
@@ -121,16 +122,16 @@ const AddProduct = (props) => {
             setcolorsNew([])
         }
     };
-
+    //////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
             <Toaster />
             <div className='addProductContener'>
-                <div className={open ? "newProductOpen" : "newProductClose"}>
-
-                    <div className='addProduct'>
+                <div className="newProduct" >
+                    <div className={open ? 'addProductOpen' : "addProductColse"}>
                         <div className='productHader'>
-                            <div >  add produt to this catgory </div>
+                            <div >  {t('category.addProductHeader')} </div>
                             <div onClick={() => setOpen(!open)}>
                                 <svg className={open ? "productArrwOpen" : "productArrwClose"}
                                     viewBox="0 0 16 16" fill="#fff" >
@@ -138,11 +139,11 @@ const AddProduct = (props) => {
                                 </svg>
                             </div>
                         </div>
-                        <div className={!open ? "hiddenBody" : ''} >
+                        <div className={!open ? "hiddenBody" : 'unHiddenBody'} >
                             <hr className='hrProduct' />
                             <Form noValidate validated={validated} onSubmit={handleSubmit} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
-                                    <Form.Label>Categort image</Form.Label>
+                                    <Form.Label>{t('category.productImage')}</Form.Label>
 
                                     <Form.Control
                                         required
@@ -153,9 +154,23 @@ const AddProduct = (props) => {
                                 </Form.Group>
                                 {/* //////////// */}
                                 <Row >
+                                    {/* <Form.Group as={Col} md="6" className="mb-3" controlId="validationCustom01">
+
+                                        <Form.Label>{t('category.productNameAr')}</Form.Label>
+
+                                        <Form.Control
+                                            placeholder='write name here '
+                                            required
+                                            type="text"
+                                            onChange={(e) => setName(e.target.value)}
+                                        />
+
+
+                                    </Form.Group> */}
+                                    {/* //////////// */}
                                     <Form.Group as={Col} md="6" className="mb-3" controlId="validationCustom01">
 
-                                        <Form.Label> product name</Form.Label>
+                                        <Form.Label>{t('category.productNameEn')}</Form.Label>
 
                                         <Form.Control
                                             placeholder='write name here '
@@ -169,7 +184,7 @@ const AddProduct = (props) => {
                                     {/* //////////// */}
                                     <Form.Group as={Col} md="6" className="mb-3" controlId="validationCustom01">
 
-                                        <Form.Label> product price</Form.Label>
+                                        <Form.Label> {t('category.productPrice')}</Form.Label>
 
                                         <Form.Control
                                             placeholder='write price here '
@@ -181,9 +196,21 @@ const AddProduct = (props) => {
                                     </Form.Group>
                                 </Row>
                                 {/* //////////// */}
+                                {/* <Form.Group className="mb-3" controlId="validationCustom01">
+
+                                    <Form.Label> {t('category.productDisAr')}</Form.Label>
+
+                                    <Form.Control
+                                        placeholder='write description here '
+                                        required
+                                        type="text"
+                                        onChange={(e) => setDescription(e.target.value)}
+                                    />
+                                </Form.Group> */}
+                                {/* //////////// */}
                                 <Form.Group className="mb-3" controlId="validationCustom01">
 
-                                    <Form.Label> product description</Form.Label>
+                                    <Form.Label> {t('category.productDisEn')}</Form.Label>
 
                                     <Form.Control
                                         placeholder='write description here '
@@ -201,17 +228,17 @@ const AddProduct = (props) => {
                                         <div className='addCategory1'>
                                             <div className='addCategory2'>
                                                 <div className='addCategory3'>
-                                                    <Form.Label> Available sizes</Form.Label>
+                                                    <Form.Label> {t('category.availableSizes')}</Form.Label>
                                                     <Form.Control
                                                         required
                                                         type="text"
                                                         onChange={(e) => setSize(e.target.value)}
                                                     />
                                                 </div>
-                                                <h5> by </h5>
+                                                <h5>{t('category.by')} </h5>
 
                                                 <div className='addCategory3'>
-                                                    <Form.Label>price by money </Form.Label>
+                                                    <Form.Label>{t('category.priceByMoney')}</Form.Label>
 
                                                     <Form.Control
                                                         required
@@ -226,7 +253,7 @@ const AddProduct = (props) => {
                                                             type='checkbox'
                                                             onChange={(e) => (setSellInPoints(!sellInPoints), setPriceInPoints(0))}
                                                         />
-                                                        <Form.Label>price by points </Form.Label>
+                                                        <Form.Label>{t('category.priceByPoints')}</Form.Label>
 
 
                                                     </div>
@@ -241,7 +268,7 @@ const AddProduct = (props) => {
                                                 </div>
                                                 <h5> / </h5>
                                                 <div className='addCategory3'>
-                                                    <Form.Label>points Earned </Form.Label>
+                                                    <Form.Label>{t('category.pointsEarned')} </Form.Label>
 
                                                     <Form.Control
                                                         required
@@ -254,11 +281,11 @@ const AddProduct = (props) => {
 
                                         <div className='editPro' style={{ border: "3px solid #f1c92f" }}
                                             onClick={sizePriceOnChange}
-                                        >  add </div>
+                                        > {t('public.addButton')}</div>
 
                                         <div className='editPro' style={{ border: "3px solid #f1c92f" }}
                                             onClick={() => clearAllSize()}
-                                        >  Clear  </div>
+                                        > {t('public.clear')} </div>
 
 
                                     </div>
@@ -266,10 +293,10 @@ const AddProduct = (props) => {
                                     <div className='sizeBody'>
                                         {prices?.length != 0 &&
                                             <tr className='haderSizeline'>
-                                                <span className='sizeCall1'>  SIZE </span>
-                                                <span className='sizeCall1'>  PRICE BY MONY</span>
-                                                <span className='sizeCall1'>  PRICE BY POINT</span>
-                                                <span className='sizeCall1'>  POINTS EARNED</span>
+                                                <span className='sizeCall1'>  {t('category.size')}</span>
+                                                <span className='sizeCall1'>  {t('category.priceByMoney')}</span>
+                                                <span className='sizeCall1'>  {t('category.priceByPoints')}</span>
+                                                <span className='sizeCall1'> {t('category.pointsEarned')}</span>
 
                                             </tr>}
 
@@ -304,7 +331,7 @@ const AddProduct = (props) => {
                                 {/* //////////// */}
 
                                 <Form.Group className="mb-3" controlId="validationCustom01">
-                                    <Form.Label>Color</Form.Label>
+                                    <Form.Label>{t('category.color')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <Form.Control
@@ -318,11 +345,11 @@ const AddProduct = (props) => {
 
                                         <div className='editPro' style={{ border: "3px solid #f1c92f" }}
                                             onClick={() => colorOnChange(color)}
-                                        >  add </div>
+                                        >  {t('public.addButton')} </div>
 
                                         <div className='editPro' style={{ border: "3px solid #f1c92f" }}
                                             onClick={() => clearAllColors()}
-                                        >  Clear  </div>
+                                        >  {t('public.clear')} </div>
 
 
                                     </div>
@@ -345,9 +372,9 @@ const AddProduct = (props) => {
                                 </Form.Group>
 
                                 {/* //////////// */}
-                                <hr />
+                                <hr className='tapp' />
                                 <button type="submit" className='formButton'  >
-                                    add new product
+                                    {t('public.addButton')}
                                 </button>
                             </Form>
                         </div>

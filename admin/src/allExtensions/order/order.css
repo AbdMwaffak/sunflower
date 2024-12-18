@@ -1,0 +1,178 @@
+.orderClose {
+    width: 98%;
+    height: 60px;
+    background-color: var(--secondary-light);
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.5s ease-in-out;
+    padding-top: 0;
+    box-shadow: var(--component-shadow);
+}
+
+.orderOpen {
+    width: 98%;
+    min-height: 200px;
+    background-color: var(--secondary-light);
+    border-radius: 8px;
+    padding: 10px;
+    padding-top: 0;
+    transition: all 0.5s ease-in-out;
+    box-shadow: var(--component-shadow);
+}
+
+.orderHader {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    direction: ltr;
+}
+
+.hrOrder {
+    color: #202126;
+    width: 100%;
+    margin: 5px 0px;
+}
+
+.orderBody {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+}
+
+.orBody {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+}
+
+.line:nth-child(odd) .callOrder {
+    background-color: #cdcdcb;
+}
+
+.haderline {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2px;
+}
+
+.haderline>.callOrder {
+    background-color: var(--primary-yellow);
+}
+
+.line {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2px;
+}
+
+.callOrder {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orderFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stateOrder {
+    width: 40%;
+    height: 40px;
+    background-color: var(--primary-yellow);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.totalOrder {
+    width: 40%;
+    height: 40px;
+    background-color: var(--primary-yellow);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.priceDiv {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    border-radius: 100%;
+    padding: 5px;
+    border-radius: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu:hover {
+    background-color: #5457684f;
+}
+
+.rightHader {
+    display: flex;
+    position: relative;
+}
+
+.menuOpen {
+    top: 29px;
+    left: 22px;
+    position: absolute;
+    width: 165px;
+    background-color: white;
+    border-radius: 8px;
+    z-index: 100;
+    padding: 5px;
+    transition: all 0.2s linear;
+    color: var(--primary-dark);
+    overflow: hidden;
+}
+
+.menuClose {
+    overflow: hidden;
+    top: 25px;
+    left: 25px;
+    position: absolute;
+    width: 0;
+    height: 0;
+    transition: all 0.2s linear;
+}
+
+.returnOpen {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 3px;
+    transition: all 0.2s;
+    transition-delay: 0.1s;
+}
+
+.hiddenBody {
+    display: none;
+}

@@ -6,48 +6,13 @@
     gap: 10px;
 }
 
-.myArticlesTitle {
-    width: 98%;
-    max-width: 1480px;
-    height: 54px;
-    background-color: #202126;
-    color: white;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: x-large;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-
-
-}
-
-.myArticlesContener {
-    box-sizing: border-box;
-    width: 98%;
-    max-width: 1480px;
-    border-radius: 16px;
-    border: 5px solid #F1C92F;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    align-items: center;
-
-
-}
-
 .currentArticles {
     max-width: 1480px;
     width: 98%;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    border: 5px solid #F1C92F;
+    border: 5px solid var(--primary-yellow);
     border-radius: 16px;
     padding-top: 50px;
 }
@@ -55,17 +20,18 @@
 .newImageArticle {
     width: 100%;
     aspect-ratio: 1/1;
-    background-color: #F1C92F;
+    background-color: var(--primary-yellow);
     border-radius: 8px;
     overflow: hidden;
-    border: 5px solid white;
+    border: 5px solid var(--border-color);
     box-shadow: 4px 5px 12px black;
     align-items: center;
 }
 
-@media (max-width : 1080px) {
+@media (max-width : 900px) {
     .newImageArticle {
         grid-column: 2 span;
+        width: 50%;
     }
 }
 
@@ -77,16 +43,19 @@
 .nowArticle {
     width: 100%;
     min-height: 200px;
-    background-color: aliceblue;
+    background-color: var(--component-Color);
     border-radius: 8px;
     padding: 10px;
     box-sizing: border-box;
     display: grid;
     grid-auto-columns: (max-content 4);
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     justify-content: space-between;
     box-sizing: border-box;
     align-items: stretch;
     gap: 10px;
+    box-shadow: var(--component-shadow);
+    justify-items: center;
+    align-items: center;
 
 }

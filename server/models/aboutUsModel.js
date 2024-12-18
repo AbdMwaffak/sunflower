@@ -1,20 +1,33 @@
 const mongoose = require('mongoose');
 
-const aboutUsSchema = new mongoose.Schema({
-  title : {
-    type : String,
-    required : true,
-    trim : true
+const aboutUsSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    titleAr: {
+      type: String,
+      // required: true,
+      trim: true,
+    },
+    descriptionAr: {
+      type: String,
+      // required: true,
+      trim: true,
+    },
   },
-  description : {
-    type : String,
-    required : true,
-    trim : true
+  {
+    timestamps: true,
   }
-},{
-  timestamps : true
-});
+);
 
-const AboutUs = mongoose.model('AboutUs' , aboutUsSchema);
+const AboutUs = mongoose.model('AboutUs', aboutUsSchema);
 
 module.exports = AboutUs;

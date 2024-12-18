@@ -55,15 +55,15 @@ import deleteaboutByIdSlice from './about/deleteaboutByIdSlice';
 import deletePerfumeSlice from './perfume/deletePerfumeSlice';
 import stateOfferByIdSlice from './offers/stateOfferByIdSlice';
 import getAllSettingsSlice from './settings/getAllSettingsSlice';
+import updateContactSlice from './settings/updateContactSlice';
 import deleteImageFromSliderSlice from './settings/deleteImageFromSliderSlice';
 import postImageToSliderSlice from './settings/postImageToSliderSlice';
 import patchVariantsSlice from './perfume/patchVariantsSlice';
-
-
-
-
-
-
+import addCitiesSlice from './cities/addCitiesSlice';
+import getAllCitiesSlice from './cities/getAllCitiesSlice';
+import getCityByIdSlice from './cities/getCityByIdSlice';
+import deleteCityByIdSlice from './cities/deleteCityByIdSlice';
+import updateCityByIdSlice from './cities/updateCityByIdSlice';
 
 export const store = configureStore({
     reducer: {
@@ -137,6 +137,14 @@ export const store = configureStore({
         getAllSettings: getAllSettingsSlice,
         postImageToSlider: postImageToSliderSlice,
         deleteImageFromSlider: deleteImageFromSliderSlice,
+        updateContact: updateContactSlice,
+
+        addCities: addCitiesSlice,
+        getAllCities: getAllCitiesSlice,
+        getCityById: getCityByIdSlice,
+        deleteCityById: deleteCityByIdSlice,
+        updateCityById: updateCityByIdSlice,
+
 
     },
 

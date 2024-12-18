@@ -3,6 +3,8 @@ import './login.css';
 import Form from 'react-bootstrap/Form';
 import { useDispatch } from 'react-redux';
 import { postLogin } from '../../RTK/Auth/loginSlice';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -32,6 +34,16 @@ const Login = () => {
         }
     };
     ////////////////////////////////////
+    const cookies = new Cookies();
+    const navigate = useNavigate();
+    let token = ''
+    useEffect(() => {
+        if (cookies.get('adminToken') !== undefined || null) {
+            navigate('/MyCategory');
+        }
+
+    }, [dispatch])
+    ////////////////////////////////////
     useEffect(
         function () {
             document.title = `SUNFLOWER - LogIn`;
@@ -48,7 +60,7 @@ const Login = () => {
                     LOGIN
                 </div>
                 <hr style={{ color: "#a7abaf" }} />
-                <div className='formBody'>
+                <div className='loginFormBody'>
                     <Form.Group className="mb-3" controlId="form1">
                         <Form.Label >
                             Email

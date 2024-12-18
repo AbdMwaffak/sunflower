@@ -85,8 +85,8 @@ Delete Offer From shoppingCart : DELETE : POST : localhost:5000/shoppingCart/off
 Add City : POST : localhost:5000/cities <name , array of neighborhoods> (حاكيني بس توصلا)     [ADMIN]
 Get All Cities : GET : localhost:5000/cities
 Get City By Id : GET : localhost:5000/cities/:id
-Update City : PATCH :  localhost:5000/:id <updated fields>      [ADMIN]
-Delete City : DELETE : localhost:5000/:id       [ADMIN]
+Update City : PATCH :  localhost:5000/cities/:id <updated fields>      [ADMIN]
+Delete City : DELETE : localhost:5000/cities/:id       [ADMIN]
 
                     -- NATURAL FLOWER ORDER --
 Add Natural Flower Order : POST : localhost:5000/naturalFlowersOrders <

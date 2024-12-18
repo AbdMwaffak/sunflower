@@ -4,6 +4,7 @@ import { deleteChocolate } from '../../RTK/chocolate/deleteChocolateSlice';
 import { useDispatch } from 'react-redux';
 import { patchChocolate } from '../../RTK/chocolate/patchChocolateSlice';
 import { Form } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const ChocolateCard = (props) => {
     const dispatch = useDispatch()
@@ -102,7 +103,8 @@ const ChocolateCard = (props) => {
             setReload(!reload)
         }
     };
-
+    ////////////////////////////////////
+    const { t, i18n } = useTranslation();
 
     return (
         <div className='chocolateCard'>
@@ -113,8 +115,8 @@ const ChocolateCard = (props) => {
                     <div className='chocolateImage'>
                         <img className='imageFlower' src={imageSquer} />
                     </div>
-                    <div className='chocolateItame1' > name : {name}</div>
-                    <div className='chocolateItame1' > price : {price} </div>
+                    <div className='chocolateItame1' >   {t('chocolate.name')} : {name}</div>
+                    <div className='chocolateItame1' >  {t('chocolate.price')} : {price} </div>
 
 
                 </div>
@@ -123,7 +125,7 @@ const ChocolateCard = (props) => {
                     <button className='deleteChock'
                         onClick={handelDelete}
                     >
-                        delete
+                        {t('public.delete')}
                     </button>
                     {/* /////////// */}
                     <div className='addB' onClick={() => setChocolateDiv(!chocolateDiv)} style={{ display: "flex" }}>
@@ -139,7 +141,7 @@ const ChocolateCard = (props) => {
                 <Form noValidate validated={validated1} onSubmit={handleSubmit1} className='updateChoco'>
 
                     <Form.Group className="mb-3" controlId="validationCustom01">
-                        <Form.Label>Categort image</Form.Label>
+                        <Form.Label>  {t('chocolate.editChocolateImage')}</Form.Label>
                         <div className='rowEdit'>
                             <div className='addCategory1'>
                                 <Form.Control
@@ -159,7 +161,7 @@ const ChocolateCard = (props) => {
                 <Form noValidate validated={validated2} onSubmit={handleSubmit2} className='updateChoco'>
 
                     <Form.Group className="mb-3" controlId="validationCustom01">
-                        <Form.Label>Category Name</Form.Label>
+                        <Form.Label> {t('chocolate.editChocolateName')}</Form.Label>
                         <div className='rowEdit'>
                             <div className='addCategory2'>
                                 <Form.Control
@@ -180,7 +182,7 @@ const ChocolateCard = (props) => {
                 <Form noValidate validated={validated3} onSubmit={handleSubmit3} className='updateChoco'>
 
                     <Form.Group className="mb-3" controlId="validationCustom01">
-                        <Form.Label>price</Form.Label>
+                        <Form.Label> {t('chocolate.editChocolatePrice')}</Form.Label>
                         <div className='rowEdit'>
                             <div className='addCategory2'>
                                 <Form.Control

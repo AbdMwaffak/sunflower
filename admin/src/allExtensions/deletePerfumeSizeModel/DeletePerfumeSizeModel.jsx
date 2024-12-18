@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { deleteArticelById } from '../../RTK/arcticles/deleteArticelByIdSlice';
+import { useTranslation } from 'react-i18next';
 
 function DeletePerfumeSizeModel(props) {
     const [pass, setPass] = useState(false);
@@ -22,10 +23,12 @@ function DeletePerfumeSizeModel(props) {
         props.handelReload()
         setShow(false);
     }
+    ////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
-            <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  >  delete element </div>
- 
+            <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  >   {t('perfume.deleteElement')} </div>
+
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -33,7 +36,7 @@ function DeletePerfumeSizeModel(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title> {t('public.deleteItem')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div
@@ -47,9 +50,9 @@ function DeletePerfumeSizeModel(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('public.close')}
                     </Button>
-                    <button className='send' onClick={handleDelete}>delete</button>
+                    <button className='deleteButten' onClick={handleDelete}> {t('public.delete')}</button>
                 </Modal.Footer>
             </Modal>
         </>

@@ -1,0 +1,21 @@
+.myOrder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.myOrderContener {
+    box-sizing: border-box;
+    width: 98%;
+    max-width: 1480px;
+    border-radius: 16px;
+    border: 5px solid var(--primary-yellow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+    min-height: 75vh;
+}

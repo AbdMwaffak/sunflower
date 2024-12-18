@@ -5,9 +5,15 @@
 .App {
   text-align: center;
   font-size: calc(10px + 2vmin);
-  background-color: #3B3A3A;
+  background-color: var(--body-Color);
+  /* background-color: #3B3A3A; */
   padding: 6px;
   min-height: 100vh;
+
+  font-family: "Noto Naskh Arabic", serif;
+  font-optical-sizing: auto;
+  font-weight: 400px;
+  font-style: normal;
 
 
 }
@@ -57,22 +63,154 @@
 .formButton {
   width: 100%;
   height: 40px;
-  background-color: #F1C92F;
+  background-color: var(--primary-yellow);
   border: none;
   color: #202126;
   border-radius: 8px;
   transition: all 0.5ns ease-in-out;
   font-weight: 500;
-  /* font-size: 20px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 
 .formButton:hover {
   border: 4px solid white;
-  box-shadow: 3px 4px 16px 6px #F1C92F;
+  box-shadow: 3px 4px 16px 6px var(--primary-yellow);
 
 }
 
 .formButton:active {
   transform: scale(0.98, 0.98);
 }
+
+/* --primary-dark: #202126; */
+:root {
+  --primary-yellow: #F1C92F;
+  --primary-dark: #1D1D31;
+  --primary-light: #ececec;
+  --secondary-light: #f2f2f2;
+  --text-size: 16px;
+  --text-titleSize: 20px;
+
+
+  --body-Color: #151520;
+  --title-Color: #f2f2f2;
+  --title-textColor: var(--primary-dark);
+
+  --component-Color: var(--primary-dark);
+  --component-textColor: #f2f2f2;
+  --border-color: #f2f2f2;
+  /* --component-shadow: 10px 10px 30px 0 #F1C92F45; */
+  --component-shadow: 10px 10px 30px 0 #00000072;
+}
+
+[data-theme="light"] {
+  --body-Color: #ececec;
+  --title-Color: var(--primary-dark);
+  --title-textColor: #f2f2f2;
+  --component-Color: #f2f2f2;
+  --component-textColor: var(--primary-dark);
+  --border-color: #202126;
+  --component-shadow: 10px 10px 30px 0 rgba(0, 0, 0, 0.27);
+  /* --component-shadow: 10px 10px 30px 0 #00000045; */
+
+}
+
+.activeTitel {
+  height: 40px;
+  font-weight: 700;
+  text-align: center;
+  font-size: var(--text-titleSize);
+  color: var(--component-textColor);
+}
+
+.tapp {
+  color: var(--primary-yellow);
+  opacity: 1;
+}
+
+.title {
+  width: 98%;
+  max-width: 1480px;
+  height: 54px;
+  background-color: var(--title-Color);
+  color: var(--title-textColor);
+  font-weight: 700;
+  font-size: var(--text-titleSize);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.supTitle {
+  width: 30%;
+  padding: 11px;
+  background-color: var(--title-Color);
+  color: var(--title-textColor);
+  border-radius: 8px;
+  font-weight: 700;
+  font: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: -35px;
+  z-index: 50;
+}
+
+.noProducts {
+  width: 98%;
+  height: 200px;
+  background: var(--component-Color);
+  color: var(--component-textColor);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+  animation: foggy 2s ease-in-out;
+  box-shadow: var(--component-shadow);
+}
+
+.editeContener {
+  box-sizing: border-box;
+  width: 98%;
+  max-width: 1480px;
+  border-radius: 16px;
+  border: 5px solid var(--primary-yellow);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  align-items: center;
+}
+
+.imageCat {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-header {
+  justify-content: space-between;
+}
+
+.modal-header .btn-close {
+  margin: 0;
+}
+
+/* .noto-naskh-arabic-<app> {
+  font-family: "Noto Naskh Arabic", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+} */

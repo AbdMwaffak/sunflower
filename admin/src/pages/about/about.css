@@ -8,43 +8,23 @@
 
 .addAbout {
     width: 100%;
-    min-width: 380px;
-
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: space-around;
-    background-color: #202126;
     border-radius: 8px;
     padding: 20px;
-    color: aliceblue;
-}
-
-.myAboutTitle {
-    width: 98%;
-    max-width: 1480px;
-    height: 54px;
-    background-color: #202126;
-    color: white;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: x-large;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
+    color: var(--component-textColor);
 }
 
 .currentAbout {
+    padding-top: 50px;
     width: 98%;
     max-width: 1480px;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    border: 5px solid #F1C92F;
+    border: 5px solid var(--primary-yellow);
     border-radius: 16px;
 
 }
@@ -56,7 +36,7 @@
 .newAbout {
     width: 100%;
     min-height: 200px;
-    background-color: aliceblue;
+    background-color: var(--component-Color);
     border-radius: 8px;
     display: flex;
     align-items: stretch;
@@ -64,6 +44,6 @@
     justify-content: space-around;
     box-sizing: border-box;
     gap: 10px;
-
+    box-shadow: var(--component-shadow);
 
 }

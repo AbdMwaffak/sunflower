@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import EditBouquetCard from '../../allExtensions/editBouquet/EditBouquetCard';
 import { patchBouquet } from '../../RTK/naturalFlowers/patchBouquetSlice';
 import { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 
 const EditMyNaturalFlower = () => {
@@ -69,22 +70,23 @@ const EditMyNaturalFlower = () => {
             document.title = `SUNFLOWER - Bouquet(${bouquet?.count})`;
             return function () { document.title = 'SUNFLOWER' };
         }, [bouquet?.count])
-    //////////////////////////////////// 
+    ////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
             <Toaster />
 
             <div className='myNaturalFlower'>
-                <div className='myNaturalFlowerTitle'>
-                    My Natural Flower
+                <div className='title'>
+                    {t('flowerBouquet.title')}
                 </div>
-                <div className='myNaturalFlowerContener'>
+                <div className='editeContener'>
                     <div className='newNaturalFlower'>
 
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addNaturalFlower'>
 
                             <Form.Group className="mb-3" controlId="validationCustom01">
-                                <Form.Label>Add bouquet image </Form.Label>
+                                <Form.Label>    {t('flowerBouquet.editBouquetImage')} </Form.Label>
                                 <Form.Control
                                     required
                                     type="file"
@@ -92,7 +94,7 @@ const EditMyNaturalFlower = () => {
                                 />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="validationCustom03">
-                                <Form.Label>Add number of flowers</Form.Label>
+                                <Form.Label>     {t('flowerBouquet.editNumberOfFlowers')}</Form.Label>
                                 <Form.Control
                                     type="number"
                                     placeholder={bouquet?.count}
@@ -102,7 +104,7 @@ const EditMyNaturalFlower = () => {
                                 />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="validationCustom03">
-                                <Form.Label>Add price of bouquet</Form.Label>
+                                <Form.Label>     {t('flowerBouquet.editPriceOfBouquet')}</Form.Label>
                                 <Form.Control
                                     type="number"
                                     placeholder={bouquet?.price}
@@ -111,8 +113,18 @@ const EditMyNaturalFlower = () => {
                                     onChange={(e) => setPrice(e.target.value)}
                                 />
                             </Form.Group>
+                            {/* <Form.Group className="mb-3" controlId="validationCustom03">
+                                <Form.Label>     {t('flowerBouquet.editBouquetDescriptionAr')}</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    type="text "
+                                    placeholder={bouquet?.description}
+                                    required
+                                    onChange={(e) => setDescription(e.target.value)}
+                                />
+                            </Form.Group> */}
                             <Form.Group className="mb-3" controlId="validationCustom03">
-                                <Form.Label>Add bouquet description</Form.Label>
+                                <Form.Label>     {t('flowerBouquet.editBouquetDescriptionEn')}</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     type="text "
@@ -124,7 +136,7 @@ const EditMyNaturalFlower = () => {
 
                             <hr />
 
-                            <button type="submit" className='formButton'>add bouquet</button>
+                            <button type="submit" className='formButton'>     {t('public.edit')}</button>
                         </Form>
 
                         <div className='displayNowFlower'>
@@ -144,11 +156,11 @@ const EditMyNaturalFlower = () => {
                             <div className='newTitleFlower'>
                                 <div className='info' >
                                     <div className='' >
-                                        Cuantety :   {num == 0 ? bouquet?.count : num}
+                                        {t('flowerBouquet.cuantety')} :   {num == 0 ? bouquet?.count : num}
                                     </div>
 
                                     <div className='' >
-                                        Price :   {price == 0 ? bouquet?.price : price}
+                                        {t('flowerBouquet.price')} :   {price == 0 ? bouquet?.price : price}
                                     </div>
                                 </div>
                                 <hr />
@@ -163,8 +175,8 @@ const EditMyNaturalFlower = () => {
                     </div>
                 </div>
                 {/* ////////////// */}
-                <div className='productsTitle'>
-                    The final result
+                <div className='supTitle'>
+                    {t('flowerBouquet.result')}
                 </div>
                 <div className='currentBouquets'>
 

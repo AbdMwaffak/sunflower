@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Api from '../API';
 import { deleteBouquet } from '../../RTK/naturalFlowers/deleteBouquetSlice';
 import DeleteBouquetModel from '../deleteModel/DeleteBouquetModel';
+import { useTranslation } from 'react-i18next';
 
 const BouquetCard = (props) => {
 
@@ -20,28 +21,22 @@ const BouquetCard = (props) => {
         }, 1000);
 
     }
-
+    ///////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
-        <div className='EditBouquet'>
+        <div className='editBouquet'>
             <div className='bouquetHader'>
                 <div >
-                    {/* Flowers */}
-                    Cuantety :   {props.count}
+                    {t('flower.cuantety')}  :   {props.count}
                 </div>
                 <div>
-                    {/* Bouquet */}
-                    Price :   {props.price}
+                    {t('flower.price')}  :   {props.price}
                 </div>
-
-
             </div>
-            <hr />
+            <hr className='phr' />
             <div className='bouquetBody'>
-
                 <div className='media'>
                     <Link to={`/EditMyNaturalFlower/${props.id}`} className='editlink'>
-
-
                         <img className='imageCat'
                             src={`${Api}/users/${props?.image}`} />
                     </Link>
@@ -50,15 +45,11 @@ const BouquetCard = (props) => {
                     {props?.description}
                 </div>
             </div>
-            <hr />
-
+            <hr className='phr' />
             <div className='bouquetTail'  >
-
                 <DeleteBouquetModel
                     delete={handelDelete}
                 />
-
-
             </div>
 
         </div >

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useTranslation } from 'react-i18next';
 
 function DeleteBouquetModel(props) {
     const [show, setShow] = useState(false);
@@ -10,6 +11,7 @@ function DeleteBouquetModel(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     /////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
 
@@ -17,7 +19,7 @@ function DeleteBouquetModel(props) {
                 onClick={handleShow}
 
             >
-                Delete
+                {t('public.delete')}
             </button>
 
             <Modal
@@ -27,12 +29,12 @@ function DeleteBouquetModel(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>DELETE ITEM</Modal.Title>
+                    <Modal.Title>{t('public.deleteItem')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div
                     >
-                        <Form.Label>  If you are sure to delete this item, enter the password :</Form.Label>
+                        <Form.Label> {t('flower.message1')} </Form.Label>
                         <Form.Control className='input6' type="text" aria-label="With textarea"
                             onChange={(e) => setPass(e.target.value)}
                             placeholder='write here '
@@ -45,11 +47,11 @@ function DeleteBouquetModel(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('public.close')}
                     </Button>
                     <button className='deleteButten'
                         onClick={(e) => (props.delete(pass), handleClose)}
-                    >delete</button>
+                    >{t('public.delete')} </button>
                 </Modal.Footer>
             </Modal>
         </>

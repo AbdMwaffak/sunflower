@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './profumeSize.css'
 import { useDispatch } from 'react-redux'
 import DeletePerfumeSizeModel from '../../allExtensions/deletePerfumeSizeModel/DeletePerfumeSizeModel'
 import { Toaster } from 'react-hot-toast'
 import { patchVariants } from '../../RTK/perfume/patchVariantsSlice'
+import { useTranslation } from 'react-i18next'
 
 function ProfumeSize(props) {
     const [openMenu, setOpenMenu] = useState(false)
@@ -22,6 +23,20 @@ function ProfumeSize(props) {
         dispatch(patchVariants({ id: props.id, available: e }))
         handelReload()
     }
+    ////////////////////
+    useEffect(() => {
+        let handler = (e) => {
+            if (!menuRef.current.contains(e.target)) {
+                setOpenMenu(false);
+            }
+        };
+        document.addEventListener("mousedown", handler)
+        return () => {
+            document.removeEventListener("mousedown", handler)
+        };
+    })
+    ////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
             <Toaster />
@@ -47,12 +62,12 @@ function ProfumeSize(props) {
                             />
                             {!props?.available &&
                                 <div className={openMenu ? "DMOpen" : "DMClose"} onClick={() => handelAvailable(true)} >
-                                    turnOn
+                                    {t('perfume.turnOn')}
                                 </div>
                             }
                             {props?.available &&
                                 <div className={openMenu ? "DMOpen" : "DMClose"} onClick={() => handelAvailable(false)}>
-                                    turnOff
+                                    {t('perfume.turnOff')}
                                 </div>
 
                             }
@@ -62,12 +77,12 @@ function ProfumeSize(props) {
                     </div>
                     {/* ////////////// */}
                     <div className='ttt1'>
-                        <span className='vv3'>size : {props?.size} </span>
+                        <span className='vv3'> {t('perfume.size')} : {props?.size} </span>
                     </div>
                 </div>
 
                 <div className='priceBySize'>
-                    <span className='vv3'>price : {props?.price} </span>
+                    <span className='vv3'> {t('perfume.price')} : {props?.price} </span>
                 </div>
             </div >
         </>

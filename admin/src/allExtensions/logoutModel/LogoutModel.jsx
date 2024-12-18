@@ -18,8 +18,11 @@ function LogoutModel() {
     }
     return (
         <>
-            <div className='login' onClick={handleShow} >
-                Logout
+            <div className='loginOut'>
+
+                <div className='login' onClick={handleShow} >
+                    Logout
+                </div>
             </div>
             <Modal
                 show={show}

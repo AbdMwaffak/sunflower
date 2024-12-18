@@ -4,6 +4,7 @@ import { Col, Form, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { postProduct } from '../../RTK/product/postProductSlice';
 import { postNewSize } from '../../RTK/perfume/postNewSizeSlice';
+import { useTranslation } from 'react-i18next';
 
 const AddperfumeSize = (props) => {
 
@@ -35,16 +36,17 @@ const AddperfumeSize = (props) => {
                 value: value
             }
             dispatch(postNewSize(reqobj))
-            props.handleReload
+            props.handleReload()
         }
     };
+    //////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <div className='addProductContener'>
-            <div className={open ? "newProductOpen" : "newProductClose"}>
-
-                <div className='addProduct'>
+            <div className='newPerfum'>
+                <div className={open ? "newPerfumeOpen" : "newPerfumeClose"}>
                     <div className='productHader'>
-                        <div >add a new sizes to perfume category </div>
+                        <div >{t('perfume.addPerfumetHeader')}</div>
                         <div onClick={() => setOpen(!open)}>
                             <svg className={open ? "productArrwOpen" : "productArrwClose"}
                                 viewBox="0 0 16 16" fill="#fff" >
@@ -52,7 +54,7 @@ const AddperfumeSize = (props) => {
                             </svg>
                         </div>
                     </div>
-                    <div className={!open ? "hiddenBody" : ''} >
+                    <div className={!open ? "hiddenBody" : 'unHiddenBody'} >
                         <hr className='hrProduct' />
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addCategory1'>
 
@@ -60,7 +62,7 @@ const AddperfumeSize = (props) => {
                             <Row >
                                 <Form.Group as={Col} md="6" className="mb-3" controlId="validationCustom01">
 
-                                    <Form.Label> size name</Form.Label>
+                                    <Form.Label>{t('perfume.sizeName')}</Form.Label>
 
                                     <Form.Control
                                         placeholder='set anew size'
@@ -72,7 +74,7 @@ const AddperfumeSize = (props) => {
                                 {/* //////////// */}
                                 <Form.Group as={Col} md="6" className="mb-3" controlId="validationCustom01">
 
-                                    <Form.Label> perfume size price</Form.Label>
+                                    <Form.Label> {t('perfume.sizePrice')}</Form.Label>
 
                                     <Form.Control
                                         placeholder='set anew price'
@@ -85,7 +87,7 @@ const AddperfumeSize = (props) => {
                             {/* //////////// */}
                             <hr />
                             <button type="submit" className='formButton'  >
-                                add new size
+                                {t('perfume.addNew')}
                             </button>
                         </Form>
                     </div>

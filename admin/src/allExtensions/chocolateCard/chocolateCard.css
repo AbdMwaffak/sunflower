@@ -4,10 +4,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    /* background-color: #202126; */
     border-radius: 8px;
     padding: 0px;
-    color: aliceblue;
+    color: var(--component-textColor);
 }
 
 .chocolateHader {
@@ -20,7 +19,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 0px 30px;
-    background-color: #202126;
+    background-color: var(--component-Color);
+    color: var(--component-textColor);
+    box-shadow: var(--component-shadow);
     z-index: 50;
 }
 
@@ -53,6 +54,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .deleteChock {
@@ -62,7 +64,7 @@
     border-radius: 8px;
     border: 0;
     margin: 0;
-    color: aliceblue;
+    color: var(--primary-light);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -77,15 +79,17 @@
     transition: all 0.5s linear;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
     border-radius: 0 0 8px 8px;
     overflow: hidden;
-    gap: 5px;
-    align-items: center;
     color: chocolate;
     padding: 10px;
     margin-bottom: 10px;
     padding-top: 20px;
     margin-top: -5px;
+    box-shadow: var(--component-shadow);
 }
 
 .chocolateColor2 {
@@ -102,7 +106,6 @@
     color: chocolate;
     padding: 0px 10px;
     margin-bottom: 10px;
-
     margin-top: -5px;
 }
 

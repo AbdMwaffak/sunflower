@@ -1,25 +1,30 @@
-import React from 'react';
+// import React, { useEffect, useState } from 'react';
 import './home.css'
-import Cookies from 'universal-cookie';
-import { Toaster } from 'react-hot-toast';
+// import Cookies from 'universal-cookie';
+// import { Toaster } from 'react-hot-toast';
+// import UseMouse from '../../allExtensions/UseMouse';
+
 
 const Home = () => {
-    const cookies = new Cookies();
+    // const cookies = new Cookies();
 
-    console.log(cookies.get('token'))
+    // useEffect(
+    //     function () {
+    //         document.title = `SUNFLOWER - My Home`;
+    //         return function () { document.title = 'SUNFLOWER' };
+    //     }, [])
     ////////////////////////////////////
-    useEffect(
-        function () {
-            document.title = `SUNFLOWER - My Home`;
-            return function () { document.title = 'SUNFLOWER' };
-        }, [])
-    ////////////////////////////////////
+    // const mouse = UseMouse();
+    // console.log("X" + mouse.x)
+    // console.log("Y" + mouse.y)
     return (
         <>
-            <Toaster />
+            {/* <Toaster /> */}
             <div className='home'>
+                <h1> hallo!</h1>
 
-
+                {/* <h1>   x : {x} </h1> */}
+                {/* <h1>   y : {y} </h1> */}
 
                 {/* <div className='ourCategorysTitle'>
                 Our Categorys

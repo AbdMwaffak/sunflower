@@ -4,20 +4,25 @@ const categorySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    trim : true
+    trim: true,
+  },
+  nameAr: {
+    type: String,
+    // required: true,
+    trim: true,
   },
   image: {
     type: String,
     required: true,
   },
-  isActive : {
-    type : Boolean,
-    default : true
+  isActive: {
+    type: Boolean,
+    default: true,
   },
-  createdAt : {
-    type : Date,
-    default : new Date()
-  }
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
 categorySchema.pre('save', async function (next) {

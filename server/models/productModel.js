@@ -1,24 +1,24 @@
 const mongoose = require('mongoose');
 
 const sizes = new mongoose.Schema({
-  size : String,
-  price : Number,
-  priceInPoints : {
-    type : Number,
-    default : 0
+  size: String,
+  price: Number,
+  priceInPoints: {
+    type: Number,
+    default: 0,
   },
-  isAvailableToSellInPoints : {
-    type : Boolean,
-    default : false
+  isAvailableToSellInPoints: {
+    type: Boolean,
+    default: false,
   },
-  available : {
-    type : Boolean,
-    default : true
+  available: {
+    type: Boolean,
+    default: true,
   },
-  pointsEarned : {
-    type : Number,
+  pointsEarned: {
+    type: Number,
     // required : true
-  }
+  },
 });
 
 const productSchema = new mongoose.Schema({
@@ -27,17 +27,27 @@ const productSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  nameAr: {
+    type: String,
+    // required: true,
+    trim: true,
+  },
   price: {
     type: String,
     required: true,
     trim: true,
   },
-  
+
   images: [String],
 
   description: {
     type: String,
     required: true,
+    trim: true,
+  },
+  descriptionAr: {
+    type: String,
+    // required: true,
     trim: true,
   },
   sizes: [sizes],
@@ -46,26 +56,26 @@ const productSchema = new mongoose.Schema({
 
   category: {
     type: mongoose.Schema.Types.ObjectId,
-    ref :'Category',
+    ref: 'Category',
   },
   categoryName: {
     type: String,
     trim: true,
     required: true,
   },
-  createdAt : {
-    type : Date,
-    default : new Date()
+  createdAt: {
+    type: Date,
+    default: new Date(),
   },
-  
-  isActive : {
-    type:Boolean,
-    default: true
+
+  isActive: {
+    type: Boolean,
+    default: true,
   },
-  popularity : {
-    type : Number,
-    default : 0
-  }
+  popularity: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Product = mongoose.model('Product', productSchema);

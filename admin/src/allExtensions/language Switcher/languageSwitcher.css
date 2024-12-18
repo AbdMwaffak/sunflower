@@ -1,0 +1,64 @@
+.languageSwitcher {
+    position: relative;
+    height: 35px;
+    width: 35px;
+}
+
+/* .languageSwitcherIcon {
+    height: 35px;
+    width: 35px;
+    aspect-ratio: 1/1;
+    background-color: var(--primary-yellow);
+    overflow: hidden;
+    border-radius: 100%;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+/* 
+.languageItame {
+    top: 29px;
+    left: 22px;
+    position: absolute;
+    width: 165px;
+    background-color: white;
+    border-radius: 8px;
+    z-index: 100;
+    padding: 5px;
+    transition: all 0.2s linear;
+    color: balck;
+    overflow: hidden;
+} */
+
+.languageItameCloseAb {
+    overflow: hidden;
+    top: 15px;
+    right: 30px;
+    position: absolute;
+    width: 0;
+    height: 0;
+    transition: all 0.2s linear;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--primary-dark);
+}
+
+.languageItameOpenAb {
+    width: 70px;
+    top: 15px;
+    right: 30px;
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    z-index: 100;
+    padding: 5px;
+    transition: all 0.2s linear;
+    color: balck;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--primary-dark);
+}

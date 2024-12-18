@@ -1,7 +1,8 @@
 .couponCard {
     width: 207px;
     height: 300px;
-    background-color: aliceblue;
+    background-color: var(--secondary-light);
+    color: var(--primary-dark);
     border-radius: 16px;
     margin-top: 60px;
     display: flex;
@@ -10,8 +11,6 @@
     justify-content: space-around;
     padding: 10px;
     box-shadow: 4px 5px 12px black;
-
-
     animation-duration: 2s;
     animation-iteration-count: infinite;
     transform-origin: bottom;

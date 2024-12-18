@@ -3,6 +3,7 @@ import './editBouquet.css'
 import { useDispatch } from 'react-redux';
 import Api from '../API';
 import { deleteBouquet } from '../../RTK/naturalFlowers/deleteBouquetSlice';
+import { useTranslation } from 'react-i18next';
 
 const EditBouquetCard = (props) => {
 
@@ -16,15 +17,16 @@ const EditBouquetCard = (props) => {
         props.reloadHandel()
         props.reloadHandel()
     }
-
+    ///////////////////////////
+    const { t, i18n } = useTranslation();
     return (
-        <div className='EditBouquet'>
+        <div className='editBouquet'>
             <div className='bouquetHader'>
                 <div >
-                    Cuantety :   {props.count}
+                    {t('flowerBouquet.cuantety')} :   {props.count}
                 </div>
                 <div>
-                    Price :   {props.price}
+                    {t('flowerBouquet.price')} :   {props.price}
                 </div>
 
 

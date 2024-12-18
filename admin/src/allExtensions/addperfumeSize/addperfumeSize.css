@@ -3,49 +3,36 @@
     width: 98%;
     max-width: 1480px;
     border-radius: 16px;
-    border: 5px solid #F1C92F;
+    border: 5px solid var(--primary-yellow);
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 10px;
     align-items: center;
+    overflow: hidden;
 }
 
-.newProductOpen {
+.newPerfum {
     width: 100%;
-    min-height: 200px;
-    background-color: aliceblue;
+    background-color: var(--secondary-light);
     border-radius: 8px;
     display: flex;
     align-items: center;
     padding: 10px;
     justify-content: space-around;
     box-sizing: border-box;
-    transition: all 0.5s ease-in-out;
-    /* padding-top: 0; */
-}
-
-.newProductClose {
-    width: 100%;
-    background-color: aliceblue;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    justify-content: space-around;
-    box-sizing: border-box;
-    transition: all 0.5s ease-in-out;
-    /* padding-top: 0; */
+    transition: all 0.5s linear;
+    box-shadow: var(--component-shadow), inset -6px 4px 10px 2px gray;
+    overflow: hidden;
 }
 
 .productArrwClose {
     width: 30px;
     height: 30px;
-    color: #202126;
+    color: var(--primary-light);
     transform: rotate(-90deg);
     transition: all 0.5s ease-in-out;
     margin-right: 20px;
-    /* background-color: #9e4d61; */
     padding: 5px;
     border-radius: 100%;
     display: flex;
@@ -66,12 +53,10 @@
 .productArrwOpen {
     width: 30px;
     height: 30px;
-    color: #202126;
+    color: var(--primary-light);
     transform: rotate(90deg);
-
     transition: all 0.5s ease-in-out;
     margin-right: 20px;
-    /* background-color: #9e4d61; */
     padding: 5px;
     border-radius: 100%;
     display: flex;
@@ -79,10 +64,6 @@
     justify-content: center;
 }
 
-.hiddenBody {
-    display: none;
-
-}
 
 .productHader {
     width: 100%;
@@ -90,19 +71,39 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    color: var(--primary-light);
+    font-weight: 700;
 }
 
-.addProduct {
+.newPerfumeOpen {
     width: 100%;
+    height: 270px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: space-around;
-    background-color: #202126;
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
     border-radius: 8px;
     padding: 20px;
-    color: aliceblue;
+    transition: all 0.5s linear;
 }
+
+.newPerfumeClose {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-around;
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.5s linear;
+    overflow: hidden;
+}
+
 
 .hrProduct {
     width: 100%;

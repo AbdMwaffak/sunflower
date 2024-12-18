@@ -4,6 +4,7 @@ import { Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addProductToOffer } from '../../RTK/offers/addProductToOfferSlice';
 import { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 const AddProductToOffer = (props) => {
 
@@ -46,18 +47,17 @@ const AddProductToOffer = (props) => {
             props.handelReload()
         }
     };
-
-
+    ////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
             <Toaster />
 
             <div className='addProductContener'>
-                <div className={open ? "newProductOpen" : "newProductClose"}>
-
-                    <div className='addProduct'>
+                <div className='addProduct'>
+                    <div className={open ? "newProductOpen" : "newProductClose"}>
                         <div className='productHader'>
-                            <div >  add produt to this offer </div>
+                            <div >  {t('editOffer.addProductHeader')}</div>
                             <div onClick={() => setOpen(!open)}>
                                 <svg className={open ? "productArrwOpen" : "productArrwClose"}
                                     viewBox="0 0 16 16" fill="#fff" >
@@ -65,11 +65,11 @@ const AddProductToOffer = (props) => {
                                 </svg>
                             </div>
                         </div>
-                        <div className={!open ? "hiddenBody" : ''} >
+                        <div className={!open ? "hiddenBody" : 'unHiddenBody'} >
                             <hr className='hrProduct' />
                             <Form noValidate validated={validated} onSubmit={handleSubmit} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
-                                    <Form.Label>product image</Form.Label>
+                                    <Form.Label> {t('editOffer.productImage')}</Form.Label>
 
                                     <Form.Control
                                         required
@@ -79,50 +79,52 @@ const AddProductToOffer = (props) => {
 
                                 </Form.Group>
                                 {/* //////////// */}
-
-                                <Form.Group md="6" className="mb-3" controlId="validationCustom01">
-
-                                    <Form.Label> product name</Form.Label>
-
+                                {/* <Form.Group md="6" className="mb-3" controlId="validationCustom01">
+                                    <Form.Label> {t('editOffer.productNameAr')}</Form.Label>
                                     <Form.Control
                                         placeholder="write name here"
                                         required
                                         type="text"
                                         onChange={(e) => setName(e.target.value)}
                                     />
-
-
-                                </Form.Group>
-
-
+                                </Form.Group> */}
                                 {/* //////////// */}
-                                <Form.Group className="mb-3" controlId="validationCustom01">
-
-                                    <Form.Label> product description</Form.Label>
-
+                                <Form.Group md="6" className="mb-3" controlId="validationCustom01">
+                                    <Form.Label> {t('editOffer.productNameEn')}</Form.Label>
+                                    <Form.Control
+                                        placeholder="write name here"
+                                        required
+                                        type="text"
+                                        onChange={(e) => setName(e.target.value)}
+                                    />
+                                </Form.Group>
+                                {/* //////////// */}
+                                {/* <Form.Group className="mb-3" controlId="validationCustom01">
+                                    <Form.Label>{t('editOffer.productDisAr')}</Form.Label>
                                     <Form.Control
                                         placeholder="write description here "
                                         required
                                         type="text"
                                         onChange={(e) => setDescription(e.target.value)}
                                     />
-
-
-
+                                </Form.Group> */}
+                                {/* //////////// */}
+                                <Form.Group className="mb-3" controlId="validationCustom01">
+                                    <Form.Label>{t('editOffer.productDisEn')}</Form.Label>
+                                    <Form.Control
+                                        placeholder="write description here "
+                                        required
+                                        type="text"
+                                        onChange={(e) => setDescription(e.target.value)}
+                                    />
                                 </Form.Group>
-
-
-
-
-
-                                <hr />
+                                <hr className='tapp' />
                                 <button type="submit" className='formButton'  >
-                                    add product to offer
+                                    {t('editOffer.addProduct')}
                                 </button>
                             </Form>
                         </div>
                     </div>
-
                 </div>
             </div >
         </>

@@ -11,14 +11,13 @@
 
 .CategorysCard:hover {
     scale: 1.05;
-    /* box-shadow: 4px 4px 20px black; */
 }
 
 .imageCategory {
     width: 100%;
     aspect-ratio: 1/1;
     border-radius: 100%;
-    border: 5px solid white;
+    border: 5px solid var(--border-color);
     box-shadow: 4px 5px 12px black;
     display: flex;
     align-items: center;
@@ -35,10 +34,9 @@
     justify-content: center;
     border-radius: 16px;
     box-shadow: 4px 5px 12px black;
-    background: #F1C92F;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: x-large;
+    background: var(--primary-yellow);
+    font-weight: 500;
+    font-size: var(--text-size);
     color: black;
 }
 

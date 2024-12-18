@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { deleteMessage } from '../../RTK/message/deleteMessageSlice';
 import { replyMessage } from '../../RTK/message/replyMessageSlice';
+import { useTranslation } from 'react-i18next';
 
 function ReplyToMsgModel(props) {
     const [show, setShow] = useState(false);
@@ -39,13 +40,13 @@ function ReplyToMsgModel(props) {
             console.log(reqobj)
             props.handelReload()
             setShow(false);
-
-
         }
     };
+    ////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
-            <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  >  reply to message </div>
+            <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  >  {t('messages.replyMessage')}</div>
 
             <Modal
                 show={show}
@@ -54,12 +55,12 @@ function ReplyToMsgModel(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>{t('messages.replyMessage')}</Modal.Title>
                 </Modal.Header>
                 <Form noValidate validated={validated} onSubmit={handleReply} className=''>
                     <Modal.Body>
                         <Form.Group className="mb-3" controlId="validationCustom02">
-                            <Form.Label>Add reply </Form.Label>
+                            <Form.Label>{t('messages.addReply')}</Form.Label>
 
                             <Form.Control
                                 className='textarea1'
@@ -78,7 +79,7 @@ function ReplyToMsgModel(props) {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <button type="submit" className='send'>Submit form</button>
+                        <button type="submit" className='send'>{t('messages.reply')}</button>
                     </Modal.Footer>
                 </Form>
             </Modal>

@@ -8,6 +8,7 @@ import { patchProductById } from '../../RTK/product/patchProductByIdSlice';
 import { Form } from 'react-bootstrap';
 import Api from '../../allExtensions/API';
 import { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 const EditProduct = () => {
     const id = useParams().productId
@@ -249,19 +250,20 @@ const EditProduct = () => {
         dispatch(getProductById(id))
     }, [dispatch, id, reload])
     //////////////////////////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
             <Toaster />
             <div className='editProduct'>
-                <div className='productName'>
+                <div className='title'>
                     {product.name}
                 </div>
-                <div className='productContener'>
+                <div className='editeContener'>
                     <div className='updateProduct'>
                         <div className='editProductContainer'>
                             <Form noValidate validated={validatedName} onSubmit={handleSubmitImages} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
-                                    <Form.Label>images</Form.Label>
+                                    <Form.Label>{t('product.editProductImgage')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <Form.Control
@@ -277,10 +279,28 @@ const EditProduct = () => {
                                 </Form.Group>
                             </Form>
                             {/* //////////// */}
-                            <hr />
+                            {/* <Form noValidate validated={validatedName} onSubmit={handleSubmitName} className='addCategory1'>
+                                <Form.Group className="mb-3" controlId="validationCustom01">
+                                    <Form.Label>{t('product.editProductNameAr')}</Form.Label>
+                                    <div className='rowEdit'>
+                                        <div className='addCategory1'>
+                                            <Form.Control
+                                                placeholder={product?.name}
+                                                required
+                                                type="string"
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+                                        </div>
+                                        <button type="submit" className='editInfo'  >
+                                            <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
+                                        </button>
+                                    </div>
+                                </Form.Group>
+                            </Form> */}
+                            {/* //////////// */}
                             <Form noValidate validated={validatedName} onSubmit={handleSubmitName} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
-                                    <Form.Label>Name</Form.Label>
+                                    <Form.Label>{t('product.editProductNameEn')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <Form.Control
@@ -297,11 +317,9 @@ const EditProduct = () => {
                                 </Form.Group>
                             </Form>
                             {/* //////////// */}
-                            <hr />
                             <Form noValidate validated={validatedPrice} onSubmit={handleSubmitPrice} className='addCategory1'>
-
                                 <Form.Group className="mb-3" controlId="validationCustom01">
-                                    <Form.Label>price</Form.Label>
+                                    <Form.Label>{t('product.editproductPrice')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <Form.Control
@@ -318,10 +336,31 @@ const EditProduct = () => {
                                 </Form.Group>
                             </Form>
                             {/* //////////// */}
-                            <hr />
+                            {/* <Form noValidate validated={validatedDescriptio} onSubmit={handleSubmitDescription} className='addCategory1'>
+                                <Form.Group className="mb-3" controlId="validationCustom01">
+                                    <Form.Label>{t('product.editProductDisAr')}</Form.Label>
+                                    <div className='rowEdit'>
+                                        <div className='addCategory1'>
+                                            <Form.Control
+                                                placeholder={product?.description}
+                                                className='textarea2'
+                                                as="textarea"
+                                                required
+                                                type="string"
+                                                onChange={(e) => setDescription(e.target.value)}
+                                            />
+                                        </div>
+                                        <button type="submit" className='editInfo'  >
+                                            <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
+                                        </button>
+                                    </div>
+                                </Form.Group>
+                            </Form> */}
+                            {/* //////////// */}
+                            {/* <hr className='tapp' /> */}
                             <Form noValidate validated={validatedDescriptio} onSubmit={handleSubmitDescription} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
-                                    <Form.Label>Descriptio</Form.Label>
+                                    <Form.Label>{t('product.editProductDisEn')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <Form.Control
@@ -340,7 +379,7 @@ const EditProduct = () => {
                                 </Form.Group>
                             </Form>
                             {/* //////////// */}
-                            <hr />
+                            <hr className='tapp' />
                             <Form noValidate validated={validatedSize} onSubmit={handleSubmitSize} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     {/* .................. */}
@@ -348,16 +387,16 @@ const EditProduct = () => {
                                         <div className='addCategory1'>
                                             <div className='addCategory2'>
                                                 <div className='addCategory3'>
-                                                    <Form.Label> Available sizes</Form.Label>
+                                                    <Form.Label> {t('product.availableSizes')}</Form.Label>
                                                     <Form.Control
                                                         required
                                                         type="text"
                                                         onChange={(e) => setSize(e.target.value)}
                                                     />
                                                 </div>
-                                                <h5> by </h5>
+                                                <h5>{t('product.by')} </h5>
                                                 <div className='addCategory3'>
-                                                    <Form.Label>price by money</Form.Label>
+                                                    <Form.Label>{t('product.priceByMoney')}</Form.Label>
                                                     <Form.Control
                                                         required
                                                         type="text"
@@ -371,7 +410,7 @@ const EditProduct = () => {
                                                             type='checkbox'
                                                             onChange={(e) => (setSellInPoints(!sellInPoints), setPriceInPoints(0))}
                                                         />
-                                                        <Form.Label>price by points </Form.Label>
+                                                        <Form.Label>{t('product.priceByPoints')} </Form.Label>
                                                     </div>
                                                     <Form.Control
                                                         value={priceInPoints}
@@ -383,7 +422,7 @@ const EditProduct = () => {
                                                 </div>
                                                 <h5> / </h5>
                                                 <div className='addCategory3'>
-                                                    <Form.Label>points Earned </Form.Label>
+                                                    <Form.Label>{t('product.pointsEarned')}</Form.Label>
                                                     <Form.Control
                                                         required
                                                         type="number"
@@ -392,12 +431,12 @@ const EditProduct = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='editPro' style={{ border: "3px solid #f1c92f" }}
+                                        <div className='editPro' style={{ border: "3px solid var(--primary-yellow)" }}
                                             onClick={sizePriceOnChange}
-                                        >  add </div>
+                                        >  {t('public.addButton')}</div>
                                         <div className='editPro' style={{ border: "3px solid #f1c92f" }}
                                             onClick={() => clearAllSize()}
-                                        >  Clear  </div>
+                                        >  {t('public.clear')} </div>
                                         <button type="submit" className='editInfo'  >
                                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
                                         </button>
@@ -406,10 +445,10 @@ const EditProduct = () => {
                                         <thead className='ttt'>
                                             {prices?.length != 0 &&
                                                 <tr className='haderSizeline'>
-                                                    <td className='sizeCall1'>  SIZE </td>
-                                                    <td className='sizeCall1'>  PRICE BY MONY</td>
-                                                    <td className='sizeCall1'>  PRICE BY POINT</td>
-                                                    <td className='sizeCall1'>  POINTS EARNED</td>
+                                                    <td className='sizeCall1'> {t('product.size')} </td>
+                                                    <td className='sizeCall1'> {t('product.priceByMoney')} </td>
+                                                    <td className='sizeCall1'> {t('product.priceByPoints')} </td>
+                                                    <td className='sizeCall1'>  {t('product.pointsEarned')} </td>
 
                                                 </tr>}
                                         </thead>
@@ -439,10 +478,10 @@ const EditProduct = () => {
                                 </Form.Group>
                             </Form>
                             {/* //////////// */}
-                            <hr />
+                            <hr className='tapp' />
                             <Form noValidate validated={validatedColor} onSubmit={handleSubmitColor} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
-                                    <Form.Label>Color</Form.Label>
+                                    <Form.Label>{t('product.color')} </Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <Form.Control
@@ -453,11 +492,11 @@ const EditProduct = () => {
                                         </div>
                                         <div className='editPro' style={{ border: "3px solid #f1c92f" }}
                                             onClick={() => colorOnChange(color)}
-                                        >  add </div>
+                                        >  {t('public.addButton')}</div>
 
                                         <div className='editPro' style={{ border: "3px solid #f1c92f" }}
                                             onClick={() => clearAllColors()}
-                                        >  Clear  </div>
+                                        >  {t('public.clear')}  </div>
 
                                         <button type="submit" className='editInfo'  >
                                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
@@ -487,7 +526,7 @@ const EditProduct = () => {
 
                         </div>
                         <div className='editProductDisplay'>
-                            <div className='imgSlider'>
+                            <div className='newImageFlower'>
                                 {imagesSquer.length == 0 &&
                                     <Carousel data-bs-theme="dark">
                                         {product?.images?.map((image, index) => (
@@ -502,26 +541,24 @@ const EditProduct = () => {
                                     <Carousel data-bs-theme="dark">
                                         {imagesSquer.map((image, index) => (
                                             <Carousel.Item key={index}  >
-                                                <img className="w-100 profileImg" src={image} />
+                                                <img className="imgcat" src={image} />
                                             </Carousel.Item>
                                         ))}
                                     </Carousel>
                                 }
-
                             </div>
-                            <div className='editProductInfo'>
-                                <div className='divInfo'> Name : {name == " " ? product?.name : name}   </div>
-                                <hr />
-                                <div className='divInfo'>price : {price == 0 ? product?.price : price}  </div>
-                                <hr />
-
+                            <div className='newTitleFlower'>
+                                <div className='divInfo'> {t('product.name')}  : {name == " " ? product?.name : name}   </div>
+                                <hr className='tapp' />
+                                <div className='divInfo'>{t('product.editproductPrice')}  : {price == 0 ? product?.price : price}  </div>
+                                <hr className='tapp' />
                                 <table className='sizeBody'>
                                     <thead className='ttt'>
                                         <tr className='haderSizeline'>
-                                            <td className='sizeCall1'>  SIZE </td>
-                                            <td className='sizeCall1'>  PRICE BY MONY</td>
-                                            <td className='sizeCall1'>  PRICE BY POINT</td>
-                                            <td className='sizeCall1'>  POINTS EARNED</td>
+                                            <td className='sizeCall2'> {t('product.size')}  </td>
+                                            <td className='sizeCall2'> {t('product.priceByMoney')} </td>
+                                            <td className='sizeCall2'>  {t('product.priceByPoints')} </td>
+                                            <td className='sizeCall2'> {t('product.pointsEarned')} </td>
 
                                         </tr>
                                     </thead>
@@ -533,11 +570,10 @@ const EditProduct = () => {
                                                         className='sizeLine'
                                                         key={index}
                                                     >
-                                                        <td className='sizeCall1' >  {size?.size}
-                                                        </td>
-                                                        <td className='sizeCall1'>  {size?.price} .sar </td>
-                                                        <td className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}  .P</td>
-                                                        <td className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned}  </td>
+                                                        <td className='sizeCall2' > ss {size?.size}  </td>
+                                                        <td className='sizeCall2'>  {size?.price} .sar </td>
+                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}  .P</td>
+                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned}  </td>
 
                                                     </tr>
                                                 ))}
@@ -551,11 +587,11 @@ const EditProduct = () => {
                                                         className='sizeLine'
                                                         key={index}
                                                     >
-                                                        <td className='sizeCall1' >  {size?.size}
+                                                        <td className='sizeCall2' >  {size?.size}
                                                         </td>
-                                                        <td className='sizeCall1'>  {size?.price} .sar </td>
-                                                        <td className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}  .P</td>
-                                                        <td className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned}  </td>
+                                                        <td className='sizeCall2'>  {size?.price} .sar </td>
+                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}  .P</td>
+                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned}  </td>
 
                                                     </tr>
                                                 ))}
@@ -563,9 +599,7 @@ const EditProduct = () => {
                                         }
                                     </tbody>
                                 </table>
-
-
-                                <hr />
+                                <hr className='tapp' />
                                 <div className='divInfo'>
 
                                     <div className='colorMap' >
@@ -596,26 +630,37 @@ const EditProduct = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div className='supTitle'>
+                    {product.name} information
+                </div>
+                <div className='produtsInfoo'>
                     <div className='productPrice'>
-                        {product.price}  SAR
+                        [ {product.price} ].sar
                     </div>
 
                     <div className='productDescription'>
-                        <h3> Product Description </h3>
-                        <hr />
+                        <h3> {t('product.ProductDescriptionAr')}  </h3>
+                        <hr className='tapp' />
+                        <p> {product.description} </p>
+                    </div>
+                    <div className='productDescription'>
+                        <h3> {t('product.ProductDescriptionEn')}  </h3>
+                        <hr className='tapp' />
                         <p> {product.description} </p>
                     </div>
                     <div className='productSize'>
-                        <h3> Product Size </h3>
-                        <hr />
+                        <h3> {t('product.ProductSize')}  </h3>
+                        <hr className='tapp' />
                         <table className='sizeBody'>
                             <thead className='ttt'>
 
                                 <tr className='haderSizeline'>
-                                    <td className='sizeCall1'>  SIZE </td>
-                                    <td className='sizeCall1'>  PRICE BY MONY</td>
-                                    <td className='sizeCall1'>  PRICE BY POINT</td>
-                                    <td className='sizeCall1'>  POINTS EARNED</td>
+                                    <td className='sizeCall2'> {t('product.size')}  </td>
+                                    <td className='sizeCall2'> {t('product.priceByMoney')} </td>
+                                    <td className='sizeCall2'>  {t('product.priceByPoints')} </td>
+                                    <td className='sizeCall2'> {t('product.pointsEarned')} </td>
 
                                 </tr>
                             </thead>
@@ -640,8 +685,8 @@ const EditProduct = () => {
 
                     </div>
                     <div className='productColors'>
-                        <h3> Product Colors </h3>
-                        <hr />
+                        <h3> {t('product.ProductColors')}  </h3>
+                        <hr className='tapp' />
                         <div className='colorMap' >
                             {product?.colors?.map((color, index) => (
                                 <div className='colorItem'

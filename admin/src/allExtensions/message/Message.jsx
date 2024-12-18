@@ -4,22 +4,16 @@ import Api from '../API'
 import logo from '../../images/logo.png';
 import DeleteMsgModel from '../deleteMsgModel/DeleteMsgModel';
 import ReplyToMsgModel from '../replyToMsgModel/ReplyToMsgModel';
+import { useTranslation } from 'react-i18next';
 function Message(props) {
     const [openMenu, setOpenMenu] = useState(false)
     //////////////////
-    // const handelReload = () => {
-    //     props.handelReload()
-    // }
-    // //////////////////
-
-    /////////////////////////////
     let menuRef = useRef()
     ////////////////////
     useEffect(() => {
         let handler = (e) => {
             if (!menuRef.current.contains(e.target)) {
                 setOpenMenu(false);
-
             }
         };
         document.addEventListener("mousedown", handler)
@@ -27,7 +21,8 @@ function Message(props) {
             document.removeEventListener("mousedown", handler)
         };
     })
-    ///////////////////
+    ////////////////////////////////////
+    const { t, i18n } = useTranslation();
     return (
         <>
 
@@ -37,10 +32,7 @@ function Message(props) {
                 <div className='postHader'>
                     {/* ////////// */}
                     <div className=' leftHader'
-
-                        // className='rightHader'
                         ref={menuRef}>
-
                         <svg className='menuMs' onClick={() => setOpenMenu(!openMenu)}
                             viewBox="0 0 24 24" height="24" width="24"
                             preserveAspectRatio="xMidYMid meet"
@@ -48,7 +40,7 @@ function Message(props) {
                             <path fill="currentColor" d="M12,7c1.104,0,2-0.896,2-2c0-1.105-0.895-2-2-2c-1.104,0-2,0.894-2,2 C10,6.105,10.895,7,12,7z M12,9c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,9.895,13.104,9,12,9z M12,15 c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,15.894,13.104,15,12,15z">
                             </path></svg>
 
-                        <div className={openMenu ? "menuOpenMs" : "menuClose"} >
+                        <div className={openMenu ? "menuOpen" : "menuClose"} >
 
                             <DeleteMsgModel
                                 openMenu={openMenu}
@@ -80,7 +72,7 @@ function Message(props) {
                     </div>
 
                 </div>
-                <hr className='msHr' />
+                <hr className='tapp' />
                 <div className='postBody'>
                     <div className='text'>
                         {props?.message}
@@ -105,7 +97,7 @@ function Message(props) {
                         </div>
 
                     </div>
-                    <hr className='msHr' />
+                    <hr className='tapp' />
                     <div className='postBody'>
                         <div className='text'>
                             {props?.reply}
