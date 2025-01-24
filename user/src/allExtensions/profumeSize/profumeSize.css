@@ -8,30 +8,38 @@
 
 .cckkk {
     width: 20%;
+    position: absolute;
+    left: 10px;
 }
 
 .sizeName {
     width: 100%;
-    background-color: #30323f;
+    height: 42px;
+    background-color: var(--primary-dark);
     border-radius: 8px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 20px;
-    padding-left: 20px;
+    position: relative;
 }
 
 .vv3 {
-    color: white;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: xx-large;
+    color: var(--primary-light);
+    font-size: large;
+}
+
+.text11 {
+    text-align: -webkit-center;
+    font-size: large;
+    height: 50px;
 }
 
 .priceBySize {
     width: 100%;
     height: 42px;
-    background-color: #30323f;
+    background-color: var(--primary-dark);
     border-radius: 8px;
     display: flex;
     flex-direction: column;

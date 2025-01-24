@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './flower.css'
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 const Flower = (props) => {
     const [eng, seteng] = useState(false)
     const [eng2, seteng2] = useState(false)
     ////////////////////////
     let menuRef = useRef()
-    ////////////////////////
+    ////////////////////////////////////
     useEffect(() => {
         let handler = (e) => {
             if (!menuRef.current.contains(e.target)) {
@@ -18,6 +19,8 @@ const Flower = (props) => {
             document.removeEventListener("mousedown", handler)
         };
     })
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
         <div className={props.sidBarButton ? "totalT" : "totalF"}
             onClick={() => seteng(!eng)}
@@ -25,27 +28,27 @@ const Flower = (props) => {
             <Link to={'/'} className={props.sidBarButton ? "petals1T" : "petals1F"}
                 onClick={() => props.sidBarButtonHandler()}>
                 <div className=' linkSB' >
-                    Home
+                    {t('sidBar.home')}
                 </div>
             </Link>
             <Link to={'/Articles'} className={props.sidBarButton ? "petals2T" : "petals2F"} onClick={() => props.sidBarButtonHandler()} >
                 <div className='linkSB'>
-                    Articles
+                    {t('sidBar.articles')}
                 </div>
             </Link>
             <Link to={'/AboutTheStore'} className={props.sidBarButton ? "petals3T" : "petals3F"} onClick={() => props.sidBarButtonHandler()} >
                 <div className='linkSB'>
-                    About the store
+                    {t('sidBar.aboutStore')}
                 </div>
             </Link>
             <Link to={'/ContactUs'} className={props.sidBarButton ? "petals4T" : "petals4F"} onClick={() => props.sidBarButtonHandler()} >
                 <div className='linkSB' >
-                    Contact us
+                    {t('sidBar.contactUs')}
                 </div>
             </Link>
             <Link to={'/StoreMessages'} className={props.sidBarButton ? "petals5T" : "petals5F"} onClick={() => props.sidBarButtonHandler()} >
                 <div className='linkSB'>
-                    Messages
+                    {t('sidBar.messages')}
                 </div>
             </Link>
             <button className='ss' onClick={() => props.sidBarButtonHandler()}>

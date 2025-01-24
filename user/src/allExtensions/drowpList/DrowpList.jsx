@@ -1,14 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './drowpList.css'
 import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { useDispatch } from 'react-redux';
 import LoginModel from '../loginModel/LoginModel';
 import LogoutModel from '../loginModel/LogoutModel';
+import { useTranslation } from 'react-i18next';
 const DrowpList = (props) => {
     const [eng, seteng] = useState(false)
     //////////////////////////
     const cookies = new Cookies();
+    const lng = cookies.get("i18next") || "en";
     //////////////////////////
     const [login, setLogin] = useState(false)
     const dispatch = useDispatch()
@@ -18,8 +20,12 @@ const DrowpList = (props) => {
         }
         else { setLogin(false) }
     }, [dispatch, props.num])
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
-        <div className={props.DrowpListButton ? "drowpListT" : "drowpListF"} onClick={() => seteng(!eng)} ref={props?.menuRef} >
+        <div className={props.DrowpListButton ? "drowpListT" : "drowpListF"} onClick={() => seteng(!eng)} ref={props?.menuRef}
+            style={{ left: lng == "ar" ? "0px" : "-166px" }}
+        >
             {!login &&
                 <LoginModel />
             }
@@ -28,23 +34,23 @@ const DrowpList = (props) => {
             }
             <Link to={'/MyAccount/:userName'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
                 <div className='listItem' >
-                    My Account
+                    {t('drowpList.myAccount')}
                 </div>
             </Link>
 
-            <Link to={'/MyReturnOrder'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
+            {/* <Link to={'/MyReturnOrder'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
                 <div className='listItem' >
-                    My Return Order
+                    {t('drowpList.myReturnOrders')}
                 </div>
-            </Link>
+            </Link> */}
             <Link to={'/MyOrder'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
                 <div className='listItem' >
-                    My Order
+                    {t('drowpList.myOrder')}
                 </div>
             </Link>
             <Link to={'/MyFavorites'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
                 <div className='listItem' >
-                    My Favorites
+                    {t('drowpList.myFavorites')}
                 </div>
             </Link>
 

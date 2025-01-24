@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       // default:"default.jpg"
     },
-    birthday :  Date,
+    birthday: Date,
     password: {
       type: String,
       required: [true, 'User must have password!'],
@@ -33,6 +33,7 @@ const userSchema = new mongoose.Schema(
 
     confirmPassword: {
       type: String,
+      select: false,
       required: [true, 'Please confirm your password!'],
       validate: {
         validator: function (el) {
@@ -47,9 +48,9 @@ const userSchema = new mongoose.Schema(
       enum: ['user', 'admin'],
       default: 'user',
     },
-    gender :{
-      type : String,
-      enum : ['male','female']
+    gender: {
+      type: String,
+      enum: ['male', 'female'],
     },
     address: {
       city: {
@@ -81,12 +82,12 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    favoriteProducts : [
+    favoriteProducts: [
       {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'Product'
-      }
-    ]
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+      },
+    ],
   },
   {
     toJSON: { virtuals: true },
@@ -129,7 +130,6 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
-
 
 // Handle shopping Cart
 // https://stackoverflow.com/questions/59174763/how-to-add-product-to-shopping-cart-with-nodejs-express-and-mongoose

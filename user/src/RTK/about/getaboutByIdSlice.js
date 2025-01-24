@@ -1,6 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import Api from '../../allExtensions/API';
 
 /////////////
 const cookies = new Cookies();

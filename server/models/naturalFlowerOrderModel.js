@@ -4,46 +4,49 @@ const Chocolate = new mongoose.Schema({
   kind: String,
   size: String,
   count: Number,
-  image : String
+  image: String,
 });
 
 const naturalFlowerOrderSchema = new mongoose.Schema({
-  naturalFlower : {
-    type : mongoose.Schema.Types.ObjectId,
-    ref : 'NaturalFlower',
-    required : true
+  naturalFlower: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'NaturalFlower',
+    required: true,
   },
 
-  userId : {
-    type : mongoose.Schema.Types.ObjectId,
-    ref : 'User',
-    select : false
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    select: false,
   },
   chocolates: [Chocolate],
 
-  details : {
-    band :String,
-    paper :String
+  // details : {
+  //   band :String,
+  //   paper :String
+  // },
+  totalPrice: {
+    type: Number,
+    required: true,
   },
-  totalPrice : {
-    type : Number,
-    required : true
-  },
-  activeSC :{
-    type : Boolean,
-    default : true,
-    select : false
+  activeSC: {
+    type: Boolean,
+    default: true,
+    select: false,
   },
   message: {
     type: String,
     default: '',
   },
-  active : {
-    type : Boolean,
-    dafault : true
-  }
+  active: {
+    type: Boolean,
+    dafault: true,
+  },
 });
 
-const NaturalFlowerOrder = mongoose.model('Naturalflowerorder', naturalFlowerOrderSchema);
+const NaturalFlowerOrder = mongoose.model(
+  'Naturalflowerorder',
+  naturalFlowerOrderSchema
+);
 
 module.exports = NaturalFlowerOrder;

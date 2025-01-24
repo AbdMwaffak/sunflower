@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
 import './cityInfo.css'
-
 import { useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { updateCityById } from '../../RTK/cities/updateCityByIdSlice';
 import { deleteCityById } from '../../RTK/cities/deleteCityByIdSlice';
 import { useTranslation } from 'react-i18next';
+import Cookies from 'universal-cookie';
 
 const CityInfo = (props) => {
-
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const [name, setName] = useState('');
+    const [nameAr, setNameAr] = useState('');
     const [neighborhood, setNeighborhood] = useState('');
     const [validated1, setValidated1] = useState(false);
     const [validated2, setValidated2] = useState(false);
+    const [validated3, setValidated3] = useState(false);
     const [newNeighbor, setNewNeighbor] = useState([]);
-
     /////////////////////////
     const dispatch = useDispatch()
     /////////////////////////
@@ -25,7 +36,7 @@ const CityInfo = (props) => {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-            setValidated1(true);
+            setValidated3(true);
         }
         else {
             if (props?.city?.neighborhoods?.length != 0) {
@@ -42,14 +53,10 @@ const CityInfo = (props) => {
                 id: props?.city?._id,
                 reqobj: { neighborhoods: JSON.stringify(newNeighbor) }
             }
-
             dispatch(updateCityById(value))
-            console.log(newNeighbor)
             props.handleReload()
-            // setNeighborhood('')
             setNewNeighbor([])
         }
-
     }
     /////////////////////////
     const handledeleteNeighborhood = (e) => {
@@ -63,11 +70,9 @@ const CityInfo = (props) => {
         }
         dispatch(updateCityById(value))
         props.handleReload()
-
-        // dispatch(deleteCategoryById(id))
     }
     /////////////////////////
-    const handleEditCityName = (event) => {
+    const handleEditCityNameAr = (event) => {
         const form = event.currentTarget;
         event.preventDefault();
         event.stopPropagation();
@@ -75,6 +80,25 @@ const CityInfo = (props) => {
             event.preventDefault();
             event.stopPropagation();
             setValidated1(true);
+        }
+        else {
+            const value = {
+                id: props?.city?._id,
+                reqobj: { nameAr: nameAr }
+            }
+            dispatch(updateCityById(value))
+            props.handleReload()
+        }
+    };
+    /////////////////////////
+    const handleEditCityNameEn = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            setValidated2(true);
         }
         else {
             const value = {
@@ -92,12 +116,12 @@ const CityInfo = (props) => {
         props.handleReload()
     }
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <div className='cityInfo'>
             {(props.city == "") && <h5>  {t('settings.chooseOne')}</h5>}
             {(props.city != "") && <div className='cityHeder'>
-                <h5>  {props.city?.name} </h5>
+                <h5>  {lng == "ar" ? props.city?.nameAr : props.city?.name}  </h5>
                 <button type="submit" className='editPro'
                     style={{ border: "3px solid var(--primary-yellow)" }}
                     onClick={() => handleDeleteCity()}
@@ -105,14 +129,33 @@ const CityInfo = (props) => {
                     {t('public.delete')}</button>
             </div>}
             <hr className='tapp' />
-            <Form noValidate validated={validated1} onSubmit={handleEditCityName} className='addCategory1'>
-
+            <Form noValidate validated={validated1} onSubmit={handleEditCityNameAr} className='addCategory1'>
                 <Form.Group className="mb-3" controlId="validationCustom01">
-                    <Form.Label> {t('settings.editName')}</Form.Label>
+                    <Form.Label> {t('settings.editNameAr')}</Form.Label>
                     <div className='rowEdit'>
                         <div className='addCategory1'>
                             <Form.Control
-                                placeholder='write new city name'
+                                placeholder={props?.city?.nameAr}
+                                required
+                                type="text"
+                                onChange={(e) => setNameAr(e.target.value)}
+                                disabled={(props.city == "") && true}
+                            />
+                        </div>
+                        <button type="submit" className='editInfo'  >
+                            <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={"30px"} height={"30px"} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
+
+                        </button>
+                    </div>
+                </Form.Group>
+            </Form>
+            <Form noValidate validated={validated2} onSubmit={handleEditCityNameEn} className='addCategory1'>
+                <Form.Group className="mb-3" controlId="validationCustom01">
+                    <Form.Label> {t('settings.editNameEn')}</Form.Label>
+                    <div className='rowEdit'>
+                        <div className='addCategory1'>
+                            <Form.Control
+                                placeholder={props?.city?.name}
                                 required
                                 type="text"
                                 onChange={(e) => setName(e.target.value)}
@@ -121,20 +164,17 @@ const CityInfo = (props) => {
                         </div>
                         <button type="submit" className='editInfo'  >
                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={"30px"} height={"30px"} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
                         </button>
                     </div>
                 </Form.Group>
             </Form>
-            {/* //////////// */}
-            <Form noValidate validated={validated2} onSubmit={handleAddNeighborhoodToCity} className='addCategory1'>
-
+            <Form noValidate validated={validated3} onSubmit={handleAddNeighborhoodToCity} className='addCategory1'>
                 <Form.Group className="mb-3" controlId="validationCustom01">
                     <Form.Label> {t('settings.addNeighborhood')}</Form.Label>
                     <div className='rowEdit'>
                         <div className='addCategory1'>
                             <Form.Control
-                                placeholder='write new city name'
+                                placeholder={t("public.write")}
                                 required
                                 type="text"
                                 onChange={(e) => setNeighborhood(e.target.value)}
@@ -143,15 +183,19 @@ const CityInfo = (props) => {
                         </div>
                         <button type="submit" className='editInfo'  >
                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={"30px"} height={"30px"} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
                         </button>
                     </div>
                 </Form.Group>
             </Form>
-            {/* //////////// */}
             <hr className='tapp' />
-
-            {props?.city?.name} {t('settings.cityNeighborhoods')}
+            <div dir='rtl' style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
+                <h5>
+                    {t('settings.cityNeighborhoods')}
+                </h5>
+                <h5>
+                    {lng == "ar" ? props.city?.nameAr : props.city?.name}
+                </h5>
+            </div>
             < div className='citiesMap' >
                 {props?.city?.neighborhoods?.map((neighbor, index) => (
                     <div className='neighborhoodsItem'
@@ -168,7 +212,6 @@ const CityInfo = (props) => {
                     </div>
                 ))}
             </div >
-
         </div >
     );
 }

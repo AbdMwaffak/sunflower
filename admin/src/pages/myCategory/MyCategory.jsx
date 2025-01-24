@@ -7,14 +7,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../RTK/categories/getCategoriesSlice ';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import Cookies from 'universal-cookie';
 
 const MyCategory = () => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const allCategories = useSelector(state => state.getCategories).data
     const addState = useSelector(state => state.postNewCategory)
     ///////////////////////////////
     const [imageSquer, setImageSquer] = useState([]);
     const [image, setImage] = useState([]);
-    const [name, setName] = useState("name")
+    const [name, setName] = useState("category name")
+    const [nameAr, setNameAr] = useState("اسم التصنيف ")
     const [stateMessage, setStateMessage] = useState(false);
     const [validated, setValidated] = useState(false);
     const [reload, setReload] = useState(true);
@@ -38,13 +51,13 @@ const MyCategory = () => {
         else {
             const formData = new FormData();
             formData.append('name', name);
+            formData.append('nameAr', nameAr);
             formData.append('image', image);
 
             dispatch(postNewCategory(formData))
             setTimeout(() => {
                 setReload(!reload)
             }, 1000);
-
             setStateMessage(true)
         }
     };
@@ -65,7 +78,7 @@ const MyCategory = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [allCategories])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
@@ -79,7 +92,6 @@ const MyCategory = () => {
                 />
             } */}
             <div className='myCategory'>
-
                 <div className='title'>
                     {t('myCategory.title')}
                 </div>
@@ -93,44 +105,38 @@ const MyCategory = () => {
                                 <Form.Control
                                     required
                                     type="file"
-
                                     onChange={imag2OnChange}
                                 />
-
                             </Form.Group>
-
                             <Form.Group className="mb-3" controlId="validationCustom03">
                                 <Form.Label> {t('myCategory.addNameEn')}</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Category Name"
+                                    placeholder={t("public.write")}
                                     required
                                     onChange={(e) => setName(e.target.value)}
                                 />
                             </Form.Group>
-                            {/* <Form.Group className="mb-3" controlId="validationCustom03">
+                            <Form.Group className="mb-3" controlId="validationCustom03">
                                 <Form.Label> {t('myCategory.addNameAr')}</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Category Name"
+                                    placeholder={t("public.write")}
                                     required
-                                    onChange={(e) => setName(e.target.value)}
+                                    onChange={(e) => setNameAr(e.target.value)}
                                 />
-                            </Form.Group> */}
-
+                            </Form.Group>
                             <hr className='tapp' />
                             <button type="submit" className='formButton'> {t('public.addButton')} </button>
                         </Form>
-
                         <div className='displayNewCategory'>
                             <div className='newImageCategory'>
                                 <img className='imageCat' src={imageSquer} />
                             </div>
                             <div className='newTitleCategory'>
-                                {name}
+                                {lng == "ar" ? nameAr : name}
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div className='supTitle'>
@@ -142,15 +148,11 @@ const MyCategory = () => {
                             key={category._id}
                             id={category._id}
                             image={category.image}
-                            name={category.name}
+                            linkName={category.name}
+                            name={lng == "ar" ? category.nameAr : category.name}
                         />
-
                     ))}
-
                 </div>
-
-
-
             </div >
         </>
     );

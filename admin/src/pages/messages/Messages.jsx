@@ -17,7 +17,6 @@ const Messages = () => {
         setTimeout(() => {
             setReload(!reload)
         }, 1000);
-
     }
     /////////////////////////////
     useEffect(() => {
@@ -30,7 +29,7 @@ const Messages = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />

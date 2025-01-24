@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import './logoutModel.css'
 import Cookies from 'universal-cookie';
+import { useTranslation } from 'react-i18next';
 
 function LogoutModel() {
     const cookies = new Cookies();
@@ -16,13 +17,12 @@ function LogoutModel() {
         cookies.remove('adminToken')
         window.location.pathname = '/'
     }
+    ////////////////////////
+    const { t } = useTranslation();
     return (
         <>
-            <div className='loginOut'>
-
-                <div className='login' onClick={handleShow} >
-                    Logout
-                </div>
+            <div className='logoutBT' onClick={handleShow} >
+                {t('public.logout')}
             </div>
             <Modal
                 show={show}
@@ -35,10 +35,10 @@ function LogoutModel() {
                     <Modal.Title> LOGOUT </Modal.Title>
                 </Modal.Header>
                 <Modal.Body >
-                    Are you sure you want to log out?
+                    {t('public.logout1')}
                 </Modal.Body>
-                <Modal.Footer>
-                    <button className='logoutBT' onClick={handleLogout}>logout</button>
+                <Modal.Footer id='modal-footer'>
+                    <button className='logoutBT' onClick={handleLogout}> {t('public.logout')}</button>
                 </Modal.Footer>
             </Modal>
         </>

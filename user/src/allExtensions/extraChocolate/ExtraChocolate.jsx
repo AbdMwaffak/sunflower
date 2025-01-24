@@ -45,8 +45,8 @@ const ExtraChocolate = (props) => {
                     <span className="checkmark"></span>
                 </label>
             </div>
-            <span className='vv2'>  {props.name} </span>
-            <span className='vv1'>  {chocolateNum} </span>
+            <span className='vv4'>  {props.name} </span>
+            <span className='vv5'>  {chocolateNum} </span>
             <span className='vvBut'>
                 <button className='decrease'
                     type='button'

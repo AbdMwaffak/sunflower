@@ -9,13 +9,17 @@ if (cookies.get('token') !== undefined || null) {
   token = cookies.get('token');
 }
 //////////////
+let headers = '';
+if (token !== '') {
+  headers = `Bearer ${token}`;
+}
+//////////////
 export const getProductByCategory = createAsyncThunk(
   'product/getProductByCategory',
   async (id) => {
     const response = await axios.get(`/products?category=${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: headers },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

@@ -5,15 +5,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllabout } from '../../RTK/about/getAllaboutSlice';
 import { addabout } from '../../RTK/about/addaboutSlice';
 import AboutElement from '../../allExtensions/aboutElement/AboutElement';
-import SuccessfulMessage from '../../allExtensions/successfulMessage/SuccessfulMessage';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import Cookies from 'universal-cookie';
 const About = () => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const allAbout = useSelector(state => state.getAllabout).data
     const addState = useSelector(state => state.addAbout)
     ////////////////////////////////////
     const [title, setTitle] = useState("")
+    const [titleAr, setTitleAr] = useState("")
     const [description, setDescription] = useState("")
+    const [descriptionAr, setDescriptionAr] = useState("")
     const [stateMessage, setStateMessage] = useState(false);
     const [validated, setValidated] = useState(false);
     const [reload, setReload] = useState(true);
@@ -41,10 +54,11 @@ const About = () => {
             setValidated(true);
         }
         else {
-
             const value = {
                 title: title,
-                description: description
+                description: description,
+                titleAr: titleAr,
+                descriptionAr: descriptionAr
             }
             dispatch(addabout(value))
             setTimeout(() => {
@@ -65,67 +79,53 @@ const About = () => {
         dispatch(getAllabout())
     }, [dispatch, reload])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
-            {/* {
-                stateMessage &&
-
-                < SuccessfulMessage
-                    handleClose={handleClose}
-                    state={addState}
-                    open={stateMessage}
-                />
-            } */}
             <div className='myAbout'>
                 <div className='title'>
                     {t('about.title')}
                 </div>
                 <div className='editeContener'>
                     <div className='newAbout'>
-
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addAbout'>
-                            {/* <Form.Group className="mb-3" controlId="validationCustom02">
+                            <Form.Group className="mb-3" controlId="validationCustom02">
                                 <Form.Label> {t('about.addTitleAr')}</Form.Label>
                                 <Form.Control
                                     type="string"
-                                    placeholder="write title here"
+                                    placeholder={t("public.write")}
                                     required
-                                    onChange={(e) => setTitle(e.target.value)}
+                                    onChange={(e) => setTitleAr(e.target.value)}
                                 />
-                            </Form.Group> */}
-                            {/* ///////// */}
+                            </Form.Group>
                             <Form.Group className="mb-3" controlId="validationCustom02">
                                 <Form.Label> {t('about.addTitleEn')}</Form.Label>
                                 <Form.Control
                                     type="string"
-                                    placeholder="write title here"
+                                    placeholder={t("public.write")}
                                     required
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
                             </Form.Group>
-                            {/* ///////// */}
-                            {/* <Form.Group className="mb-3 " controlId="validationCustom02">
+                            <Form.Group className="mb-3 " controlId="validationCustom02">
                                 <Form.Label> {t('about.addDescriptionAr')} </Form.Label>
                                 <Form.Control
                                     className='textarea2'
                                     as="textarea"
                                     type="text"
-                                    placeholder="write description here "
+                                    placeholder={t("public.write")}
                                     required
-                                    onChange={(e) => setDescription(e.target.value)}
+                                    onChange={(e) => setDescriptionAr(e.target.value)}
                                 />
-                            </Form.Group> */}
-
-                            {/* ///////// */}
+                            </Form.Group>
                             <Form.Group className="mb-3 " controlId="validationCustom02">
                                 <Form.Label> {t('about.addDescriptionEn')} </Form.Label>
                                 <Form.Control
                                     className='textarea2'
                                     as="textarea"
                                     type="text"
-                                    placeholder="write description here "
+                                    placeholder={t("public.write")}
                                     required
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
@@ -140,7 +140,6 @@ const About = () => {
                 </div>
                 <div className='currentAbout'>
                     {allAbout?.length == 0 &&
-
                         <div className='noProducts'
                             style={{ marginTop: "10px", marginBottom: "10px" }}
                         >
@@ -157,8 +156,8 @@ const About = () => {
                     {allAbout?.map((about, index) => (
                         <AboutElement
                             key={index}
-                            title={about?.title}
-                            description={about?.description}
+                            title={lng == "ar" ? about?.titleAr : about?.title}
+                            description={lng == "ar" ? about?.descriptionAr : about?.description}
                             id={about?._id}
                             handelReload={handelReload}
                         />

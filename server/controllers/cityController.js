@@ -3,11 +3,11 @@ const City = require('./../models/cityModel');
 const catchAsync = require('./../utils/catchAsync');
 
 exports.add = catchAsync(async (req, res, next) => {
-  const { name } = req.body;
+  const { name, nameAr } = req.body;
   const neighborhoods = JSON.parse(req.body.neighborhoods);
-  const city = await City.create({ name, neighborhoods });
+  const city = await City.create({ name, nameAr, neighborhoods });
 
-  res.status(201).send(city);
+  res.status(201).send('Done!');
 });
 
 exports.getAll = catchAsync(async (req, res, next) => {
@@ -32,6 +32,7 @@ exports.update = catchAsync(async (req, res, next) => {
     id,
     {
       name: req.body.name,
+      nameAr: req.body.nameAr,
       neighborhoods,
       isActive: req.body.isActive,
     },
@@ -41,7 +42,7 @@ exports.update = catchAsync(async (req, res, next) => {
     }
   );
 
-  res.send(updatedCity);
+  res.send('Updated Successfully!');
 });
 
 exports.deleteCity = catchAsync(async (req, res, next) => {

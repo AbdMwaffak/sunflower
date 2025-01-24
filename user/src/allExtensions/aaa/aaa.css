@@ -1,7 +1,8 @@
 .allshapes {
-    height: 100vh;
+    height: calc(100vh-100px);
     width: 100vw;
-    position: absolute;
+    /* background-color: aliceblue; */
+    position: fixed;
     bottom: 0;
     right: 0;
     z-index: 1000;
@@ -12,6 +13,7 @@
     width: 100%;
 }
 
+
 .ab {
     width: 10%;
     aspect-ratio: 1/1;
@@ -19,7 +21,7 @@
     bottom: 0px;
     right: 20%;
 
-    animation-duration: 4s;
+    animation-duration: 40s;
     animation-iteration-count: infinite;
     transform-origin: bottom;
 }

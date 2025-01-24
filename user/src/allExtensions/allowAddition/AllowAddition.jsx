@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { emptyCart } from '../../RTK/shoppingCart/emptyCartSlice';
+import { useTranslation } from 'react-i18next';
 
 function AllowAddition(props) {
     ////////////////////////
@@ -16,6 +17,8 @@ function AllowAddition(props) {
         props?.handelReload()
         setShow(false)
     }
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
         <>
             <Modal
@@ -25,24 +28,23 @@ function AllowAddition(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>DELETE MESSAGE</Modal.Title>
+                    <Modal.Title>FLOWER MESSAGE</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className='modelBody' style={{ textAlign: "center" }}>
                         <h5
                             style={{ width: '100%', textAlign: "center", color: "red" }}>
-                            Sorry
+                            {t('flower.message')}
                         </h5>
-                        The bouquet cannot be added because there are other products in your cart <br />
-                        You can finish the previous request and continue later <br />
-                        Or you can empty the basket and try again
+                        {t('flower.message11')}<br />
+                        {t('flower.message22')}
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer id='modal-footer'>
                     <button className='send' onClick={handelClearMyCart}>
-                        Clean My Cart</button>
+                        {t('flower.clean')} </button>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('public.close')}
                     </Button>
                 </Modal.Footer>
             </Modal>

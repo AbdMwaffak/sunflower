@@ -13,7 +13,8 @@
     border-radius: 16px;
     border: 5px solid var(--primary-yellow);
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
     gap: 10px;
     padding: 10px;
     align-items: center;

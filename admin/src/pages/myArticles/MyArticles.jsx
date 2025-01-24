@@ -5,10 +5,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getArticles } from '../../RTK/arcticles/getArticlesSlice ';
 import { postArticle } from '../../RTK/arcticles/postArticleSlice';
 import Post from '../../allExtensions/post/Post'
-import SuccessfulMessage from '../../allExtensions/successfulMessage/SuccessfulMessage';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import Cookies from 'universal-cookie';
 const MyArticles = () => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const articels = useSelector(state => state.getArticles).data
     const addState = useSelector(state => state.postArticle)
     ////////////////////////////////////
@@ -16,6 +27,7 @@ const MyArticles = () => {
     const [image, setImage] = useState([]);
     const [imageType, setImageType] = useState([]);
     const [description, setDescription] = useState("")
+    const [descriptionAr, setDescriptionAr] = useState("")
     const [stateMessage, setStateMessage] = useState(false);
     const [validated, setValidated] = useState(false);
     const [reload, setReload] = useState(true);
@@ -46,7 +58,7 @@ const MyArticles = () => {
             const formData = new FormData();
             formData.append('image', image);
             formData.append('description', description);
-
+            formData.append('descriptionAr', descriptionAr);
             dispatch(postArticle(formData))
             setTimeout(() => {
                 setReload(!reload)
@@ -71,19 +83,10 @@ const MyArticles = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
-            {/* {
-                stateMessage &&
-
-                < SuccessfulMessage
-                    handleClose={handleClose}
-                    state={addState}
-                    open={stateMessage}
-                />
-            } */}
             <div className='editeCategory'>
                 <div className='title'>
                     {t('articles.title')}
@@ -95,31 +98,29 @@ const MyArticles = () => {
                                 <Form.Label> {t('articles.addImageOrVideo')}</Form.Label>
                                 <Form.Control
                                     type="file"
-                                    placeholder="Category Name"
+                                    placeholder={t("public.write")}
                                     required
                                     onChange={imag2OnChange}
                                 />
                             </Form.Group>
-                            {/* ///////// */}
-                            {/* <Form.Group className="mb-3 " controlId="validationCustom02">
+                            <Form.Group className="mb-3 " controlId="validationCustom02">
                                 <Form.Label>{t('articles.addDescriptionAr')} </Form.Label>
                                 <Form.Control
                                     className='textarea1'
                                     as="textarea"
                                     type="text"
-                                    placeholder="write description here "
+                                    placeholder={t("public.write")}
                                     required
-                                    onChange={(e) => setDescription(e.target.value)}
+                                    onChange={(e) => setDescriptionAr(e.target.value)}
                                 />
-                            </Form.Group> */}
-                            {/* ///////// */}
+                            </Form.Group>
                             <Form.Group className="mb-3 " controlId="validationCustom02">
                                 <Form.Label>{t('articles.addDescriptionEn')} </Form.Label>
                                 <Form.Control
                                     className='textarea1'
                                     as="textarea"
                                     type="text"
-                                    placeholder="write description here "
+                                    placeholder={t("public.write")}
                                     required
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
@@ -127,13 +128,10 @@ const MyArticles = () => {
                             <hr className='tapp' />
                             <button type="submit" className='formButton'>{t('public.addButton')}</button>
                         </Form>
-                        {/* <div className='displayNewCategory'> */}
                         <div className='newImageArticle' style={{ display: imageType != "video" ? "flex" : "none" }} >
                             <img className='imageCat' src={imageSquer} />
                         </div>
-                        {/* </div> */}
                         <div className='newImageArticle' style={{ display: imageType == "video" ? "flex" : "none" }}>
-                            {/* <VideoPlayer videoUrl={imageSquer} /> */}
                             <video src={imageSquer} width="100%" height="100%" controls>
                             </video>
                         </div>
@@ -148,7 +146,7 @@ const MyArticles = () => {
                             key={articel._id}
                             id={articel._id}
                             image={articel?.image}
-                            description={articel.description}
+                            description={lng == "ar" ? articel?.descriptionAr : articel?.description}
                             date={articel?.createdAt}
                             like={articel.likeCount}
                             share={articel.shareCount}

@@ -7,7 +7,6 @@ const chocolateSchema = new mongoose.Schema({
   },
   nameAr: {
     type: String,
-    // required: true,
   },
   image: String,
   size: String,

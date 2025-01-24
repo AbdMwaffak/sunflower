@@ -11,6 +11,7 @@ const objectId = joi.string().custom((value, helpers) => {
 const createArticleSchema = {
   body: joi.object().keys({
     description: joi.string(),
+    descriptionAr: joi.string(),
   }),
 };
 
@@ -20,6 +21,7 @@ const updateArticleSchema = {
   }),
   body: joi.object().keys({
     description: joi.string().optional(),
+    descriptionAr: joi.string().optional(),
   }),
 };
 

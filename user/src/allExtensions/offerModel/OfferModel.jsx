@@ -5,6 +5,9 @@ import Modal from 'react-bootstrap/Modal';
 import './offersMpdel.css'
 import { useDispatch } from 'react-redux';
 import { addOfferToCart } from '../../RTK/shoppingCart/addOfferToCartSlice';
+import { useTranslation } from 'react-i18next';
+import Cookies from 'universal-cookie';
+import { colgroup } from 'framer-motion/client';
 
 function OfferModel(props) {
     const [show, setShow] = useState(false);
@@ -17,10 +20,21 @@ function OfferModel(props) {
         setShow(false)
         props.numCounter()
     }
-    ///////////////////////////
+    ////////////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
+    const { t } = useTranslation();
     return (
         <>
-            <button className='getIt' onClick={handleShow} >  Get it  </button>
+            <button className='getIt' onClick={handleShow} > {t('offers.getIt')}   </button>
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -42,44 +56,46 @@ function OfferModel(props) {
                                     {props?.description}
                                 </div>
                                 <div className='offerDisPrice'>
-                                    Discount : {props?.discount}%
+                                    {t('offers.discount')}   : {props?.discount}%
                                 </div>
                                 <div className='offerPrice2'>
                                     <div className='prevPrice '>
-                                        Previous price :
+                                        {t('offers.previousPrice')} :
                                         <div className="lineThrough">  {props?.priceB} </div>
                                     </div>
                                     <div className='currPrice '>
-                                        Current price :
+                                        {t('offers.currentPrice')}    :
                                         <div>  {props?.priceA} </div>
                                     </div>
                                 </div>
                             </div>
                             <div className='mainImageOffer'>
-                                <img className='imageCat' src={props.mainImage} />
+                                <img className='allImage' src={props.mainImage} />
                             </div>
                         </div>
                         <hr className='hrCart' />
-                        Offer products
+                        <h5>      {t('offers.offerproducts')} </h5>
                         <hr className='hrCart' />
                         <div className='produtsByOffer'>
                             {props?.products?.map((product, index) => (
                                 <div className='offerPro'
                                     key={index}>
                                     <div className='arrayImg'>
-                                        <img className='imageCat' src={product?.image} alt="" />
+                                        <img className='allImage' src={product?.image} alt="" />
                                     </div>
-                                    <div className='arrayName'>  {product?.name}</div>
-                                    <div className='arrayDesc'>{product?.description} </div>
+                                    <div className='arrayName'>   {lng == "ar" ? product?.nameAr : product?.name}</div>
+                                    <div className='arrayDesc'> {lng == "ar" ? product?.descriptionAr : product?.description} </div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
-                    <button className='addToCart' onClick={handleAdd}>add to cart</button>
+                <Modal.Footer id='modal-footer' >
+                    <div className='buttonDiv'>
+                        <button className='formButton' onClick={handleAdd}> {t('offers.addtoCart')}</button>
+                    </div>
                 </Modal.Footer>
-            </Modal>
+            </Modal >
         </>
     );
 }

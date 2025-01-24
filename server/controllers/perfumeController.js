@@ -30,7 +30,7 @@ exports.updateVariants = catchAsync(async (req, res, next) => {
     { new: true, runValidators: true }
   );
 
-  res.send(perfume);
+  res.send('Updated Successfully!');
 });
 
 exports.addNewSize = catchAsync(async (req, res, next) => {
@@ -48,7 +48,7 @@ exports.update = catchAsync(async (req, res, next) => {
   const perfumes = await Perfume.find();
   const perfume = perfumes[0];
   let { images } = perfume;
-  const { name, description } = req.body;
+  const { name, description, descriptionAr } = req.body;
 
   if (req.files.length > 0) images = req.files.map((img) => img.filename);
 
@@ -56,6 +56,7 @@ exports.update = catchAsync(async (req, res, next) => {
     images,
     name,
     description,
+    descriptionAr,
   });
   res.status(200).send('Perfume Updated Successfully!');
 });

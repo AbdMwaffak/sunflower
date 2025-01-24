@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMe } from '../../RTK/Auth/getMeSlice';
+import { useTranslation } from 'react-i18next';
 
 function AllowPoint(props) {
     const me = useSelector(state => state.getMe)?.data
@@ -21,7 +22,8 @@ function AllowPoint(props) {
         if (me?.points <= props.productPoint)
             handleShow()
     }, [dispatch, props?.productPoint])
-
+    ////////////////////////
+    const { t } = useTranslation();
     return (
         <>
             <Modal
@@ -31,27 +33,28 @@ function AllowPoint(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>DELETE MESSAGE</Modal.Title>
+                    <Modal.Title>POINTS MESSAGE</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className='modelBody' style={{ textAlign: "center" }}>
                         <h5
                             style={{ width: '100%', textAlign: "center", color: "red" }}>
-                            Sorry
+                            {t('product.message')}
                         </h5>
                         {me?.points != 0 && me?.points << props.productPoint &&
                             <div style={{ width: '100%', textAlign: "center" }}>
+                                {t('product.message4')}
                                 The product value is greater than your points balance
                             </div>}
                         {me?.points == 0 &&
                             <div style={{ width: '100%', textAlign: "center" }}>
-                                You don't have loyalty points yet
+                                {t('product.message5')}
                             </div>}
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer id='modal-footer'>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('public.close')}
                     </Button>
                 </Modal.Footer>
             </Modal>

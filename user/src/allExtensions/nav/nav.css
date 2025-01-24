@@ -2,6 +2,251 @@
     height: 50px;
     width: 100%;
     background-color: #000000;
+    color: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    box-shadow: 0px 2px 20px 0px #8b8b8d;
+    flex-direction: row;
+    gap: 0px;
+    position: sticky;
+    top: 0px;
+    border-radius: 8px;
+    padding: 0px 10px;
+
+}
+
+.leftNav {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.menue {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+}
+
+.menueIcon {
+    width: 35px;
+}
+
+.logo {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 1px;
+    margin-right: 3px;
+}
+
+.flowerLogo {
+    width: 100%;
+}
+
+.sercheInputform {
+    display: flex;
+    border-radius: 40px;
+    overflow: hidden;
+    gap: 2px;
+}
+
+.sercheInput {
+    width: 100%;
+    height: 35px;
+    display: flex;
+    border: none;
+    padding: 0.93% 10%;
+    background-color: #2e2b2b;
+    color: var(--primary-light);
+    align-items: center;
+    display: flex;
+}
+
+.sercheInput:focus-visible {
+    outline: none;
+}
+
+.sercheInput:focus {
+    border: none;
+}
+
+
+
+.sercheInput::placeholder {
+    color: var(--primary-light);
+}
+
+.mySercheBar {
+    width: 96%;
+    border-bottom: 3px solid #E8702E;
+    border-top: 3px solid #E8702E;
+    margin-top: 5px;
+    position: relative;
+}
+
+.sercheIn {
+    width: 80%;
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    margin: 30px;
+    color: white;
+}
+
+.sercheIn2 {
+    width: 80%;
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    margin: 30px;
+    color: white;
+}
+
+.searchIcon {
+    width: 50px;
+
+}
+
+.start {
+    width: 100px;
+    height: 35px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    z-index: 100;
+    background-color: #f1c92f8a;
+    color: white;
+    align-items: center;
+}
+
+.start:hover {
+    background-color: #f1c92f;
+}
+
+.bArrrow {
+    height: 35px;
+    width: 35px;
+    aspect-ratio: 1/1;
+    background-color: #f1c92f8a;
+    border-radius: 100%;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    margin: 0 20px;
+    padding: 5px;
+}
+
+.bSearch {
+    display: none;
+}
+
+
+@media (max-width : 650px) {
+    .sercheIn2 {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .bSearch {
+        height: 35px;
+        width: 35px;
+        aspect-ratio: 1/1;
+        background-color: #f1c92f8a;
+        border-radius: 100%;
+        border: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        position: relative;
+        padding: 5px;
+    }
+
+    .sercheIn {
+        display: none;
+    }
+
+    .navBar {
+        justify-content: space-around;
+    }
+}
+
+.b1,
+.b2,
+.b3 {
+    height: 35px;
+    width: 35px;
+    aspect-ratio: 1/1;
+    background-color: #f1c92f8a;
+    border-radius: 100%;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    padding: 5px;
+}
+
+.rightNav {
+    min-width: 150px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.b1:hover,
+.b2:hover,
+.b3:hover,
+.bSearch:hover {
+    background-color: #f1c92f;
+    box-shadow: 0px 0px 4px 1px white;
+}
+
+.b1Icon {
+    width: 100%;
+    height: 100%;
+}
+
+.login {
+    width: 70px;
+    height: 30px;
+    background-color: var(--secondary-light);
+    color: #7e7e7e;
+    border: 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: medium;
+}
+
+.login:hover {
+    background-color: #f1c92f;
+    transition: all 0.8ns ease-in-out;
+}
+
+
+/* .navBar {
+    height: 50px;
+    width: 100%;
+    background-color: #000000;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -35,7 +280,8 @@
 }
 
 .logo {
-    width: 47px;
+    width: 35px;
+    height: 35px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -212,12 +458,12 @@
     height: 100%;
     transform: scaleX(-1);
 }
-
+*/
 .cartNum {
     width: 20px;
     aspect-ratio: 1 / 1;
     background-color: #ffffff;
-    color: black;
+    color: var(--primary-dark);
     border-radius: 100%;
     position: absolute;
     top: -6px;

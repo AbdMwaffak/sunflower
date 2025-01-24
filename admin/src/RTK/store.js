@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import postLoginReducer from './Auth/loginSlice';
+import getMeSlice from './Auth/getMeSlice';
 import getCategoriesSlice from './categories/getCategoriesSlice ';
 import postNewCategorySlice from './categories/postNewCategorySlice';
 import getCategoryByIdSlice from './categories/getCategoryByIdSlice';
@@ -64,10 +65,14 @@ import getAllCitiesSlice from './cities/getAllCitiesSlice';
 import getCityByIdSlice from './cities/getCityByIdSlice';
 import deleteCityByIdSlice from './cities/deleteCityByIdSlice';
 import updateCityByIdSlice from './cities/updateCityByIdSlice';
+import getOrdersSlice from './orders/getOrdersSlice';
+import orderProcessingSlice from './orders/orderProcessingSlice';
 
 export const store = configureStore({
     reducer: {
         login: postLoginReducer,
+        getMe: getMeSlice,
+
         getCategories: getCategoriesSlice,
         postNewCategory: postNewCategorySlice,
         getCategoryById: getCategoryByIdSlice,
@@ -144,6 +149,9 @@ export const store = configureStore({
         getCityById: getCityByIdSlice,
         deleteCityById: deleteCityByIdSlice,
         updateCityById: updateCityByIdSlice,
+
+        getOrders: getOrdersSlice,
+        orderProcessing: orderProcessingSlice,
 
 
     },

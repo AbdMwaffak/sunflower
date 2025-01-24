@@ -11,13 +11,28 @@ import { getPaper } from '../../RTK/paper/getPaperSlice';
 import BouquetCard from '../../allExtensions/editBouquet/BouquetCard';
 import { deleteBand } from '../../RTK/band/deleteBandSlice';
 import { deletePaper } from '../../RTK/paper/deletePaperSlice';
-import SuccessfulMessage from '../../allExtensions/successfulMessage/SuccessfulMessage';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-
+import Cookies from 'universal-cookie';
+import { getCategoryById } from '../../RTK/categories/getCategoryByIdSlice';
+import { useParams } from 'react-router-dom';
+import { stateCategoryById } from '../../RTK/categories/stateCategoryByIdSlice';
 
 const MyNaturalFlower = () => {
-
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
+    const id = useParams().NaturalFlowerId
+    const categories = useSelector(state => state.getCategoryById)?.data
+    //////////////////////////////
     const allBouquets = useSelector(state => state.getAllBouquets)?.data
     const allPapers = useSelector(state => state.getPaper)?.data
     const allBands = useSelector(state => state.getBand)?.data
@@ -28,13 +43,11 @@ const MyNaturalFlower = () => {
     const [num, setNum] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
-
+    const [descriptionAr, setDescriptionAr] = useState('');
     const [colorBand, setColorBand] = useState('null');
     const [bandColorsDiv, setBandColorsDiv] = useState('');
-
     const [colorPaper, setColorPaper] = useState('null');
     const [paperColorsDiv, setPaperColorsDiv] = useState('');
-
     const [stateMessage, setStateMessage] = useState(false);
     const [validated, setValidated] = useState(false);
     const [reload, setReload] = useState(true);
@@ -66,7 +79,7 @@ const MyNaturalFlower = () => {
         formData.append('count', num);
         formData.append('price', price);
         formData.append('description', description);
-
+        formData.append('descriptionAr', descriptionAr);
         dispatch(postBouquet(formData))
         setTimeout(() => {
             setReload(!reload)
@@ -79,7 +92,6 @@ const MyNaturalFlower = () => {
         setTimeout(() => {
             setReload(!reload)
         }, 1000);
-        // setStateMessage(true)
     };
     ///////////////////////////////
     const handleSubmitColorBand = (event) => {
@@ -106,7 +118,6 @@ const MyNaturalFlower = () => {
         setTimeout(() => {
             setReload(!reload)
         }, 1000);
-        // setStateMessage(true)
     };
     ///////////////////////////////
     const handleSubmitColorPaper = (event) => {
@@ -125,7 +136,6 @@ const MyNaturalFlower = () => {
             setTimeout(() => {
                 setReload(!reload)
             }, 1000);
-            // setStateMessage(true)
         }
     };
     ///////////////////////////////
@@ -135,11 +145,19 @@ const MyNaturalFlower = () => {
         }, 1000);
     }
     ///////////////////////////////
+       const handleState = () => {
+                dispatch(stateCategoryById(id))
+                setTimeout(() => {
+                    setReload(!reload)
+                }, 1000);
+            }
+        ///////////////////////////
     useEffect(() => {
         dispatch(getAllBouquets())
+         dispatch(getCategoryById(id))
         dispatch(getBand())
         dispatch(getPaper())
-    }, [dispatch, reload])
+    }, [dispatch, reload , id])
     ///////////////////////////////
     useEffect(
         function () {
@@ -147,24 +165,17 @@ const MyNaturalFlower = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
-            {/* {
-                stateMessage &&
-
-                < SuccessfulMessage
-                    handleClose={handleClose}
-                    state={addState}
-                    open={stateMessage}
-                />
-            } */}
             <div className='myNaturalFlower'>
                 <div className='title'>
                     {t('flower.title')}
                 </div>
                 <div className='editeContener'>
+                            <button style={{ width: "100%", margin: "0px" }} type='submit' className='formButton' onClick={handleState}> {categories?.isActive ? `${t('public.disable')}` : `${t('public.enable')}`}  </button>
+                            <hr className='tapp'/>
                     <div className='newNaturalFlower'>
 
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addNaturalFlower'>
@@ -173,7 +184,6 @@ const MyNaturalFlower = () => {
                                 <Form.Control
                                     required
                                     type="file"
-
                                     onChange={imag2OnChange}
                                 />
                             </Form.Group>
@@ -182,7 +192,7 @@ const MyNaturalFlower = () => {
                                 <Form.Control
                                     type="number"
                                     min={1}
-                                    placeholder="0"
+                                    placeholder={t("public.write")}
                                     required
                                     onChange={(e) => setNum(e.target.value)}
                                 />
@@ -192,43 +202,35 @@ const MyNaturalFlower = () => {
                                 <Form.Control
                                     type="number"
                                     min={1}
-                                    placeholder="0 "
+                                    placeholder={t("public.write")}
                                     required
                                     onChange={(e) => setPrice(e.target.value)}
                                 />
                             </Form.Group>
-                            {/* <Form.Group className="mb-3" controlId="validationCustom03">
+                            <Form.Group className="mb-3" controlId="validationCustom03">
                                 <Form.Label> {t('flower.AddBouquetDescriptionAr')}</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     type="string "
-                                    placeholder="add description"
+                                    placeholder={t("public.write")}
                                     required
-                                    onChange={(e) => setDescription(e.target.value)}
+                                    onChange={(e) => setDescriptionAr(e.target.value)}
                                 />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid city.
-                                </Form.Control.Feedback>
-                            </Form.Group> */}
+                            </Form.Group>
                             <Form.Group className="mb-3" controlId="validationCustom03">
                                 <Form.Label> {t('flower.AddBouquetDescriptionEn')}</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     type="string "
-                                    placeholder="add description"
+                                    placeholder={t("public.write")}
                                     required
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
                             </Form.Group>
-
                             <hr className='tapp' />
-
                             <button type="submit" className='formButton'>  {t('public.addButton')}</button>
                         </Form>
-
                         <div className='displayNowFlower'>
-
-
                             <div className='newImageFlower'>
                                 {imageSquer.length != 0 &&
                                     <img className='imageFlower' src={imageSquer} />
@@ -239,7 +241,6 @@ const MyNaturalFlower = () => {
                                     <div className='' >
                                         {t('flower.cuantety')} :   {num}
                                     </div>
-
                                     <div className='' >
                                         {t('flower.price')}  :   {price}
                                     </div>
@@ -249,14 +250,10 @@ const MyNaturalFlower = () => {
                                     {description}
                                 </div>
                             </div>
-
-
                         </div>
-
                     </div>
                 </div>
-                {/* ////////////// */}
-                <div className='editeContener'>
+                {/* <div className='editeContener'>
                     <div className='accessories'>
                         <div className='addBand1'>
                             <Form onSubmit={handleSubmitColorBand} className='addBandForm'>
@@ -270,41 +267,29 @@ const MyNaturalFlower = () => {
                                                 type="color"
                                                 onChange={(e) => setColorBand(e.target.value)}
                                             />
-
-
                                         </div>
                                         <div className='displayColr' style={{ backgroundColor: colorBand }} >  </div>
 
                                         <button type="submit" className='editInfo'  >
                                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
                                         </button>
                                     </div>
-
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
-
                             <div className='colorsAvailable'>
                                 {t('flower.allColorsAvailable')}
                                 <div className='addB' onClick={() => setBandColorsDiv(!bandColorsDiv)} style={{ display: "flex" }}>
                                     <svg className={bandColorsDiv ? "orderArrwOpen" : "orderArrwClose"}
                                         xmlns="http://www.w3.org/2000/svg" width={28} height={28} viewBox="0 0 24 24" ><g transform="rotate(-90 12 12)"><path stroke="currentColor" strokeDasharray={8} strokeDashoffset={8} strokeLinecap="round" strokeWidth={2} d="M9 12L14 7M9 12L14 17" fill="currentColor"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="8;0"></animate></path></g></svg>
-
                                 </div>
                             </div>
-
-
                             <div className={bandColorsDiv ? "bandColor1" : "bandColor2"}>
                                 {typeof allBands !== "string" &&
                                     <div className='inDiv'>
                                         {allBands?.map((band, index) => (
                                             <div className={bandColorsDiv ? "pItameOn" : "pItameOn"} key={index}>
-
                                                 <div className="pItameColor" style={{ backgroundColor: band.color }}>
                                                 </div>
-
-
                                                 <button className='deleteColor'
                                                     onClick={() => handleDeleteBand(band._id)}
                                                 >
@@ -316,10 +301,8 @@ const MyNaturalFlower = () => {
                                 }
                             </div>
                         </div>
-
                         <div className='addPaper1'>
                             <Form onSubmit={handleSubmitColorPaper} className='addPaperForm'>
-
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('flower.colorpaper')} </Form.Label>
                                     <div className='rowEdit'>
@@ -337,7 +320,6 @@ const MyNaturalFlower = () => {
                                     </div>
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
                             <div className='colorsAvailable'>
                                 {t('flower.allColorsAvailable')}
                                 <div className='addB' onClick={() => setPaperColorsDiv(!paperColorsDiv)} style={{ display: "flex" }}>
@@ -350,28 +332,22 @@ const MyNaturalFlower = () => {
                                     <div className='inDiv' >
                                         {allPapers?.map((paper, index) => (
                                             <div className={paperColorsDiv ? "pItameOn" : "pItameOn"} key={index}>
-
                                                 <div className="pItameColor" style={{ backgroundColor: paper.color }}>
                                                 </div>
-
-
                                                 <button className='deleteColor'
                                                     onClick={() => handleDeletePaper(paper._id)}
                                                 >
                                                     {t('public.delete')}
                                                 </button>
                                             </div>
-
                                         ))}
                                     </div>
                                 }
                             </div>
                         </div>
-
-
                     </div>
-                </div>
-                {/* //////////////// */}
+                </div> */}
+
                 <div className='supTitle'>
                     {t('flower.supTitle')}
                 </div>
@@ -388,25 +364,17 @@ const MyNaturalFlower = () => {
                             </b>
                         </div>}
                     {allBouquets?.map((bouquet) => (
-
                         <BouquetCard
                             key={bouquet._id}
                             id={bouquet._id}
                             price={bouquet.price}
                             count={bouquet.count}
                             image={bouquet.image}
-                            description={bouquet.description}
+                            description={lng == "ar" ? bouquet.descriptionAr : bouquet.description}
                             reloadHandel={reloadHandel}
                         />
-
-                        //     <img className='image' src={`${Api}/users/${bouquet.image}`} />
-
                     ))}
-
                 </div>
-
-
-
             </div >
         </>
     );

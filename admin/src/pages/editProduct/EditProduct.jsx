@@ -9,11 +9,22 @@ import { Form } from 'react-bootstrap';
 import Api from '../../allExtensions/API';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import Cookies from 'universal-cookie';
 
 const EditProduct = () => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const id = useParams().productId
     const product = useSelector(state => state.getProductById).data
-    // console.log(product)
     /////////////////////////////////////////////
     const dispatch = useDispatch()
     /////////////////////////////////////////////
@@ -21,9 +32,10 @@ const EditProduct = () => {
     const [images, setImages] = useState([]);
     const [imagesForm, setImagesForm] = useState(false);
     const [name, setName] = useState(" ");
+    const [nameAr, setNameAr] = useState(" ");
     const [price, setPrice] = useState(0);
     const [description, setDescription] = useState(" ");
-
+    const [descriptionAr, setDescriptionAr] = useState(" ");
     const [size, setSize] = useState('');
     const [priceSize, setPriceSize] = useState(0);
     const [prices, setPrices] = useState([]);
@@ -31,25 +43,21 @@ const EditProduct = () => {
     const [sellInPoints, setSellInPoints] = useState(false);
     const [priceInPoints, setPriceInPoints] = useState(0);
     const [earned, setEarned] = useState(0);
-
     const [colorsNew, setcolorsNew] = useState([]);
     const [colors, setColors] = useState([]);
     const [color, setColor] = useState('');
     const [reload, setReload] = useState(true);
-
     const [validatedName, setValidatedName] = useState(false);
     const [validatedPrice, setValidatedPrice] = useState(false);
     const [validatedDescriptio, setValidatedDescriptio] = useState(false);
     const [validatedSize, setValidatedSize] = useState(false);
     const [validatedColor, setValidatedColor] = useState(false);
     const [validatedImages, setValidatedImages] = useState(false);
-
     ///////////////////////////////////////////////
     const imagOnChange = e => {
         const fileArray = Array.from(e.target.files)
         fileArray.map(f => f["id"] = Math.random() * Math.pow(10, 16))
         setImages(fileArray)
-
         const fileArraySquer2 = []
         const fileArraySquer = Array.from(e.target.files)
         fileArraySquer.map((f, index) => (
@@ -116,7 +124,6 @@ const EditProduct = () => {
             dispatch(patchProductById(value))
             setReload(!reload)
             setImagesForm(false)
-
         }
     };
     ///////////////////////////////////////////////////
@@ -138,6 +145,27 @@ const EditProduct = () => {
         else {
             const formData = new FormData();
             formData.append('name', name);
+            const value = {
+                reqobj: formData,
+                id: id
+            }
+            dispatch(patchProductById(value))
+            setReload(!reload)
+        }
+    };
+    ///////////////////////////////////////////////////
+    const handleSubmitNameAr = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            setValidatedName(true);
+        }
+        else {
+            const formData = new FormData();
+            formData.append('nameAr', nameAr);
             const value = {
                 reqobj: formData,
                 id: id
@@ -188,6 +216,28 @@ const EditProduct = () => {
             setReload(!reload)
         }
     };
+    ///////////////////////////////////////////////////
+    const handleSubmitDescriptionAr = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            setValidatedDescriptio(true);
+        }
+        else {
+            const formData = new FormData();
+            formData.append('descriptionAr', descriptionAr);
+            const value = {
+                reqobj: formData,
+                id: id
+            }
+            dispatch(patchProductById(value))
+            setReload(!reload)
+        }
+    };
+    ///////////////////////////////////////////////////
     const handleSubmitSize = (event) => {
         const form = event.currentTarget;
         event.preventDefault();
@@ -256,7 +306,7 @@ const EditProduct = () => {
             <Toaster />
             <div className='editProduct'>
                 <div className='title'>
-                    {product.name}
+                    {lng == "ar" ? product.nameAr : product.name}
                 </div>
                 <div className='editeContener'>
                     <div className='updateProduct'>
@@ -278,17 +328,16 @@ const EditProduct = () => {
                                     </div>
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
-                            {/* <Form noValidate validated={validatedName} onSubmit={handleSubmitName} className='addCategory1'>
+                            <Form noValidate validated={validatedName} onSubmit={handleSubmitNameAr} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('product.editProductNameAr')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <Form.Control
-                                                placeholder={product?.name}
+                                                placeholder={product?.nameAr}
                                                 required
                                                 type="string"
-                                                onChange={(e) => setName(e.target.value)}
+                                                onChange={(e) => setNameAr(e.target.value)}
                                             />
                                         </div>
                                         <button type="submit" className='editInfo'  >
@@ -296,8 +345,7 @@ const EditProduct = () => {
                                         </button>
                                     </div>
                                 </Form.Group>
-                            </Form> */}
-                            {/* //////////// */}
+                            </Form>
                             <Form noValidate validated={validatedName} onSubmit={handleSubmitName} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('product.editProductNameEn')}</Form.Label>
@@ -316,14 +364,13 @@ const EditProduct = () => {
                                     </div>
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
                             <Form noValidate validated={validatedPrice} onSubmit={handleSubmitPrice} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('product.editproductPrice')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <Form.Control
-                                                placeholder={`${product?.price} .sar`}
+                                                placeholder={`${product?.price}.${t("public.sar")}`}
                                                 required
                                                 type="text"
                                                 onChange={(e) => setPrice(e.target.value)}
@@ -335,19 +382,18 @@ const EditProduct = () => {
                                     </div>
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
-                            {/* <Form noValidate validated={validatedDescriptio} onSubmit={handleSubmitDescription} className='addCategory1'>
+                            <Form noValidate validated={validatedDescriptio} onSubmit={handleSubmitDescriptionAr} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('product.editProductDisAr')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <Form.Control
-                                                placeholder={product?.description}
+                                                placeholder={product?.descriptionAr}
                                                 className='textarea2'
                                                 as="textarea"
                                                 required
                                                 type="string"
-                                                onChange={(e) => setDescription(e.target.value)}
+                                                onChange={(e) => setDescriptionAr(e.target.value)}
                                             />
                                         </div>
                                         <button type="submit" className='editInfo'  >
@@ -355,9 +401,7 @@ const EditProduct = () => {
                                         </button>
                                     </div>
                                 </Form.Group>
-                            </Form> */}
-                            {/* //////////// */}
-                            {/* <hr className='tapp' /> */}
+                            </Form>
                             <Form noValidate validated={validatedDescriptio} onSubmit={handleSubmitDescription} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('product.editProductDisEn')}</Form.Label>
@@ -378,7 +422,6 @@ const EditProduct = () => {
                                     </div>
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
                             <hr className='tapp' />
                             <Form noValidate validated={validatedSize} onSubmit={handleSubmitSize} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
@@ -406,9 +449,9 @@ const EditProduct = () => {
                                                 <h5> / </h5>
                                                 <div className='addCategory3'>
                                                     <div className='byPoints'>
-                                                        <Form.Check // prettier-ignore
+                                                        <Form.Check
                                                             type='checkbox'
-                                                            onChange={(e) => (setSellInPoints(!sellInPoints), setPriceInPoints(0))}
+                                                            onChange={(e) => (setSellInPoints(!sellInPoints), setPriceInPoints(""))}
                                                         />
                                                         <Form.Label>{t('product.priceByPoints')} </Form.Label>
                                                     </div>
@@ -466,18 +509,15 @@ const EditProduct = () => {
                                                             </svg>
                                                         </div>
                                                     </td>
-                                                    <td className='sizeCall1'>  {size?.price} .sar </td>
+                                                    <td className='sizeCall1'>  {size?.price} .{t("public.sar")} </td>
                                                     <td className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}  .P</td>
                                                     <td className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned}  </td>
-
                                                 </tr>
                                             ))}
                                         </tbody>
                                     </table>
-                                    {/* .................. */}
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
                             <hr className='tapp' />
                             <Form noValidate validated={validatedColor} onSubmit={handleSubmitColor} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
@@ -521,36 +561,32 @@ const EditProduct = () => {
                                     </div>
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
-
-
                         </div>
                         <div className='editProductDisplay'>
                             <div className='newImageFlower'>
                                 {imagesSquer.length == 0 &&
-                                    <Carousel data-bs-theme="dark">
+                                    <Carousel data-bs-theme="dark" >
                                         {product?.images?.map((image, index) => (
                                             <Carousel.Item key={index}  >
-                                                <img className="w-100 profileImg" src={`${Api}/users/${image}`} />
+                                                <img className="w-100 imageCat" src={`${Api}/users/${image}`} />
                                             </Carousel.Item>
                                         ))}
                                     </Carousel>
                                 }
-                                {/* //////////////// */}
                                 {imagesSquer.length != 0 &&
-                                    <Carousel data-bs-theme="dark">
+                                    <Carousel data-bs-theme="dark" >
                                         {imagesSquer.map((image, index) => (
                                             <Carousel.Item key={index}  >
-                                                <img className="imgcat" src={image} />
+                                                <img className="imageCat" src={image} />
                                             </Carousel.Item>
                                         ))}
                                     </Carousel>
                                 }
                             </div>
                             <div className='newTitleFlower'>
-                                <div className='divInfo'> {t('product.name')}  : {name == " " ? product?.name : name}   </div>
+                                <div className='divInfo'> {t('product.name')}  : {name == " " ? lng == "ar" ? product?.nameAr : product?.name : name}   </div>
                                 <hr className='tapp' />
-                                <div className='divInfo'>{t('product.editproductPrice')}  : {price == 0 ? product?.price : price}  </div>
+                                <div className='divInfo'>{t('product.editproductPrice')}  : {price == 0 ? product?.price : price}.{t("public.sar")}  </div>
                                 <hr className='tapp' />
                                 <table className='sizeBody'>
                                     <thead className='ttt'>
@@ -559,7 +595,6 @@ const EditProduct = () => {
                                             <td className='sizeCall2'> {t('product.priceByMoney')} </td>
                                             <td className='sizeCall2'>  {t('product.priceByPoints')} </td>
                                             <td className='sizeCall2'> {t('product.pointsEarned')} </td>
-
                                         </tr>
                                     </thead>
                                     <tbody className='ttt'>
@@ -571,15 +606,14 @@ const EditProduct = () => {
                                                         key={index}
                                                     >
                                                         <td className='sizeCall2' > ss {size?.size}  </td>
-                                                        <td className='sizeCall2'>  {size?.price} .sar </td>
-                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}  .P</td>
-                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned}  </td>
+                                                        <td className='sizeCall2'>  {size?.price}.{t("public.sar")} </td>
+                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}.{t("public.point")}</td>
+                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned}.{t("public.point")} </td>
 
                                                     </tr>
                                                 ))}
                                             </>
                                         }
-
                                         {prices?.length != 0 &&
                                             <>
                                                 {prices?.map((size, index) => (
@@ -589,10 +623,9 @@ const EditProduct = () => {
                                                     >
                                                         <td className='sizeCall2' >  {size?.size}
                                                         </td>
-                                                        <td className='sizeCall2'>  {size?.price} .sar </td>
-                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}  .P</td>
-                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned}  </td>
-
+                                                        <td className='sizeCall2'>  {size?.price}.{t("public.sar")} </td>
+                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints} .{t("public.point")}</td>
+                                                        <td className='sizeCall2'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned} .{t("public.point")}  </td>
                                                     </tr>
                                                 ))}
                                             </>
@@ -601,7 +634,6 @@ const EditProduct = () => {
                                 </table>
                                 <hr className='tapp' />
                                 <div className='divInfo'>
-
                                     <div className='colorMap' >
                                         {colors?.length == 0 &&
                                             <>
@@ -625,25 +657,24 @@ const EditProduct = () => {
                                         }
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div className='supTitle'>
-                    {product.name} information
+                <div className='supTitle' dir='rtl'>
+                    <div > {t("product.information")}
+                    </div>
+                    <div> {lng == "ar" ? product.nameAr : product.name}
+                    </div>
                 </div>
                 <div className='produtsInfoo'>
                     <div className='productPrice'>
-                        [ {product.price} ].sar
+                        [ {product.price} ].{t("public.sar")}
                     </div>
-
                     <div className='productDescription'>
                         <h3> {t('product.ProductDescriptionAr')}  </h3>
                         <hr className='tapp' />
-                        <p> {product.description} </p>
+                        <p> {product.descriptionAr} </p>
                     </div>
                     <div className='productDescription'>
                         <h3> {t('product.ProductDescriptionEn')}  </h3>
@@ -655,17 +686,14 @@ const EditProduct = () => {
                         <hr className='tapp' />
                         <table className='sizeBody'>
                             <thead className='ttt'>
-
                                 <tr className='haderSizeline'>
                                     <td className='sizeCall2'> {t('product.size')}  </td>
                                     <td className='sizeCall2'> {t('product.priceByMoney')} </td>
                                     <td className='sizeCall2'>  {t('product.priceByPoints')} </td>
                                     <td className='sizeCall2'> {t('product.pointsEarned')} </td>
-
                                 </tr>
                             </thead>
                             <tbody className='ttt'>
-
                                 {product?.sizes?.map((size, index) => (
                                     <tr
                                         className='sizeLine'
@@ -673,16 +701,13 @@ const EditProduct = () => {
                                     >
                                         <td className='sizeCall1' >  {size?.size}
                                         </td>
-                                        <td className='sizeCall1'>  {size?.price} .sar </td>
-                                        <td className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}  .P</td>
-                                        <td className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned}  </td>
-
+                                        <td className='sizeCall1'>  {size?.price}.{t("public.sar")} </td>
+                                        <td className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}.{t("public.point")}</td>
+                                        <td className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.pointsEarned} .{t("public.point")} </td>
                                     </tr>
                                 ))}
                             </tbody>
-
                         </table>
-
                     </div>
                     <div className='productColors'>
                         <h3> {t('product.ProductColors')}  </h3>
@@ -692,14 +717,11 @@ const EditProduct = () => {
                                 <div className='colorItem'
                                     key={index}
                                     style={{ backgroundColor: `${color}` }} >
-
                                 </div>
                             ))}
                         </div>
                     </div>
-
                 </div>
-
             </div >
         </>
     );

@@ -1,0 +1,115 @@
+.notificationsLestT {
+    min-width: 200px;
+    background-color: var(--primary-light);
+    box-shadow: var(--component-shadow);
+    position: absolute;
+    top: 45px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+    color: black;
+}
+
+.notificationsLestF {
+    display: none;
+}
+
+.newOrder {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-light);
+    box-shadow: var(--component-shadow);
+    border-radius: 4px;
+    padding: 10px;
+    gap: 10px;
+}
+
+.newOrder:hover {
+    background-color: var(--primary-yellow);
+}
+
+.oldOrder {
+    max-height: 200px;
+    width: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 2px;
+}
+
+/* /////////// */
+.nn {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    width: 300px;
+    height: 70px;
+    border-radius: 8px;
+    box-shadow: 4px 5px 12px black;
+}
+
+.nn2 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.nnImg {
+    width: 55px;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.nnMessage {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.toast-close {
+    display: flex;
+    height: 100%;
+}
+
+.close-button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: var(--primary-yellow);
+    color: var(--primary-dark);
+}
+
+.close-button:hover {
+    background-color: #eadba0;
+    color: var(--primary-dark);
+}
+
+.close-button:focus {
+    outline: none;
+}

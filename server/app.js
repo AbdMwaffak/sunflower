@@ -75,6 +75,8 @@ const cityRoutes = require('./routes/cityRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const aboutUsRoutes = require('./routes/aboutUsRoutes');
 const settingRoutes = require('./routes/settingRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const sseRoutes = require('./routes/sseRoutes');
 
 app.use(morgan('dev'));
 app.use(express.json());
@@ -101,6 +103,8 @@ app.use('/cities', cityRoutes);
 app.use('/messages', messageRoutes);
 app.use('/aboutus', aboutUsRoutes);
 app.use('/settings', settingRoutes);
+app.use('/orders', orderRoutes);
+app.use('/sse', sseRoutes);
 
 app.get('*', (req, res) => {
   const host = req.headers.host;

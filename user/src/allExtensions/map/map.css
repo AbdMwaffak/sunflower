@@ -1,0 +1,53 @@
+.map {
+    width: 100%;
+
+    /* background-color: white; */
+    /* background: var(--primary-Color); */
+    display: flex;
+    box-sizing: content-box;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.innerMap {
+    width: 100%;
+}
+
+.bart {
+    fill: #f6e6aa;
+    stroke-width: 2px;
+    color: #000;
+    stroke: var(--primary-Color);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    /* label_color: "#ffffff", */
+
+}
+
+/* .bart:hover {
+    fill: var(--primary-Color);
+} */
+
+.AshSharqiyah {
+    color: white;
+}
+
+circle {
+    color: white;
+}
+
+#name {
+    position: absolute;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    width: fit-content;
+    opacity: 0;
+    border-radius: 8px;
+    /* border: 3px solid rgb(245, 128, 128); */
+    padding: 0px 5px;
+    font-size: 1.5rem;
+    box-shadow: var(--component-shadow);
+}

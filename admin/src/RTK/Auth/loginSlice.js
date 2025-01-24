@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import Api from '../../allExtensions/API';
 
 export const postLogin = createAsyncThunk(
   'register/postRegister',
   async (reqobj) => {
     const response = await axios.post(`/users/login`, reqobj);
-    // console.log(response.data)
+    console.log(response.data);
     return response.data;
   }
 );

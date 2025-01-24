@@ -8,33 +8,48 @@ import { Col, Row } from 'react-bootstrap';
 import { patchOffersBuId } from '../../RTK/offers/patchOffersBuIdSlice';
 import AddProductToOffer from '../../allExtensions/addProductToOffer/AddProductToOffer';
 import { stateOfferById } from '../../RTK/offers/stateOfferByIdSlice';
-import { deleteOfferById } from '../../RTK/offers/deleteOfferByIdSlice';
 import { deleteProductfromOfferById } from '../../RTK/offers/deleteProductfromOfferByIdSlice';
 import ErrorMessage from '../../allExtensions/errorMessage/ErrorMessage';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import DeleteOfferModel from '../../allExtensions/deleteOfferModel/DeleteOfferModel';
+import Cookies from 'universal-cookie';
 
 
 const EditeOffer = () => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const id = useParams().MyOffersId
     const offer = useSelector(state => state.getOffersById)?.data
     let startImage = `${offer.mainImage}`
     let startName = offer?.name
+    let startNameAr = offer?.nameAr
     /////////////////////////////
     const [imageSquer, setImageSquer] = useState([]);
     const [image, setImage] = useState([]);
     const [name, setName] = useState(' ');
+    const [nameAr, setNameAr] = useState(' ');
     const [discount, setDiscount] = useState(0);
     const [oldePrice, setOldePrice] = useState(0);
     const [newPrice, setNewPrice] = useState(0);
     const [description, setDescription] = useState(" ")
-
+    const [descriptionAr, setDescriptionAr] = useState(" ")
     const [validated1, setValidated1] = useState(false);
     const [validated2, setValidated2] = useState(false);
     const [validated3, setValidated3] = useState(false);
     const [validated4, setValidated4] = useState(false);
     const [validated5, setValidated5] = useState(false);
+    const [validated6, setValidated6] = useState(false);
+    const [validated7, setValidated7] = useState(false);
     const [openModel1, setOpenModel1] = useState(false);
     const [reload, setReload] = useState(true);
     ///////////////////////////
@@ -68,10 +83,6 @@ const EditeOffer = () => {
             setReload(!reload)
         }, 1000);
     }
-    ///////////////////////////
-    // const handleDelete = (event) => {
-    //     dispatch(deleteOfferById(id))
-    // }
     ///////////////////////////
     const handleSubmit1 = (event) => {
         const form = event.currentTarget;
@@ -112,13 +123,33 @@ const EditeOffer = () => {
                 reqobj: formData,
                 id: id
             }
-
-
             dispatch(patchOffersBuId(value))
             setTimeout(() => {
                 setReload(!reload)
             }, 1000);
-
+        }
+    };
+    ///////////////////////////
+    const handleSubmit6 = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            setValidated6(true);
+        }
+        else {
+            const formData = new FormData();
+            formData.append('nameAr', nameAr);
+            const value = {
+                reqobj: formData,
+                id: id
+            }
+            dispatch(patchOffersBuId(value))
+            setTimeout(() => {
+                setReload(!reload)
+            }, 1000);
         }
     };
     ///////////////////////////
@@ -159,6 +190,29 @@ const EditeOffer = () => {
             const formData = new FormData();
             formData.append('description', description);
 
+            const value = {
+                reqobj: formData,
+                id: id
+            }
+            dispatch(patchOffersBuId(value))
+            setTimeout(() => {
+                setReload(!reload)
+            }, 1000);
+        }
+    };
+    ///////////////////////////
+    const handleSubmit7 = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            setValidated7(true);
+        }
+        else {
+            const formData = new FormData();
+            formData.append('descriptionAr', descriptionAr);
             const value = {
                 reqobj: formData,
                 id: id
@@ -215,7 +269,7 @@ const EditeOffer = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [offer?.name])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
@@ -229,7 +283,7 @@ const EditeOffer = () => {
             }
             <div className='editeOffers'>
                 <div className='title'>
-                    {startName}
+                    {lng == "ar" ? startNameAr : startName}
                 </div>
                 <div className='editeContener'>
                     <div className='newOffer'>
@@ -238,8 +292,7 @@ const EditeOffer = () => {
                                 {t('editOffer.thisOfferIs')} {offer?.isActive ? `${t('public.active')}` : `${t('public.notActive')}`}
                             </div>
                             <div className='onOff'>
-                                <button type='submit' className='formButton' onClick={handleState}> {offer?.isActive ? `${t('public.disable')}` : `${t('public.enable')}`}</button>
-                                {/* <button type='submit' className='formButton' onClick={handleDelete}> {t('public.delete')}  </button> */}
+                                <button type='submit' className='formButton' style={{ width: "100%", margin: "0px" }} onClick={handleState}> {offer?.isActive ? `${t('public.disable')}` : `${t('public.enable')}`}</button>
                                 <DeleteOfferModel
                                     handelReload={handelReload}
                                     id={id}
@@ -247,7 +300,6 @@ const EditeOffer = () => {
                             </div>
                             <hr className='tapp' />
                             <Form noValidate validated={validated1} onSubmit={handleSubmit1} className='addCategory1'>
-
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>  {t('editOffer.editOfferImage')}</Form.Label>
                                     <div className='rowEdit'>
@@ -257,42 +309,32 @@ const EditeOffer = () => {
                                                 type="file"
                                                 onChange={imag2OnChange}
                                             />
-
                                         </div>
                                         <button type="submit" className='editInfo'  >
                                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
-
                                         </button>
                                     </div>
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
-                            {/* <Form noValidate validated={validated2} onSubmit={handleSubmit2} className='addCategory1'>
-
+                            <Form noValidate validated={validated6} onSubmit={handleSubmit6} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label> {t('editOffer.editOfferNameAr')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <Form.Control
                                                 type="string"
-                                                placeholder={offer?.name}
+                                                placeholder={offer?.nameAr}
                                                 required
-                                                onChange={(e) => setName(e.target.value)}
+                                                onChange={(e) => setNameAr(e.target.value)}
                                             />
-
                                         </div>
                                         <button type="submit" className='editInfo'  >
                                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
-
                                         </button>
                                     </div>
                                 </Form.Group>
-                            </Form> */}
-                            {/* //////////// */}
+                            </Form>
                             <Form noValidate validated={validated2} onSubmit={handleSubmit2} className='addCategory1'>
-
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label> {t('editOffer.editOfferNameEn')}</Form.Label>
                                     <div className='rowEdit'>
@@ -303,19 +345,14 @@ const EditeOffer = () => {
                                                 required
                                                 onChange={(e) => setName(e.target.value)}
                                             />
-
                                         </div>
                                         <button type="submit" className='editInfo'  >
                                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
-
                                         </button>
                                     </div>
                                 </Form.Group>
                             </Form>
-
                             <Form noValidate validated={validated3} onSubmit={handleSubmit3} className='addCategory1'>
-
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('editOffer.editOfferDiscount')}</Form.Label>
                                     <div className='rowEdit'>
@@ -326,18 +363,14 @@ const EditeOffer = () => {
                                                 required
                                                 onChange={(e) => setDiscount(e.target.value)}
                                             />
-
                                         </div>
                                         <button type="submit" className='editInfo'  >
                                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
-
                                         </button>
                                     </div>
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
-                            {/* <Form noValidate validated={validated4} onSubmit={handleSubmit4} className='addCategory1'>
+                            <Form noValidate validated={validated7} onSubmit={handleSubmit7} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('editOffer.editOfferDescriptionAr')}</Form.Label>
                                     <div className='rowEdit'>
@@ -346,9 +379,9 @@ const EditeOffer = () => {
                                                 className='textarea2'
                                                 as="textarea"
                                                 type="text"
-                                                placeholder={offer?.description}
+                                                placeholder={offer?.descriptionAr}
                                                 required
-                                                onChange={(e) => setDescription(e.target.value)}
+                                                onChange={(e) => setDescriptionAr(e.target.value)}
                                             />
                                         </div>
                                         <button type="submit" className='editInfo'  >
@@ -356,8 +389,7 @@ const EditeOffer = () => {
                                         </button>
                                     </div>
                                 </Form.Group>
-                            </Form> */}
-                            {/* //////////// */}
+                            </Form>
                             <Form noValidate validated={validated4} onSubmit={handleSubmit4} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('editOffer.editOfferDescriptionEn')}</Form.Label>
@@ -378,34 +410,27 @@ const EditeOffer = () => {
                                     </div>
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
                             <Form noValidate validated={validated5} onSubmit={handleSubmit5} className='addCategory1'>
                                 <Row>
-                                    {/* <div className='rowEdit'> */}
                                     <Form.Group as={Col} className="mb-3" controlId="validationCustom01">
                                         <Form.Label>{t('editOffer.editOldPrice')}</Form.Label>
-
                                         <Form.Control
                                             type="number"
-                                            placeholder={`${offer?.priceB}.RAS`}
+                                            placeholder={`${offer?.priceB}.${t("public.sar")}`}
                                             required
                                             onChange={(e) => setOldePrice(e.target.value)}
                                         />
                                     </Form.Group>
-
-                                    {/* <Form noValidate validated={validated2} onSubmit={handleSubmit2} className='addCategory1'> */}
                                     <Form.Group as={Col} className="mb-3" controlId="validationCustom01">
-
                                         <Form.Label>{t('editOffer.editNewPrice')}</Form.Label>
                                         <div className='rowEdit'>
                                             <div className='addCategory1'>
                                                 <Form.Control
                                                     type="number"
-                                                    placeholder={`${offer?.priceA}.RAS`}
+                                                    placeholder={`${offer?.priceA}.${t("public.sar")}`}
                                                     required
                                                     onChange={(e) => setNewPrice(e.target.value)}
                                                 />
-
                                             </div>
                                             <button as={Col} type="submit" className='editInfo'  >
                                                 <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
@@ -414,24 +439,21 @@ const EditeOffer = () => {
                                     </Form.Group>
                                 </Row>
                             </Form>
-                            {/* //////////// */}
                         </div>
                         <div className='disblayOffer'>
                             <div className='newImageOffer'>
                                 <img className='imageCat' src={imageSquer == "" ? offer?.mainImage : imageSquer} alt="" />
-
-
                             </div>
                             <div className='editOfferInfo'>
-                                <div className='divInfo'> {t('editOffer.name')} : {name == " " ? offer?.name : name}   </div>
+                                <div className='divInfo'> {t('editOffer.name')} : {name == " " ? lng == "ar" ? offer?.nameAr : offer?.name : lng == "ar" ? nameAr : name}   </div>
                                 <hr className='tapp' />
                                 <div className='divInfo'> {t('editOffer.discount')} : {" "} {discount == " " ? offer?.discount : discount}%   </div>
                                 <hr className='tapp' />
                                 <div className='divPrice'>
-                                    <div className='oldPrice'>  {oldePrice == " " ? offer?.priceB : oldePrice} </div>
+                                    <div className='oldPrice'>  {oldePrice == " " ? offer?.priceB : oldePrice}.{t("public.sar")} </div>
                                     <svg style={{ transform: "rotate(92deg)", color: "#f1c92f" }}
                                         xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M4.483 10.895c-.43 0-.645-.545-.34-.863l7.516-6.884a.467.467 0 0 1 .682 0l7.517 6.884c.304.318.088.863-.341.863H15.68a.495.495 0 0 0-.483.506v9.093c0 .28-.216.506-.482.506H9.284a.494.494 0 0 1-.482-.506v-9.093a.495.495 0 0 0-.483-.506z"></path></svg>
-                                    {newPrice == " " ? offer?.priceA : newPrice}
+                                    {newPrice == " " ? offer?.priceA : newPrice}.{t("public.sar")}
                                 </div>
                             </div>
                         </div>
@@ -442,7 +464,10 @@ const EditeOffer = () => {
                     offerId={id}
                 />
                 <div className='supTitle'>
-                    {startName} {t('editOffer.supTitle')}
+                    <div >
+                        {t('editOffer.supTitle')}
+                    </div>
+                    {lng == "ar" ? startNameAr : startName}
                 </div>
                 <div className='produtsByOffer'>
                     {offer?.products?.length == 0 &&
@@ -462,8 +487,8 @@ const EditeOffer = () => {
                             <div className='arrayImg'>
                                 <img className='imageCat' src={product?.image} alt="" />
                             </div>
-                            <div className='arrayName'>  {product?.name}</div>
-                            <div className='arrayDesc'>{product?.description} </div>
+                            <div className='arrayName'> {lng == "ar" ? product?.nameAr : product?.name} </div>
+                            <div className='arrayDesc'> {lng == "ar" ? product?.descriptionAr : product?.description}  </div>
                             <button className='formButton' style={{ width: "100%" }}
                                 onClick={() => handelDeleteProduct(product?._id)}
                             >

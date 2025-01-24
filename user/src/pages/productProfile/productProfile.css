@@ -28,7 +28,9 @@
 }
 
 .productContener {
+    box-sizing: border-box;
     width: 98%;
+    max-width: 1480px;
     border-radius: 16px;
     border: 5px solid #F1C92F;
     display: flex;
@@ -97,8 +99,8 @@
 .productSize,
 .productDescription {
     width: 98%;
-    background-color: #202126;
-    color: white;
+    background-color: var(--component-Color);
+    color: var(--component-textColor);
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -108,28 +110,14 @@
     border-radius: 8px;
     padding: 10px;
     text-align: left;
+    box-shadow: var(--component-shadow);
 }
 
-.suggestionsTitle {
-    /* width: 30%; */
-    padding: 11px;
-    background-color: black;
-    color: white;
-    border-radius: 8px;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: x-large;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 10px;
-    margin-bottom: -55px;
-    z-index: 100;
-}
 
 .suggestions {
-    width: 98%;
+    box-sizing: border-box;
+  width: 98%;
+  max-width: 1480px;
     border-radius: 16px;
     border: 5px solid #F1C92F;
     gap: 30px;

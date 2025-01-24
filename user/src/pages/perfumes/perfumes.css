@@ -23,7 +23,9 @@
 }
 
 .perfumesContener {
+    box-sizing: border-box;
     width: 98%;
+    max-width: 1480px;
     border-radius: 16px;
     border: 5px solid #F1C92F;
     display: flex;
@@ -35,31 +37,36 @@
 
 .perfumesMain {
     width: 100%;
+    min-height: 200px;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
     display: grid;
-    grid-auto-columns: (max-content 2);
-    grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
-    gap: 20px;
-    padding-bottom: 10px;
+    grid-auto-columns: (max-content 4);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     align-items: stretch;
-    justify-content: space-evenly;
     justify-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    box-shadow: var(--component-shadow);
 }
 
 .perfumesSize {
     padding: 20px 10px;
     width: 100%;
-    background-color: #202126;
+    background-color: var(--component-Color);
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    gap: 30px;
+    gap: 10px;
     border-radius: 8px;
+    box-shadow: var(--component-shadow);
+
 }
 
 .cardContener {
     width: 98%;
-    background-color: #202126;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -68,85 +75,44 @@
     border-radius: 8px;
 }
 
-.sizeName {
-    width: 100%;
-    background-color: #30323f;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-    padding-left: 20px;
-}
 
-.text11 {
-    text-align: -webkit-center;
-    font-family: Script MT;
-    height: 60px;
-
-}
-
-.priceBySize {
-    width: 100%;
-    height: 42px;
-    background-color: #30323f;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
 
 .perfumesDecription {
     width: 100%;
-    background-color: #202126;
-    border-radius: 8px;
+    background-color: var(--component-Color);
     display: flex;
     gap: 10px;
     align-items: center;
     flex-direction: column;
-    color: aliceblue;
-    padding: 10px;
-
+    color: var(--component-textColor);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--component-shadow);
+    grid-column: 2 span;
 }
 
 .inputperfumesImage {
-    width: 98%;
+    width: 100%;
     aspect-ratio: 1 / 1;
-    background-color: #202126;
+    background-color: var(--primary-yellow);
     border-radius: 8px;
     display: flex;
     align-items: center;
     flex-direction: column;
     overflow: hidden;
-    border: 5px solid #ffffff;
     position: relative;
+    border: 5px solid var(--border-color);
+    box-shadow: var(--component-shadow);
+}
+
+@media (max-width : 900px) {
+    .inputperfumesImage {
+        grid-column: 2 span;
+    }
 }
 
 .imgNaturalFlowers {
     width: 100%;
-}
-
-.input2 {
-    width: 100%;
-    background-color: #202126;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.input3 {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-evenly;
-    gap: 10px;
-    background-color: #30323f;
-    border-radius: 4px;
-    margin-bottom: 10px;
 }
 
 .input4 {
@@ -164,31 +130,13 @@
     min-height: 40px;
 }
 
-.vv1 {
-    color: #F1C92F;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: xx-large;
-}
-
-.vv2 {
-    color: white;
-    width: 60%;
-    font-size: large;
-}
-
 .cc {
     color: white;
     width: 15%;
     font-size: large;
 }
 
-.vv3 {
-    color: white;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: xx-large;
-}
+
 
 .size {
     width: 96%;
@@ -202,6 +150,11 @@
     display: flex;
     flex-direction: column;
     gap: 7px;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.1s linear;
+    background-color: var(--secondary-light);
+    box-shadow: var(--component-shadow), inset -6px 4px 10px 2px gray;
 }
 
 .cckkk {
@@ -242,18 +195,6 @@
     justify-content: center;
     transition: all 0.9s linear;
     position: relative;
-}
-
-.totalCost {
-    width: 100%;
-    height: 40px;
-    background-color: white;
-    border-radius: 8px;
-    font-size: large;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
 }
 
 .addToCartIcon {

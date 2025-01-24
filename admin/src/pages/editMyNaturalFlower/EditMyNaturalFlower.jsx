@@ -9,10 +9,21 @@ import EditBouquetCard from '../../allExtensions/editBouquet/EditBouquetCard';
 import { patchBouquet } from '../../RTK/naturalFlowers/patchBouquetSlice';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import Cookies from 'universal-cookie';
 
 
 const EditMyNaturalFlower = () => {
-
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const id = useParams().NaturalFlowerId
     const bouquet = useSelector(state => state.getBouquetById)?.data
     //////////////////////////////////////
@@ -21,6 +32,7 @@ const EditMyNaturalFlower = () => {
     const [num, setNum] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState("");
+    const [descriptionAr, setDescriptionAr] = useState("");
     //////////////////////////////////////
     const [validated, setValidated] = useState(false);
     const [reload, setReload] = useState(true);
@@ -32,7 +44,6 @@ const EditMyNaturalFlower = () => {
         setImageSquer(URL.createObjectURL(event.target.files[0]))
     }
     //////////////////////////////////////
-
     const reloadHandel = () => {
         setReload(!reload)
     }
@@ -53,6 +64,7 @@ const EditMyNaturalFlower = () => {
             formData.append('count', num);
             formData.append('price', price);
             formData.append('description', description);
+            formData.append('descriptionAr', descriptionAr);
             const value = {
                 reqobj: formData,
                 id: id
@@ -71,20 +83,17 @@ const EditMyNaturalFlower = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [bouquet?.count])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
-
             <div className='myNaturalFlower'>
                 <div className='title'>
                     {t('flowerBouquet.title')}
                 </div>
                 <div className='editeContener'>
                     <div className='newNaturalFlower'>
-
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addNaturalFlower'>
-
                             <Form.Group className="mb-3" controlId="validationCustom01">
                                 <Form.Label>    {t('flowerBouquet.editBouquetImage')} </Form.Label>
                                 <Form.Control
@@ -113,16 +122,16 @@ const EditMyNaturalFlower = () => {
                                     onChange={(e) => setPrice(e.target.value)}
                                 />
                             </Form.Group>
-                            {/* <Form.Group className="mb-3" controlId="validationCustom03">
+                            <Form.Group className="mb-3" controlId="validationCustom03">
                                 <Form.Label>     {t('flowerBouquet.editBouquetDescriptionAr')}</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     type="text "
-                                    placeholder={bouquet?.description}
+                                    placeholder={bouquet?.descriptionAr}
                                     required
-                                    onChange={(e) => setDescription(e.target.value)}
+                                    onChange={(e) => setDescriptionAr(e.target.value)}
                                 />
-                            </Form.Group> */}
+                            </Form.Group>
                             <Form.Group className="mb-3" controlId="validationCustom03">
                                 <Form.Label>     {t('flowerBouquet.editBouquetDescriptionEn')}</Form.Label>
                                 <Form.Control
@@ -133,14 +142,10 @@ const EditMyNaturalFlower = () => {
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
                             </Form.Group>
-
-                            <hr />
-
+                            <hr className='tapp' />
                             <button type="submit" className='formButton'>     {t('public.edit')}</button>
                         </Form>
-
                         <div className='displayNowFlower'>
-
                             {imageSquer?.length == 0 &&
                                 <div className='newImageFlower'>
                                     <img className='imageFlower' src={`${Api}/users/${bouquet?.image}`} />
@@ -163,36 +168,26 @@ const EditMyNaturalFlower = () => {
                                         {t('flowerBouquet.price')} :   {price == 0 ? bouquet?.price : price}
                                     </div>
                                 </div>
-                                <hr />
+                                <hr className='tapp' />
                                 <div className=''>
-                                    {description == "" ? bouquet?.description : description}
+                                    {description == "" ? (lng == "ar" ? bouquet.descriptionAr : bouquet.description) : (lng == "ar" ? descriptionAr : description)}
                                 </div>
                             </div>
-
-
                         </div>
-
                     </div>
                 </div>
-                {/* ////////////// */}
                 <div className='supTitle'>
                     {t('flowerBouquet.result')}
                 </div>
                 <div className='currentBouquets'>
-
-
                     <EditBouquetCard id={bouquet._id}
                         price={bouquet.price}
                         count={bouquet.count}
                         image={bouquet.image}
-                        description={bouquet.description}
+                        description={lng == "ar" ? bouquet.descriptionAr : bouquet.description}
                         reloadHandel={reloadHandel}
                     />
-
-
                 </div>
-
-
             </div>
         </>
     );

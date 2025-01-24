@@ -1,51 +1,13 @@
-.messages {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    gap: 10px;
-}
-
 .messagesContener {
-    box-sizing: border-box;
     width: 98%;
     max-width: 1480px;
+    min-height: 200px;
     border-radius: 16px;
     border: 5px solid var(--primary-yellow);
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 10px;
+    padding: 34px;
     align-items: center;
-    min-height: 75vh;
-
-}
-
-.ms {
-    width: 60px;
-    color: #ffcb4c;
-    animation: tilt-shaking 0.5s infinite;
-}
-
-
-@keyframes tilt-shaking {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(5deg);
-    }
-
-    50% {
-        transform: rotate(0eg);
-    }
-
-    75% {
-        transform: rotate(-5deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
+    min-height: 100vh;
 }

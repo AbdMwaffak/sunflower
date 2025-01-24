@@ -18,7 +18,7 @@ export const stateOfferById = createAsyncThunk(
   async (id) => {
     console.log(token);
     const response = await axios.patch(
-      `$/offers/changeState/${id}`,
+      `/offers/changeState/${id}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );

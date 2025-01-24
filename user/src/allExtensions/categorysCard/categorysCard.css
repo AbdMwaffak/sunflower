@@ -12,13 +12,13 @@
     width: 200px;
     aspect-ratio: 1/1;
     border-radius: 100%;
-    border: 5px solid white;
-    box-shadow: 4px 5px 12px black;
+    border: 5px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffd300;
+    background-color: var(--primary-yellow);
     overflow: hidden;
+    box-shadow: 4px 5px 12px black;
 }
 
 .titleCategory {
@@ -29,13 +29,6 @@
     justify-content: center;
     border-radius: 16px;
     box-shadow: 4px 5px 12px black;
-    background: #F1C92F;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: x-large;
+    background: var(--primary-yellow);
     color: black;
-}
-
-.imageCat {
-    width: 100%;
 }

@@ -22,7 +22,7 @@ const BouquetCard = (props) => {
 
     }
     ///////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t, } = useTranslation();
     return (
         <div className='editBouquet'>
             <div className='bouquetHader'>
@@ -30,7 +30,7 @@ const BouquetCard = (props) => {
                     {t('flower.cuantety')}  :   {props.count}
                 </div>
                 <div>
-                    {t('flower.price')}  :   {props.price}
+                    {t('flower.price')}  :   {props.price}.{t('public.sar')}
                 </div>
             </div>
             <hr className='phr' />

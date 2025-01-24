@@ -11,6 +11,7 @@ const objectId = joi.string().custom((value, helpers) => {
 const createCategorySchema = {
   body: joi.object().keys({
     name: joi.string().required(),
+    nameAr: joi.string().required(),
   }),
 };
 
@@ -20,6 +21,7 @@ const updateCategorySchema = {
   }),
   body: joi.object().keys({
     name: joi.string().optional(),
+    nameAr: joi.string().optional(),
   }),
 };
 

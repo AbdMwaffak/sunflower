@@ -1,34 +1,9 @@
-.myCart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.myCartTitle {
-    width: 98%;
-    max-width: 1480px;
-    height: 54px;
-    background-color: #202126;
-    color: white;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: x-large;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-}
-
 .myCartContener {
     width: 98%;
     max-width: 1480px;
-    min-height: 500px;
+    min-height: calc(100vh - 150px);
     border-radius: 16px;
-    border: 5px solid #F1C92F;
+    border: 5px solid var(--primary-yellow);
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -39,9 +14,13 @@
 .cart {
     width: 100%;
     min-height: 300px;
-    background-color: #202126;
+    background-color: var(--component-Color);
     border-radius: 8px;
     padding: 10px;
+    box-shadow: var(--component-shadow);
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
 }
 
 .cartHader {
@@ -52,26 +31,26 @@
 }
 
 .hrCart {
-    border-top: 3px solid #F1C92F;
+    border-top: 3px solid var(--primary-yellow);
     width: 98%;
     margin: 5px;
-    color: #F1C92F;
+    color: var(--primary-yellow);
     opacity: 1;
 }
-
-
 
 .cleanCart {
     width: 200px;
     height: 40px;
     border-radius: 8px;
-    background-color: #202126;
-    color: aliceblue;
+    background-color: #151520;
+    color: var(--primary-light);
     transition: all 0.01s linear;
-    border: 4px solid #F1C92F;
+    border: 2px solid var(--primary-yellow);
     border-radius: 8px;
     transition: all 0.01s linear;
+    box-shadow: var(--component-shadow);
 }
+
 
 .cleanCart:active {
     transform: scale(0.9);
@@ -79,26 +58,40 @@
 }
 
 .cleanCart:hover {
-    background-color: #F1C92F;
-    color: #202126;
+    background-color: var(--primary-yellow);
+    color: var(--primary-dark);
 }
 
 .cartFooter {
     width: 100%;
-    height: 50px;
-    display: flex;
+    display: grid;
+    grid-auto-columns: (max-content 2);
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
     align-items: center;
     justify-content: space-between;
 }
 
-.totalCart {
-    width: 55%;
+.totalCart1 {
+    width: 100%;
     height: 40px;
-    background-color: #F1C92F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--component-textColor);
+}
+
+.totalCart2 {
+    width: 100%;
+    height: 40px;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--primary-dark);
+    box-shadow: var(--component-shadow);
 }
 
 .cartMain {
@@ -107,7 +100,6 @@
     grid-auto-columns: (max-content 2);
     grid-template-columns: 2fr 1fr;
     gap: 20px;
-    padding-bottom: 10px;
     align-items: stretch;
     justify-content: space-evenly;
     justify-items: center;
@@ -115,6 +107,8 @@
 }
 
 @media screen and (max-width: 900px) {
+
+    .cartFooter,
     .cartMain {
         width: 98%;
         grid-template-columns: 1fr;
@@ -127,37 +121,27 @@
 
 .cartBody2 {
     width: 100%;
-    background-color: #30323f;
+    background-color: var(--primary-light);
+    color: var(--component-textColor);
+    color: var(--primary-dark);
+    box-shadow: var(--component-shadow);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    color: white;
     padding: 10px;
+    box-shadow: var(--component-shadow);
 }
 
 .butten {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
-
-.noProducts {
-    width: 100%;
-    height: 200px;
-    background-color: white;
-    color: #202126;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    font-weight: 700;
 }
 
 .htSummary {
-    color: #F1C92F;
+    color: var(--component-Color);
     width: 100%;
     margin: 5px 0px;
 }
@@ -169,4 +153,10 @@
     align-items: flex-start;
     gap: 30px;
     padding-bottom: 10px;
+    color: var(--primary-dark);
+}
+
+.kk {
+    width: 100%;
+    display: flex;
 }

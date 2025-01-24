@@ -38,7 +38,7 @@ function ErrorMessage(props) {
                     </div>
 
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer id='modal-footer'>
                     <Button variant="secondary" onClick={handleClose}>
                         {t('public.close')}
                     </Button>

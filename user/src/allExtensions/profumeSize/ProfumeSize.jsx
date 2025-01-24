@@ -44,6 +44,7 @@ const ProfumeSize = (props) => {
             </div>
             <Form noValidate validated={validated} >
                 <Form.Control className='text11'
+                    style={{ paddingRight: "25px" }}
                     onChange={(e) => handelNum(e.target.value)}
                     required
                     type="number"

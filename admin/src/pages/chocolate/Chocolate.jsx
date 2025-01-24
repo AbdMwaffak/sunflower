@@ -6,21 +6,30 @@ import { getAllChocolate } from '../../RTK/chocolate/getAllChocolateSlice';
 import { Form } from 'react-bootstrap';
 import { postChocolate } from '../../RTK/chocolate/postChocolateSlice';
 import Api from '../../allExtensions/API';
-import SuccessfulMessage from '../../allExtensions/successfulMessage/SuccessfulMessage';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-
-
+import Cookies from 'universal-cookie';
 
 const Chocolate = () => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const allChocolate = useSelector(state => state.getAllChocolate).data
     const addState = useSelector(state => state.postChocolate)
     /////////////////////////////////
     const [imageSquer, setImageSquer] = useState([]);
     const [image, setImage] = useState([]);
     const [name, setName] = useState("");
+    const [nameAr, setNameAr] = useState("");
     const [price, setPrice] = useState(0);
-
     const [stateMessage, setStateMessage] = useState(false);
     const [validated, setValidated] = useState(false);
     const [reload, setReload] = useState(true);
@@ -52,9 +61,8 @@ const Chocolate = () => {
             const formData = new FormData();
             formData.append('image', image);
             formData.append('name', name);
+            formData.append('nameAr', nameAr);
             formData.append('price', price);
-
-
             dispatch(postChocolate(formData))
             setTimeout(() => {
                 setReload(!reload)
@@ -79,47 +87,30 @@ const Chocolate = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
-            {/* {
-                stateMessage &&
-
-                < SuccessfulMessage
-                    handleClose={handleClose}
-                    state={addState}
-                    open={stateMessage}
-                />
-            } */}
             <div className='chocolate'>
                 <div className='title'>
                     {t('chocolate.title')}
                 </div>
-
                 <div className='editeContener'>
-
                     <div className='newNaturalFlower'>
-
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addNaturalFlower'>
-
                             <Form.Group className="mb-3" controlId="validationCustom01">
                                 <Form.Label>     {t('chocolate.addChocolateImage')} </Form.Label>
                                 <Form.Control
                                     required
                                     type="file"
-
                                     onChange={imagOnChange}
                                 />
                             </Form.Group>
-
-
-
                             <Form.Group className="mb-3" controlId="validationCustom03">
                                 <Form.Label>     {t('chocolate.addChocolateNameEn')} </Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="chocolate name"
+                                    placeholder={t("public.write")}
                                     required
                                     onChange={(e) => setName(e.target.value)}
                                 />
@@ -128,27 +119,24 @@ const Chocolate = () => {
                                 <Form.Label>     {t('chocolate.addChocolateNameAr')} </Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="chocolate name"
+                                    placeholder={t("public.write")}
                                     required
-                                    onChange={(e) => setName(e.target.value)}
+                                    onChange={(e) => setNameAr(e.target.value)}
                                 />
                             </Form.Group>
-
                             <Form.Group className="mb-3" controlId="validationCustom03">
                                 <Form.Label>     {t('chocolate.addChocolatePrice')} </Form.Label>
                                 <Form.Control
                                     type="number"
                                     min={1}
-                                    placeholder="0 "
+                                    placeholder="0"
                                     required
                                     onChange={(e) => setPrice(e.target.value)}
                                 />
                             </Form.Group>
-                            <hr />
-
+                            <hr className='tapp' />
                             <button type="submit" className='formButton'>     {t('public.addButton')}</button>
                         </Form>
-
                         <div className='displayNowFlower'>
                             <div className='newImageFlower'>
                                 {imageSquer.length != 0 &&
@@ -157,11 +145,10 @@ const Chocolate = () => {
                             <div className='newTitleFlower'>
                                 <div className='info' >
                                     <div className='' >
-                                        {t('chocolate.name')} :   {name}
+                                        {t('chocolate.name')} :   {lng == "ar" ? nameAr : name}
                                     </div>
-
                                     <div className='' >
-                                        {t('chocolate.price')} :   {price}
+                                        {t('chocolate.price')} :   {price}.{t("public.sar")}
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +159,6 @@ const Chocolate = () => {
                     {t('chocolate.supTitle')}
                 </div>
                 <div className='currentChocolate '>
-
                     {typeof allChocolate == "string" &&
                         <div className='noProducts' >
                             <b>  {t('chocolate.noProducts1')}
@@ -187,11 +173,11 @@ const Chocolate = () => {
                     {typeof allChocolate !== "string" &&
                         <>
                             {allChocolate?.map((chocolate, index) => (
-
                                 <ChocolateCard
                                     key={index}
                                     id={chocolate._id}
                                     name={chocolate.name}
+                                    nameAr={chocolate.nameAr}
                                     price={chocolate.price}
                                     image={`${Api}/users/${chocolate.image}`}
                                     reloadHandel={reloadHandel}

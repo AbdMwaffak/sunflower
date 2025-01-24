@@ -27,7 +27,7 @@
 
 .newProductOpen {
     width: 100%;
-    height: 430px;
+    /* height: 430px; */
     display: flex;
     flex-direction: column;
     align-items: stretch;

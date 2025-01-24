@@ -11,7 +11,6 @@ const AddperfumeSize = (props) => {
     const [open, setOpen] = useState(false)
     const [reload, setReload] = useState(true);
     const [validated, setValidated] = useState(false);
-
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
     ///////////////////////////////////////////////////
@@ -40,7 +39,7 @@ const AddperfumeSize = (props) => {
         }
     };
     //////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <div className='addProductContener'>
             <div className='newPerfum'>
@@ -55,37 +54,38 @@ const AddperfumeSize = (props) => {
                         </div>
                     </div>
                     <div className={!open ? "hiddenBody" : 'unHiddenBody'} >
-                        <hr className='hrProduct' />
+                        <hr className='tapp' />
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addCategory1'>
-
-                            {/* //////////// */}
                             <Row >
-                                <Form.Group as={Col} md="6" className="mb-3" controlId="validationCustom01">
-
-                                    <Form.Label>{t('perfume.sizeName')}</Form.Label>
-
+                                {/* <Form.Group as={Col} md="5" className="mb-3" controlId="validationCustom01">
+                                    <Form.Label>{t('perfume.sizeNameAr')}</Form.Label>
                                     <Form.Control
-                                        placeholder='set anew size'
+                                        placeholder='ضع المقاس الجديد'
+                                        required
+                                        type="text"
+                                        onChange={(e) => setNameAr(e.target.value)}
+                                    />
+                                </Form.Group> */}
+                                <Form.Group as={Col} md="6" className="mb-3" controlId="validationCustom01">
+                                    <Form.Label>{t('perfume.sizeNameEn')}</Form.Label>
+                                    <Form.Control
+                                        placeholder={t("public.write")}
                                         required
                                         type="text"
                                         onChange={(e) => setName(e.target.value)}
                                     />
                                 </Form.Group>
-                                {/* //////////// */}
                                 <Form.Group as={Col} md="6" className="mb-3" controlId="validationCustom01">
-
                                     <Form.Label> {t('perfume.sizePrice')}</Form.Label>
-
                                     <Form.Control
-                                        placeholder='set anew price'
+                                        placeholder={t("public.write")}
                                         required
                                         type="number"
                                         onChange={(e) => setPrice(parseInt(e.target.value))}
                                     />
                                 </Form.Group>
                             </Row>
-                            {/* //////////// */}
-                            <hr />
+                            <hr className='tapp' />
                             <button type="submit" className='formButton'  >
                                 {t('perfume.addNew')}
                             </button>
@@ -94,7 +94,6 @@ const AddperfumeSize = (props) => {
                 </div>
             </div>
         </div >
-
     );
 }
 

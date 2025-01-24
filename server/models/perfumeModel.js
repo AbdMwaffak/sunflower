@@ -20,14 +20,8 @@ const perfumeSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  // nameAr : {
-  //     type : String,
-  //     trim : true,
-  //     default : 'Sunflower'
-  // },
   descriptionAr: {
     type: String,
-    // required: true,
     trim: true,
   },
   images: {

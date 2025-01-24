@@ -24,7 +24,7 @@
 
 .editeOffer {
     width: 100%;
-    min-width: 380px;
+    /* min-width: 380px; */
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -55,35 +55,6 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-items: center;
     box-sizing: border-box;
-}
-
-
-
-.editInfo {
-    border: none;
-    transition: all 5ms ease-in-out;
-    display: flex;
-    align-items: center;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: #F1C92F;
-    border: none;
-    color: #202126;
-    border-radius: 8px;
-    padding: 5px;
-}
-
-
-
-.editInfo:hover {
-    border: 2px solid white;
-    box-shadow: 3px 4px 16px 6px #F1C92F;
-}
-
-.editInfo:active {
-    transform: scale(0.9, 0.9);
 }
 
 .onOff {
@@ -157,6 +128,7 @@
 .arrayName {
     width: 100%;
     background-color: rgb(223, 220, 220);
+    color: var(--primary-dark);
     border-radius: 8px;
     font-size: 12px;
     height: 30px;
@@ -169,6 +141,7 @@
 .arrayDesc {
     width: 100%;
     background-color: rgb(223, 220, 220);
+    color: var(--primary-dark);
     border-radius: 8px;
     font-size: 12px;
     height: calc(100% - 215px);

@@ -38,18 +38,13 @@ function RegisterModel(props) {
         }
         else {
             setValidated(true);
-
             const value = {
                 email,
                 password,
             }
             dispatch(postLogin(value))
-            console.log(value)
-
-
         }
     };
-
     /////////////////////////
     var animation11 = document.getElementById("cn1")
     var animation12 = document.getElementById("cn2")
@@ -122,10 +117,9 @@ function RegisterModel(props) {
                                 </Form.Label>
                                 <div className='passsWorlContent '>
                                     <Form.Control type={hiddenB ? 'password' : 'text'} placeholder="password" required
-
                                         value={password}
-                                        onChange={(e) => (setPassword(e.target.value),
-                                            console.log(e.target.checkValidity()))}
+                                        onChange={(e) => (setPassword(e.target.value)
+                                        )}
                                     />
 
                                     <button type='button' className='hiddenBassWorld'

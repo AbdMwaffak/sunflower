@@ -34,11 +34,9 @@ const offerSchema = new mongoose.Schema({
   },
   nameAr: {
     type: String,
-    // required: true,
   },
   descriptionAr: {
     type: String,
-    // required: true,
   },
   products: {
     type: [productSchema],

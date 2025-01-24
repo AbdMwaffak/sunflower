@@ -1,35 +1,11 @@
 import React from 'react';
-import logo from '../../images/logo.png';
+import logo from '../../images/logo.svg';
 import './post.css'
-import { useDispatch } from 'react-redux';
-import { deleteArticelById } from '../../RTK/arcticles/deleteArticelByIdSlice';
-import { likeArticle } from '../../RTK/arcticles/likeArticleSlice';
 import Api from '../API';
 const EDitPost = (props) => {
-
-    let imageType = props?.image?.type?.split("/")
-    const dispatch = useDispatch()
-    const handelDelete = (e) => {
-        const value = {
-            id: props.id,
-            pass: e
-        }
-        dispatch(deleteArticelById(value))
-        props.reloadHandel()
-        props.reloadHandel()
-    }
-
-    const handelLike = (e) => {
-        dispatch(likeArticle(props.id))
-        props.reloadHandel()
-        props.reloadHandel()
-    }
-    const handelShare = (e) => {
-        console.log("share")
-    }
     return (
         <div className='post'>
-            <div className='postHader'>
+            <div className='postHader' dir='ltr'>
                 <div className='postLogo'>
                     <img className='imgLogo' src={logo} />
                 </div>

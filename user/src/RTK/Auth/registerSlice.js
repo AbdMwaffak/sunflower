@@ -24,6 +24,7 @@ export const postRegisterSlice = createSlice({
       state.status = 'success';
       const cookies = new Cookies();
       cookies.set('token', state.data.token);
+      cookies.set('userId', state.data?.user?._id);
       window.location.pathname = '/';
     });
 

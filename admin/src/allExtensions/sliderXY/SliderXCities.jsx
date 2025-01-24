@@ -4,9 +4,21 @@ import './sliderX.css'
 import './check.css'
 import { useDispatch } from 'react-redux';
 import { updateCityById } from '../../RTK/cities/updateCityByIdSlice';
+import Cookies from 'universal-cookie';
 
 
 const SliderXCities = (props) => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const carouselRef = useRef();
     const [width, setwidth] = useState(0)
     const [state, setState] = useState('')
@@ -52,7 +64,7 @@ const SliderXCities = (props) => {
                                     <span className="checkmark"></span>
                                 </label>
                             </div>
-                            <h6 className='cityName' onClick={() => handleId(item?._id)}>  {item.name}  </h6>
+                            <h6 className='cityName' onClick={() => handleId(item?._id)}>  {lng == "ar" ? item?.nameAr : item?.name} </h6>
                         </div>
                     ))}
 

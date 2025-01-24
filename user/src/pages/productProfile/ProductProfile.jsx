@@ -17,10 +17,19 @@ import NoToken from '../../allExtensions/noToken/NoToken';
 import NoSizeOrColor from '../../allExtensions/noSizeOrColor/NoSizeOrColor';
 import { getSuggested } from '../../RTK/product/getSuggestedSlice';
 import { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 
 const ProductProfile = (props) => {
     const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
     /////////////////////////////
     const id = useParams()?.id
     const product = useSelector(state => state.getProductById)?.data
@@ -128,7 +137,8 @@ const ProductProfile = (props) => {
             document.title = `SUNFLOWER - Product Profile `;
             return function () { document.title = 'SUNFLOWER' };
         }, [])
-    ///////////////////
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
@@ -155,9 +165,9 @@ const ProductProfile = (props) => {
                     handleClose={handleClose}
                 />
             }
-            <div className='productProfile'>
-                <div className='productName'>
-                    {product?.name}
+            <div className='bage'>
+                <div className='title'>
+                    {lng == "ar" ? product.nameAr : product.name}
                 </div>
                 <div className='productContener'>
                     <div className='sliderBack' >
@@ -179,27 +189,27 @@ const ProductProfile = (props) => {
                         </div>
                     </div>
                     <div className='productPrice'>
-                        {product.price} RSA
+                        {product.price} {t('public.sar')}
                     </div>
                     <div className='productDescription'>
-                        <h3> Product Description </h3>
-                        <hr />
-                        <p> {product.description} </p>
+                        <h3> {t('product.ProductDescription')} </h3>
+                        <hr className='tapp' />
+                        <p>  {lng == "ar" ? product?.descriptionAr : product?.description} </p>
                     </div>
                     <div className='productSize'>
                         <div className='productSizeT'>
-                            <h3> Product Size </h3>
+                            <h3>   {t('product.ProductSize')} </h3>
                             {nsize != " " &&
                                 <div className='sizeItem'  >
-                                    <p> size : {nsize}  </p>
+                                    <p>  {t('product.size')} : {nsize}  </p>
                                 </div>}
                         </div>
-                        <hr />
+                        <hr className='tapp' />
                         <div className='sizeBody'>
                             <div className='haderSizeline'>
-                                <div className='sizeCall1'>  SIZE </div>
-                                <div className='sizeCall1'>  PRICE BY MONY</div>
-                                <div className='sizeCall1'>  PRICE BY POINT</div>
+                                <div className='sizeCall1'>   {t('product.size')}  </div>
+                                <div className='sizeCall1'>  {t('product.priceByMoney')} </div>
+                                <div className='sizeCall1'>   {t('product.priceByPoints')} </div>
                             </div>
                             {product?.sizes?.map((size, index) => (
                                 <div
@@ -208,21 +218,21 @@ const ProductProfile = (props) => {
                                     onClick={() => (setNSize(size?.size), setNPSize(size?.priceInPoints))}
                                 >
                                     <div className='sizeCall1' >  {size?.size} </div>
-                                    <div className='sizeCall1'>  {size?.price} .sar </div>
-                                    <div className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}  .P</div>
+                                    <div className='sizeCall1'>  {size?.price} .{t('public.sar')} </div>
+                                    <div className='sizeCall1'> {size?.priceInPoints == 0 ? "No" : size?.priceInPoints}  .{t('public.point')}</div>
                                 </div>
                             ))}
                         </div>
                     </div>
                     <div className='productColors'>
                         <div className='productSizeT'>
-                            <h3> Product Colors </h3>
+                            <h3> {t('product.ProductColors')}  </h3>
                             {ncolor != " " &&
                                 <div className='colorItem'
                                     style={{ backgroundColor: `${ncolor}` }} >
                                 </div>}
                         </div>
-                        <hr />
+                        <hr className='tapp' />
                         <div className='colorMap' >
                             {product?.colors?.map((color, index) => (
                                 <div className='colorItem'
@@ -234,16 +244,16 @@ const ProductProfile = (props) => {
                         </div>
                     </div>
                     <div className='res'>
-                        <button className='addButton' onClick={handeladdToCartMoney}>
+                        <button className='formButton5' onClick={handeladdToCartMoney}>
                             <Aaa3 turnOn={turnOn} />
-                            add to cart (by money)  </button>
-                        <button className='addButton' onClick={handeladdToCartPoints}>
+                            {t('product.addtoCart(by money)')}  </button>
+                        <button className='formButton5' onClick={handeladdToCartPoints}>
                             <Aaa3 turnOn={turnOn} />
-                            add product to cart (by point)  </button>
+                            {t('product.addtoCart(by points)')}  </button>
                     </div>
                 </div>
-                <div className='suggestionsTitle'>
-                    Suggestions
+                <div className='supTitle'>
+                    {t('product.suggestions')}
                 </div>
                 <div className='suggestions'>
                     {allSuggested?.filter(prod => {
@@ -254,7 +264,7 @@ const ProductProfile = (props) => {
                             id={product._id}
                             image={`${Api}/users/${product.images[0]}`}
                             images={product.images}
-                            name={product.name}
+                            name={lng == "ar" ? product?.nameAr : product?.name}
                             price={product.price}
                             sizes={product.sizes}
                             colors={product.colors}

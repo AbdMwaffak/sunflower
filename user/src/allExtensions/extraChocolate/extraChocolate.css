@@ -1,10 +1,10 @@
-.extraChocolate:hover .chocolateImage {
+/* .extraChocolate:hover .chocolateImage {
     display: block;
 }
 
 .extraChocolate:hover .tringelTail {
     display: block;
-}
+} */
 
 .extraChocolate {
     width: 100%;
@@ -13,11 +13,13 @@
     flex-direction: row;
     justify-content: space-evenly;
     gap: 10px;
-    background-color: #30323f;
     border-radius: 8px;
     margin-bottom: 10px;
     padding: 10px;
     position: relative;
+    background-color: var(--primary-light);
+  color: var(--component-textColor);
+    box-shadow: var(--component-shadow);
 }
 
 .Increase,
@@ -27,9 +29,9 @@
     max-width: 40px;
     aspect-ratio: 1 / 1;
     border-radius: 100%;
-    border: 3px solid #F1C92F;
-    background-color: #202126;
-    color: #F1C92F;
+    border: 3px solid var(--primary-yellow);
+    background-color: var(--primary-dark);
+    color: var(--primary-yellow);;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,13 +40,13 @@
 
 .Increase:hover,
 .decrease:hover {
-    box-shadow: 0px 0px 13px #F1C92F;
+    box-shadow: 0px 0px 13px var(--primary-yellow);;
 }
 
 
 .Increase:active,
 .decrease:active {
-    background: #F1C92F;
+    background: var(--primary-yellow);
     color: #ffffff;
 }
 
@@ -73,4 +75,14 @@
     border-radius: 8px;
     color: white;
     display: none;
+}
+
+.vv4 {
+    color: var(--primary-dark);
+    width: 98%;
+}
+.vv5 {
+    color: var(--primary-dark);
+    font-size: large;
+   
 }

@@ -39,6 +39,7 @@ Get Product By Id : GET : localhost:5000/products/:id
 Get Product By Category : GET :  localhost:5000/products/category=categoryName
 Update Product : PATCH : localhost:5000/products/:id <updated fields>   [ADMIN]
 Search For Products GET : localhost:5000/products/search?query=mugs
+Delete Products DELETE : localhost:5000/products/:id       [ADMIN]
 
                     -- PAPER --
 Add Paper : POST : localhost:5000/papers <color>    [ADMIN]
@@ -146,3 +147,10 @@ Get Initial Setting : GET : http://localhost:5000/settings (run this route first
 Update Setting : PATCH : http://localhost:5000/settings <updated fields (not slider 😡)> [ADMIN]
 Add images To Slider : POST : http://localhost:5000/settings <صورة أو عدة صور المهم بمصفوفة , لو في صور قديمة بخليها وبضيف الجديد> [ADMIN]
 Delete Image From Slider : DELETE : http://localhost:5000/settings/:id (image ID)   [ADMIN]
+
+                    -- ORDER --
+Add Order : POST : http://localhost:5000/orders   [basketId , userId , name , city , neighborhood , addressDetails , paymentMethod(options) , phone , notes]               
+Change Order Status : PATCH : http://localhost:5000/orders/changeState/:id  {orderStatus : [processing , delivered]} 
+Get All Orders : GET : http://localhost:5000/orders     [ADMIN] 
+Get Orders By User : GET : http://localhost:5000/orders?userId=:userId     [ADMIN] 
+Get Order By Id : GET : http://localhost:5000/orders/:id  

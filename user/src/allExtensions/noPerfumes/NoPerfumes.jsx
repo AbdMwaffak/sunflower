@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useTranslation } from 'react-i18next';
 
 
 function NoPerfumes(props) {
@@ -8,6 +9,7 @@ function NoPerfumes(props) {
     const handleClose = () => (setShow(false), props.handleClose())
     const handleShow = () => setShow(true);
     ////////////////////////
+    const { t } = useTranslation();
     return (
         <Modal
             show={show}
@@ -16,21 +18,22 @@ function NoPerfumes(props) {
             keyboard={false}
         >
             <Modal.Header closeButton>
-                <Modal.Title>ERROR</Modal.Title>
+                <Modal.Title>PERFUME ERROR</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+
                 <div className='modelBody' style={{ textAlign: "center" }}>
                     <h5
                         style={{ width: '100%', textAlign: "center", color: "red" }}>
-                        Oh my god!
+                        {t('perfume.message')}
                     </h5>
-                    You didn't choose the size and number of perfumes you need!! <br />
-                    try again
+                    {t('perfume.message1')} <br />
+                    {t('perfume.message2')}
                 </div>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer id='modal-footer'>
                 <Button variant="secondary" onClick={handleClose}>
-                    Close
+                    {t('public.close')}
                 </Button>
             </Modal.Footer>
         </Modal>

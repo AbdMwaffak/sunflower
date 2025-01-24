@@ -20,11 +20,11 @@ function DeleteCategoryModel(props) {
         setShow(false);
     }
     ///////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             {/* <div type='submit' className='formButton' onClick={handleDelete}> {t('public.delete')}  </div> */}
-            <div className="formButton" onClick={handleShow}  > {t('public.delete')} </div>
+            <div className="formButton" style={{ width: "100%", margin: "0px" }} onClick={handleShow}  > {t('public.delete')} </div>
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -39,11 +39,11 @@ function DeleteCategoryModel(props) {
                         {t('category.message2')}
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer id='modal-footer'>
                     <Button variant="secondary" onClick={handleClose}>
                         {t('public.close')}
                     </Button>
-                    <button className='send' onClick={handleDelete}>{t('public.delete')}</button>
+                    <button className='deleteButten' onClick={handleDelete}>{t('public.delete')}</button>
                 </Modal.Footer>
             </Modal>
         </>

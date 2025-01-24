@@ -5,30 +5,14 @@
     min-height: 100vh;
 }
 
-.myFavoritesTitle {
-    width: 98%;
-    max-width: 1480px;
-    height: 54px;
-    background-color: #202126;
-    color: white;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: x-large;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-}
+
 
 .myFavoritesContener {
     width: 98%;
     max-width: 1480px;
-    min-height: 500px;
+    min-height: calc(100vh - 150px);
     border-radius: 16px;
-    border: 5px solid #F1C92F;
+    border: 5px solid var(--primary-yellow);
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -44,6 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 .contenerManth {
@@ -62,7 +47,7 @@
 .recentlyTitle {
     width: 100%;
     height: 54px;
-    background-color: #202126;
+    background-color: var(--primary-dark);
     border-radius: 8px;
     padding: 5px;
     display: flex;
@@ -70,6 +55,7 @@
     color: white;
     justify-content: space-between;
     padding: 10px;
+    box-shadow: var(--component-shadow);
 }
 
 .deletAll {
@@ -77,8 +63,7 @@
     height: 40px;
     border-radius: 8px;
     background-color: red;
-    color: aliceblue;
-    font-family: none;
+    color: var(--primary-light);
     transition: all 0.01s linear;
     border: none;
 }

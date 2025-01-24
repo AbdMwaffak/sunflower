@@ -8,15 +8,29 @@ import { getArticleById } from '../../RTK/arcticles/getArticleByIdSlice';
 import Api from '../../allExtensions/API';
 import EDitPost from '../../allExtensions/post/EditPost';
 import { Toaster } from 'react-hot-toast';
+import Cookies from 'universal-cookie';
+import { useTranslation } from 'react-i18next';
 
 const EditMyArticles = () => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const id = useParams().ArticalId
     const dispatch = useDispatch()
-
+    //////////////////////////////
     const [imageSquer, setImageSquer] = useState([]);
     const [image, setImage] = useState([]);
     const [imageType, setImageType] = useState([]);
     const [description, setDescription] = useState("")
+    const [descriptionAr, setDescriptionAr] = useState("")
     const [validated, setValidated] = useState(false);
     const [reload, setReload] = useState(true);
     ////////////////////////////////////
@@ -46,11 +60,11 @@ const EditMyArticles = () => {
             const formData = new FormData();
             formData.append('image', image);
             formData.append('description', description);
+            formData.append('descriptionAr', descriptionAr);
             const value = {
                 reqobj: formData,
                 id: id
             }
-
             dispatch(patchArticles(value))
             setReload(!reload)
         }
@@ -66,44 +80,50 @@ const EditMyArticles = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [articel])
     ////////////////////////////////////
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
             <div className='editeCategory'>
                 <div className='title'>
-                    Edit My Articles
+                    {t("editArticles.title")}
                 </div>
                 <div className='editeContener'>
                     <div className='nowArticle'>
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addCategory'>
                             <Form.Group className="mb-3" controlId="validationCustom02">
-                                <Form.Label>Add image or video</Form.Label>
+                                <Form.Label>  {t("editArticles.editImageOrVideo")}</Form.Label>
                                 <Form.Control
                                     type="file"
-                                    placeholder="Category Name"
+                                    placeholder={t("public.write")}
                                     required
                                     onChange={imag2OnChange}
                                 />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid city.
-                                </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group className="mb-3 " controlId="validationCustom02">
-                                <Form.Label>Add description </Form.Label>
+                                <Form.Label>{t("editArticles.editDescriptionAr")}</Form.Label>
                                 <Form.Control
                                     className='textarea1'
                                     as="textarea"
                                     type="text"
-                                    placeholder="write description here "
+                                    placeholder={articel.descriptionAr}
+                                    required
+                                    onChange={(e) => setDescriptionAr(e.target.value)}
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3 " controlId="validationCustom02">
+                                <Form.Label>{t("editArticles.editDescriptionEn")}</Form.Label>
+                                <Form.Control
+                                    className='textarea1'
+                                    as="textarea"
+                                    type="text"
+                                    placeholder={articel.description}
                                     required
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid city.
-                                </Form.Control.Feedback>
                             </Form.Group>
                             <hr />
-                            <button type="submit" className='formButton'>Submit form</button>
+                            <button type="submit" className='formButton'> {t("editArticles.edit")}</button>
                         </Form>
 
 
@@ -118,14 +138,14 @@ const EditMyArticles = () => {
                     </div>
                 </div >
                 <div className='supTitle'>
-                    The final result
+                    {t("editArticles.final")}
                 </div>
                 <div className='currentBouquets '>
                     <EDitPost
                         key={articel._id}
                         id={articel._id}
                         image={articel?.image}
-                        description={articel.description}
+                        description={lng == "ar" ? articel?.descriptionAr : articel?.description}
                         date={articel?.createdAt}
                         like={articel.likeCount}
                         share={articel.shareCount}

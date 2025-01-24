@@ -18,10 +18,19 @@ import Cookies from 'universal-cookie';
 import NoToken from '../../allExtensions/noToken/NoToken';
 import NoPaperOrStrip from '../../allExtensions/noPaperOrStrip/NoPaperOrStrip';
 import { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 
 const Naturalflowers = (props) => {
     const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
     /////////////////////////////
     const allBouquets = useSelector(state => state.getAllBouquets)?.data
     const allChocolate = useSelector(state => state.getAllChocolate)?.data
@@ -34,8 +43,6 @@ const Naturalflowers = (props) => {
     const dispatch = useDispatch()
     /////////////////////////////
     const [sunflowersInfo, setSunflowersInfo] = useState({});
-    const [paper, setPaper] = useState({});
-    const [band, setBand] = useState({});
     const [card, setCard] = useState('');
     const [cardch, setCardch] = useState("true");
     const [chocoSum, setChocoSum] = useState(0);
@@ -52,7 +59,7 @@ const Naturalflowers = (props) => {
         const form = event.currentTarget;
         if (turnOn == false) {
             if (cookies.get('token') !== undefined || null) {
-                if (sunflowersInfo?._id === undefined || paper?._id === undefined || band?._id === undefined) {
+                if (sunflowersInfo?._id === undefined) {
                     event.preventDefault();
                     event.stopPropagation();
                     setValidated(true);
@@ -63,7 +70,6 @@ const Naturalflowers = (props) => {
                     if (cartBroduct?.perfumes?.length === 0 && cartBroduct?.products?.length === 0) {
                         const value = {
                             naturalFlower: sunflowersInfo._id,
-                            details: { band: band?._id, paper: paper._id },
                             chocolate: oneNum,
                             totalPrice: chocoSum + sunflowersInfo.price,
                             message: card,
@@ -141,7 +147,8 @@ const Naturalflowers = (props) => {
             document.title = `SUNFLOWER - Naturalflowers `;
             return function () { document.title = 'SUNFLOWER' };
         }, [])
-    ///////////////////
+    //////////////////////////
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
@@ -154,8 +161,8 @@ const Naturalflowers = (props) => {
                 <NoPaperOrStrip
                     handleClose={handleClose}
                     flowersNumber={sunflowersInfo?._id}
-                    paper={paper?._id}
-                    strip={band?._id}
+                // paper={paper?._id}
+                // strip={band?._id}
                 />
             }
             {openModel &&
@@ -165,69 +172,40 @@ const Naturalflowers = (props) => {
                     handleSubmit={handleSubmit}
                 />
             }
-            <div className='naturalFlowers'>
-                <div className='naturalFlowersTitle'>
-                    Natural flowers
+            <div className='bage'>
+                <div className='title'>
+                    {t('flower.title')}
                 </div>
                 <div className='flowersBouquet'>
                     <div className='flowersBouquetMain'>
                         <div className='input1'>
-                            <span className='vv1'>  Create your own bouquet</span>
-                            <hr />
+                            <span className='vv1'>   {t('flower.create')} </span>
+                            <hr className='tapp' />
                             <Form className='input2' noValidate validated={validated}
                                 onSubmit={handleSubmit}
                             >
                                 <div className='input3'>
-                                    <span className='vv2'>  Number of sunflowers </span>
+                                    <span className='vv2'> {t('flower.number')}</span>
                                     <Form.Select className='input4' aria-label="Default select example"
                                         style={{ width: "40%" }}
                                         required
                                         onChange={(e) => setSunflowersInfo(allBouquets[e.target.value])}
                                     >
-                                        <option value={""}>Open this select menu</option>
+                                        <option value={""}> {t('flower.open')}</option>
                                         {typeof allBouquets != 'string' &&
                                             allBouquets?.map((bouquet, index) => (
                                                 <option key={index} value={index} > {bouquet?.count}   </option>
                                             ))}
                                     </Form.Select>
                                 </div>
+
                                 <div className='input3'>
-                                    <span className='vv2'>    Color of wrapping papers </span>
-                                    <Form.Select className='input4' aria-label="Default select example"
-                                        style={{ backgroundColor: paper?.color, width: "40%" }}
-                                        required
-                                        onChange={(e) => setPaper(allPapers[e.target.value])}
-                                    >
-                                        <option value={""}>Open this select menu</option>
-                                        {typeof allPapers != 'string' &&
-                                            allPapers?.map((paper, index) => (
-                                                <option key={index} value={index} data-mdb-icon="dd" style={{ backgroundColor: paper.color }} >
-                                                </option>
-                                            ))}
-                                    </Form.Select>
-                                </div>
-                                <div className='input3'>
-                                    <span className='vv2'>    Color of strips </span>
-                                    <Form.Select className='input4' aria-label="Default select example"
-                                        style={{ backgroundColor: band?.color, width: "40%" }}
-                                        required
-                                        onChange={(e) => setBand(allBands[e.target.value])}
-                                    >
-                                        <option value={""}>Open this select menu</option>
-                                        {typeof allBands != 'string' &&
-                                            allBands?.map((band, index) => (
-                                                <option key={index} value={index} data-mdb-icon="dd" style={{ backgroundColor: band.color }} >
-                                                </option>
-                                            ))}
-                                    </Form.Select>
-                                </div>
-                                <div className='input3'>
-                                    <span className='vv2'> Do you want to attach a card? </span>
+                                    <span className='vv2'>{t('flower.attachCard')} </span>
                                     <div className='yesNo' onChange={(e) => setCardch(e.target.value)}>
-                                        <div key={`inline-radio`} className="mb-3">
+                                        <div key={`inline-radio`} className=" yesNo1">
                                             <Form.Check
                                                 inline
-                                                label="Yes"
+                                                label={t('flower.yes')}
                                                 name="group1"
                                                 type="radio"
                                                 value="false"
@@ -235,7 +213,7 @@ const Naturalflowers = (props) => {
                                             />
                                             <Form.Check
                                                 inline
-                                                label="No"
+                                                label={t('flower.no')}
                                                 name="group1"
                                                 type="radio"
                                                 value="true"
@@ -248,7 +226,7 @@ const Naturalflowers = (props) => {
                                 <div className='input5'>
                                     <Form.Control className='input6' as="textarea" aria-label="With textarea"
                                         onChange={(e) => setCard(e.target.value)}
-                                        placeholder='write here '
+                                        placeholder={t('public.write')}
                                         value={card}
                                         disabled={cardch === "false" ? false : true}
                                     />
@@ -257,18 +235,19 @@ const Naturalflowers = (props) => {
                         </div>
                         <div className='inputImage'>
                             <img className='imgNaturalFlowers' src={sunflowersInfo?.image ? `${Api}/users/${sunflowersInfo?.image}` : Back2} />
-                            <div className='cbatsha' >
-                                {sunflowersInfo?.description}
-                            </div>
+                            {sunflowersInfo?.descriptionAr && sunflowersInfo?.description !== "" &&
+                                <div className='cbatsha' >
+                                    {lng == "ar" ? sunflowersInfo?.descriptionAr : sunflowersInfo?.description}
+                                </div>}
                         </div>
                     </div>
                     <div className='flowersBouquetExtra'>
-                        <span className='vv1'>  Extra </span>
-                        <span className='vv2'> Choose the chocolate you want to add to the package to make your package special </span>
+                        <span className='vv1'>  {t('flower.supTitle')} </span>
+                        <hr className='tapp' />
+                        <span className='vv2'>{t('flower.choose')}  </span>
                         <div className='chocolate'>
 
                             {typeof allChocolate == 'string' &&
-                                // <div className='noChocolate' >
                                 <div className='noProducts' >
                                     {allChocolate}
                                 </div>
@@ -279,7 +258,7 @@ const Naturalflowers = (props) => {
                                     <ExtraChocolate
                                         key={index}
                                         id={Chocolate?._id}
-                                        name={Chocolate?.name}
+                                        name={lng == "ar" ? Chocolate?.nameAr : Chocolate?.name}
                                         price={Chocolate?.price}
                                         image={Chocolate?.image}
                                         handelIncreaseSum={handelIncreaseSum}
@@ -290,19 +269,14 @@ const Naturalflowers = (props) => {
                     </div>
                     <div className='res' >
                         <div className='totalCost'>
-                            {chocoSum + (sunflowersInfo?.price ? sunflowersInfo?.price : 0)}
+                            {chocoSum + (sunflowersInfo?.price ? sunflowersInfo?.price : 0)}.{t('public.sar')}
                         </div>
-                        <button className='addToCart'
+                        <button className='formButton5'
                             type='submit'
                             onClick={handleSubmit}
                         >
+                            {t('flower.add')}
                             <Aaa turnOn={turnOn} />
-                            add to cart
-                            <h4 className='boint'> ....</h4>
-                            <svg className='addToCartIcon'
-                                xmlns="http://www.w3.org/2000/svg" width="57.66" height="60.863" viewBox="0 0 57.66 60.863">
-                                <path id="Path_6" data-name="Path 6" d="M22.822,54.253a4.8,4.8,0,1,0,4.8,4.8A4.8,4.8,0,0,0,22.822,54.253Zm33.635-9.61H18.017a3.2,3.2,0,1,1,0-6.407h27.2a9.652,9.652,0,0,0,9.241-6.97l5.079-17.776a3.2,3.2,0,0,0-3.08-4.084H17.181A9.631,9.631,0,0,0,8.155,3H5.2a3.2,3.2,0,0,0,0,6.407H8.155a3.218,3.218,0,0,1,3.08,2.323l.5,1.745v.016l5.255,18.394A9.61,9.61,0,0,0,18.017,51.05h38.44a3.2,3.2,0,1,0,0-6.407ZM52.21,15.813,48.3,29.506a3.218,3.218,0,0,1-3.081,2.324H23.636l-.817-2.858L19.062,15.813Zm-3.762,38.44a4.8,4.8,0,1,0,4.8,4.8A4.8,4.8,0,0,0,48.448,54.253Z" transform="translate(-2 -3)" fill="#fff" />
-                            </svg>
                         </button>
                     </div>
                 </div >

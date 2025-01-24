@@ -1,9 +1,18 @@
 import { useDispatch } from 'react-redux';
 import './productCard.css'
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { deleteProductById } from '../../RTK/product/deleteProductByIdSlice';
 
 const ProductCard = (props) => {
-
+    const dispatch = useDispatch()
+    ////////////////////////////////////
+    const handelDeleteProduct = (event) => {
+        dispatch(deleteProductById(props.id))
+        props.handelReload()
+    }
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
         <div className='productCard'>
             <div className='imageCard'>
@@ -15,7 +24,6 @@ const ProductCard = (props) => {
                     1/{props?.imageNum}
                 </div>
             </div>
-
             <div className='productTitle'>
                 <div className='pName'>     {props?.name}</div>
                 <div className='title2' >
@@ -39,6 +47,7 @@ const ProductCard = (props) => {
 
 
             <hr className='phr' />
+
             <div className='colorsCard'>
                 {props?.colors?.map((color, index) => (
                     <div
@@ -50,6 +59,12 @@ const ProductCard = (props) => {
 
                     </div>
                 ))}
+            </div>
+            <hr className='phr' />
+            <div className='bouquetTail'>
+                <div className='deleteButten1'
+                    onClick={handelDeleteProduct}     >
+                    {t("public.delete")}</div>
             </div>
         </div >
     );

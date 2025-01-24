@@ -7,7 +7,6 @@ const articleSchema = new mongoose.Schema({
   },
   descriptionAr: {
     type: String,
-    // require: true,
   },
   image: String,
   //

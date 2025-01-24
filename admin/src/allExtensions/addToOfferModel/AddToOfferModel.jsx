@@ -16,7 +16,6 @@ function AddToOfferModel(props) {
         dispatch(deleteMessage(props.id))
         setShow(false);
     }
-    console.log(props.openMenu)
     return (
         <>
             {/* <div className={props.openMenu ? "DMOpen" : "DMClose"} onClick={handleShow}  >  delete message </div> */}
@@ -37,11 +36,11 @@ function AddToOfferModel(props) {
 
 
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer id='modal-footer'>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <button className='send' onClick={handleDelete}>delete</button>
+                    <button className='deleteButten' onClick={handleDelete}>{t('public.delete')}</button>
                 </Modal.Footer>
             </Modal>
         </>

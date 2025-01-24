@@ -3,11 +3,11 @@ const Features = require('./../utils/features');
 const catchAsync = require('./../utils/catchAsync');
 
 exports.add = catchAsync(async (req, res, next) => {
-  const { name, size ,price} = req.body;
+  const { name, size, price, nameAr } = req.body;
 
   const image = req.file.filename;
 
-  await Chocolate.create({ name,price, size, image });
+  await Chocolate.create({ name, price, size, image, nameAr });
   res.send('New Chocolate Added Successfully!');
 });
 
@@ -31,6 +31,7 @@ exports.update = catchAsync(async (req, res, next) => {
     id,
     {
       name: req.body.name,
+      nameAr: req.body.nameAr,
       size: req.body.size,
       image: req.file?.filename,
     },
@@ -40,13 +41,12 @@ exports.update = catchAsync(async (req, res, next) => {
     }
   );
 
-  res.send(updatedChocolate);
+  res.send('Updated Successfully!');
 });
 
-exports.deleteChocolate = catchAsync(async (req,res,next)=>{
-  const {id} = req.params;
-  
-    await Chocolate.findByIdAndDelete(id)
-    return res.status(200).send('Chocolate deleted successfully!');
-  
-})
+exports.deleteChocolate = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  await Chocolate.findByIdAndDelete(id);
+  return res.status(200).send('Chocolate deleted successfully!');
+});

@@ -15,8 +15,6 @@ const Home = () => {
     //     }, [])
     ////////////////////////////////////
     // const mouse = UseMouse();
-    // console.log("X" + mouse.x)
-    // console.log("Y" + mouse.y)
     return (
         <>
             {/* <Toaster /> */}

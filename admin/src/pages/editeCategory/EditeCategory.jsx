@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 import { getCategoryById } from '../../RTK/categories/getCategoryByIdSlice';
 import { patchCategoryById } from '../../RTK/categories/patchCategoryByIdSlice';
 import { stateCategoryById } from '../../RTK/categories/stateCategoryByIdSlice';
-import { deleteCategoryById } from '../../RTK/categories/deleteCategoryByIdSlice';
 import ProductCard from '../../allExtensions/productCard/ProductCard';
 import AddProduct from '../../allExtensions/addProduct/AddProduct';
 import Api from '../../allExtensions/API';
@@ -15,18 +14,31 @@ import ErrorMessage from '../../allExtensions/errorMessage/ErrorMessage';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import DeleteCategoryModel from '../../allExtensions/deleteCategoryModel/DeleteCategoryModel';
-
+import Cookies from 'universal-cookie';
 
 const EditeCategory = () => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const id = useParams().CategortyId
     const categories = useSelector(state => state.getCategoryById)?.data
     const products = useSelector(state => state.getProductByCategory)?.data
     /////////////////////////
     let startImage = `${Api}/users/${categories?.image}`
-    let startName = categories?.name
+    let startName = lng == "ar" ? categories.nameAr : categories.name
+    /////////////////////////
     const [imageSquer, setImageSquer] = useState([]);
     const [image, setImage] = useState([]);
     const [name, setName] = useState("")
+    const [nameAr, setNameAr] = useState("")
     const [validated1, setValidated1] = useState(false);
     const [validated2, setValidated2] = useState(false);
     const [openModel1, setOpenModel1] = useState(false);
@@ -63,10 +75,6 @@ const EditeCategory = () => {
         }, 1000);
     }
     /////////////////////////
-    // const handleDelete = (event) => {
-    //     dispatch(deleteCategoryById(id))
-    // }
-    // /////////////////////////
     const handleSubmit1 = (event) => {
         const form = event.currentTarget;
         event.preventDefault();
@@ -109,11 +117,30 @@ const EditeCategory = () => {
         }
     };
     /////////////////////////
+    const handleSubmit3 = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            setValidated2(true);
+        }
+        else {
+            const formData = new FormData();
+            formData.append('nameAr', nameAr);
+            const value = {
+                reqobj: formData,
+                id: id
+            }
+            dispatch(patchCategoryById(value))
+            setReload(!reload)
+        }
+    };
+    /////////////////////////
     useEffect(() => {
         dispatch(getCategoryById(id))
         dispatch(getProductByCategory(categories?._id))
-
-
     }, [dispatch, id, categories?._id, reload])
     ////////////////////////////////////
     useEffect(
@@ -122,7 +149,7 @@ const EditeCategory = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [categories])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
@@ -132,7 +159,6 @@ const EditeCategory = () => {
                     handelReload={handelReload}
                     messageTitle="ERROR"
                     message={t('category.message1')}
-
                 />
             }
             <div className='editeCategory'>
@@ -146,8 +172,7 @@ const EditeCategory = () => {
                                 <h5>     {t('category.categoryActive')} {categories?.isActive ? `${t('public.active')}` : `${t('public.notActive')}`}</h5>
                             </div>
                             <div className='onOff'>
-                                <button type='submit' className='formButton' onClick={handleState}> {categories?.isActive ? `${t('public.disable')}` : `${t('public.enable')}`}  </button>
-                                {/* <button type='submit' className='formButton' onClick={handleDelete}> {t('public.delete')}  </button> */}
+                                <button style={{ width: "100%", margin: "0px" }} type='submit' className='formButton' onClick={handleState}> {categories?.isActive ? `${t('public.disable')}` : `${t('public.enable')}`}  </button>
                                 <DeleteCategoryModel
                                     handelReload={handelReload}
                                     id={id}
@@ -155,7 +180,6 @@ const EditeCategory = () => {
                             </div>
                             <hr className='tapp' />
                             <Form noValidate validated={validated1} onSubmit={handleSubmit1} className='addCategory1'>
-
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('category.editCategoryImgage')}</Form.Label>
                                     <div className='rowEdit'>
@@ -168,38 +192,30 @@ const EditeCategory = () => {
                                         </div>
                                         <button type="submit" className='editInfo'  >
                                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
                                         </button>
                                     </div>
                                 </Form.Group>
                             </Form>
-                            {/* //////////// */}
                             <hr className='tapp' />
-                            {/* //////////// */}
-                            {/* <Form noValidate validated={validated2} onSubmit={handleSubmit2} className='addCategory1'>
-
+                            <Form noValidate validated={validated2} onSubmit={handleSubmit3} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('category.editCategoryNameAr')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory2'>
                                             <Form.Control
                                                 type="text"
-                                                placeholder={categories?.name}
+                                                placeholder={categories?.nameAr}
                                                 required
-                                                onChange={(e) => setName(e.target.value)}
+                                                onChange={(e) => setNameAr(e.target.value)}
                                             />
-
                                         </div>
                                         <button type="submit" className='editInfo'  >
                                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
                                         </button>
                                     </div>
                                 </Form.Group>
-                            </Form> */}
-                            {/* //////////// */}
+                            </Form>
                             <Form noValidate validated={validated2} onSubmit={handleSubmit2} className='addCategory1'>
-
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('category.editCategoryNameEn')}</Form.Label>
                                     <div className='rowEdit'>
@@ -210,20 +226,14 @@ const EditeCategory = () => {
                                                 required
                                                 onChange={(e) => setName(e.target.value)}
                                             />
-
                                         </div>
                                         <button type="submit" className='editInfo'  >
                                             <svg className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
                                         </button>
                                     </div>
                                 </Form.Group>
                             </Form>
-
                         </div>
-
-
-
                         <div className='displayNewCategory'>
                             <div className='newImageCategory'>
                                 <img className='imageCat' src={startImage} />
@@ -244,9 +254,11 @@ const EditeCategory = () => {
                     handelReload={handelReload}
                     categoryId={id}
                 />
-
-                <div className='supTitle'>
-                    {startName} {t('category.products')}
+                <div className='supTitle' dir='rtl'>
+                    <div >
+                        {t('category.products')}
+                    </div>
+                    {startName}
                 </div>
                 <div className='produtsByCategory'>
                     {products?.length == 0 &&
@@ -260,31 +272,26 @@ const EditeCategory = () => {
                                 <svg className='aboveHand' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 36 36" ><path fill="#ffdc5d" d="M30 20.145s.094-2.362-1.791-3.068c-1.667-.625-2.309.622-2.309.622s.059-1.913-1.941-2.622c-1.885-.667-2.75.959-2.75.959s-.307-1.872-2.292-2.417C17.246 13.159 16 14.785 16 14.785V2.576C16 1.618 15.458.001 13.458 0S11 1.66 11 2.576v20.5c0 1-1 1-1 0V20.41c0-3.792-2.037-6.142-2.75-6.792c-.713-.65-1.667-.98-2.82-.734c-1.956.416-1.529 1.92-.974 3.197c1.336 3.078 2.253 7.464 2.533 9.538c.79 5.858 5.808 10.375 11.883 10.381c6.626.004 12.123-5.298 12.128-11.924z"></path></svg>
                             </b>
                         </div>}
+
                     {products?.map((product, index) => (
                         <ProductCard
                             key={index}
                             imageNum={product?.images?.length}
                             image={`${Api}/users/${product?.images[0]}`}
                             price={product.price}
-                            name={product.name}
+                            name={lng == "ar" ? product?.nameAr : product?.name}
+                            description={lng == "ar" ? product?.descriptionAr : product?.description}
                             id={product._id}
                             images={product.images}
                             sizes={product.sizes}
                             colors={product.colors}
-                            description={product.description}
                             categoryName={product.categoryName}
                             createdAt={product.createdAt}
+                            handelReload={handelReload}
                         />
-
                     ))}
-
-
-
-
                 </div>
-
-
-            </div>
+            </div >
         </>
     )
 }

@@ -1,18 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './drowpList.css'
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import { useDispatch } from 'react-redux';
+// import LoginModel from '../loginModel/LoginModel';
+import LogoutModel from '../logoutModel/LogoutModel';
+import { useTranslation } from 'react-i18next';
 const DrowpList = (props) => {
     const [eng, seteng] = useState(false)
-    console.log(props.DrowpListButton)
+    //////////////////////////
+    const cookies = new Cookies();
+    const lng = cookies.get("i18next") || "en";
+    //////////////////////////
+    const [login, setLogin] = useState(false)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (cookies.get('token') !== undefined || null) {
+            setLogin(true)
+        }
+        else { setLogin(false) }
+    }, [dispatch, props.num])
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
-        <div className={props.DrowpListButton ? "drowpListT" : "drowpListF"} onClick={() => seteng(!eng)}>
-            <Link to={'/MyAccount/:userName'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
+        <div className={props.DrowpListButton ? "drowpListT" : "drowpListF"} onClick={() => seteng(!eng)} ref={props?.menuRef}
+            style={{ left: lng == "ar" ? "0px" : "-166px" }}
+        >
+            <div className='linkDL' onClick={() => props.DrowpListButtonHandler()} >
+                <LogoutModel />
+            </div>
+            <Link to={'/MyAccount'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
                 <div className='listItem' >
-                    My Account
+                    {t("me.myAccount")}
                 </div>
             </Link>
-
-            <Link to={'/MyReturnOrder'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
+            {/* <Link to={'/MyReturnOrder'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
                 <div className='listItem' >
                     My Return Order
                 </div>
@@ -22,16 +44,11 @@ const DrowpList = (props) => {
                     My Order
                 </div>
             </Link>
-            <Link to={'/MyCoupons'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
-                <div className='listItem' >
-                    My Coupons
-                </div>
-            </Link>
             <Link to={'/MyFavorites'} className='linkDL' onClick={() => props.DrowpListButtonHandler()}>
                 <div className='listItem' >
                     My Favorites
                 </div>
-            </Link>
+            </Link> */}
 
         </div>
     );

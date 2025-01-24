@@ -7,93 +7,83 @@
     justify-content: center;
     gap: 5px;
     margin-bottom: 5px;
-    background-color: #30323f;
+    background-color: var(--component-Color);
+    color: var(--component-textColor);
+    box-shadow: var(--component-shadow);
     border-radius: 8px;
     color: white;
     padding: 5px;
 }
 
-.div30 {
-    width: 30%;
+.div90 {
+    width: 100%;
+    width: calc(100% - 100px);
     gap: 5px;
     display: flex;
-    align-items: stretch;
+    flex-direction: column;
+    /* align-items: stretch;
+    justify-content: flex-start; */
+
 }
 
-.div70 {
-    width: 70%;
+.div80 {
+    width: 100%;
     gap: 5px;
     display: flex;
-    align-items: stretch;
+    padding-right: 10px;
+    /* align-items: stretch;
+    justify-content: flex-start; */
 }
 
-.perfumeTitel {
+.flowrTitel {
     width: 100%;
     display: flex;
     gap: 5px;
 }
 
-@media (max-width : 500px) {
-    .perfumeTitel {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
 
-    .cartBroduct {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+.cartPerfumes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    .cartPerfumes {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-    }
-
-    .div100 {
-        width: 100%;
-        gap: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .cartPerfumeName {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .div30 {
-        width: 100%;
-        gap: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: end;
-    }
-
-    .div70 {
-        width: 100%;
-        gap: 5px;
-        display: flex;
-    }
 }
 
+/* .div100 {
+    width: 100%;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+
+.div31 {
+    width: 100%;
+    height: 30px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+}
+
+
 .cartFlowersName {
-    width: calc(100% - 140px);
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     padding: 2px;
+    color: var(--component-textColor);
 }
 
 .cartDelete1 {
     width: 50px;
+    height: 30px;
     display: flex;
     align-items: flex-end;
     color: red;
@@ -102,16 +92,49 @@
     align-items: center;
 }
 
-.perfumePrice {
+/* .perfumePrice {
     width: 80px;
     padding-right: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+    color: var(--component-textColor);
+} */
 
 .allChocolates {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+    align-items: center;
+    justify-content: center;
+    align-items: stretch;
+    gap: 5px;
+    border-radius: 8px;
+    color: var(--component-textColor);
+    margin-top: 5px;
+}
+
+.choo {
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 5px;
+    border: 2px solid var(--primary-yellow);
+    color: var(--component-textColor);
+    background-color: var(--component-Color);
+    box-shadow: var(--component-shadow);
+}
+
+.chocolateIcon {
+    color: var(--primary-yellow);
+}
+
+/* .allChocolates {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -123,7 +146,7 @@
     background-color: #30323f;
     border-radius: 8px;
     color: #202126;
-}
+} */
 
 .cartChocolates {
     background-color: #F1C92F;
@@ -191,19 +214,7 @@
     justify-content: center;
 }
 
-.mass2 {
-    width: 60%;
-    aspect-ratio: 16/9;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 0px 13px #F1C92F;
-    padding: 10px;
-    color: #202126;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-}
+
 
 .typewriter {
     overflow: hidden;

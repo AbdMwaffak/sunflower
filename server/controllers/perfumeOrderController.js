@@ -13,12 +13,12 @@ exports.add = catchAsync(async (req, res, next) => {
   }
   const perfumeOrder = await PerfumeOrder.create({ ...req.body, userId });
 
-  res.status(201).send(perfumeOrder);
+  res.status(201).send('Order Added Successfully!');
 });
 
 exports.updateOrderVariants = catchAsync(async (req, res, next) => {
   const perfumeId = req.params.id;
-  const {variantId , totalPrice} = req.body;
+  const { variantId, totalPrice } = req.body;
   delete req.body['totalPrice'];
 
   const fields = Object.entries(req.body).map(([key, value]) => [
@@ -33,19 +33,21 @@ exports.updateOrderVariants = catchAsync(async (req, res, next) => {
     { new: true, runValidators: true }
   );
 
-  const updatedOrder = await PerfumeOrder.findByIdAndUpdate(perfumeId , {totalPrice},
+  const updatedOrder = await PerfumeOrder.findByIdAndUpdate(
+    perfumeId,
+    { totalPrice },
     {
-      new : true,
-      runValidators : true
+      new: true,
+      runValidators: true,
     }
   );
 
-  res.send(updatedOrder);
+  res.send('Updated Successfully!');
 });
 
-exports.deletePerfumeOrder = catchAsync(async (req,res,next)=>{
+exports.deletePerfumeOrder = catchAsync(async (req, res, next) => {
   const perfumeOrderId = req.params.id;
   await PerfumeOrder.findByIdAndDelete(perfumeOrderId);
 
   res.status(200).send('Perfume Order Deleted Successfully!');
-})
+});

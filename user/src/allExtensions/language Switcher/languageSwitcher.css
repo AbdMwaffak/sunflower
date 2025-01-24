@@ -1,0 +1,37 @@
+.languageSwitcher {
+    position: relative;
+    height: 35px;
+    width: 35px;
+}
+
+.languageItameCloseAb {
+    overflow: hidden;
+    top: 15px;
+    right: 30px;
+    position: absolute;
+    width: 0;
+    height: 0;
+    transition: all 0.2s linear;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--primary-dark);
+}
+
+.languageItameOpenAb {
+    width: 70px;
+    top: 38px;
+    right: -17px;
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    z-index: 100;
+    padding: 5px;
+    transition: all 0.2s linear;
+    color: balck;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--primary-dark);
+}

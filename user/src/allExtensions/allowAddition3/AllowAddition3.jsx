@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { emptyCart } from '../../RTK/shoppingCart/emptyCartSlice';
+import { useTranslation } from 'react-i18next';
 
 function AllowAddition3(props) {
     ////////////////////////
@@ -18,6 +19,8 @@ function AllowAddition3(props) {
         props?.handelReload()
         setShow(false)
     }
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
         <>
             <Modal
@@ -27,24 +30,22 @@ function AllowAddition3(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>DELETE MESSAGE</Modal.Title>
+                    <Modal.Title>PRODUCT MESSAGE</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className='modelBody' style={{ textAlign: "center" }}>
                         <h5
                             style={{ width: '100%', textAlign: "center", color: "red" }}>
-                            Sorry
-                        </h5>
-                        The broduct cannot be added because there are bouquet in your cart <br />
-                        You can finish the previous request and continue later <br />
-                        Or you can empty the basket and try again
+                            {t('product.message00')}
+                        </h5>     {t('product.message11')}<br />
+                        {t('product.message22')}
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer id='modal-footer'>
                     <button className='send' onClick={handelClearMyCart}>
-                        Clean My Cart</button>
+                        {t('product.clean')} </button>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('public.close')}
                     </Button>
                 </Modal.Footer>
             </Modal>

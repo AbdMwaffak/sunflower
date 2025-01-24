@@ -5,7 +5,6 @@ import Api from '../../allExtensions/API';
 
 export const postLogin = createAsyncThunk('auth/postLogin', async (reqobj) => {
   const response = await axios.post(`/users/login`, reqobj);
-  // console.log(response.data)
   return response.data;
 });
 
@@ -22,6 +21,7 @@ export const postLoginSlice = createSlice({
       state.status = 'success';
       const cookies = new Cookies();
       cookies.set('token', state.data.token);
+      cookies.set('userId', state.data?.user?._id);
       window.location.state = false;
       window.location.pathname = '/';
     });

@@ -14,7 +14,6 @@ if (cookies.get('token') !== undefined || null) {
 export const addPerfumeToCart = createAsyncThunk(
   'cart/addPerfumeToCart',
   async (reqobj) => {
-    console.log(reqobj);
     const response = await axios.post(`/perfumeOrder`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });

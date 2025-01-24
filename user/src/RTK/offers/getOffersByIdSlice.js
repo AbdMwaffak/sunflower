@@ -38,7 +38,7 @@ const getOffersByIdSlice = createSlice({
     builder.addCase(getOffersById.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
+      // console.log(state.status);
     });
   },
 });

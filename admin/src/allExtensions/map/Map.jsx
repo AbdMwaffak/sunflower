@@ -93,39 +93,39 @@ const Map = () => {
                     </path>
                 </g>
                 <g id="points">
-                    <circle className="17.158477215233617|35.626004539398934" cx="90.9" cy="750.8" id="0">
+                    <circle stroke="currentColor" className="17.158477215233617|35.626004539398934" cx="90.9" cy="750.8" id="0">
                     </circle>
-                    <circle className="23.45863333035298|46.158404640498034" cx="545.5" cy="460.7" id="1">
+                    <circle stroke="currentColor" className="23.45863333035298|46.158404640498034" cx="545.5" cy="460.7" id="1">
                     </circle>
-                    <circle className="31.333828474252186|54.584324721377314" cx="909.1" cy="77.4" id="2">
+                    <circle stroke="currentColor" className="31.333828474252186|54.584324721377314" cx="909.1" cy="77.4" id="2">
                     </circle>
                 </g>
                 <g id="label_points">
-                    <circle className="AshSharqiyah" cx="733.3" cy="548.4" id="SA04">
+                    <circle stroke="currentColor" className="AshSharqiyah" cx="733.3" cy="548.4" id="SA04">
                     </circle>
-                    <circle className="Al Hudud ash Shamaliyah" cx="397.2" cy="166.1" id="SA08">
+                    <circle stroke="currentColor" className="Al Hudud ash Shamaliyah" cx="397.2" cy="166.1" id="SA08">
                     </circle>
-                    <circle className="Al Jawf" cx="227.6" cy="166.7" id="SA12">
+                    <circle stroke="currentColor" className="Al Jawf" cx="227.6" cy="166.7" id="SA12">
                     </circle>
-                    <circle className="Najran" cx="531.3" cy="699.4" id="SA10">
+                    <circle stroke="currentColor" className="Najran" cx="531.3" cy="699.4" id="SA10">
                     </circle>
-                    <circle className="Asir" cx="410.2" cy="656.7" id="SA14">
+                    <circle stroke="currentColor" className="Asir" cx="410.2" cy="656.7" id="SA14">
                     </circle>
-                    <circle className="Jizan" cx="399.7" cy="745" id="SA09">
+                    <circle stroke="currentColor" className="Jizan" cx="399.7" cy="745" id="SA09">
                     </circle>
-                    <circle className="Tabuk" cx="143" cy="245.9" id="SA07">
+                    <circle stroke="currentColor" className="Tabuk" cx="143" cy="245.9" id="SA07">
                     </circle>
-                    <circle className="Al Madinah" cx="239.7" cy="399" id="SA03">
+                    <circle stroke="currentColor" className="Al Madinah" cx="239.7" cy="399" id="SA03">
                     </circle>
-                    <circle className="Makkah" cx="351.3" cy="534.7" id="SA02">
+                    <circle stroke="currentColor" className="Makkah" cx="351.3" cy="534.7" id="SA02">
                     </circle>
-                    <circle className="Ar Riyad" cx="530.2" cy="476.2" id="SA01">
+                    <circle stroke="currentColor" className="Ar Riyad" cx="530.2" cy="476.2" id="SA01">
                     </circle>
-                    <circle className="Al Quassim" cx="417.5" cy="340.8" id="SA05">
+                    <circle stroke="currentColor" className="Al Quassim" cx="417.5" cy="340.8" id="SA05">
                     </circle>
-                    <circle className="Hail" cx="347.2" cy="268.7" id="SA06">
+                    <circle stroke="currentColor" className="Hail" cx="347.2" cy="268.7" id="SA06">
                     </circle>
-                    <circle className="Al Bahah" cx="342.6" cy="615.2" id="SA11">
+                    <circle stroke="currentColor" className="Al Bahah" cx="342.6" cy="615.2" id="SA11">
                     </circle>
                 </g>
             </svg>

@@ -37,7 +37,6 @@ function ReplyToMsgModel(props) {
                 value: { reply }
             }
             dispatch(replyMessage(reqobj))
-            console.log(reqobj)
             props.handelReload()
             setShow(false);
         }
@@ -75,11 +74,11 @@ function ReplyToMsgModel(props) {
                         <hr />
 
                     </Modal.Body>
-                    <Modal.Footer>
+                    <Modal.Footer id='modal-footer'>
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <button type="submit" className='send'>{t('messages.reply')}</button>
+                        <button type="send" className='send'>{t('messages.reply')}</button>
                     </Modal.Footer>
                 </Form>
             </Modal>

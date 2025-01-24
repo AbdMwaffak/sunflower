@@ -17,20 +17,31 @@ import Contact from '../../allExtensions/contact/Contact';
 import { useTranslation } from 'react-i18next';
 import BarChart from '../../allExtensions/charts/BarChart ';
 import LineChart from '../../allExtensions/charts/LineChart';
+import Cookies from 'universal-cookie';
 
 const Settings = () => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const allSettings = useSelector(state => state.getAllSettings).data
     const allSlider = useSelector(state => state.getAllSettings)?.data?.slider
     const allCities = useSelector(state => state.getAllCities)?.data
     const cityById = useSelector(state => state.getCityById)?.data
-    // console.log(allCities)
     ////////////////////////////////////
     const [validated, setValidated] = useState(false);
     const [reload, setReload] = useState(true);
-
     const [imagesSquer, setImagesSquer] = useState([]);
     const [images, setImages] = useState([]);
     const [cityName, setCityName] = useState('');
+    const [cityNameAr, setCityNameAr] = useState('');
     const [neighborhoods, setNeighborhoods] = useState([]);
     const [neighborhoodsNew, setNeighborhoodsNew] = useState([]);
     const [neighborhood, setNeighborhood] = useState('');
@@ -53,7 +64,6 @@ const Settings = () => {
         const fileArray = Array.from(e.target.files)
         fileArray.map(f => f["id"] = Math.random() * Math.pow(10, 16))
         setImages(fileArray)
-
         const fileArraySquer2 = []
         const fileArraySquer = Array.from(e.target.files)
         fileArraySquer.map((f, index) => (
@@ -97,6 +107,7 @@ const Settings = () => {
             }
             const value = {
                 name: cityName,
+                nameAr: cityNameAr,
                 neighborhoods: JSON.stringify(neighborhoodsNew)
             }
             dispatch(addCities(value))
@@ -104,6 +115,8 @@ const Settings = () => {
                 setReload(!reload)
                 setNeighborhoodsNew([])
                 setNeighborhoods([])
+                setCityName("")
+                setCityNameAr("")
             }, 1000);
         }
     };
@@ -123,7 +136,6 @@ const Settings = () => {
     const deleteNeighborhood = key => {
         setNeighborhoods(cur => cur.filter((item) => item.neighborhoodId !== key))
     }
-
     ////////////////////////////////////
     useEffect(() => {
         dispatch(getAllSettings())
@@ -137,7 +149,7 @@ const Settings = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
@@ -157,7 +169,6 @@ const Settings = () => {
                             cunter3
                         </div>
                     </div>
-                    {/* <hr className='tapp' /> */}
                     <div className='charts'>
                         <div className='yearsName'>
                             <div className='oneYear'>
@@ -184,7 +195,6 @@ const Settings = () => {
                                 2030
                                 <div className='point'> </div>
                             </div>
-
                         </div>
                         <div className='map1'>
                             <Map />
@@ -198,20 +208,12 @@ const Settings = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* <div className='mySettingsContener'>
-         <div className=''> 
-                    <Map />
-                    </div>
-                </div > */}
-
                 <div className='supTitle'>
                     {t('settings.supTitle1')}
                 </div>
                 <div className='editeContener'>
                     <div className='sliderContener'>
                         <div className='newimgSlider'>
-
                             <Form noValidate validated={validated} onSubmit={handleSubmit} className='addAbout'>
                                 <Form.Group className="mb-3" controlId="validationCustom02">
                                     <Form.Label>      {t('settings.addImageSlider')} </Form.Label>
@@ -221,13 +223,9 @@ const Settings = () => {
                                         onChange={imagOnChange} name='dlimg' accept="image/*" multiple
                                     />
                                 </Form.Group>
-                                {/* ///////// */}
-
-                                <hr />
+                                <hr className='tapp' />
                                 <button type="submit" className='formButton'> {t('settings.addImages')}</button>
                             </Form>
-
-
                             <div className='slider'>
                                 <Carousel data-bs-theme="dark" style={{ overflow: "heddin", height: "100%" }}>
                                     {allSlider?.map((itame, index) => (
@@ -240,20 +238,16 @@ const Settings = () => {
                                             <Carousel.Caption>
                                             </Carousel.Caption>
                                         </Carousel.Item>
-
                                     ))}
                                 </Carousel>
                             </div>
-
                         </div>
-
                         <div className='currentImgs'>
                             <SliderX allSlider={allSlider}
                                 handleReload={handleReload} />
                         </div>
                     </div>
                 </div>
-
                 <div className='supTitle'>
                     {t('settings.supTitle2')}
                 </div>
@@ -261,31 +255,36 @@ const Settings = () => {
                     <div className='newAbout'>
                         <Form noValidate validated={validated} onSubmit={handleAddCity} className='addAbout'>
                             <Form.Group className="mb-3" controlId="validationCustom02">
-                                <Form.Label> {t('settings.addCity')}</Form.Label>
+                                <Form.Label> {t('settings.addCityAr')}</Form.Label>
                                 <Form.Control
+                                    placeholder={t("public.write")}
                                     required
                                     type="string"
                                     onChange={(e) => setCityName(e.target.value)}
                                 />
                             </Form.Group>
-                            {/* ///////// */}
-
+                            <Form.Group className="mb-3" controlId="validationCustom02">
+                                <Form.Label> {t('settings.addCityEn')}</Form.Label>
+                                <Form.Control
+                                    placeholder={t("public.write")}
+                                    required
+                                    type="string"
+                                    onChange={(e) => setCityNameAr(e.target.value)}
+                                />
+                            </Form.Group>
                             <Form.Group className="mb-3" controlId="validationCustom01">
                                 <Form.Label> {t('settings.neighborhoods')}</Form.Label>
                                 <div className='rowEdit'>
                                     <div className='addCategory1'>
                                         <Form.Control
+                                            placeholder={t("public.write")}
                                             type="string"
                                             onChange={(e) => setNeighborhood(e.target.value)}
                                         />
-
-
                                     </div>
-
                                     <div className='editPro' style={{ border: "3px solid #f1c92f" }}
                                         onClick={() => neighborhoodOnChange(neighborhood)}
                                     >   {t('public.addButton')} </div>
-
                                     <div className='editPro' style={{ border: "3px solid #f1c92f" }}
                                         onClick={() => clearAllNeighborhoods()}
                                     > {t('public.clear')}    </div>
@@ -307,16 +306,11 @@ const Settings = () => {
                                     ))}
                                 </div>
                             </Form.Group>
-
-                            <hr />
+                            <hr className='tapp' />
                             <button type="submit" className='formButton'> {t('settings.addNewCity')} </button>
                         </Form>
-
-
                     </div>
-
                     <div className='currentCities'>
-
                         <div className='citiesLest'>
                             <SliderXCities allCities={allCities}
                                 handleReload={handleReload}
@@ -328,16 +322,12 @@ const Settings = () => {
                                 handleReload={handleReload}
                                 handleCityId={hanleCityId}
                             />}
-
                         {cityId == "" &&
                             <CityInfo city={''}
                                 handleReload={handleReload}
                                 handleCityId={hanleCityId}
                             />}
-
                     </div>
-
-
                 </div>
                 <div className='supTitle'>
                     {t('settings.supTitle3')}
@@ -348,11 +338,8 @@ const Settings = () => {
                             handleReload={handleReload}
                             settings={allSettings}
                         />
-
-
                     </div>
                 </div>
-
             </div >
         </>
     )

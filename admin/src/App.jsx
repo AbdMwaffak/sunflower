@@ -28,11 +28,17 @@ import Settings from './pages/settings/Settings';
 import { UserContextProvider } from './allExtensions/UserContext';
 import Orders from './pages/orders/Orders';
 import { useTranslation } from 'react-i18next';
+import MyAccount from './pages/myAccount/MyAccount';
+import AppFooter from './allExtensions/appFooter/AppFooter';
 
 
 
 function App() {
   const cookies = new Cookies();
+  const [num, setNum] = useState(true);
+  const numCounter = (e) => {
+    setNum(e)
+  }
   //////////////////////////
   const [login, setLogin] = useState(false)
   const [sid, setSid] = useState(false)
@@ -52,17 +58,17 @@ function App() {
     }
     else { setLogin(false) }
     window.document.dir = i18n.dir();
-    console.log(lng)
   }, [dispatch, lng])
-  //////////////////// 
-
-
+  ////////////////////////
   return (
     <UserContextProvider>
       <div className="App">
         <Router>
           {login &&
-            <MyNav sidBarButtom={sidBarButtom} />
+            <MyNav
+              sidBarButtom={sidBarButtom}
+              numCounter={numCounter}
+            />
           }
           <div className='appContainer'>
             {login &&
@@ -80,18 +86,20 @@ function App() {
                   <Route path='/EditProduct/:productId' element={<EditProduct />} />
                   <Route path='/MyArticles' element={<MyArticles />} />
                   <Route path='/EditMyArticles/:ArticalId' element={<EditMyArticles />} />
-                  <Route path='/MyNaturalFlower' element={<MyNaturalFlower />} />
+                  <Route path='/MyNaturalFlower/:NaturalFlowerId' element={<MyNaturalFlower />} />
                   <Route path='/EditMyNaturalFlower/:NaturalFlowerId' element={<EditMyNaturalFlower />} />
-                  <Route path='/MyPerfume' element={<MyPerfume />} />
+                  <Route path='/MyPerfume/:MyPerfumeId' element={<MyPerfume />} />
                   <Route path='/Chocolate' element={<Chocolate />} />
                   <Route path='/Messages' element={<Messages />} />
                   <Route path='/About' element={<About />} />
                   <Route path='/MyOffers' element={<MyOffers />} />
                   <Route path='/EditeOffer/:MyOffersId' element={<EditeOffer />} />
                   <Route path='/Setting' element={<Settings />} />
-                  <Route path='/Orders' element={<Orders />} />
+                  <Route path='/Orders' element={<Orders num={num} />} />
+                  <Route path='/MyAccount' element={<MyAccount />} />
                 </Route>
               </Routes>
+               {login && <AppFooter />}
             </div>
           </div>
         </Router >

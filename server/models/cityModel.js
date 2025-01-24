@@ -7,13 +7,8 @@ const citySchema = new mongoose.Schema({
   },
   nameAr: {
     type: String,
-    // required: true,
   },
   neighborhoods: {
-    type: [String],
-    default: [],
-  },
-  neighborhoodsAr: {
     type: [String],
     default: [],
   },

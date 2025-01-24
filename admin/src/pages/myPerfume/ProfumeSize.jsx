@@ -22,6 +22,7 @@ function ProfumeSize(props) {
     const handelAvailable = (e) => {
         dispatch(patchVariants({ id: props.id, available: e }))
         handelReload()
+        setOpenMenu(!openMenu)
     }
     ////////////////////
     useEffect(() => {
@@ -36,13 +37,12 @@ function ProfumeSize(props) {
         };
     })
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
             <div className='ml'>
                 <div className='sizeName'>
-                    {/* ////////////// */}
                     <div className='meny'
                         ref={menuRef}>
                         <svg className='menuPo'
@@ -54,12 +54,11 @@ function ProfumeSize(props) {
                             </path></svg>
 
                         <div className={openMenu ? "menuOpenPo" : "menuClosePo"} >
-
-                            <DeletePerfumeSizeModel
+                            {/* <DeletePerfumeSizeModel
                                 openMenu={openMenu}
                                 handelReload={handelReload}
                                 id={props?.id}
-                            />
+                            /> */}
                             {!props?.available &&
                                 <div className={openMenu ? "DMOpen" : "DMClose"} onClick={() => handelAvailable(true)} >
                                     {t('perfume.turnOn')}
@@ -69,20 +68,15 @@ function ProfumeSize(props) {
                                 <div className={openMenu ? "DMOpen" : "DMClose"} onClick={() => handelAvailable(false)}>
                                     {t('perfume.turnOff')}
                                 </div>
-
                             }
-
                         </div>
-
                     </div>
-                    {/* ////////////// */}
                     <div className='ttt1'>
                         <span className='vv3'> {t('perfume.size')} : {props?.size} </span>
                     </div>
                 </div>
-
                 <div className='priceBySize'>
-                    <span className='vv3'> {t('perfume.price')} : {props?.price} </span>
+                    <span className='vv3'> {t('perfume.price')} : {props?.price}.{t("public.sar")} </span>
                 </div>
             </div >
         </>

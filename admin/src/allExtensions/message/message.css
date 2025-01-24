@@ -1,8 +1,8 @@
 .message {
     width: 94%;
     max-width: 600px;
-    background-color: var(--secondary-light);
-    color: var(--primary-dark);
+    background-color: white;
+    color: black;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -15,16 +15,13 @@
     border-radius: 0px 8px 8px 8px;
     margin-left: -10%;
     box-shadow: var(--component-shadow);
-    direction: ltr;
 }
-
 
 .messageReply {
     width: 94%;
     max-width: 600px;
-    /* height: 200px; */
     background-color: #ffe88e;
-    color: var(--primary-dark);
+    color: black;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -39,7 +36,6 @@
     transition: all 0.5s ease-in-out;
     animation: foggy2 2s ease-in-out;
     box-shadow: var(--component-shadow);
-    direction: ltr;
 }
 
 @keyframes foggy2 {
@@ -51,7 +47,6 @@
     100% {
         opacity: 100%;
         margin-top: -5px;
-
     }
 }
 
@@ -64,8 +59,7 @@
     top: 0;
     left: -14px;
     z-index: 50;
-    color: var(--secondary-light);
-
+    color: white;
 }
 
 .tail2 {
@@ -80,9 +74,7 @@
 .message:hover {
     transform: scale(1.1);
     box-shadow: 0px 0px 20px #F1C92F;
-    /* box-shadow: 4px 4px 20px black; */
     margin-left: 0;
-    z-index: 50;
 
 }
 
@@ -90,7 +82,6 @@
     transform: scale(1.1);
     box-shadow: 0px 0px 20px #F1C92F;
     margin-right: 0;
-
 }
 
 .postHader {
@@ -104,7 +95,6 @@
 .menuMs {
     width: 30px;
     height: 30px;
-    /* margin-right: 20px; */
     border-radius: 100%;
     padding: 5px;
     border-radius: 100%;
@@ -116,17 +106,16 @@
 }
 
 .menuOpenMs {
-    top: 28px;
-    left: 25px;
+    top: 36px;
+    left: 38px;
     position: absolute;
     width: 165px;
-    /* background-color: white; */
-    background-color: var(--primary-dark);
+    background-color: #202126;
     border-radius: 8px;
-    z-index: 101;
+    z-index: 100;
     padding: 5px;
     transition: all 0.2s linear;
-    color: var(--primary-dark);
+    color: aliceblue;
     overflow: hidden;
 }
 
@@ -161,6 +150,12 @@
     gap: 10px;
 }
 
+.msHr {
+    color: #202126;
+    width: 100%;
+    margin: 5px 0px;
+}
+
 .postBody {
     width: 100%;
     display: flex;
@@ -175,114 +170,18 @@
     text-align: left;
 }
 
+hr {
+    color: white;
+    width: 100%;
+}
+
 .media {
     width: 100%;
     aspect-ratio: 1/1;
     background-color: aliceblue;
 }
 
-.postTail {
-    width: 100%;
-    /* height: 56px; */
-    /* background-color: #F1C92F; */
-    border-radius: 8px;
+.userName {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-/* .postFavoret,
-.postShare {
-    width: 40%;
-    height: 40px;
-    background-color: #F1C92F;
-    border-radius: 8px;
-    border: 0;
-    margin: 0;
-    color: #38393d;
-    font-size: large;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    transition: all 0.1s linear;
-    font-weight: bold;
-    font-size: 22px;
-} */
-
-.postFavoret:hover,
-.postShare:hover {
-    box-shadow: 0px 0px 13px #F1C92F;
-}
-
-/* 
-.menuOpen {
-    top: 25px;
-    left: 25px;
-    position: absolute;
-    width: 165px;
-    height: 100px;
-    background-color: white;
-    border-radius: 8px;
-    z-index: 100;
-    padding: 5px;
-    transition: all 0.2s linear;
-    color: aliceblue;
-    overflow: hidden;
-} */
-
-
-.menuClose {
-    overflow: hidden;
-    top: 25px;
-    left: 25px;
-    position: absolute;
-    width: 0;
-    height: 0;
-    transition: all 0.2s linear;
-}
-
-
-.DMOpen {
-    width: 100%;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 5px;
-    transition: all 0.2s;
-    transition-delay: 0.1s;
-    color: var(--primary-dark);
-}
-
-.DMClose {
-    height: 0;
-    /* transition-delay: 2s; */
-}
-
-.DMOpen:hover {
-    background-color: var(--primary-yellow);
-    color: var(--primary-dark);
-    border-radius: 3px;
-}
-
-.send,
-.ImageAttached {
-    width: 40%;
-    height: 40px;
-    background-color: #F1C92F;
-    border-radius: 8px;
-    border: 0;
-    margin: 0;
-    color: aliceblue;
-    font-size: large;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.1s linear;
-}
-
-.send:hover {
-    box-shadow: 0px 0px 13px #F1C92F;
+    gap: 10px;
 }

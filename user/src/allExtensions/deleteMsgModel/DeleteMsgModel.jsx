@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteMessage } from '../../RTK/message/deleteMessageSlice';
 import { getMe } from '../../RTK/Auth/getMeSlice';
+import { useTranslation } from 'react-i18next';
 
 function DeleteMsgModel(props) {
     const me = useSelector(state => state.getMe)?.data
@@ -26,10 +27,11 @@ function DeleteMsgModel(props) {
     useEffect(() => {
         dispatch(getMe())
     }, [dispatch])
-
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
         <>
-            <div className={props.openMenu ? "returnOpen" : "returnClose"} onClick={handleShow}  > Delete Message  </div>
+            <div className={props.openMenu ? "returnOpen" : "returnClose"} onClick={handleShow}  >  {t("messages.deleteMessage")} </div>
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -42,21 +44,21 @@ function DeleteMsgModel(props) {
                 <Modal.Body>
                     {(me?.username == props?.name) &&
                         <div className='modelBody'>
-                            Are you sure you want to delete this message?
+                            {t("messages.message11")} {" "}
                         </div>
                     }
                     {(me?.username != props?.name) &&
                         <>
-                            <div className=''> You can't delete this message !! </div>
-                            <div className=''> You aren't the owner of this message !! </div>
+                            <div className=''>    {t("messages.message22")}{" "} !! </div>
+                            <div className=''>   {t("messages.message33")}{" "} !! </div>
                         </>}
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
+                <Modal.Footer id='modal-footer'>
                     {(me?.username == props?.name) &&
-                        <button className='send' onClick={handleDelete}>Delete</button>}
+                        <button className='send' onClick={handleDelete}>    {t("public.delete")}</button>}
+                    <Button variant="secondary" onClick={handleClose}>
+                        {t("public.close")}
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </>

@@ -7,6 +7,7 @@ import ShareButton from '../shareButton/ShareButton';
 import NoToken from '../noToken/NoToken';
 import Cookies from 'universal-cookie';
 import FavoriteButton from '../favoriteButton/FavoriteButton';
+import { useTranslation } from 'react-i18next';
 
 const ProductCard = (props) => {
     const cookies = new Cookies();
@@ -31,7 +32,8 @@ const ProductCard = (props) => {
             setOpenModel3(false)
         }, 1000);
     }
-    //////////////////////////////
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
         <>
             {openModel3 &&
@@ -39,12 +41,14 @@ const ProductCard = (props) => {
             }
             <div className='productCard'>
                 <div className='imageCard'>
-                    <img className='image-Card' src={props.image} onClick={handelgo} />
+                    <img className='allImage' src={props.image} onClick={handelgo} />
                     <div className='imgNum'>
-                        1/4
+                        1/{props?.images.length}
                     </div>
                     <div className='producButten'>
-                        <ShareButton />
+                        <ShareButton
+                            id={props?.id}
+                            img={props?.image} />
                         <div className='favoret' onClick={hanelAddToFavorite}>
                             < FavoriteButton isFavorite={props?.isFavorite} />
                         </div>
@@ -53,7 +57,7 @@ const ProductCard = (props) => {
                 <div className='productTitle'>
                     <div className='pName'>     {props?.name}</div>
                     <div className='title2' >
-                        <div className='pDate'>   {props.price} .SAR </div>
+                        <div className='pDate'>   {props.price} .{t('public.sar')} </div>
                         <div className='pDate'> {props?.createdAt?.split("T")[0]}</div>
                     </div>
                 </div>

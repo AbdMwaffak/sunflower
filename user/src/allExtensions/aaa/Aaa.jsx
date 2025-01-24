@@ -7,7 +7,8 @@ const Aaa = (props) => {
     return (
         <>
             {props.turnOn
-                && <div className='allshapes'>
+                &&
+                <div className='allshapes'>
                     <div className='aa1 ab'>   <img className='aaImg' src={Emoji} /> </div>
                     <div className='aa2 ab'> <img className='aaImg' src={Emoji} />  </div>
                     <div className='aa3 ab'> <img className='aaImg' src={Emoji} />  </div>

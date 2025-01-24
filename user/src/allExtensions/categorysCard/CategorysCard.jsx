@@ -5,16 +5,16 @@ import { useNavigate } from 'react-router-dom';
 const CategorysCard = (props) => {
     const navigate = useNavigate();
     const handelgo = () => {
-        if (props.name == "Perfumes") navigate(`/Perfumes`)
-        else if (props.name == "NaturalFlowers") navigate(`/NaturalFlowers`)
-        else navigate(`/Category/${props.id}`, { state: { id: props.id, name: props.name } })
+        if (props?.name1 == "perfumes") navigate(`/Perfumes`)
+        else if (props?.name1 == "natural flowers") navigate(`/NaturalFlowers`)
+        else navigate(`/Category/${props.id}`, { state: { id: props?.name } })
     }
     return (
         <div className='CategorysCard'>
             <div onClick={handelgo}
                 className='link' >
                 <div className='imageCategory'>
-                    <img className='imageCat' src={props.image} />
+                    <img className='allImage' src={props.image} />
                 </div>
                 <div className='titleCategory'>
                     {props.name}
@@ -23,4 +23,4 @@ const CategorysCard = (props) => {
         </div>
     );
 }
-export default CategorysCard;
+export default CategorysCard; 

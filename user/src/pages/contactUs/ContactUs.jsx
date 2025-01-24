@@ -1,98 +1,94 @@
 import React, { useEffect } from 'react';
 import './contactUs.css'
 import sunflower from '../../image/sunflower2-svg.png'
+import { getAllSettings } from '../../RTK/settings/getAllSettingsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 const ContactUs = () => {
+    const allSettings = useSelector(state => state.getAllSettings).data
+    ///////////////////
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getAllSettings())
+    }, [dispatch])
     ///////////////////
     useEffect(
         function () {
             document.title = `SUNFLOWER - Contact Us `;
             return function () { document.title = 'SUNFLOWER' };
         }, [])
-    ///////////////////
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
-        <div className='contactUs'>
-            <div className='contactTitle'>
-                Contact Us
+        <div className='bage'>
+            <div className='title'>
+                {t("contactUs.title")}
             </div>
             <div className='contactContainer'>
-
-                <div className='SocialContact'>
-                    <div className='blur '>
-                        <img className='sunflowerImg' src={sunflower} />
-                        <div className='cer'>
-                            <svg className='mm5'
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                height="80%"
-                                width="80%"
-                                color='black'
-                            >
-                                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.188 8.188 0 01-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07 0 1.22.89 2.39 1 2.56.14.17 1.76 2.67 4.25 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.27-.25-.14-1.47-.74-1.69-.82-.23-.08-.37-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.53.07-.26-.13-1.06-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.12-.24-.01-.39.11-.5.11-.11.27-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.11-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43-.14 0-.3-.01-.47-.01z" />
-                            </svg>
+                {(allSettings?.whatsapp !== "" || null) &&
+                    <div className='SocialContact'>
+                        <div className='blur '>
+                            <img className='sunflowerImg' src={sunflower} />
+                            <div className='cer'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={"70%"} height={"70%"} viewBox="0 0 24 24"><g fill="currentColor"><path fillRule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718l-.697 2.359l2.32-.648l.379.243A8 8 0 1 0 12 4M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382l1.426-4.829l-.006-.007l-.033-.055A9.96 9.96 0 0 1 2 12" clipRule="evenodd"></path><path d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1 1 0 0 0-.34-.075c-.196 0-.362.098-.49.291c-.146.217-.587.732-.723.886c-.018.02-.042.045-.057.045c-.013 0-.239-.093-.307-.123c-1.564-.68-2.751-2.313-2.914-2.589c-.023-.04-.024-.057-.024-.057c.005-.021.058-.074.085-.101c.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711c-.158-.377-.366-.552-.655-.552c-.027 0 0 0-.112.005c-.137.005-.883.104-1.213.311c-.35.22-.94.924-.94 2.16c0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537c1.412.564 2.081.63 2.461.63c.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276c.192-.534.243-1.117.115-1.329c-.088-.144-.239-.216-.43-.308"></path></g></svg>
+                            </div>
                         </div>
+                        <div className='contTitle'>   {allSettings?.whatsapp}   </div>
                     </div>
-                    <div className='contTitle'>  0564223992  </div>
-                </div>
-                <div className='SocialContact'>
-                    <div className='blur '>
-                        <img className='sunflowerImg' src={sunflower} />
-                        <div className='cer'>
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                height="80%"
-                                width="80%"
-                                color='black'
-                            >
-                                <path d="M18.73 5.41l-1.28 1L12 10.46 6.55 6.37l-1.28-1A2 2 0 002 7.05v11.59A1.36 1.36 0 003.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0022 18.64V7.05a2 2 0 00-3.27-1.64z" />
-                            </svg>
+                }
+                {(allSettings?.email !== "" || null) &&
+                    <div className='SocialContact'>
+                        <div className='blur '>
+                            <img className='sunflowerImg' src={sunflower} />
+                            <div className='cer'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={"70%"} height={"70%"} viewBox="0 0 24 24" ><path fill="currentColor" d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm3.519 0L12 11.671L18.481 6zM20 7.329l-7.341 6.424a1 1 0 0 1-1.318 0L4 7.329V18h16z"></path></svg>                        </div>
                         </div>
+                        <div className='contTitle'>   {allSettings?.email}   </div>
                     </div>
-                    <div className='contTitle'>  0564223992  </div>
-                </div>
-                <div className='SocialContact'>
-                    <div className='blur '>
-                        <img className='sunflowerImg' src={sunflower} />
-                        <div className='cer'>
-                            <svg
-                                fill="none"
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                viewBox="0 0 24 24"
-                                height="80%"
-                                width="80%"
-                                color='black'
-                            >
-                                <path d="M7 2 H17 A5 5 0 0 1 22 7 V17 A5 5 0 0 1 17 22 H7 A5 5 0 0 1 2 17 V7 A5 5 0 0 1 7 2 z" />
-                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01" />
-                            </svg>
+                }
+                {(allSettings?.instagram !== "" || null) &&
+                    <div className='SocialContact'>
+                        <div className='blur '>
+                            <img className='sunflowerImg' src={sunflower} />
+                            <div className='cer'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={"70%"} height={"70%"} viewBox="0 0 512 512" ><path fill="currentColor" d="M349.33 69.33a93.62 93.62 0 0 1 93.34 93.34v186.66a93.62 93.62 0 0 1-93.34 93.34H162.67a93.62 93.62 0 0 1-93.34-93.34V162.67a93.62 93.62 0 0 1 93.34-93.34zm0-37.33H162.67C90.8 32 32 90.8 32 162.67v186.66C32 421.2 90.8 480 162.67 480h186.66C421.2 480 480 421.2 480 349.33V162.67C480 90.8 421.2 32 349.33 32"></path><path fill="currentColor" d="M377.33 162.67a28 28 0 1 1 28-28a27.94 27.94 0 0 1-28 28M256 181.33A74.67 74.67 0 1 1 181.33 256A74.75 74.75 0 0 1 256 181.33m0-37.33a112 112 0 1 0 112 112a112 112 0 0 0-112-112"></path></svg>
+                            </div>
                         </div>
+                        <div className='contTitle'>  {allSettings?.instagram}  </div>
                     </div>
-                    <div className='contTitle'>  0564223992  </div>
-                </div>
-                <div className='SocialContact'>
-                    <div className='blur '>
-                        <img className='sunflowerImg' src={sunflower} />
-                        <div className='cer'>
-                            <svg
-                                fill="none"
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                viewBox="0 0 24 24"
-                                height="60%"
-                                width="60%"
-                                color='black'
-                            >
-                                <path d="M15.05 5A5 5 0 0119 8.95M15.05 1A9 9 0 0123 8.94m-1 7.98v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
-                            </svg>
+                }
+                {(allSettings?.phone !== "" || null) &&
+                    <div className='SocialContact'>
+                        <div className='blur '>
+                            <img className='sunflowerImg' src={sunflower} />
+                            <div className='cer'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={'70%'} height={"70%"} viewBox="0 0 24 24" ><path fill="currentColor" d="M15.5 1h-8A2.5 2.5 0 0 0 5 3.5v17A2.5 2.5 0 0 0 7.5 23h8a2.5 2.5 0 0 0 2.5-2.5v-17A2.5 2.5 0 0 0 15.5 1m-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5m4.5-4H7V4h9z"></path></svg>
+                            </div>
                         </div>
+                        <div className='contTitle'>  {allSettings?.phone}  </div>
                     </div>
-                    <div className='contTitle'>  0564223992  </div>
-                </div>
+                }
+                {(allSettings?.facebook !== "" || null) &&
+                    <div className='SocialContact'>
+                        <div className='blur '>
+                            <img className='sunflowerImg' src={sunflower} />
+                            <div className='cer'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={"70%"} height={"70%"} viewBox="0 0 24 24" ><path fill="currentColor" d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z"></path></svg>                        </div>
+                        </div>
+                        <div className='contTitle'> {allSettings?.facebook} </div>
+                    </div>
+                }
+                {(allSettings?.tiktok !== "" || null) &&
+                    <div className='SocialContact'>
+                        <div className='blur '>
+                            <img className='sunflowerImg' src={sunflower} />
+                            <div className='cer'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={"70%"} height={"70%"} viewBox="0 0 512 512" ><path fill="currentColor" d="M412.19 118.66a109 109 0 0 1-9.45-5.5a133 133 0 0 1-24.27-20.62c-18.1-20.71-24.86-41.72-27.35-56.43h.1C349.14 23.9 350 16 350.13 16h-82.44v318.78c0 4.28 0 8.51-.18 12.69c0 .52-.05 1-.08 1.56c0 .23 0 .47-.05.71v.18a70 70 0 0 1-35.22 55.56a68.8 68.8 0 0 1-34.11 9c-38.41 0-69.54-31.32-69.54-70s31.13-70 69.54-70a68.9 68.9 0 0 1 21.41 3.39l.1-83.94a153.14 153.14 0 0 0-118 34.52a161.8 161.8 0 0 0-35.3 43.53c-3.48 6-16.61 30.11-18.2 69.24c-1 22.21 5.67 45.22 8.85 54.73v.2c2 5.6 9.75 24.71 22.38 40.82A167.5 167.5 0 0 0 115 470.66v-.2l.2.2c39.91 27.12 84.16 25.34 84.16 25.34c7.66-.31 33.32 0 62.46-13.81c32.32-15.31 50.72-38.12 50.72-38.12a158.5 158.5 0 0 0 27.64-45.93c7.46-19.61 9.95-43.13 9.95-52.53V176.49c1 .6 14.32 9.41 14.32 9.41s19.19 12.3 49.13 20.31c21.48 5.7 50.42 6.9 50.42 6.9v-81.84c-10.14 1.1-30.73-2.1-51.81-12.61"></path></svg>
+                            </div>
+                        </div>
+                        <div className='contTitle'> {allSettings?.tiktok}</div>
+                    </div>
+                }
             </div>
         </div>
     );

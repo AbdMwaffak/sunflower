@@ -1,33 +1,9 @@
-.messages {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.messagesTitle {
-    width: 98%;
-    height: 54px;
-    background-color: #202126;
-    color: white;
-    font-family: Script MT;
-    font-weight: bold;
-    font-size: x-large;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 10px;
-    z-index: 50;
-    margin-top: 10px;
-    border-radius: 8px;
-}
-
 .messagesContener {
     width: 98%;
+    max-width: 1480px;
     min-height: 200px;
     border-radius: 16px;
-    border: 5px solid #F1C92F;
+    border: 5px solid var(--primary-yellow);
     display: flex;
     flex-direction: column;
     gap: 10px;

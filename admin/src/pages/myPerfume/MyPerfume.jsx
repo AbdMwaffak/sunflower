@@ -11,9 +11,27 @@ import ProfumeSize from './ProfumeSize';
 import { Toaster } from 'react-hot-toast';
 import { Carousel } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import Cookies from 'universal-cookie';
+import { useParams } from 'react-router-dom';
+import { getCategoryById } from '../../RTK/categories/getCategoryByIdSlice';
+import { stateCategoryById } from '../../RTK/categories/stateCategoryByIdSlice';
 
 
 const MyPerfume = () => {
+    //////////////////////////////
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+       //////////////////////////////
+        const id = useParams().MyPerfumeId
+        const categories = useSelector(state => state.getCategoryById)?.data
+    //////////////////////////////
     const perfumeLength = useSelector(state => state.getAllPerfume)?.data?.length
     const perfume = useSelector(state => state.getAllPerfume)?.data
     const addState = useSelector(state => state.postPerfume)
@@ -21,13 +39,16 @@ const MyPerfume = () => {
     const [imagesSquer, setImagesSquer] = useState([]);
     const [images, setImages] = useState([]);
     const [reload, setReload] = useState([]);
-    const [name, setName] = useState("")
+    const [name, setName] = useState("");
     const [description, setDescription] = useState("")
+    const [descriptionAr, setDescriptionAr] = useState("")
     const [stateMessage, setStateMessage] = useState(false);
     const [validated, setValidated] = useState(false);
     const [validated1, setValidated1] = useState(false);
     const [validated2, setValidated2] = useState(false);
     const [validated3, setValidated3] = useState(false);
+    const [validated4, setValidated4] = useState(false);
+    const [validated5, setValidated5] = useState(false);
     //////////////////////
     const dispatch = useDispatch()
     //////////////////////
@@ -35,7 +56,6 @@ const MyPerfume = () => {
         const fileArray = Array.from(e.target.files)
         fileArray.map(f => f["id"] = Math.random() * Math.pow(10, 16))
         setImages(fileArray)
-
         const fileArraySquer2 = []
         const fileArraySquer = Array.from(e.target.files)
         fileArraySquer.map((f, index) => (
@@ -49,29 +69,13 @@ const MyPerfume = () => {
         }, 2000);
     }
     //////////////////////
-    const handleSubmitName = (event) => {
-        const form = event.currentTarget;
-        event.preventDefault();
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-            setValidated1(true);
-        }
-        else {
-            const formData = new FormData();
-            formData.append('name', name);
-            dispatch(patchPerfume(formData))
-            setReload(!reload)
-        }
-    };
-    //////////////////////
     const handleSubmitImage = (event) => {
         const form = event.currentTarget;
         event.preventDefault();
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-            setValidated2(true);
+            setValidated1(true);
         }
         else {
             const formData = new FormData();
@@ -83,13 +87,45 @@ const MyPerfume = () => {
         }
     };
     //////////////////////
-    const handleSubmitDescription = (event) => {
+    const handleSubmitNameEn = (event) => {
         const form = event.currentTarget;
         event.preventDefault();
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
             setValidated3(true);
+        }
+        else {
+            const formData = new FormData();
+            formData.append('name', name);
+            dispatch(patchPerfume(formData))
+            setReload(!reload)
+        }
+    };
+    //////////////////////
+    const handleSubmitDescriptionAr = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            setValidated4(true);
+        }
+        else {
+            const formData = new FormData();
+            formData.append('descriptionAr', descriptionAr);
+            dispatch(patchPerfume(formData))
+            setReload(!reload)
+        }
+    };
+    //////////////////////
+    const handleSubmitDescriptionEn = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            setValidated5(true);
         }
         else {
             const formData = new FormData();
@@ -111,12 +147,10 @@ const MyPerfume = () => {
             const formData = new FormData();
             formData.append('name', name);
             formData.append('description', description);
-
-
+            formData.append('descriptionAr', descriptionAr);
             for (const image of images) {
                 formData.append("images", image);
             }
-
             dispatch(postPerfume(formData))
             setTimeout(() => {
                 setReload(!reload)
@@ -132,10 +166,18 @@ const MyPerfume = () => {
             setStateMessage(false)
         }, 1000);
     }
+       ///////////////////////////////
+    const handleState = () => {
+         dispatch(stateCategoryById(id))
+          setTimeout(() => {
+              setReload(!reload)
+                    }, 1000);
+       }
     ////////////////////////////////////
     useEffect(() => {
         dispatch(getAllPerfume())
-    }, [dispatch, reload])
+          dispatch(getCategoryById(id))
+    }, [dispatch, reload , id])
     ////////////////////////////////////
     useEffect(
         function () {
@@ -143,7 +185,7 @@ const MyPerfume = () => {
             return function () { document.title = 'SUNFLOWER' };
         }, [])
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
@@ -155,13 +197,13 @@ const MyPerfume = () => {
                     <div className='nowPerfume'>
                         {perfumeLength != 0 &&
                             <div className='editPerfum'>
-                                <Form noValidate validated={validated2} onSubmit={handleSubmitImage} className='addCategory1'>
-
+                                 <button style={{ width: "100%", margin: "0px" }} type='submit' className='formButton' onClick={handleState}> {categories?.isActive ? `${t('public.disable')}` : `${t('public.enable')}`}  </button>
+                                 <hr className='tapp'/>
+                                <Form noValidate validated={validated1} onSubmit={handleSubmitImage} className='addCategory1'>
                                     <Form.Group className="mb-3" controlId="validationCustom01">
                                         <Form.Label> {t('perfume.editPerfumeImage')}</Form.Label>
                                         <div className='rowEdit'>
                                             <div className='addCategory1'>
-
                                                 <Form.Control
                                                     type="file"
                                                     required
@@ -176,38 +218,12 @@ const MyPerfume = () => {
                                         </div>
                                     </Form.Group>
                                 </Form>
-                                {/* //////////// */}
                                 <hr className='tapp' />
-                                {/* //////////// */}
-                                {/* <Form noValidate validated={validated1} onSubmit={handleSubmitName} className='addCategory1'>
-
-                                    <Form.Group className="mb-3" controlId="validationCustom01">
-                                        <Form.Label>{t('perfume.editPerfumeName Ar')}</Form.Label>
-                                        <div className='rowEdit'>
-                                            <div className='addCategory1'>
-
-                                                <Form.Control
-                                                    type="text"
-                                                    placeholder={perfume[0]?.name}
-                                                    required
-                                                    onChange={(e) => setName(e.target.value)}
-                                                />
-                                            </div>
-                                            <button type="submit" className='editInfo'  >
-                                                <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-                                            </button>
-                                        </div>
-                                    </Form.Group>
-                                </Form>
-                                <hr className='tapp' /> */}
-                                {/* //////////// */}
-                                <Form noValidate validated={validated1} onSubmit={handleSubmitName} className='addCategory1'>
-
+                                <Form noValidate validated={validated3} onSubmit={handleSubmitNameEn} className='addCategory1'>
                                     <Form.Group className="mb-3" controlId="validationCustom01">
                                         <Form.Label>{t('perfume.editPerfumeNameEn')}</Form.Label>
                                         <div className='rowEdit'>
                                             <div className='addCategory1'>
-
                                                 <Form.Control
                                                     type="text"
                                                     placeholder={perfume[0]?.name}
@@ -221,10 +237,8 @@ const MyPerfume = () => {
                                         </div>
                                     </Form.Group>
                                 </Form>
-                                {/* //////////// */}
                                 <hr className='tapp' />
-                                {/* //////////// */}
-                                {/* <Form noValidate validated={validated3} onSubmit={handleSubmitDescription} className='addCategory1'>
+                                <Form noValidate validated={validated4} onSubmit={handleSubmitDescriptionAr} className='addCategory1'>
                                     <Form.Group className="mb-3" controlId="validationCustom01">
                                         <Form.Label>{t('perfume.editPerfumeDescriptionAr')}</Form.Label>
                                         <div className='rowEdit'>
@@ -233,21 +247,19 @@ const MyPerfume = () => {
                                                     className='textarea1'
                                                     as="textarea"
                                                     type="text"
-                                                    placeholder={perfume[0]?.description}
+                                                    placeholder={perfume[0]?.descriptionAr}
                                                     required
-                                                    onChange={(e) => setDescription(e.target.value)}
+                                                    onChange={(e) => setDescriptionAr(e.target.value)}
                                                 />
                                             </div>
                                             <button type="submit" className='editInfo'  >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
                                             </button>
                                         </div>
                                     </Form.Group>
                                 </Form>
-                                <hr className='tapp' /> */}
-                                {/* //////////// */}
-                                <Form noValidate validated={validated3} onSubmit={handleSubmitDescription} className='addCategory1'>
+                                <hr className='tapp' />
+                                <Form noValidate validated={validated5} onSubmit={handleSubmitDescriptionEn} className='addCategory1'>
                                     <Form.Group className="mb-3" controlId="validationCustom01">
                                         <Form.Label>{t('perfume.editPerfumeDescriptionEn')}</Form.Label>
                                         <div className='rowEdit'>
@@ -263,15 +275,11 @@ const MyPerfume = () => {
                                             </div>
                                             <button type="submit" className='editInfo'  >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
-
                                             </button>
                                         </div>
                                     </Form.Group>
                                 </Form>
-
-
                             </div>}
-                        {/* //////////////// */}
                         {perfumeLength == 0 &&
                             <div className='editPerfum'>
                                 <Form noValidate validated={validated} onSubmit={handleAddPerfume} className='addCategory1'>
@@ -286,36 +294,29 @@ const MyPerfume = () => {
                                             multiple
                                         />
                                     </Form.Group>
-                                    {/* <Form.Group className="mb-3" controlId="validationCustom01">
-                                        <Form.Label>{t('perfume.addPerfumeNameAr')}</Form.Label>
-                                        <Form.Control
-                                            required
-                                            type="text"
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
-                                    </Form.Group> */}
                                     <Form.Group className="mb-3" controlId="validationCustom01">
                                         <Form.Label>{t('perfume.addPerfumeNameEn')}</Form.Label>
                                         <Form.Control
                                             required
                                             type="text"
+                                            placeholder={t("public.write")}
                                             onChange={(e) => setName(e.target.value)}
                                         />
                                     </Form.Group>
-                                    {/* <Form.Group className="mb-3" controlId="validationCustom03">
+                                    <Form.Group className="mb-3" controlId="validationCustom03">
                                         <Form.Label>{t('perfume.addPerfumeDescriptionAr')}</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Category Name"
+                                            placeholder={t("public.write")}
                                             required
-                                            onChange={(e) => setDescription(e.target.value)}
+                                            onChange={(e) => setDescriptionAr(e.target.value)}
                                         />
-                                    </Form.Group> */}
+                                    </Form.Group>
                                     <Form.Group className="mb-3" controlId="validationCustom03">
                                         <Form.Label>{t('perfume.addPerfumeDescriptionEn')}</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Category Name"
+                                            placeholder={t("public.write")}
                                             required
                                             onChange={(e) => setDescription(e.target.value)}
                                         />
@@ -325,7 +326,6 @@ const MyPerfume = () => {
                                 </Form>
                             </div>
                         }
-                        {/* <div className='displayNewCategory'> */}
                         <div className='newImagePerfume'  >
                             {(imagesSquer?.length == 0 && perfume != 0) &&
                                 <Carousel data-bs-theme="dark">
@@ -346,17 +346,12 @@ const MyPerfume = () => {
                                 </Carousel>
                             }
                         </div>
-                        {/* </div> */}
-
                     </div>
                 </div >
-                {/* ///////////////////// */}
                 <AddperfumeSize
                     handleReload={handleReload}
                     id={perfume[0]?._id}
-
                 />
-                {/* ///////////////////// */}
                 <div className='supTitle'>
                     {t('perfume.supTitle')}
                 </div>

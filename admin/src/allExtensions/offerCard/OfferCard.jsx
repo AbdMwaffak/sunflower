@@ -1,11 +1,11 @@
 import React from 'react';
 import './offerCard.css'
 import CouponImg from '../../images/coupon.png'
-import { Link, useNavigation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 const OfferCard = (props) => {
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <div className='couponCard  '>
             <img className='CouponImg bounce-7 ' src={CouponImg} />
@@ -19,7 +19,6 @@ const OfferCard = (props) => {
                 <button className='getIt'>  {t('offers.details')}  </button>
             </Link>
         </div>
-
     );
 }
 

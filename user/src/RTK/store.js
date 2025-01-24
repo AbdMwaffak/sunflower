@@ -39,8 +39,10 @@ import getCategorySlice from './categoris/getCategorySlice';
 import getSuggestedSlice from './product/getSuggestedSlice';
 import getSearchSlice from './product/getSearchSlice';
 import getAllSettingsSlice from './settings/getAllSettingsSlice';
-
-
+import getAllcitiesSlice from './settings/getAllcitiesSlice';
+import postOrderSlice from './shoppingCart/postOrderSlice';
+import getOrdersSlice from './shoppingCart/getOrdersSlice';
+import patchMeSlice from './Auth/patchMeSlice';
 
 
 
@@ -50,6 +52,7 @@ export const store = configureStore({
         postLogin: postLoginSlice,
         postRegister: postRegisterSlice,
         getMe: getMeSlice,
+        patch: patchMeSlice,
 
         getProduct: getProductSlice,
         getProductByCategory: getProductByCategorySlice,
@@ -76,6 +79,7 @@ export const store = configureStore({
         getAllPerfume: getAllPerfumeSlice,
 
         addToCart: addToCartSlice,
+        postOrder: postOrderSlice,
         removeFromCart: removeFromCartSlice,
         addFlowerToCart: addFlowerToCartSlice,
         addPerfumeToCart: addPerfumeToCartSlice,
@@ -97,6 +101,9 @@ export const store = configureStore({
         getaboutById: getaboutByIdSlice,
 
         getAllSettings: getAllSettingsSlice,
+        getAllcities: getAllcitiesSlice,
+
+        getOrders: getOrdersSlice,
 
 
 

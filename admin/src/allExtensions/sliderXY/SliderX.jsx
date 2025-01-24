@@ -17,7 +17,6 @@ const SliderX = (props) => {
     const dispatch = useDispatch()
 
     const deleteimage = (id) => {
-        console.log(id)
         dispatch(deleteImageFromSlider(id))
         setTimeout(() => {
             props.handleReload()

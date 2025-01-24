@@ -3,10 +3,10 @@ const catchAsync = require('./../utils/catchAsync');
 const AppError = require('../utils/appError');
 
 exports.create = async (req, res, next) => {
-  const { description } = req.body;
+  const { description, descriptionAr } = req.body;
   const image = req.file.filename;
   const filetype = req.file.mimetype.split('/')[0];
-  await Article.create({ description, image, filetype });
+  await Article.create({ description, descriptionAr, image, filetype });
 
   res.send('Article created successfully!');
 };
@@ -19,6 +19,7 @@ exports.getAll = async (req, res, next) => {
       {
         $project: {
           description: 1,
+          descriptionAr: 1,
           filetype: 1,
           image: 1,
           createdAt: 1,
@@ -48,6 +49,7 @@ exports.update = catchAsync(async (req, res, next) => {
     id,
     {
       description: req.body.description,
+      descriptionAr: req.body.descriptionAr,
       image: req.file?.filename,
     },
     {
@@ -56,7 +58,7 @@ exports.update = catchAsync(async (req, res, next) => {
     }
   );
 
-  res.send(updatedArticle);
+  res.send('updated successfully!');
 });
 
 exports.deleteArticle = catchAsync(async (req, res, next) => {

@@ -15,7 +15,6 @@ const naturalFlowerSchema = new mongoose.Schema({
   },
   descriptionAr: {
     type: String,
-    // required: true,
   },
 
   image: String,

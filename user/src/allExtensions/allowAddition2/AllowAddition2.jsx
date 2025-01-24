@@ -3,13 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { emptyCart } from '../../RTK/shoppingCart/emptyCartSlice';
+import { useTranslation } from 'react-i18next';
 
 function AllowAddition2(props) {
     ////////////////////////
     const [show, setShow] = useState(true);
     const [problem, setProblem] = useState('');
     const dispatch = useDispatch()
-
     const handleClose = () => (setShow(false), props.handleClose())
     const handleShow = () => setShow(true);
     ////////////////////////
@@ -19,6 +19,8 @@ function AllowAddition2(props) {
         setShow(false)
 
     }
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
         <>
             <Modal
@@ -28,24 +30,22 @@ function AllowAddition2(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>DELETE MESSAGE</Modal.Title>
+                    <Modal.Title>PERFUME ERROR</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className='modelBody' style={{ textAlign: "center" }}>
                         <h5
                             style={{ width: '100%', textAlign: "center", color: "red" }}>
-                            Sorry
-                        </h5>
-                        The perfume cannot be added because there are bouquet in your cart <br />
-                        You can finish the previous request and continue later <br />
-                        Or you can empty the basket and try again
+                            {t('perfume.message00')}
+                        </h5>     {t('perfume.message11')}<br />
+                        {t('perfume.message22')}
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer id='modal-footer'>
                     <button className='send' onClick={handelClearMyCart}>
-                        Clean My Cart</button>
+                        {t('perfume.clean')} </button>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('public.close')}
                     </Button>
                 </Modal.Footer>
             </Modal>

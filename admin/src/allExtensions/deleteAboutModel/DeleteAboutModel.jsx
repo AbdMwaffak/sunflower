@@ -36,11 +36,11 @@ function DeleteAboutModel(props) {
                         {t('about.message1')}?
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer id='modal-footer'>
                     <Button variant="secondary" onClick={handleClose}>
                         {t('public.close')}
                     </Button>
-                    <button className='send' onClick={handleDelete}>{t('public.delete')}</button>
+                    <button className='deleteButten' onClick={handleDelete}>{t('public.delete')}</button>
                 </Modal.Footer>
             </Modal>
         </>

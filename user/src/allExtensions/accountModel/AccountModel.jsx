@@ -2,21 +2,21 @@ import { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useTranslation } from 'react-i18next';
 
 function AccountModel(props) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    ////////////////////////////////////
+
+    ////////////////////////////////////
+    const { t } = useTranslation();
     return (
         <>
             <button className='editInfo'  >
-                <svg onClick={handleShow} className='svgEdit' xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 82.313 82.182">
-                    <g id="SVGRepo_iconCarrier" transform="translate(3.5 3.5)">
-                        <path id="Path_2292" data-name="Path 2292" d="M60.33,18.707,24.623,54.413c-3.556,3.556-14.111,5.2-16.469,2.845s-.749-12.913,2.807-16.469L46.706,5.045A9.657,9.657,0,1,1,60.33,18.707Z" transform="translate(11.832 -1.913)" fill="none" stroke="#F1C92F" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
-                        <path id="Path_2293" data-name="Path 2293" d="M35.686,4H16.971A14.972,14.972,0,0,0,2,18.971V56.4A14.972,14.972,0,0,0,16.971,71.372H58.143c8.272,0,11.229-6.737,11.229-14.971V37.686" transform="translate(-2 3.81)" fill="none" stroke="#F1C92F" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
-                    </g>
-                </svg>
-            </button>
+                <svg onClick={handleShow} className='svgEdit' xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" ><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.946 3.173c.587-.587.88-.88 1.206-1.021c.469-.203 1-.203 1.469 0c.325.14.619.434 1.206 1.021s.88.881 1.021 1.206c.203.469.203 1 0 1.469c-.14.325-.434.619-1.021 1.206l-5.022 5.022c-1.237 1.237-1.855 1.855-2.63 2.222s-1.646.452-3.387.624L9 15l.078-.788c.172-1.741.257-2.612.624-3.387s.985-1.393 2.222-2.63zM6 15H3.75a1.75 1.75 0 1 0 0 3.5h9.5a1.75 1.75 0 1 1 0 3.5H11" color="currentColor"></path></svg>
+            </button >
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -24,62 +24,62 @@ function AccountModel(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>EDIT MY ACCOUNT</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className={props.type == "name" ? "tt" : "ff"} >
-                        <Form.Label>  user name :</Form.Label>
+                        <Form.Label>  {t('me.name')} :</Form.Label>
                         <Form.Control className='input6' type="text" aria-label="With textarea"
-                            placeholder='write here '
+                            placeholder={t('public.write')}
                         />
                     </div>
                     <div className={props.type == "phone" ? "tt" : "ff"} >
-                        <Form.Label>  phone :</Form.Label>
-                        <Form.Control className='input6' type="text" aria-label="With textarea"
-                            placeholder='write here '
+                        <Form.Label>  {t('me.phone')} :</Form.Label>
+                        <Form.Control className='input6' type="number" aria-label="With textarea"
+                            placeholder={t('public.write')}
                         />
                     </div>
                     <div className={props.type == "gender" ? "tt" : "ff"} >
-                        <Form.Label>  gender :</Form.Label>
+                        <Form.Label>  {t('me.gender')} :</Form.Label>
                         <Form.Control className='input6' type="text" aria-label="With textarea"
-                            placeholder='write here '
+                            placeholder={t('public.write')}
                         />
                     </div>
                     <div className={props.type == "passWord" ? "tt" : "ff"} >
-                        <Form.Label> old password :</Form.Label>
+                        <Form.Label>  {t('me.oldPassword')} :</Form.Label>
                         <Form.Control className='input6' type="password" aria-label="With textarea"
-                            placeholder='write here '
+                            placeholder={t('public.write')}
                         />
-                        <Form.Label>  new password :</Form.Label>
+                        <Form.Label> {t('me.newPassword')}  :</Form.Label>
                         <Form.Control className='input6' type="password" aria-label="With textarea"
-                            placeholder='write here '
+                            placeholder={t('public.write')}
                         />
                     </div>
                     <div className={props.type == "birth" ? "tt" : "ff"} >
-                        <Form.Label>  birth :</Form.Label>
+                        <Form.Label>  {t('me.birth')} :</Form.Label>
                         <Form.Control className='input6' type="date" aria-label="With textarea"
-                            placeholder='write here '
+                            placeholder={t('public.write')}
                         />
                     </div>
                     <div className={props.type == "adrress" ? "tt" : "ff"} >
-                        <Form.Label>  address :</Form.Label>
+                        <Form.Label>  {t('me.adrress')} :</Form.Label>
                         <Form.Control className='input6' type="adrress" aria-label="With textarea"
-                            placeholder='write here '
+                            placeholder={t('public.write')}
                         />
                     </div>
                     <div className={props.type == "gmail" ? "tt" : "ff"} >
-                        <Form.Label> gmail :</Form.Label>
+                        <Form.Label> {t('me.email')} :</Form.Label>
                         <Form.Control className='input6' type="gmail " aria-label="With textarea"
-                            placeholder='write here '
+                            placeholder={t('public.write')}
                         />
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                <Modal.Footer id='modal-footer'>
+                    {/* <Button variant="secondary" onClick={handleClose}>
                         Close
-                    </Button>
-                    <button className='addToCart' onClick={handleClose}>Save Change</button>
-                </Modal.Footer>
+                    </Button> */}
+                    <button className='meButton' onClick={handleClose}>{t('me.save')} </button>
+                </Modal.Footer >
             </Modal>
         </>
     );

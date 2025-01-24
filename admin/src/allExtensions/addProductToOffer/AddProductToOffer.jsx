@@ -10,8 +10,9 @@ const AddProductToOffer = (props) => {
 
     const [image, setImage] = useState([]);
     const [name, setName] = useState('');
+    const [nameAr, setNameAr] = useState('');
     const [description, setDescription] = useState('');
-
+    const [descriptionAr, setDescriptionAr] = useState('');
     const [open, setOpen] = useState(false)
     const [reload, setReload] = useState(true);
     const [validated, setValidated] = useState(false);
@@ -37,7 +38,9 @@ const AddProductToOffer = (props) => {
             const formData = new FormData();
             formData.append("image", image);
             formData.append('name', name);
+            formData.append('nameAr', nameAr);
             formData.append('description', description);
+            formData.append('descriptionAr', descriptionAr);
 
             const value = {
                 reqobj: formData,
@@ -48,11 +51,10 @@ const AddProductToOffer = (props) => {
         }
     };
     ////////////////////////////////////
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Toaster />
-
             <div className='addProductContener'>
                 <div className='addProduct'>
                     <div className={open ? "newProductOpen" : "newProductClose"}>
@@ -70,49 +72,43 @@ const AddProductToOffer = (props) => {
                             <Form noValidate validated={validated} onSubmit={handleSubmit} className='addCategory1'>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label> {t('editOffer.productImage')}</Form.Label>
-
                                     <Form.Control
                                         required
                                         type="file"
                                         onChange={imagOnChange} name='dlimg' accept="image/*" multiple
                                     />
-
                                 </Form.Group>
-                                {/* //////////// */}
-                                {/* <Form.Group md="6" className="mb-3" controlId="validationCustom01">
+                                <Form.Group md="6" className="mb-3" controlId="validationCustom01">
                                     <Form.Label> {t('editOffer.productNameAr')}</Form.Label>
                                     <Form.Control
-                                        placeholder="write name here"
+                                        placeholder={t("public.write")}
                                         required
                                         type="text"
-                                        onChange={(e) => setName(e.target.value)}
+                                        onChange={(e) => setNameAr(e.target.value)}
                                     />
-                                </Form.Group> */}
-                                {/* //////////// */}
+                                </Form.Group>
                                 <Form.Group md="6" className="mb-3" controlId="validationCustom01">
                                     <Form.Label> {t('editOffer.productNameEn')}</Form.Label>
                                     <Form.Control
-                                        placeholder="write name here"
+                                        placeholder={t("public.write")}
                                         required
                                         type="text"
                                         onChange={(e) => setName(e.target.value)}
                                     />
                                 </Form.Group>
-                                {/* //////////// */}
-                                {/* <Form.Group className="mb-3" controlId="validationCustom01">
+                                <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('editOffer.productDisAr')}</Form.Label>
                                     <Form.Control
-                                        placeholder="write description here "
+                                        placeholder={t("public.write")}
                                         required
                                         type="text"
-                                        onChange={(e) => setDescription(e.target.value)}
+                                        onChange={(e) => setDescriptionAr(e.target.value)}
                                     />
-                                </Form.Group> */}
-                                {/* //////////// */}
+                                </Form.Group>
                                 <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('editOffer.productDisEn')}</Form.Label>
                                     <Form.Control
-                                        placeholder="write description here "
+                                        placeholder={t("public.write")}
                                         required
                                         type="text"
                                         onChange={(e) => setDescription(e.target.value)}

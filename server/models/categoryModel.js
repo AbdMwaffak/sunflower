@@ -8,7 +8,6 @@ const categorySchema = new mongoose.Schema({
   },
   nameAr: {
     type: String,
-    // required: true,
     trim: true,
   },
   image: {
