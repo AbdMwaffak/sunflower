@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almarai&family=Noto+Kufi+Arabic:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almarai&family=Noto+Kufi+Arabic:wght@100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <title>SUNFLOWER</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Almarai&family=Noto+Kufi+Arabic:wght@100..900&display=swap"
-    rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Almarai&family=Noto+Kufi+Arabic:wght@100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
-    rel="stylesheet">
-  <title>SUNFLOWER</title>
-</head>
+  <body style="background-color: #151520">
+    <div id="root"></div>
 
-<body style="background-color: #151520">
-  <div id="root"></div>
-
-  <div id="preloader" style="
+    <div
+      id="preloader"
+      style="
         width: 100%;
         height: 100vh;
         background-color: #151520;
@@ -27,20 +31,24 @@
         align-items: center;
         justify-content: center;
         color: aliceblue;
-      ">
-    <object data="/src/images/logo.svg" type="image/svg+xml" style="width: 10%">
-      <img src="/src/images/logo.svg" />
-    </object>
-    SUNFLOWER WORLD - ADMIN
-  </div>
+      "
+    >
+      <object
+        data="/src/images/logo.svg"
+        type="image/svg+xml"
+        style="width: 10%"
+      >
+        <img src="/src/images/logo.svg" />
+      </object>
+      SUNFLOWER WORLD - ADMIN
+    </div>
 
-  <script type="module" src="/src/main.jsx"></script>
-  <script>
-    var loader = document.getElementById('preloader');
-    window.addEventListener('load', function () {
-      loader.style.display = 'none';
-    });
-  </script>
-</body>
-
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      var loader = document.getElementById('preloader');
+      window.addEventListener('load', function () {
+        loader.style.display = 'none';
+      });
+    </script>
+  </body>
 </html>
