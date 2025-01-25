@@ -86,28 +86,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
-app.get('*', (req, res) => {
-  const host = req.headers.host;
-  if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
-    // Serve user application
-    res.sendFile(path.join(__dirname, '../user/dist/index.html'), (err) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-    });
-  } else if (host === 'dunia.sunflowerworld.shop') {
-    // Serve admin application
-    res.sendFile(path.join(__dirname, '../admin/dist/index.html'), (err) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-    });
-  } else {
-    // Handle other hostnames or return 404
-    res.status(404).send('Not Found');
-  }
-});
-
 app.use('/users', userRoutes);
 app.use('/articles', articleRoutes);
 app.use('/products', productRoutes);
@@ -129,6 +107,27 @@ app.use('/orders', orderRoutes);
 app.use('/sse', sseRoutes);
 
 // dunia121247
+app.get('*', (req, res) => {
+  const host = req.headers.host;
+  if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
+    // Serve user application
+    res.sendFile(path.join(__dirname, '../user/dist/index.html'), (err) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+    });
+  } else if (host === 'dunia.sunflowerworld.shop') {
+    // Serve admin application
+    res.sendFile(path.join(__dirname, '../admin/dist/index.html'), (err) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+    });
+  } else {
+    // Handle other hostnames or return 404
+    res.status(404).send('Not Found');
+  }
+});
 app.all('*', (req, res, next) => {
   next(
     new AppError(`Can't find this route ${req.originalUrl} on this server`, 404)
