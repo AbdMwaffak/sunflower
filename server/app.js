@@ -86,26 +86,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
-app.use('/users', userRoutes);
-app.use('/articles', articleRoutes);
-app.use('/products', productRoutes);
-app.use('/category', categoryRoutes);
-app.use('/perfume', perfumeRoutes);
-app.use('/perfumeOrder', perfumeOrderRoutes);
-app.use('/chocolate', chocolateRoutes);
-app.use('/naturalFlowers', naturalFlowerRoutes);
-app.use('/naturalFlowersOrders', naturalFlowerOrderRoutes);
-app.use('/bands', bandRoutes);
-app.use('/papers', paperRoutes);
-app.use('/shoppingCart', shoppingCartRoutes);
-app.use('/offers', offerRoutes);
-app.use('/cities', cityRoutes);
-app.use('/messages', messageRoutes);
-app.use('/aboutus', aboutUsRoutes);
-app.use('/settings', settingRoutes);
-app.use('/orders', orderRoutes);
-app.use('/sse', sseRoutes);
-
 app.get('*', (req, res) => {
   const host = req.headers.host;
   if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
@@ -127,6 +107,27 @@ app.get('*', (req, res) => {
     res.status(404).send('Not Found');
   }
 });
+
+app.use('/users', userRoutes);
+app.use('/articles', articleRoutes);
+app.use('/products', productRoutes);
+app.use('/category', categoryRoutes);
+app.use('/perfume', perfumeRoutes);
+app.use('/perfumeOrder', perfumeOrderRoutes);
+app.use('/chocolate', chocolateRoutes);
+app.use('/naturalFlowers', naturalFlowerRoutes);
+app.use('/naturalFlowersOrders', naturalFlowerOrderRoutes);
+app.use('/bands', bandRoutes);
+app.use('/papers', paperRoutes);
+app.use('/shoppingCart', shoppingCartRoutes);
+app.use('/offers', offerRoutes);
+app.use('/cities', cityRoutes);
+app.use('/messages', messageRoutes);
+app.use('/aboutus', aboutUsRoutes);
+app.use('/settings', settingRoutes);
+app.use('/orders', orderRoutes);
+app.use('/sse', sseRoutes);
+
 // dunia121247
 app.all('*', (req, res, next) => {
   next(

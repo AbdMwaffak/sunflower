@@ -26,7 +26,7 @@ const ContactUs = () => {
             </div>
             <div className='contactContainer'>
                 {(allSettings?.whatsapp !== "" || null) &&
-                    <div className='SocialContact'>
+                    <a href={`https://wa.me/${allSettings?.whatsapp}`} target="_blank" rel="noopener noreferrer" className='SocialContact'>
                         <div className='blur '>
                             <img className='sunflowerImg' src={sunflower} />
                             <div className='cer'>
@@ -34,20 +34,20 @@ const ContactUs = () => {
                             </div>
                         </div>
                         <div className='contTitle'>   {allSettings?.whatsapp}   </div>
-                    </div>
+                    </a>
                 }
                 {(allSettings?.email !== "" || null) &&
-                    <div className='SocialContact'>
+                    <a href={`mailto:${allSettings?.email}`} target="_blank" rel="noopener noreferrer" className='SocialContact'>
                         <div className='blur '>
                             <img className='sunflowerImg' src={sunflower} />
                             <div className='cer'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width={"70%"} height={"70%"} viewBox="0 0 24 24" ><path fill="currentColor" d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm3.519 0L12 11.671L18.481 6zM20 7.329l-7.341 6.424a1 1 0 0 1-1.318 0L4 7.329V18h16z"></path></svg>                        </div>
                         </div>
                         <div className='contTitle'>   {allSettings?.email}   </div>
-                    </div>
+                    </a>
                 }
                 {(allSettings?.instagram !== "" || null) &&
-                    <div className='SocialContact'>
+                    <a href={`www.instagram.com/${allSettings?.instagram}`} target="_blank" rel="noopener noreferrer" className='SocialContact'>
                         <div className='blur '>
                             <img className='sunflowerImg' src={sunflower} />
                             <div className='cer'>
@@ -55,10 +55,10 @@ const ContactUs = () => {
                             </div>
                         </div>
                         <div className='contTitle'>  {allSettings?.instagram}  </div>
-                    </div>
+                    </a>
                 }
                 {(allSettings?.phone !== "" || null) &&
-                    <div className='SocialContact'>
+                    <a href={`tel:${allSettings?.phone}`} target="_blank" rel="noopener noreferrer" className='SocialContact'>
                         <div className='blur '>
                             <img className='sunflowerImg' src={sunflower} />
                             <div className='cer'>
@@ -66,20 +66,20 @@ const ContactUs = () => {
                             </div>
                         </div>
                         <div className='contTitle'>  {allSettings?.phone}  </div>
-                    </div>
+                    </a>
                 }
                 {(allSettings?.facebook !== "" || null) &&
-                    <div className='SocialContact'>
+                    <a href={`https://www.facebook.com/${allSettings?.facebook}`} target="_blank" rel="noopener noreferrer" className='SocialContact'>
                         <div className='blur '>
                             <img className='sunflowerImg' src={sunflower} />
                             <div className='cer'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width={"70%"} height={"70%"} viewBox="0 0 24 24" ><path fill="currentColor" d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z"></path></svg>                        </div>
                         </div>
                         <div className='contTitle'> {allSettings?.facebook} </div>
-                    </div>
+                    </a>
                 }
                 {(allSettings?.tiktok !== "" || null) &&
-                    <div className='SocialContact'>
+                    <a href={`https://www.tiktok.com/${allSettings?.tiktok}`} target="_blank" rel="noopener noreferrer" className='SocialContact'>
                         <div className='blur '>
                             <img className='sunflowerImg' src={sunflower} />
                             <div className='cer'>
@@ -87,7 +87,7 @@ const ContactUs = () => {
                             </div>
                         </div>
                         <div className='contTitle'> {allSettings?.tiktok}</div>
-                    </div>
+                    </a>
                 }
             </div>
         </div>

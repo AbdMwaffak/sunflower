@@ -72,20 +72,32 @@
 .allContact {
     width: 100%;
     display: grid;
-    grid-auto-columns: (max-content 4);
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     align-items: center;
     justify-items: start;
 }
 
 .contSocial {
+    width: 100%;
     height: 63px;
-    width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.contSocialBank {
+    width: 100%;
+    height: 63px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .contIcon {
