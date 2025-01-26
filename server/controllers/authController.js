@@ -29,7 +29,9 @@ exports.signUp = catchAsync(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword,
     phone: req.body.phone,
     gender: req.body.gender,
-    image: req.file ? req.file.filename : '',
+    image: req.file
+      ? req.file.filename
+      : 'user_1737852619951_default-avatar-icon-of-social-media-user-vector.jpeg',
     role: req.body.role,
   });
 
