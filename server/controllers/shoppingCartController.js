@@ -272,7 +272,7 @@ exports.emptyTheBasket = catchAsync(async (req, res, next) => {
   if (itContainsProducts) {
     // return the points to the user
     const cart = await ShoppingCart.findOne({ userId });
-    if (cart.pointsProducts.length > 0) {
+    if (cart?.pointsProducts?.length > 0) {
       for (let i = 0; i < cart.pointsProducts.length; i++) {
         await User.findByIdAndUpdate(userId, {
           $inc: { points: +cart.pointsProducts[i].price },
