@@ -83,7 +83,7 @@ function AppUser() {
             <Route path='/MyCart' element={<MyCart />} />
           </Route>
           <Route path='/Register' element={<Register />} />
-          <Route path='/*' element={<NoMatch />} />
+          <Route path='*' element={<NoMatch />} />
         </Routes>
         <AppFooter />
       </Router>
