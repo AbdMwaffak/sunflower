@@ -60,6 +60,25 @@ exports.update = catchAsync(async (req, res, next) => {
   });
   res.status(200).send('Perfume Updated Successfully!');
 });
+
+exports.changePerfumeState = catchAsync(async (req, res, next) => {
+  const perfumes = await Perfume.find();
+  const perfume = perfumes[0];
+  await Perfume.findById(perfume.id);
+  if (!perfume) return next(new AppError('perfume not found', 404));
+
+  await Perfume.findByIdAndUpdate(
+    id,
+    {
+      isActive: !perfume.isActive,
+    },
+    {
+      runValidators: true,
+    }
+  );
+  res.status(200).send('perfume state has changed');
+});
+
 /*
  {
     "color": "Red",

@@ -28,4 +28,10 @@ router.post(
   perfumeController.addNewSize
 );
 
+router.patch(
+  '/changeState',
+  authController.protect,
+  authController.restrictTo('admin'),
+  perfumeController.changePerfumeState
+);
 module.exports = router;

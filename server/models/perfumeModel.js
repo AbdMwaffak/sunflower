@@ -28,6 +28,10 @@ const perfumeSchema = new mongoose.Schema({
     type: [String],
   },
   variants: [perfumeVariant],
+  isActive: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Perfume = mongoose.model('Perfume', perfumeSchema);
