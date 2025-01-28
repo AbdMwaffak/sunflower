@@ -22,7 +22,7 @@ const Post = (props) => {
       dispatch(likeArticle(props.id));
       setTimeout(() => {
         props.reloadHandel();
-      }, 0);
+      }, 1000);
     } else {
       setOpenModel3(true);
     }

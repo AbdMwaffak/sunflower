@@ -8,6 +8,8 @@ exports.sseHandler = (req, res) => {
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');
   res.setHeader('Connection', 'keep-alive');
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Ensure this is added for SSE
+  res.flushHeaders();
 
   // Add the admin client to the list
   const clientType = 'admin'; // Default to admin role

@@ -81,7 +81,7 @@ const Naturalflowers = (props) => {
             setTimeout(() => {
               setTurnOn(false);
               props.numCounter();
-            }, 0);
+            }, 4000);
           } else {
             setOpenModel(true);
           }
