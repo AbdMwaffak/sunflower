@@ -207,16 +207,16 @@ exports.get = catchAsync(async (req, res, next) => {
       products = products.toObject();
       offers = [...products.offers];
       delete products.offers;
-      offers = offers.map((offer) => {
+      offers = offers?.map((offer) => {
         return {
-          _id: offer._id,
-          name: offer.offerId.name,
-          nameAr: offer.offerId.nameAr,
-          priceB: offer.offerId.priceB,
-          priceA: offer.offerId.priceA,
-          mainImage: offer.offerId.mainImage,
-          quantity: offer.quantity,
-          offerId: offer.offerId._id,
+          _id: offer?._id,
+          name: offer?.offerId?.name,
+          nameAr: offer?.offerId?.nameAr,
+          priceB: offer?.offerId?.priceB,
+          priceA: offer?.offerId?.priceA,
+          mainImage: offer.offerId?.mainImage,
+          quantity: offer?.quantity,
+          offerId: offer?.offerId?._id,
         };
       });
 
