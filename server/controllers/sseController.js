@@ -8,12 +8,7 @@ exports.sseHandler = (req, res) => {
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');
   res.setHeader('Connection', 'keep-alive');
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Ensure this is added for SSE
-
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Can restrict this to specific domain in production
   res.flushHeaders();
 
   // Add the admin client to the list

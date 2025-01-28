@@ -17,9 +17,7 @@ const AdminNotifications = (props) => {
   let message = t('public.messageOrder');
   let close = t('public.close');
   useEffect(() => {
-    const eventSource = new EventSource(
-      `https://dunia.sunflowerworld.shop/sse?role=admin`
-    ); // Connect to SSE endpoint
+    const eventSource = new EventSource(`/sse?role=admin`); // Connect to SSE endpoint
     //////////////////////
     // Listen for new order events
     eventSource.onmessage = (event) => {
@@ -80,14 +78,7 @@ const AdminNotifications = (props) => {
     // Handle SSE errors
     eventSource.onerror = (error) => {
       console.error('SSE Error:', error);
-      if (eventSource.readyState === EventSource.CLOSED) {
-        eventSource.close();
-        setTimeout(() => {
-          eventSource = new EventSource(
-            'https://dunia.sunflowerworld.shop/sse?role=admin'
-          );
-        }, 5000);
-      }
+      eventSource.close();
     };
     //////////////////////
     // Cleanup on component unmount

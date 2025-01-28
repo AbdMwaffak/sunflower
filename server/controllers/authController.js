@@ -49,6 +49,10 @@ exports.login = catchAsync(async (req, res, next) => {
   // 2) check if email is exist and pasword is correct
   const user = await User.findOne({ email }).select('+password');
   if (!user) return next(new AppError('This email is not exist💔', 404));
+  const host = req.headers.host;
+  if (host === 'dunia.sunflowerworld.shop' && user.role === 'user') {
+    return next(new AppError('Warning', 401));
+  }
 
   const comparePasswords = await user.correctPassword(password, user.password);
   if (!comparePasswords) {
