@@ -78,7 +78,7 @@ const AdminNotifications = (props) => {
     // Handle SSE errors
     eventSource.onerror = (error) => {
       console.error('SSE Error:', error);
-      eventSource.close();
+      if (eventSource.readyState === EventSource.CLOSED) eventSource.close();
     };
     //////////////////////
     // Cleanup on component unmount

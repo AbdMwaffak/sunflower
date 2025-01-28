@@ -21,6 +21,7 @@ exports.sseHandler = (req, res) => {
 
   // Cleanup on client disconnect
   req.on('close', () => {
+    clearInterval(pingInterval); // Clear the ping interval on disconnect
     const index = sseClients[clientType].indexOf(res);
     if (index !== -1) sseClients[clientType].splice(index, 1);
     res.end();
@@ -30,7 +31,8 @@ exports.sseHandler = (req, res) => {
 // Function to broadcast data to a specific group of SSE clients
 exports.broadcastSSE = (role, data) => {
   if (!sseClients[role]) return;
-  sseClients[role].forEach((client) => {
-    client.write(`data: ${JSON.stringify(data)}\n\n`);
+  sseClients[role].forEach((client, index) => {
+    if (client.readyState === client.OPEN)
+      client.write(`data: ${JSON.stringify(data)}\n\n`);
   });
 };
