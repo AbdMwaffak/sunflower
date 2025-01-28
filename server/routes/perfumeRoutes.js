@@ -30,8 +30,8 @@ router.post(
 
 router.patch(
   '/changeState',
-  authController.protect,
-  authController.restrictTo('admin'),
+  protect,
+  restrictTo('admin'),
   perfumeController.changePerfumeState
 );
 module.exports = router;

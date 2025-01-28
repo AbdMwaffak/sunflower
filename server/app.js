@@ -50,19 +50,13 @@ app.use('/settings', settingRoutes);
 app.use('/orders', orderRoutes);
 app.use('/sse', sseRoutes);
 
-app.use((req, res, next) => {
-  const host = req.headers.host;
-  // Check for user domain
-  if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
-    app.use(express.static(path.join(__dirname, '../user/dist')));
-  }
-  // Check for admin domain
-  else if (host === 'dunia.sunflowerworld.shop') {
-    app.use(express.static(path.join(__dirname, '../admin/dist')));
-  }
-
-  next();
-});
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 
 const allowedOrigins = [
   'www.sunflowerworld.shop',
@@ -98,13 +92,19 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(morgan('dev'));
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-// app.use(express.static('public'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser());
+app.use((req, res, next) => {
+  const host = req.headers.host;
+  // Check for user domain
+  if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
+    app.use(express.static(path.join(__dirname, '../user/dist')));
+  }
+  // Check for admin domain
+  else if (host === 'dunia.sunflowerworld.shop') {
+    app.use(express.static(path.join(__dirname, '../admin/dist')));
+  }
+
+  next();
+});
 
 // dunia121247
 app.get('*', (req, res) => {

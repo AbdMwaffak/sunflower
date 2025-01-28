@@ -1,63 +1,70 @@
-import './App.css';
-import ScrollToTop from './ScrollToTop';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Home from './pages/home/Home'
-import MyNav from './allExtensions/nav/MyNav';
-import Naturalflowers from './pages/naturalflowers/Naturalflowers';
-import ProductsByCategory from './pages/productsByCategory/ProductsByCategory';
-import Perfumes from './pages/perfumes/Perfumes';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProductProfile from './pages/productProfile/ProductProfile';
-import Articles from './pages/articles/Articles';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import AppFooter from './allExtensions/appFooter/AppFooter';
+import MyNav from './allExtensions/nav/MyNav';
+import ProtectedRoutes from './allExtensions/ProtectedRoutes';
+import './App.css';
 import About from './pages/about/About';
+import Articles from './pages/articles/Articles';
+import ArticlesById from './pages/articles/ArticlesById';
 import ContactUs from './pages/contactUs/ContactUs';
+import Home from './pages/home/Home';
 import Messages from './pages/messages/Messages';
 import MyAccount from './pages/myAccount/MyAccount';
-import MyOrder from './pages/myOrder/MyOrder';
-import MyCoupons from './pages/myCoupons/MyCoupons';
-import MyReturnOrder from './pages/myReturnOrder/MyReturnOrder';
-import MyFavorites from './pages/myFavorites/MyFavorites';
 import MyCart from './pages/myCart/MyCart';
-import Register from './pages/register/Register';
-import { useEffect, useState } from 'react';
-import ProtectedRoutes from './allExtensions/ProtectedRoutes';
+import MyCoupons from './pages/myCoupons/MyCoupons';
+import MyFavorites from './pages/myFavorites/MyFavorites';
+import MyOrder from './pages/myOrder/MyOrder';
+import MyReturnOrder from './pages/myReturnOrder/MyReturnOrder';
+import Naturalflowers from './pages/naturalflowers/Naturalflowers';
 import NoMatch from './pages/noMatch/NoMatch';
+import Perfumes from './pages/perfumes/Perfumes';
+import ProductProfile from './pages/productProfile/ProductProfile';
+import ProductsByCategory from './pages/productsByCategory/ProductsByCategory';
+import Register from './pages/register/Register';
 import Search from './pages/search/Search';
-import Cookies from 'universal-cookie';
-import { useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import AppFooter from './allExtensions/appFooter/AppFooter';
-import ArticlesById from './pages/articles/ArticlesById';
-
+import ScrollToTop from './ScrollToTop';
 
 function AppUser() {
   const cookies = new Cookies();
   const [num, setNum] = useState(true);
   const numCounter = () => {
-    setNum(!num)
-  }
+    setNum(!num);
+  };
   ////////////////////////////////////
   const { t, i18n } = useTranslation();
-  const lng = cookies.get("i18next") || "en";
+  const lng = cookies.get('i18next') || 'en';
   ///////////////////////
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   ///////////////////////
   useEffect(() => {
     window.document.dir = i18n.dir();
-  }, [dispatch, lng])
-  //////////////////// 
+  }, [dispatch, lng]);
+  ////////////////////
 
   return (
-    <div className="App">
+    <div className='App'>
       <Router>
         <MyNav num={num} />
         <ScrollToTop />
         <Routes>
-          <Route path="/*" element={<NoMatch />} />
           <Route path='/' element={<Home numCounter={numCounter} />} />
-          <Route path='/NaturalFlowers' element={<Naturalflowers numCounter={numCounter} />} />
-          <Route path='/Perfumes' element={<Perfumes numCounter={numCounter} />} />
-          <Route path='product/:id' element={<ProductProfile numCounter={numCounter} />} />
+          <Route
+            path='/NaturalFlowers'
+            element={<Naturalflowers numCounter={numCounter} />}
+          />
+          <Route
+            path='/Perfumes'
+            element={<Perfumes numCounter={numCounter} />}
+          />
+          <Route
+            path='product/:id'
+            element={<ProductProfile numCounter={numCounter} />}
+          />
           {/* ///////////// */}
           <Route path='category/:id' element={<ProductsByCategory />} />
           <Route path='/Articles' element={<Articles />} />
@@ -76,10 +83,11 @@ function AppUser() {
             <Route path='/MyCart' element={<MyCart />} />
           </Route>
           <Route path='/Register' element={<Register />} />
+          <Route path='/*' element={<NoMatch />} />
         </Routes>
         <AppFooter />
-      </Router >
-    </div >
+      </Router>
+    </div>
   );
 }
 export default AppUser;
