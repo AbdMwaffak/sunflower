@@ -30,7 +30,7 @@ const Post = (props) => {
   ////////////////////////
   const handelShare = () => {
     navigator.clipboard.writeText(
-      `https://sunflowerworld.shop/Articles/${props?.id}`
+      `https://sunflowerworld.shop/Article/${props?.id}`
     );
     toast.success('The link has been copied');
   };
