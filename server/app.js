@@ -111,7 +111,7 @@ app.get('*', (req, res) => {
   const host = req.headers.host;
   if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
     // Serve user application
-    res.sendFile(path.join(__dirname, '../user/dist/index.html'), (err) => {
+    res.sendFile(path.join(__dirname, '../user/dist'), (err) => {
       if (err) {
         res.status(500).send(err);
       }
