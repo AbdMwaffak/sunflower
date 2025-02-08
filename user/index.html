@@ -42,6 +42,22 @@
     </div>
 
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // تحميل ملف HTML
+      fetch('/google02f588524eb8d2e8.html')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then((html) => {
+          document.getElementById('header').innerHTML = html; // إضافة المحتوى إلى العنصر
+        })
+        .catch((error) => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+    </script>
 
     <script>
       var loader = document.getElementById('preloader');
