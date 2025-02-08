@@ -1,38 +1,37 @@
-import './App.css';
-import ScrollToTop from './ScrollToTop';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import {
-  BrowserRouter as Router,
   Route,
+  BrowserRouter as Router,
   Routes,
   useLocation,
 } from 'react-router';
-import Home from './pages/home/Home';
+import Cookies from 'universal-cookie';
+import AppFooter from './allExtensions/appFooter/AppFooter';
 import MyNav from './allExtensions/nav/MyNav';
-import Naturalflowers from './pages/naturalflowers/Naturalflowers';
-import ProductsByCategory from './pages/productsByCategory/ProductsByCategory';
-import Perfumes from './pages/perfumes/Perfumes';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ProductProfile from './pages/productProfile/ProductProfile';
-import Articles from './pages/articles/Articles';
+import ProtectedRoutes from './allExtensions/ProtectedRoutes';
+import './App.css';
 import About from './pages/about/About';
+import Articles from './pages/articles/Articles';
+import ArticlesById from './pages/articles/ArticlesById';
 import ContactUs from './pages/contactUs/ContactUs';
+import Home from './pages/home/Home';
 import Messages from './pages/messages/Messages';
 import MyAccount from './pages/myAccount/MyAccount';
-import MyOrder from './pages/myOrder/MyOrder';
-import MyCoupons from './pages/myCoupons/MyCoupons';
-import MyReturnOrder from './pages/myReturnOrder/MyReturnOrder';
-import MyFavorites from './pages/myFavorites/MyFavorites';
 import MyCart from './pages/myCart/MyCart';
-import Register from './pages/register/Register';
-import { useEffect, useState } from 'react';
-import ProtectedRoutes from './allExtensions/ProtectedRoutes';
+import MyCoupons from './pages/myCoupons/MyCoupons';
+import MyFavorites from './pages/myFavorites/MyFavorites';
+import MyOrder from './pages/myOrder/MyOrder';
+import MyReturnOrder from './pages/myReturnOrder/MyReturnOrder';
+import Naturalflowers from './pages/naturalflowers/Naturalflowers';
 import NoMatch from './pages/noMatch/NoMatch';
-import Search from './pages/search/Search';
-import Cookies from 'universal-cookie';
-import { useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import AppFooter from './allExtensions/appFooter/AppFooter';
-import ArticlesById from './pages/articles/ArticlesById';
+import Perfumes from './pages/perfumes/Perfumes';
+import ProductProfile from './pages/productProfile/ProductProfile';
+import ProductsByCategory from './pages/productsByCategory/ProductsByCategory';
+import Register from './pages/register/Register';
+import ScrollToTop from './ScrollToTop';
 
 function AppUser() {
   const cookies = new Cookies();
@@ -66,7 +65,6 @@ function AppUser() {
           {/* <Route path="/*" element={<NoMatch />} /> */}
           <Route path=''>
             <Route index element={<Home numCounter={numCounter} />} />
-            <Route path='*' element={<NoMatch />} />
           </Route>
           <Route path='/' element={<Home numCounter={numCounter} />} />
 
@@ -111,6 +109,7 @@ function AppUser() {
             <Route path='/MyCart' element={<MyCart />} />
           </Route>
           <Route path='/Register' element={<Register />} />
+          <Route path='*' element={<NoMatch />} />
         </Routes>
         <AppFooter />
       </Router>
