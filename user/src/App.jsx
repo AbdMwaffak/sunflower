@@ -124,7 +124,8 @@ function StaticFileCheck() {
   // If the requested URL ends with .html, prevent React Router from handling it
   if (
     location.pathname.endsWith('.html') ||
-    location.pathname.endsWith('.png')
+    location.pathname.endsWith('.png') ||
+    location.pathname.endsWith('.ico')
   ) {
     window.location.href = location.pathname;
     return null;
