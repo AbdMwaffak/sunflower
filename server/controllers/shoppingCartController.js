@@ -44,8 +44,9 @@ exports.add = catchAsync(async (req, res, next) => {
     } else return res.status(400).send("⚠You Can't Buy This Product By Points");
 
     if (addProcess) {
+      const user = await User.findById(userId);
       await User.findByIdAndUpdate(userId, {
-        $inc: { points: -priceInPoints },
+        points: user.points - priceInPoints,
       });
       return res.status(201).send('Product Added To Shopping Cart 🛒');
     }
@@ -147,8 +148,9 @@ exports.deleteFromSC = catchAsync(async (req, res, next) => {
     );
     cart.modifiedOn = new Date();
     cart = await cart.save();
+    const user = await User.findById(userId);
     await User.findByIdAndUpdate(userId, {
-      $inc: { points: +deletedProduct.price },
+      points: user.points + deletedProduct.price,
     });
     return res.status(201).send('Done');
   }
@@ -274,8 +276,9 @@ exports.emptyTheBasket = catchAsync(async (req, res, next) => {
     const cart = await ShoppingCart.findOne({ userId });
     if (cart?.pointsProducts?.length > 0) {
       for (let i = 0; i < cart.pointsProducts.length; i++) {
+        const user = await User.findById(userId);
         await User.findByIdAndUpdate(userId, {
-          $inc: { points: +cart.pointsProducts[i].price },
+          points: user.pionts + cart.pointsProducts[i].price,
         });
       }
     }

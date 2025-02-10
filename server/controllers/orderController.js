@@ -15,18 +15,22 @@ exports.addOrder = catchAsync(async (req, res, next) => {
   if (!order) return next(new AppError('something went wrong', 500));
 
   let pointsEarned = 0;
-  for (let i = 0; i < order?.cart?.moneyProducts?.length; i++) {
+  for (let i = 0; i < order?.cart?.products.moneyProducts?.length; i++) {
     const curProduct = await Product.findById(
-      order?.cart?.moneyProducts[i]?.product
+      order?.cart?.products?.moneyProducts[i]?.product?._id
     );
-    const index = curProduct?.sizes?.map((item) => item.size).indexOf(size);
+    const index = curProduct?.sizes
+      ?.map((item) => item.size)
+      .indexOf(order?.cart?.products?.moneyProducts[i]?.size);
+
     pointsEarned += curProduct?.sizes[index]?.pointsEarned;
   }
 
+  const user = await User.findById(req.user.id);
   await User.findByIdAndUpdate(req.user.id, {
-    $inc: { points: +pointsEarned },
-    $inc: { totalPoints: +pointsEarned },
-    $inc: { ordersCount: +1 },
+    points: user.points + pointsEarned,
+    totalPoints: user.totalPoints + pointsEarned,
+    ordersCount: user.ordersCount + 1,
   });
   await NaturalFlowerOrder.findOneAndDelete({
     userId: req.user.id,
