@@ -15,8 +15,10 @@ exports.addOrder = catchAsync(async (req, res, next) => {
   if (!order) return next(new AppError('something went wrong', 500));
 
   let pointsEarned = 0;
-  for (let i = 0; i < order.cart?.moneyProducts?.length; i++) {
-    const curProduct = await Product.findById(order.cart?.moneyProducts[i]?.id);
+  for (let i = 0; i < order?.cart?.moneyProducts?.length; i++) {
+    const curProduct = await Product.findById(
+      order?.cart?.moneyProducts[i]?.product
+    );
     const index = curProduct?.sizes?.map((item) => item.size).indexOf(size);
     pointsEarned += curProduct?.sizes[index]?.pointsEarned;
   }
