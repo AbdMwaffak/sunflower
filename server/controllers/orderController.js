@@ -8,14 +8,22 @@ const NaturalFlowerOrder = require('../models/naturalFlowerOrderModel');
 const perfumeOrder = require('../models/perfumeOrderModel');
 const { broadcastSSE } = require('./sseController'); // Import SSE broadcasting function
 const User = require('../models/userModel');
+const Product = require('../models/productModel');
 
 exports.addOrder = catchAsync(async (req, res, next) => {
   const order = await Order.create({ ...req.body });
   if (!order) return next(new AppError('something went wrong', 500));
-  const pointsEarned = order?.cart?.pointsEarned;
+
+  let pointsEarned = 0;
+  for (let i = 0; i < order.cart?.moneyProducts?.length; i++) {
+    const curProduct = await Product.findById(order.cart?.moneyProducts[i]?.id);
+    const index = curProduct?.sizes?.map((item) => item.size).indexOf(size);
+    pointsEarned += curProduct?.sizes[index]?.pointsEarned;
+  }
+
   await User.findByIdAndUpdate(req.user.id, {
-    $inc: { totalPoints: +pointsEarned },
     $inc: { points: +pointsEarned },
+    $inc: { totalPoints: +pointsEarned },
     $inc: { ordersCount: +1 },
   });
   await NaturalFlowerOrder.findOneAndDelete({

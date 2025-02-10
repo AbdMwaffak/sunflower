@@ -17,7 +17,7 @@ const sizes = new mongoose.Schema({
   },
   pointsEarned: {
     type: Number,
-    // required : true
+    default: 0,
   },
 });
 
