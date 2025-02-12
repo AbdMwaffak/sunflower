@@ -125,7 +125,8 @@ function StaticFileCheck() {
   if (
     location.pathname.endsWith('.html') ||
     location.pathname.endsWith('.png') ||
-    location.pathname.endsWith('.ico')
+    location.pathname.endsWith('.ico') ||
+    location.pathname.endsWith('.xml')
   ) {
     window.location.href = location.pathname;
     return null;
