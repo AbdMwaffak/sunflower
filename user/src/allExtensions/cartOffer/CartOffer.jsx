@@ -21,11 +21,11 @@ const CartOffer = (props) => {
     /////////////////////////
     const handelDelete = () => {
         const value = {
-            id: props?.deleteId
+            id: props?.deleteid
         }
         dispatch(removeOFromCart(value))
         setTimeout(() => {
-            props.handelReload()
+            props.handelreload()
         }, 1000);
     }
     const handelChangeQuantity = (e) => {
@@ -35,7 +35,7 @@ const CartOffer = (props) => {
         }
         dispatch(addOfferToCart(value))
         setTimeout(() => {
-            props.handelReload()
+            props.handelreload()
         }, 1000);
     }
     ////////////////////////////////////
@@ -48,10 +48,7 @@ const CartOffer = (props) => {
                 </div>
                 <div className='cartBroductName'>
                     <div className='cartName'>  {props?.name} </div>
-                    {/* {props?.paymentMethod == "money" && */}
                     <div className=''>  {t('cart.price')}  {props?.price}.  {t('public.sar')}</div>
-                    {/* } */}
-                    {/* {props?.paymentMethod == "points" && <div className=''> price : {props?.price}.point</div>} */}
                     <div className='offerDiv' >    {t('cart.offer')}   </div>
                 </div>
             </div>

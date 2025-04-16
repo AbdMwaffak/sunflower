@@ -16,7 +16,6 @@ export const getBand = createAsyncThunk('Band/getBand', async () => {
   const response = await axios.get(`/bands`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  // console.log(response.data)
   return response.data;
 });
 
@@ -33,13 +32,10 @@ const getBandSlice = createSlice({
     });
     builder.addCase(getBand.fulfilled, (state, action) => {
       state.data = action.payload;
-      // console.log(state.data)
     });
     builder.addCase(getBand.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
-      // console.log(state.error);
     });
   },
 });

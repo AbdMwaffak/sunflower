@@ -8,37 +8,42 @@ import { removeFromCart } from '../../RTK/shoppingCart/removeFromCartSlice';
 import { useTranslation } from 'react-i18next';
 
 const CartBroduct = (props) => {
+    const [sms, setSms] = useState(false)
     /////////////////////////
     const dispatch = useDispatch()
     /////////////////////////
     const handelDelete = () => {
         const value = {
-            id: props?.deleteId,
-            paymentMethod: props?.paymentMethod
+            id: props?.deleteid,
+            paymentMethod: props?.paymentmethod
         }
         dispatch(removeFromCart(value))
         setTimeout(() => {
-            props.handelReload()
+            props.handelreload()
         }, 1000);
 
     }
     const handelChangeQuantity = (e) => {
         const value = {
             product: props?.id,
-            size: props?.size,
-            color: props?.color,
             quantity: e,
-            paymentMethod: props?.paymentMethod
+            paymentMethod: props?.paymentmethod
         }
         dispatch(addToCart(value))
         setTimeout(() => {
-            props.handelReload()
+            props.handelreload()
         }, 1000);
     }
     ////////////////////////////////////
     const { t } = useTranslation();
     return (
         <div className='cartBroduct'>
+            {sms &&
+                <div className='mass1' onClick={() => setSms(false)}>
+                    <div className='mass2'>
+                        {props?.message}
+                    </div>
+                </div >}
             <div className='div70'>
                 <div className='cartBroductImage'>
                     <Carousel data-bs-theme="dark" className='cartImgs'>
@@ -55,16 +60,22 @@ const CartBroduct = (props) => {
                 </div>
                 <div className='cartBroductName'>
                     <div className='cartName'>  {props?.name} </div>
-                    {props?.paymentMethod == "money" && <div className=''>  {t('cart.price')}  {props?.price}.{t('public.sar')}</div>}
-                    {props?.paymentMethod == "points" && <div className=''> {t('cart.price')}  {props?.price}.{t('public.point')}</div>}
-                    {t('cart.size')} {props?.size}
-                    <div className='cartColor1' >   {t('cart.color')} <div className='cartColorSquer' style={{ backgroundColor: props?.color }}> </div></div>
+                    {
+                        props.message !== "" &&
+                        <svg className='ms'
+                            onClick={() => setSms(true)}
+                            xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 26 26" ><path fill="currentColor" d="M23 4H3C1.3 4 0 5.3 0 7v12c0 1.7 1.3 3 3 3h20c1.7 0 3-1.3 3-3V7c0-1.7-1.3-3-3-3m.8 15.4L16 13.8l-3 2l-3.1-2l-7.7 5.6l6.3-6.5l-7.7-6L13 13.5L25.1 7l-7.6 6z"></path></svg>}
+
+                    {props?.paymentmethod == "money" && <div className=''>  {t('cart.price')}  {props?.price}.{t('public.sar')}</div>}
+                    {props?.paymentmethod == "points" && <div className=''> {t('cart.price')}  {props?.price}.{t('public.point')}</div>}
+                    {/* {t('cart.size')} {props?.size} */}
+                    {/* <div className='cartColor1' >   {t('cart.color')} <div className='cartColorSquer' style={{ backgroundColor: props?.color }}> </div></div> */}
                 </div>
             </div>
             <div className='div30'>
                 <div className='cartBroductTotal'>
-                    {props?.paymentMethod == "money" && <div className='qq'>  {props?.quantity * props?.price}.{t('public.sar')}</div>}
-                    {props?.paymentMethod == "points" && <div className='qq'> {props?.quantity * props?.price}.{t('public.point')}</div>}
+                    {props?.paymentmethod == "money" && <div className='qq'>  {props?.quantity * props?.price}.{t('public.sar')}</div>}
+                    {props?.paymentmethod == "points" && <div className='qq'> {props?.quantity * props?.price}.{t('public.point')}</div>}
                     <div className='cartBroductQuantity'>
                         <div className='green'
                             onClick={() => handelChangeQuantity(props?.quantity + 1)}

@@ -18,7 +18,6 @@ export const getBouquetById = createAsyncThunk(
     const response = await axios.get(`/naturalFlowers/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );
@@ -36,13 +35,10 @@ const getBouquetByIdSlice = createSlice({
     });
     builder.addCase(getBouquetById.fulfilled, (state, action) => {
       state.data = action.payload;
-      // console.log(state.data)
     });
     builder.addCase(getBouquetById.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
-      // console.log(state.error);
     });
   },
 });

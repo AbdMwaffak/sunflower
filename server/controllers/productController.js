@@ -7,12 +7,12 @@ const User = require('../models/userModel');
 exports.add = catchAsync(async (req, res, next) => {
   const category = await Category.findById(req.body.category);
   const images = req.files.map((img) => img.filename);
-  const colors = JSON.parse(req.body.colors);
-  const sizes = JSON.parse(req.body.sizes);
+  // const colors = JSON.parse(req.body.colors);
+  // const sizes = JSON.parse(req.body.sizes);
   const product = await Product.create({
     ...req.body,
-    colors,
-    sizes,
+    // colors,
+    // sizes,
     categoryName: category.name.toLowerCase(),
     images,
   });
@@ -53,9 +53,10 @@ exports.getById = catchAsync(async (req, res, next) => {
 exports.update = catchAsync(async (req, res, next) => {
   const { id } = req.params;
   const product = await Product.findById(id);
-  let { images, colors, sizes } = product;
-  colors = JSON.parse(req.body.colors || null) ?? colors;
-  sizes = JSON.parse(req.body.sizes || null) ?? sizes;
+  // let { images, colors, sizes } = product;
+  let { images } = product;
+  // colors = JSON.parse(req.body.colors || null) ?? colors;
+  // sizes = JSON.parse(req.body.sizes || null) ?? sizes;
   // colors = req.body.colors ?? colors ;
   // sizes = req.body.sizes ?? sizes ;+
 
@@ -71,8 +72,9 @@ exports.update = catchAsync(async (req, res, next) => {
       images,
       description: req.body.description,
       descriptionAr: req.body.descriptionAr,
-      colors,
-      sizes,
+      pointsEarned: req.body.pointsEarned,
+      priceInPoints: req.body.priceInPoints,
+      isAvailableToSellInPoints: req.body.isAvailableToSellInPoints,
     },
     {
       new: true,

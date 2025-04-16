@@ -18,7 +18,6 @@ export const deleteImageFromSlider = createAsyncThunk(
     const response = await axios.delete(`/settings/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log(response.data);
     return response.data;
   }
 );

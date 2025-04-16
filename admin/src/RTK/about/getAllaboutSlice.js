@@ -16,7 +16,6 @@ export const getAllabout = createAsyncThunk('about/getAllabout', async () => {
   const response = await axios.get(`/aboutus`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  // console.log(response.data)
   return response.data;
 });
 
@@ -33,13 +32,10 @@ const getAllaboutSlice = createSlice({
     });
     builder.addCase(getAllabout.fulfilled, (state, action) => {
       state.data = action.payload;
-      // console.log(state.data)
     });
     builder.addCase(getAllabout.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
-      // console.log(state.error);
     });
   },
 });

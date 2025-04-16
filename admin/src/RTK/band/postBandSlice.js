@@ -17,7 +17,6 @@ export const postBand = createAsyncThunk('Band/postBand', async (reqobj) => {
   const response = await axios.post(`/bands`, reqobj, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  // console.log(response.data)
   return response.data;
 });
 

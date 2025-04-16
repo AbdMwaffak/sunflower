@@ -16,7 +16,6 @@ export const deleteBand = createAsyncThunk('Band/deleteBand', async (id) => {
   const response = await axios.delete(`/bands/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  // console.log(response.data)
   return response.data;
 });
 

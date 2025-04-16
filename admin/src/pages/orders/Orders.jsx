@@ -7,6 +7,7 @@ import Cookies from 'universal-cookie';
 import { getOrders } from '../../RTK/orders/getOrdersSlice';
 import { Toaster } from 'react-hot-toast';
 
+
 const Orders = (props) => {
     //////////////////////////////
     const cookies = new Cookies();
@@ -44,7 +45,7 @@ const Orders = (props) => {
     return (
         <>
             <Toaster />
-            <div className='myOrder'>
+ <div className='myOrder'>
                 <div className='title'>
                     {t('orders.title')}
                 </div>

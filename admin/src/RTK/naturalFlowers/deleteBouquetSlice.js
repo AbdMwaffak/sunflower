@@ -20,7 +20,6 @@ export const deleteBouquet = createAsyncThunk(
       { pass: reqobj?.pass },
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    // console.log(response.data)
     return response.data;
   }
 );

@@ -18,7 +18,6 @@ export const deleteChocolate = createAsyncThunk(
     const response = await axios.delete(`/chocolate/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

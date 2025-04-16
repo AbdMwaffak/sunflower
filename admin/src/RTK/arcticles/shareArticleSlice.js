@@ -18,7 +18,6 @@ export const shareArticle = createAsyncThunk(
     const response = await axios.patch(`/articles/share/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );
@@ -37,13 +36,10 @@ const shareArticleSlice = createSlice({
     builder.addCase(shareArticle.fulfilled, (state, action) => {
       state.data = action.payload;
       state.status = 'successful';
-      console.log(state.status);
     });
     builder.addCase(shareArticle.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
-      // console.log(state.error);
     });
   },
 });

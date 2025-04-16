@@ -16,7 +16,6 @@ export const getBouquetById = createAsyncThunk(
     const response = await axios.get(`/naturalFlowers/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log(response.data);
     return response.data;
   }
 );

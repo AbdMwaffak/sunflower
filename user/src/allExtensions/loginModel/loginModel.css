@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: space-evenly;
+    /* overflow: hidden; */
 }
 
 .formBody {
@@ -95,4 +96,24 @@
     color: red;
     font-size: 10px;
     opacity: 70%;
+}
+
+.err {
+    background-color: rgba(255, 0, 0, 0.126);
+    height: 50px;
+    width: 90%;
+    margin: 0 5%;
+    padding: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.loading {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 900;
+
 }

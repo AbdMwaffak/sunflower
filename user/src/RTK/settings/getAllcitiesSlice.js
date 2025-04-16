@@ -39,7 +39,6 @@ const getAllcitiesSlice = createSlice({
     builder.addCase(getAllcities.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
     });
   },
 });

@@ -19,7 +19,6 @@ export const postNewCategory = createAsyncThunk(
     const response = await axios.post(`/category`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

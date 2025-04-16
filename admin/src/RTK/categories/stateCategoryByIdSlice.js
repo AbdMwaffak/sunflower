@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Cookies from 'universal-cookie';
+import Api from '../../allExtensions/API';
 
 /////////////
 const cookies = new Cookies();
@@ -20,7 +21,6 @@ export const stateCategoryById = createAsyncThunk(
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    // console.log(response.data)
     return response.data;
   }
 );

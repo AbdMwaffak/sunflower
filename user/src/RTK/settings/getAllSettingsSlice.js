@@ -40,7 +40,6 @@ const getAllSettingsSlice = createSlice({
     builder.addCase(getAllSettings.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
     });
   },
 });

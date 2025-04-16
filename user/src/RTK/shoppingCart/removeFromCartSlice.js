@@ -19,7 +19,6 @@ export const removeFromCart = createAsyncThunk(
       { paymentMethod: reqobj?.paymentMethod },
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    // console.log(response.data)
     return response.data;
   }
 );

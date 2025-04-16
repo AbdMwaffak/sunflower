@@ -1,0 +1,90 @@
+/* التنسيقات العامة */
+.otp-container {
+    width:94%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    direction: rtl;
+}
+
+.otp-title {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.otp-subtitle {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.otp-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* تنسيقات حقول الإدخال */
+.otp-inputs-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-direction: row-reverse;
+}
+
+.otp-input {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.otp-input.error {
+    border-color: #f44336;
+}
+
+/* تنسيق زر التحقق */
+.otp-button {
+    padding: 12px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.otp-button:hover {
+    background-color: #45a049;
+}
+
+/* تنسيقات رسالة الخطأ */
+.otp-error-text {
+    color: #f44336;
+    margin: 0 0 15px 0;
+}
+
+/* تنسيقات رابط إعادة الإرسال */
+.otp-resend-text {
+    color: #666;
+    margin-top: 30px;
+}
+
+.otp-resend-link {
+    color: #4CAF50;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.otp-resend-link:hover {
+    text-decoration: underline;
+}
+
+.otp-timer-text {
+    color: #999;
+}

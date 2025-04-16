@@ -5,8 +5,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllMessage } from '../../RTK/message/getAllMessageSlice';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-
+import { Form } from 'react-bootstrap';
+import Cookies from 'universal-cookie';
+import { getMe } from '../../RTK/Auth/getMeSlice';
+import { sendMessage } from '../../RTK/message/sendMessageSlice';
 const Messages = () => {
+    const cookies = new Cookies();
+    let lng = ''
+    let token = ''
+    if (cookies.get('token') !== undefined || null) {
+        token = true
+    } else token = false
+    if (cookies.get('i18next') === "ar") {
+        lng = "ar"
+    } else lng = "en"
+    //////////////////////////////
     const allMessage = useSelector(state => state.getAllMessage)?.data
     ////////////////////
     const [reload, setReload] = useState(true)
@@ -17,7 +30,30 @@ const Messages = () => {
         setReload(!reload)
     }
     /////////////////////////////
+    const me = useSelector(state => state.getMe)?.data
+    // console.log(me)
+    ///////////////////////////
+    const [loveMessage, setLoveMessage] = useState('')
+    const [validated, setValidated] = useState(false);
+    ////////////////////////////
+
+    const handelSendMessage = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        setValidated(true);
+        const value = {
+            message: loveMessage
+        }
+        dispatch(sendMessage(value))
+    }
+    ///////////////////////////
     useEffect(() => {
+        dispatch(getMe())
         dispatch(getAllMessage())
     }, [dispatch, reload])
     ///////////////////
@@ -34,6 +70,24 @@ const Messages = () => {
             <div className='bage'>
                 <div className='title'>
                     {t("messages.title")}
+                </div>
+                <div className='myAC-top2'>
+                    <span className='vv1 ' > {t('me.message')}</span>
+                    <hr className='tapp' />
+                    <div className='cardContener'>
+                        <Form className='input66' noValidate validated={validated}
+                            onSubmit={handelSendMessage}
+                        >
+                            <Form.Control className='input666' as="textarea" aria-label="With textarea"
+                                onChange={(e) => setLoveMessage(e.target.value)}
+                                placeholder={t('me.wirteMessage')}
+                            />
+                            <button className='msButton' style={{ rotate: lng == "ar" ? "180deg" : "0deg" }}    >
+                                {/* {t('me.sendMessage')} */}
+                                <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 16 16" ><path fill="currentColor" d="M1.177 1.119a.5.5 0 0 1 .547-.066l13 6.5a.5.5 0 0 1 0 .894l-13 6.5a.5.5 0 0 1-.702-.594L2.977 8L1.022 1.647a.5.5 0 0 1 .155-.528M3.869 8.5l-1.547 5.03L13.382 8L2.322 2.47L3.869 7.5H9.5a.5.5 0 0 1 0 1z"></path></svg>
+                            </button>
+                        </Form>
+                    </div>
                 </div>
                 <div className='messagesContener'>
                     {allMessage?.length == 0 &&

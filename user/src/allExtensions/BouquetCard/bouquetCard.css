@@ -1,0 +1,140 @@
+.editBouquet {
+    width: 250px;
+    height: 375px;
+    /* width: 207px;
+  height: 300px; */
+    /* width: 300px;
+    max-width: 600px; */
+    background-color: var(--component-Color);
+    color: var(--component-textColor);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 16px;
+    padding: 5px;
+    box-shadow: 4px 5px 12px black;
+    /* box-shadow: var(--component-shadow); */
+    transition: all 0.1s linear;
+    gap: 5px;
+}
+
+.editBouquet:hover {
+    scale: 1.05;
+    box-shadow: 4px 5px 20px black;
+}
+
+.bouquetHader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.hader2,
+.hader1 {
+    width: 50%;
+    background-color: var(--title-Color);
+    color: var(--title-textColor);
+    border-radius: 5px;
+    font-size: 10px;
+    padding: 5px;
+
+}
+
+.imgLogo {
+    width: 40px;
+}
+
+/* .bouquetBody {
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: first baseline;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+} */
+
+/* .text {
+    width: 100%;
+    text-align: left;
+} */
+
+.bouquetImage {
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: contents;
+
+}
+
+hr {
+    color: white;
+    width: 100%;
+}
+
+.media {
+    width: 100%;
+    background-color: var(--primary-yellow);
+    display: contents;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bouquetTail {
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.imgbouquet {
+    text-decoration: none;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 11px;
+}
+
+.bouquetDescription {
+    /* position: absolute; */
+    width: 98%;
+    height: 125px;
+    /* background-color: rgba(0, 0, 0, 0.49); */
+    /* bottom: -130px; */
+    /* transition: all 0.5s linear; */
+    color: var(--component-textColor);
+    font-size: 11px;
+}
+
+/* .bouquetBody:hover .bouquetDescription {
+    bottom: 3px;
+    border-radius: 8px 8px 0px 0px;
+
+} */
+
+.cardButton {
+    width: 100%;
+    height: 40px;
+    background-color: var(--primary-yellow);
+    border: none;
+    color: #202126;
+    border-radius: 11px;
+    transition: all 0.5ns ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardButton:hover {
+    border: 4px solid white;
+    box-shadow: 3px 4px 16px 6px var(--primary-yellow);
+}

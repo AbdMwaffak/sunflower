@@ -20,7 +20,6 @@ export const deleteArticelById = createAsyncThunk(
       { pass: reqobj.pass },
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    // console.log(response)
     return response.data;
   }
 );

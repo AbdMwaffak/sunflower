@@ -1,5 +1,5 @@
 .productCard {
-    width: 250px;
+    /* width: 250px;
     height: 375px;
     background-color: var(--component-Color);
     display: flex;
@@ -9,15 +9,25 @@
     padding: 10px;
     justify-content: space-between;
     transition: all 0.1s linear;
-    /* box-shadow: 4px 5px 12px black; */
-    box-shadow: var(--component-shadow);
-}
+    box-shadow: var(--component-shadow); */
 
-.productCard:hover {
-    scale: 1.05;
-    box-shadow: 4px 5px 20px black;
+    width: 250px;
+    height: 375px;
+    background-color: var(--component-Color);
+    color: var(--component-textColor);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 16px;
+    padding: 5px;
+    box-shadow: 4px 5px 12px black;
+    /* box-shadow: var(--component-shadow); */
+    transition: all 0.1s linear;
+    gap: 5px;
 }
-
 
 .imageCard {
     width: 100%;
@@ -47,6 +57,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .title2 {
@@ -55,29 +66,46 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    gap: 10px;
 }
 
 .pName {
-    font-size: var(--text-size);
-    color: var(--primary-yellow);
+    /* color: var(--component-textColor); */
+    font-size: 12px;
+    font-weight: 800;
 }
 
 .pDate {
-    font-size: 12px;
-    color: var(--component-textColor);
+    font-size: 10px;
+    color: var(--title-textColor);
+    border-radius: 8px;
+    background-color: var(--title-Color);
+    width: 50%;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* color: var(--component-textColor); */
 }
 
-.pPrice {
+.cardDescription {
+    width: 98%;
+    min-height: 37px;
+    color: var(--component-textColor);
+    font-size: 11px;
+}
+
+/* .pPrice {
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    color: #ffffff;
+    color: var(--component-textColor);
     font-size: 12px;
-}
+} */
 
-.add {
+/* .add {
     width: 100%;
     height: 40px;
     background-color: #F1C92F;
@@ -93,16 +121,15 @@
     transition: all 0.1s linear;
     font-weight: bold;
     font-size: 22px;
-}
+} */
 
-.add:hover {
+/* .add:hover {
     box-shadow: 0px 0px 13px #F1C92F;
-}
+} */
 
 .producButten {
     position: absolute;
     width: 100%;
-    height: 50px;
     bottom: -50px;
     color: aliceblue;
     display: flex;
@@ -110,6 +137,7 @@
     align-items: center;
     justify-content: space-between;
     transition: all 0.1s linear;
+    padding: 0 5px;
 }
 
 .favoret {
@@ -126,8 +154,12 @@
     margin-right: 3px;
 }
 
+.favoret>SVG:active {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.5);
+}
+
 .favoretIcon {
-    /* width: 40%; */
     width: 27px;
 }
 
@@ -146,7 +178,6 @@
 }
 
 .shareIcon {
-    /* width: 30%; */
     width: 20px;
 }
 
@@ -163,6 +194,11 @@
     justify-content: space-around;
     border-radius: 8px;
     transition: all 0.1s linear;
+}
+
+.productCard:hover {
+    scale: 1.05;
+    box-shadow: 4px 4px 20px black;
 }
 
 .productCard:hover .producButten {
@@ -192,13 +228,48 @@
     padding: 1px 3px;
     font-size: 12px;
     color: var(--primary-dark);
-
 }
-
 
 .colorCard {
     width: 10px;
     aspect-ratio: 1/1;
     border-radius: 100%;
+}
 
+.cardTail {
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cardImg {
+    text-decoration: none;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 11px;
+}
+
+.cardButton {
+    width: 100%;
+    height: 40px;
+    background-color: var(--primary-yellow);
+    border: none;
+    color: #202126;
+    border-radius: 11px;
+    transition: all 0.5ns ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardButton:hover {
+    border: 4px solid white;
+    box-shadow: 3px 4px 16px 6px var(--primary-yellow);
+}
+
+.bouquetTail {
+    width: 100%
 }

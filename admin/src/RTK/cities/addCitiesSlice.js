@@ -18,7 +18,6 @@ export const addCities = createAsyncThunk(
     const response = await axios.post(`/cities`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

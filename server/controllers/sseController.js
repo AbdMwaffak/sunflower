@@ -19,6 +19,10 @@ exports.sseHandler = (req, res) => {
   // Send a connection acknowledgment
   res.write(`data: ${JSON.stringify({ message: 'Connected to SSE' })}\n\n`);
 
+  const pingInterval = setInterval(() => {
+    res.write(`data: ${JSON.stringify({ message: 'ping' })}\n\n`);
+  }, 15000); // 15 seconds
+
   // Cleanup on client disconnect
   req.on('close', () => {
     clearInterval(pingInterval); // Clear the ping interval on disconnect

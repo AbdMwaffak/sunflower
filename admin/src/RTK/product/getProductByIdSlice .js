@@ -18,7 +18,6 @@ export const getProductById = createAsyncThunk(
     const response = await axios.get(`/products/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );
@@ -36,13 +35,10 @@ const getProductByIdSlice = createSlice({
     });
     builder.addCase(getProductById.fulfilled, (state, action) => {
       state.data = action.payload;
-      // console.log(state.data)
     });
     builder.addCase(getProductById.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
-      // console.log(state.error);
     });
   },
 });

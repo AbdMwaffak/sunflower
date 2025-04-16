@@ -18,7 +18,6 @@ export const deleteCityById = createAsyncThunk(
     const response = await axios.delete(`/cities/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

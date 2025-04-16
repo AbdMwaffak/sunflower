@@ -16,13 +16,11 @@ if (cookies.get('adminToken') !== undefined || null) {
 export const patchVariants = createAsyncThunk(
   'perfume/patchVariants',
   async (value) => {
-    console.log(value.available);
     const response = await axios.patch(
       `/perfume/updateVariants/${value.id}`,
       { available: value.available },
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    // console.log(response.data)
     return response.data;
   }
 );

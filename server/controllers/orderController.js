@@ -11,19 +11,15 @@ const User = require('../models/userModel');
 const Product = require('../models/productModel');
 
 exports.addOrder = catchAsync(async (req, res, next) => {
+  console.log('BODY : ', req.body);
   const order = await Order.create({ ...req.body });
   if (!order) return next(new AppError('something went wrong', 500));
 
   let pointsEarned = 0;
+  console.log(order.cart.products.moneyProducts);
   for (let i = 0; i < order?.cart?.products.moneyProducts?.length; i++) {
-    const curProduct = await Product.findById(
-      order?.cart?.products?.moneyProducts[i]?.product?._id
-    );
-    const index = curProduct?.sizes
-      ?.map((item) => item.size)
-      .indexOf(order?.cart?.products?.moneyProducts[i]?.size);
-
-    pointsEarned += curProduct?.sizes[index]?.pointsEarned;
+    pointsEarned +=
+      order?.cart?.products?.moneyProducts[i]?.product?.pointsEarned;
   }
 
   const user = await User.findById(req.user.id);

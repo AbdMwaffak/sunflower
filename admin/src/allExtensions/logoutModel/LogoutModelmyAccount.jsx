@@ -14,8 +14,8 @@ function LogoutModelmyAccount() {
     ////////////////////////
     const handleLogout = () => {
         setShow(false);
-        cookies.remove('dealerId')
-        cookies.remove('token')
+        cookies.remove('adminId')
+        cookies.remove('adminToken')
         window.location.pathname = '/'
     }
     ////////////////////////

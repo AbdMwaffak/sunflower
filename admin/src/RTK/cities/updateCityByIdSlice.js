@@ -16,11 +16,9 @@ if (cookies.get('adminToken') !== undefined || null) {
 export const updateCityById = createAsyncThunk(
   'cities/updateCityById',
   async (value) => {
-    console.log(value);
     const response = await axios.patch(`/cities/${value?.id}`, value?.reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );
@@ -40,7 +38,6 @@ const updateCityByIdSlice = createSlice({
       state.data = action.payload;
       state.status = 'successful';
       state.data = action.payload;
-      console.log(action.payload);
       toast.success(JSON.stringify(action.payload));
     });
     builder.addCase(updateCityById.rejected, (state, action) => {

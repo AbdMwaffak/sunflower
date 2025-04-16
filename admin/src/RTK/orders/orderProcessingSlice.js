@@ -18,7 +18,6 @@ export const orderProcessing = createAsyncThunk(
       { orderStatus: 'delivered' },
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    // console.log(response.data)
     return response.data;
   }
 );

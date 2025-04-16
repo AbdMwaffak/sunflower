@@ -43,6 +43,7 @@ import getAllcitiesSlice from './settings/getAllcitiesSlice';
 import postOrderSlice from './shoppingCart/postOrderSlice';
 import getOrdersSlice from './shoppingCart/getOrdersSlice';
 import patchMeSlice from './Auth/patchMeSlice';
+import  verifyingSlice  from './Auth/verifyingSlice';
 
 
 
@@ -51,6 +52,7 @@ export const store = configureStore({
     reducer: {
         postLogin: postLoginSlice,
         postRegister: postRegisterSlice,
+        verifying:verifyingSlice,
         getMe: getMeSlice,
         patch: patchMeSlice,
 

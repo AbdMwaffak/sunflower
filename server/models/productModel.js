@@ -67,7 +67,6 @@ const productSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
-
   isActive: {
     type: Boolean,
     default: true,
@@ -75,6 +74,18 @@ const productSchema = new mongoose.Schema({
   popularity: {
     type: Number,
     default: 0,
+  },
+  priceInPoints: {
+    type: Number,
+    default: 0,
+  },
+  pointsEarned: {
+    type: Number,
+    default: 0,
+  },
+  isAvailableToSellInPoints: {
+    type: Boolean,
+    default: false,
   },
 });
 

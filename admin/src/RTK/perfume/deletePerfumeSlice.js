@@ -18,7 +18,6 @@ export const deletePerfume = createAsyncThunk(
     const response = await axios.post(`/perfume`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

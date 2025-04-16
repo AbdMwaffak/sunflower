@@ -14,12 +14,9 @@ import { deletePaper } from '../../RTK/paper/deletePaperSlice';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
-import { getCategoryById } from '../../RTK/categories/getCategoryByIdSlice';
-import { useParams } from 'react-router-dom';
-import { stateCategoryById } from '../../RTK/categories/stateCategoryByIdSlice';
 
 const MyNaturalFlower = () => {
-    //////////////////////////////
+    //////////////////////////////  
     const cookies = new Cookies();
     let lng = ''
     let token = ''
@@ -29,9 +26,6 @@ const MyNaturalFlower = () => {
     if (cookies.get('i18next') === "ar") {
         lng = "ar"
     } else lng = "en"
-    //////////////////////////////
-    const id = useParams().NaturalFlowerId
-    const categories = useSelector(state => state.getCategoryById)?.data
     //////////////////////////////
     const allBouquets = useSelector(state => state.getAllBouquets)?.data
     const allPapers = useSelector(state => state.getPaper)?.data
@@ -145,19 +139,11 @@ const MyNaturalFlower = () => {
         }, 1000);
     }
     ///////////////////////////////
-       const handleState = () => {
-                dispatch(stateCategoryById(id))
-                setTimeout(() => {
-                    setReload(!reload)
-                }, 1000);
-            }
-        ///////////////////////////
     useEffect(() => {
         dispatch(getAllBouquets())
-         dispatch(getCategoryById(id))
         dispatch(getBand())
         dispatch(getPaper())
-    }, [dispatch, reload , id])
+    }, [dispatch, reload])
     ///////////////////////////////
     useEffect(
         function () {
@@ -174,11 +160,10 @@ const MyNaturalFlower = () => {
                     {t('flower.title')}
                 </div>
                 <div className='editeContener'>
-                            <button style={{ width: "100%", margin: "0px" }} type='submit' className='formButton' onClick={handleState}> {categories?.isActive ? `${t('public.disable')}` : `${t('public.enable')}`}  </button>
-                            <hr className='tapp'/>
                     <div className='newNaturalFlower'>
-
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className='addNaturalFlower'>
+                            {/* <button style={{ width: "100%", margin: "0px" }} type='submit' className='formButton' onClick={handleState}> {categories?.isActive ? `${t('public.disable')}` : `${t('public.enable')}`}  </button> */}
+                            <hr className='tapp' />
                             <Form.Group className="mb-3" controlId="validationCustom01">
                                 <Form.Label>  {t('flower.AddBouquetImage')} </Form.Label>
                                 <Form.Control

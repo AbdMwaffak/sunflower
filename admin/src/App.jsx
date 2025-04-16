@@ -1,17 +1,13 @@
 import './App.css';
 import ScrollToTop from './ScrollToTop';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Home from './pages/home/Home'
 import MyCategory from './pages/myCategory/MyCategory';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/login/Login'
 import EditeCategory from './pages/editeCategory/EditeCategory';
 import MyArticles from './pages/myArticles/MyArticles';
 import EditProduct from './pages/editProduct/EditProduct';
-import MyNaturalFlower from './pages/myNaturalFlower/MyNaturalFlower';
 import EditMyArticles from './pages/editMyArticles/EditMyArticles';
-import EditMyNaturalFlower from './pages/editMyNaturalFlower/EditMyNaturalFlower';
-import Chocolate from './pages/chocolate/Chocolate';
 import MyPerfume from './pages/myPerfume/MyPerfume';
 import MyNav from './allExtensions/nav/MyNav';
 import { useEffect, useState } from 'react';
@@ -30,6 +26,7 @@ import Orders from './pages/orders/Orders';
 import { useTranslation } from 'react-i18next';
 import MyAccount from './pages/myAccount/MyAccount';
 import AppFooter from './allExtensions/appFooter/AppFooter';
+// import InvoicePage from './pages/invoicePage/InvoicePage';
 
 
 
@@ -80,16 +77,12 @@ function App() {
                 <Route path="/*" element={<NoMatch />} />
                 <Route path='/' element={<Login />} />
                 <Route element={<ProtectedRoutes />}>
-                  <Route path='/Homee' element={<Home />} />
                   <Route path='/MyCategory' element={<MyCategory />} />
                   <Route path='/EditeCategory/:CategortyId' element={<EditeCategory />} />
                   <Route path='/EditProduct/:productId' element={<EditProduct />} />
                   <Route path='/MyArticles' element={<MyArticles />} />
                   <Route path='/EditMyArticles/:ArticalId' element={<EditMyArticles />} />
-                  <Route path='/MyNaturalFlower/:NaturalFlowerId' element={<MyNaturalFlower />} />
-                  <Route path='/EditMyNaturalFlower/:NaturalFlowerId' element={<EditMyNaturalFlower />} />
                   <Route path='/MyPerfume/:MyPerfumeId' element={<MyPerfume />} />
-                  <Route path='/Chocolate' element={<Chocolate />} />
                   <Route path='/Messages' element={<Messages />} />
                   <Route path='/About' element={<About />} />
                   <Route path='/MyOffers' element={<MyOffers />} />
@@ -97,9 +90,10 @@ function App() {
                   <Route path='/Setting' element={<Settings />} />
                   <Route path='/Orders' element={<Orders num={num} />} />
                   <Route path='/MyAccount' element={<MyAccount />} />
+                  {/* <Route path='/InvoicePage' element={<InvoicePage />} /> */}
                 </Route>
               </Routes>
-               {login && <AppFooter />}
+              {login && <AppFooter />}
             </div>
           </div>
         </Router >

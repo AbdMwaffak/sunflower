@@ -14,6 +14,7 @@ function LogoutModel() {
     ////////////////////////
     const handleLogout = () => {
         setShow(false);
+        cookies.remove('adminId')
         cookies.remove('adminToken')
         window.location.pathname = '/'
     }

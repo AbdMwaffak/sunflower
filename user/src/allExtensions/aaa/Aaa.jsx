@@ -5,7 +5,7 @@ import Emoji from '../../image/Emoji.png'
 const Aaa = (props) => {
     const [state, setstate] = useState(props.turnOn)
     return (
-        <>
+        <> 
             {props.turnOn
                 &&
                 <div className='allshapes'>

@@ -16,13 +16,11 @@ if (cookies.get('adminToken') !== undefined || null) {
 export const stateOfferById = createAsyncThunk(
   'categories/stateOfferById',
   async (id) => {
-    console.log(token);
     const response = await axios.patch(
       `/offers/changeState/${id}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    // console.log(response.data)
     return response.data;
   }
 );

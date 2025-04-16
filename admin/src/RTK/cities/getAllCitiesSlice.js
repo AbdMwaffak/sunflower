@@ -18,7 +18,6 @@ export const getAllCities = createAsyncThunk(
     const response = await axios.get(`/cities`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );
@@ -36,13 +35,10 @@ const getAllCitiesSlice = createSlice({
     });
     builder.addCase(getAllCities.fulfilled, (state, action) => {
       state.data = action.payload;
-      // console.log(state.data)
     });
     builder.addCase(getAllCities.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
-      // console.log(state.error);
     });
   },
 });

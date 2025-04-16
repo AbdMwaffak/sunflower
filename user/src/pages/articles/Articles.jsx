@@ -38,7 +38,7 @@ const Articles = () => {
     ////////////////////////////////////
     const { t } = useTranslation();
     return (<>
-  <Toaster />
+        <Toaster />
         <div className='bage'>
             <div className='title'>
                 {t('articles.title')}
@@ -69,8 +69,8 @@ const Articles = () => {
                     />
                 ))}
             </div>
-        </div >   
-         </>
+        </div >
+    </>
     );
 }
 export default Articles;

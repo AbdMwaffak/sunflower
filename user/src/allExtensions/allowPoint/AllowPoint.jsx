@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 function AllowPoint(props) {
     const me = useSelector(state => state.getMe)?.data
     ////////////////////////
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
     const [problem, setProblem] = useState('');
     const dispatch = useDispatch()
     const handleClose = () => (setShow(false), props.handleClose())

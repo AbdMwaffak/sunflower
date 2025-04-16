@@ -27,17 +27,17 @@ const CategorysCard = (props) => {
             </div> */}
             {/* /////////////////////////// */}
             <div className='imageCategory'>
-                {props?.linkName == "natural flowers" &&
+                {/* {props?.linkName == "natural flowers" &&
                     <Link to={`/MyNaturalFlower/${props.id}`} className='link' >
                         <img className='imageCat' src={`${Api}/users/${props?.image}`} />
                     </Link>
-                }
+                } */}
                 {props?.linkName == "perfumes" &&
                     <Link to={`/MyPerfume/${props.id}`} className='link' >
                         <img className='imageCat' src={`${Api}/users/${props?.image}`} />
                     </Link>
                 }
-                {(props?.linkName !== "natural flowers" && props?.linkName !== "perfumes") &&
+                {(props?.linkName !== "perfumes") &&
                     <Link to={`/EditeCategory/${props.id}`} className='link' >
                         <img className='imageCat' src={`${Api}/users/${props?.image}`} />
                     </Link>

@@ -19,7 +19,6 @@ export const patchOffersBuId = createAsyncThunk(
     const response = await axios.patch(`/offers/${props.id}`, props?.reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

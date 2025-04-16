@@ -67,11 +67,13 @@ import deleteCityByIdSlice from './cities/deleteCityByIdSlice';
 import updateCityByIdSlice from './cities/updateCityByIdSlice';
 import getOrdersSlice from './orders/getOrdersSlice';
 import orderProcessingSlice from './orders/orderProcessingSlice';
+import verifyingSlice from './Auth/verifyingSlice';
 
 export const store = configureStore({
     reducer: {
         login: postLoginReducer,
         getMe: getMeSlice,
+        verifying: verifyingSlice,
 
         getCategories: getCategoriesSlice,
         postNewCategory: postNewCategorySlice,

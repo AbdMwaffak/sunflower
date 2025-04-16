@@ -47,6 +47,19 @@
     grid-auto-columns: (max-content 4);
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     justify-items: center;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.tellFrowersHome {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0px;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px;
 }
 
 .ourOffers {

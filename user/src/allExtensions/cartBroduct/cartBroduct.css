@@ -58,6 +58,7 @@
     .cartBroductName {
         width: 100%;
         align-items: flex-start;
+        padding: 7px;
     }
 
     .cartName {

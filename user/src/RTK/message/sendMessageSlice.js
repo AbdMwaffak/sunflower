@@ -14,11 +14,9 @@ if (cookies.get('token') !== undefined || null) {
 export const sendMessage = createAsyncThunk(
   'message/sendMessage',
   async (reqobj) => {
-    console.log(reqobj);
     const response = await axios.post(`/messages`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

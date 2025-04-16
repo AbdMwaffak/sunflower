@@ -1,7 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import "./orders.css"
-// import ReturnModel from '../returnModel/ReturnModel';
-// import ReplacementModel from '../replacementModel/ReplacementModel';
 import Cookies from 'universal-cookie';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -9,7 +6,8 @@ import InfoModel from '../infoModel/InfoModel';
 import { orderProcessing } from '../../RTK/orders/orderProcessingSlice';
 import Fms from './Fms';
 import Pms from './Pms ';
-
+import InvoisModel from '../invoisModel/InvoisModel';
+import "./orders.css"
 
 
 const Order = (props) => {
@@ -23,7 +21,6 @@ const Order = (props) => {
         lng = "ar"
     } else lng = "en"
     //////////////////////////////
-    const [totalFlowrs, setTotalFlowrs] = useState(0)
     const [totalPerfumes, setTotalPerfumes] = useState(0)
     const [totalProducts, setTotalProducts] = useState(0)
     const [totalOffers, setTotalOffers] = useState(0)
@@ -50,8 +47,6 @@ const Order = (props) => {
                     accumulator + (currentValue?.price * currentValue?.quantity), 0)),
                 setPointsEarned(props?.cart?.products?.pointsEarned)
         }
-        setTotalFlowrs(props?.cart?.naturalFlowers?.reduce((accumulator, currentValue) =>
-            accumulator + (currentValue?.totalPrice), 0))
         setTotalPerfumes(props?.cart?.perfumes?.reduce((accumulator, currentValue) =>
             accumulator + (currentValue?.totalPrice), 0))
         setTotalOffers(props?.cart?.offers?.reduce((accumulator, currentValue) =>
@@ -70,6 +65,13 @@ const Order = (props) => {
         };
     })
     ////////////////////////////////////
+    let user = {
+        name: props?.name,
+        phone: props?.phone,
+        city: props?.city,
+        adress: props?.addressDetails
+    }
+    ////////////////////////////////////
     const { t } = useTranslation();
     return (
         <div className={open ? "orderOpen" : "orderClose"}>
@@ -82,10 +84,20 @@ const Order = (props) => {
                         <path fill="currentColor" d="M12,7c1.104,0,2-0.896,2-2c0-1.105-0.895-2-2-2c-1.104,0-2,0.894-2,2 C10,6.105,10.895,7,12,7z M12,9c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,9.895,13.104,9,12,9z M12,15 c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,15.894,13.104,15,12,15z">
                         </path></svg>
                     <div className={openMenu ? "menuOpen" : "menuClose"} >
+                        <InvoisModel
+                            openMenu={openMenu}
+                            order={props?.cart}
+                            totalOffers={totalOffers}
+                            totalPerfumes={totalPerfumes}
+                            totalProducts={totalProducts}
+                            date={props?.date}
+                            user={user}
+                            sender={props?.user?.userName}
+                        />
                         <InfoModel
                             id={props?.id}
                             openMenu={openMenu}
-                            totalMoneyCost={totalFlowrs + totalOffers + totalPerfumes + totalProducts}
+                            totalMoneyCost={totalOffers + totalPerfumes + totalProducts}
                             totalPointsCost={pointsCost}
                             totalPointsEarned={pointsEarned}
                             orderStatus={props?.orderStatus}
@@ -282,7 +294,7 @@ const Order = (props) => {
                     </div>
                     <div className='totalOrder'>
                         <span className='priceDiv'>   {t('orders.total')}  :</span>
-                        <span className='priceDiv'>    {totalFlowrs + totalOffers + totalPerfumes + totalProducts}  {t('public.sar')} </span>
+                        <span className='priceDiv'>    {totalOffers + totalPerfumes + totalProducts}  {t('public.sar')} </span>
                     </div>
 
 

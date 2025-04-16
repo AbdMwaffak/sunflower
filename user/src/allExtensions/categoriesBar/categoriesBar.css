@@ -1,0 +1,81 @@
+.related-searches-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin: 0 auto; 
+    max-width: 1480px;
+}
+
+.related-searches-container:hover .scroll-button {
+    display: block;
+}
+
+.related-searches-list {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 10px;
+    padding: 10px 10px;
+    width: 100%;
+}
+
+.related-searches-list::-webkit-scrollbar {
+    display: none;
+}
+
+.related-search-item {
+    flex: 0 0 auto;
+    padding: 5px;
+    background-color: var(--component-Color);
+    color: var(--component-textColor);
+    border-radius: 53px;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.27);
+}
+
+.scroll-button {
+    background-color: var(--title-Color);
+    color: var(--title-textColor);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 5px 12px black;
+    display: none;
+}
+
+.scroll-button.left {
+    left: 10px;
+}
+
+.scroll-button.right {
+    right: 10px;
+}
+
+.scroll-button:hover {
+    background-color: var(--primary-yellow);
+    color: var(--primary-dark);
+}
+
+.catImagecc {
+    width: 40px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    overflow: hidden;
+}

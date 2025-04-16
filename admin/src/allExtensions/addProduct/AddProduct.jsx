@@ -11,7 +11,7 @@ const AddProduct = (props) => {
     //////////////////////////////
     const cookies = new Cookies();
     let lng = ''
-    let token = ''
+    let token = '' 
     if (cookies.get('token') !== undefined || null) {
         token = true
     } else token = false
@@ -26,19 +26,12 @@ const AddProduct = (props) => {
     const [images, setImages] = useState([]);
     const [name, setName] = useState('');
     const [nameAr, setNameAr] = useState('');
-    const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [descriptionAr, setDescriptionAr] = useState('');
-    const [size, setSize] = useState(' ');
-    const [priceSize, setPriceSize] = useState(0);
-    const [prices, setPrices] = useState([]);
-    const [priceNew, setPriceNew] = useState([]);
-    const [colors, setColors] = useState([]);
-    const [colorsNew, setcolorsNew] = useState([]);
-    const [color, setColor] = useState('');
+    const [price, setPrice] = useState('');
     const [sellInPoints, setSellInPoints] = useState(false);
     const [priceInPoints, setPriceInPoints] = useState('');
-    const [earned, setEarned] = useState(0);
+    const [pointsEarned, setPointsEarned] = useState(0);
     ///////////////////////////////////////////////////
     const dispatch = useDispatch()
     ///////////////////////////////////////////////////
@@ -53,42 +46,6 @@ const AddProduct = (props) => {
         setImagesSquer(fileArraySquer)
     }
     ///////////////////////////////////////////////////
-    const colorOnChange = e => {
-        if (color != '')
-            setColors(cur => [...cur, {
-                colorName: e,
-                colorId: Math.random() * Math.pow(10, 16)
-            }])
-    }
-    ///////////////////////////////////////////////////
-    const clearAllColors = () => {
-        setColors([])
-    }
-    ///////////////////////////////////////////////////
-    const deleteColor = key => {
-        setColors(cur => cur.filter((item) => item.colorId !== key))
-    }
-    ///////////////////////////////////////////////////
-    const sizePriceOnChange = () => {
-        if (size != ' ' && priceSize != 0 && ((priceInPoints != 0 && sellInPoints) || (priceInPoints == 0 && !sellInPoints)))
-            setPrices(cur => [...cur, {
-                size: size,
-                price: priceSize,
-                pointsEarned: earned,
-                priceInPoints: priceInPoints,
-                isAvailableToSellInPoints: sellInPoints,
-                priceId: Math.random() * Math.pow(10, 16)
-            }])
-    }
-    ///////////////////////////////////////////////////
-    const clearAllSize = () => {
-        setPrices([])
-    }
-    ///////////////////////////////////////////////////
-    const deleteSize = key => {
-        setPrices(cur => cur.filter((item) => item.priceId !== key))
-    }
-    ///////////////////////////////////////////////////
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         event.preventDefault();
@@ -100,37 +57,19 @@ const AddProduct = (props) => {
         }
         else {
             const formData = new FormData();
-            for (const color of colors) {
-                colorsNew.push(color.colorName)
-            }
-            ///////////
-            prices.forEach(price => {
-                const value =
-                {
-                    size: price.size,
-                    price: price.price,
-                    pointsEarned: price.pointsEarned,
-                    priceInPoints: price.priceInPoints,
-                    isAvailableToSellInPoints: price.isAvailableToSellInPoints
-                }
-                priceNew.push(value)
-            })
-
-            images.forEach(image => {
-                formData.append("images", image);
-            });
+            images.forEach(image => { formData.append("images", image); });
             formData.append('name', name);
             formData.append('nameAr', nameAr);
-            formData.append('price', price);
             formData.append('description', description);
             formData.append('descriptionAr', descriptionAr);
-            formData.append('colors', JSON.stringify(colorsNew));
-            formData.append('sizes', JSON.stringify(priceNew));
             formData.append('category', props.categoryId)
+            formData.append('isAvailableToSellInPoints', sellInPoints)
+            formData.append('price', price);
+            formData.append('priceInPoints', priceInPoints);
+            formData.append('pointsEarned', pointsEarned);
             dispatch(postProduct(formData))
             props.handelReload()
-            setPriceNew([])
-            setcolorsNew([])
+            console.log([...formData])
         }
     };
     //////////////////////////
@@ -180,13 +119,39 @@ const AddProduct = (props) => {
                                             onChange={(e) => setName(e.target.value)}
                                         />
                                     </Form.Group>
-                                    <Form.Group as={Col} md="6" className="mb-3" controlId="validationCustom01">
+                                </Row>
+                                <Row >
+                                    <Form.Group as={Col} md="4" className="mb-3" controlId="validationCustom01">
                                         <Form.Label> {t('category.productPrice')}</Form.Label>
                                         <Form.Control
                                             placeholder={t("public.write")}
                                             required
                                             type="text"
                                             onChange={(e) => setPrice(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" className="mb-3" controlId="validationCustom01">
+                                        <div className='byPoints'>
+                                            <Form.Check // prettier-ignore
+                                                type='checkbox'
+                                                onChange={(e) => (setSellInPoints(!sellInPoints), setPriceInPoints(""))}
+                                            />
+                                            <Form.Label>{t('category.priceByPoints')}</Form.Label>
+                                        </div>
+                                        <Form.Control
+                                            value={priceInPoints}
+                                            required
+                                            disabled={!sellInPoints}
+                                            type="number"
+                                            onChange={(e) => setPriceInPoints(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" className="mb-3" controlId="validationCustom01">
+                                        <Form.Label>{t('category.pointsEarned')} </Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="number"
+                                            onChange={(e) => setPointsEarned(e.target.value)}
                                         />
                                     </Form.Group>
                                 </Row>
@@ -208,7 +173,7 @@ const AddProduct = (props) => {
                                         onChange={(e) => setDescription(e.target.value)}
                                     />
                                 </Form.Group>
-                                <Form.Group className="mb-3" controlId="validationCustom01">
+                                {/* <Form.Group className="mb-3" controlId="validationCustom01">
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
                                             <div className='addCategory2'>
@@ -293,8 +258,8 @@ const AddProduct = (props) => {
                                             </tr>
                                         ))}
                                     </div>
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="validationCustom01">
+                                </Form.Group> */}
+                                {/* <Form.Group className="mb-3" controlId="validationCustom01">
                                     <Form.Label>{t('category.color')}</Form.Label>
                                     <div className='rowEdit'>
                                         <div className='addCategory1'>
@@ -327,7 +292,7 @@ const AddProduct = (props) => {
                                             </div>
                                         ))}
                                     </div>
-                                </Form.Group>
+                                </Form.Group> */}
                                 {/* //////////// */}
                                 <hr className='tapp' />
                                 <button type="submit" className='formButton'  >

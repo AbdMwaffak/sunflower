@@ -1,8 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Cookies from 'universal-cookie';
-import Api from '../../allExtensions/API';
 
 /////////////
 const cookies = new Cookies();
@@ -16,11 +15,9 @@ if (cookies.get('adminToken') !== undefined || null) {
 export const deleteProductById = createAsyncThunk(
   'product/deleteProductById',
   async (reqobj) => {
-    console.log(reqobj);
     const response = await axios.delete(`/products/${reqobj}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response)
     return response.data;
   }
 );

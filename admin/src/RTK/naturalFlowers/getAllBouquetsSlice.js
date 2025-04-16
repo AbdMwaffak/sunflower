@@ -11,14 +11,12 @@ if (cookies.get('adminToken') !== undefined || null) {
   token = cookies.get('adminToken');
 }
 //////////////
-
 export const getAllBouquets = createAsyncThunk(
   'naturalFlowers/getAllBouquets',
   async () => {
     const response = await axios.get(`/naturalFlowers`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );
@@ -36,13 +34,10 @@ const getAllBouquetsSlice = createSlice({
     });
     builder.addCase(getAllBouquets.fulfilled, (state, action) => {
       state.data = action.payload;
-      // console.log(state.data)
     });
     builder.addCase(getAllBouquets.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
-      // console.log(state.error);
     });
   },
 });

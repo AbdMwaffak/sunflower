@@ -19,7 +19,6 @@ export const postChocolate = createAsyncThunk(
     const response = await axios.post(`/chocolate`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

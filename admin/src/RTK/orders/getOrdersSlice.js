@@ -13,7 +13,6 @@ export const getOrders = createAsyncThunk('cart/getOrders', async () => {
   const response = await axios.get(`/orders?sort=-createdAt`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  // console.log(response.data)
   return response.data;
 });
 const getOrdersSlice = createSlice({

@@ -16,7 +16,6 @@ export const getCategory = createAsyncThunk(
     const response = await axios.get(`/category/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

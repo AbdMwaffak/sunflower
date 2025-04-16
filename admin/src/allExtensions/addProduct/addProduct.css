@@ -136,7 +136,7 @@
 .byPoints {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
     flex-wrap: nowrap;
 }

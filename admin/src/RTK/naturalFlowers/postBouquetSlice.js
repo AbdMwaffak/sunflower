@@ -19,7 +19,6 @@ export const postBouquet = createAsyncThunk(
     const response = await axios.post(`/naturalFlowers`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

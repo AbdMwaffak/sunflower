@@ -16,7 +16,6 @@ export const addabout = createAsyncThunk('about/addabout', async (reqobj) => {
   const response = await axios.post(`/aboutus`, reqobj, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  // console.log(response.data)
   return response.data;
 });
 

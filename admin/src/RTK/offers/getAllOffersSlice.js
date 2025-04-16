@@ -1,7 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import Api from '../../allExtensions/API';
 
 /////////////
 const cookies = new Cookies();
@@ -16,7 +15,6 @@ export const getAllOffers = createAsyncThunk('cart/getAllOffers', async () => {
   const response = await axios.get(`/offers`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  // console.log(response.data)
   return response.data;
 });
 
@@ -33,13 +31,10 @@ const getAllOffersSlice = createSlice({
     });
     builder.addCase(getAllOffers.fulfilled, (state, action) => {
       state.data = action.payload;
-      // console.log(state.data)
     });
     builder.addCase(getAllOffers.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
-      // console.log(state.error);
     });
   },
 });

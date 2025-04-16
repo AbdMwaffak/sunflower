@@ -17,7 +17,6 @@ export const postPaper = createAsyncThunk('paper/postPaper', async (reqobj) => {
   const response = await axios.post(`/papers`, reqobj, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  // console.log(response.data)
   return response.data;
 });
 

@@ -19,7 +19,6 @@ export const updateContact = createAsyncThunk(
     const response = await axios.patch(`/settings`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCart } from '../../RTK/shoppingCart/getCartSlice';
 import { emptyCart } from '../../RTK/shoppingCart/emptyCartSlice';
 import CartPerfumes from '../../allExtensions/cartPerfumes/CartPerfumes';
-import CartFlowers from '../../allExtensions/cartFlowers/CartFlowers';
 import Cookies from 'universal-cookie';
 import CartOffer from '../../allExtensions/cartOffer/CartOffer';
 import { Toaster } from 'react-hot-toast';
@@ -32,16 +31,16 @@ const MyCart = () => {
     const [pointsCost, setPointsCost] = useState(0)
     const [pointsEarned, setPointsEarned] = useState(0)
     const [quantity, setQuantity] = useState(1)
-    const [reload, setReload] = useState("")
+    const [reload, setReload] = useState(true)
     /////////////////////////////
     const dispatch = useDispatch()
     /////////////////////////////
-    const handelReload = () => {
+    const handelreload = () => {
         setReload(!reload)
+        handelClear()
     }
     /////////////////////////////
     const handelClear = () => {
-        setTotalFlowrs(0)
         setTotalPerfumes(0)
         setTotalProducts(0)
         setTotalOffers(0)
@@ -72,8 +71,6 @@ const MyCart = () => {
                     accumulator + (currentValue?.price * currentValue?.quantity), 0)),
                 setPointsEarned(cartBroduct?.products?.pointsEarned)
         }
-        setTotalFlowrs(cartBroduct?.naturalFlowers?.reduce((accumulator, currentValue) =>
-            accumulator + (currentValue?.totalPrice), 0))
         setTotalPerfumes(cartBroduct?.perfumes?.reduce((accumulator, currentValue) =>
             accumulator + (currentValue?.totalPrice), 0))
         setTotalOffers(cartBroduct?.offers?.reduce((accumulator, currentValue) =>
@@ -105,29 +102,14 @@ const MyCart = () => {
                         <hr className='hrCart' />
                         <div className='cartMain'>
                             <div className='cartBody1'>
-                                {(cartBroduct?.products?.length === 0
+                                {((cartBroduct?.products?.length === 0
                                     && cartBroduct?.offers?.length === 0
                                     && cartBroduct?.naturalFlowers?.length === 0
                                     && cartBroduct?.perfumes?.length === 0
-                                ) &&
+                                ) || cartBroduct === undefined) &&
                                     <div className='noProducts' >{t('cart.message')}{" "}  !!
                                         <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 36 36"><path fill="#ffcc4d" d="M36 18c0 9.941-8.059 18-18 18c-9.94 0-18-8.059-18-18C0 8.06 8.06 0 18 0c9.941 0 18 8.06 18 18"></path><ellipse cx={11.5} cy={16.5} fill="#664500" rx={2.5} ry={3.5}></ellipse><ellipse cx={24.5} cy={16.5} fill="#664500" rx={2.5} ry={3.5}></ellipse><path fill="#664500" d="M12 28c2-5 13-5 13-3c0 1-8-1-13 3"></path></svg>
                                     </div>
-                                }
-                                {cartBroduct?.naturalFlowers?.map((flower, index) => (
-                                    <CartFlowers
-                                        key={index}
-                                        message={flower?.message}
-                                        deleteId={flower?._id}
-                                        price={flower?.totalPrice}
-                                        chocolates={flower?.chocolates}
-                                        band={flower?.details?.band}
-                                        paper={flower?.details?.paper}
-                                        flowersCount={flower?.naturalFlower?.count}
-                                        image={flower?.naturalFlower?.image}
-                                        handelReload={handelReload}
-                                    />
-                                ))
                                 }
                                 {cartBroduct?.perfumes?.map((perfume, index) => (
                                     <CartPerfumes
@@ -136,7 +118,7 @@ const MyCart = () => {
                                         deleteid={perfume?._id}
                                         price={perfume?.totalPrice}
                                         perfumeordervariants={perfume?.perfumeOrderVariants}
-                                        handelreload={handelReload}
+                                        handelreload={handelreload}
                                     />
                                 ))
                                 }
@@ -144,15 +126,16 @@ const MyCart = () => {
                                     <CartBroduct
                                         key={index}
                                         id={product?.product?._id}
-                                        color={product?.color}
-                                        size={product?.size}
-                                        deleteId={product?._id}
+                                        // color={product?.color}
+                                        // size={product?.size}
+                                        message={product?.message}
+                                        deleteid={product?._id}
                                         quantity={product?.quantity}
                                         name={lng == "ar" ? product?.product?.nameAr : product?.product?.name}
                                         price={product?.price}
                                         images={product?.product?.images}
-                                        paymentMethod={"money"}
-                                        handelReload={handelReload}
+                                        paymentmethod={"money"}
+                                        handelreload={handelreload}
                                     />
                                 ))
                                 }
@@ -162,13 +145,13 @@ const MyCart = () => {
                                         id={product?.product?._id}
                                         color={product?.color}
                                         size={product?.size}
-                                        deleteId={product?._id}
+                                        deleteid={product?._id}
                                         quantity={product?.quantity}
                                         name={lng == "ar" ? product?.product?.nameAr : product?.product?.name}
                                         price={product?.price}
                                         images={product?.product?.images}
-                                        paymentMethod={"points"}
-                                        handelReload={handelReload}
+                                        paymentmethod={"points"}
+                                        handelreload={handelreload}
                                     />
                                 ))
                                 }
@@ -176,13 +159,13 @@ const MyCart = () => {
                                     <CartOffer
                                         key={index}
                                         id={offer?.offerId}
-                                        deleteId={offer?._id}
+                                        deleteid={offer?._id}
                                         quantity={offer?.quantity}
                                         name={lng == "ar" ? offer.nameAr : offer.name}
                                         price={offer?.priceA}
                                         image={offer?.mainImage}
-                                        paymentMethod={"points"}
-                                        handelReload={handelReload}
+                                        paymentmethod={"points"}
+                                        handelreload={handelreload}
                                     />
                                 ))
                                 }
@@ -191,7 +174,7 @@ const MyCart = () => {
                                 <div>   {t('cart.orderSummary')}</div>
                                 <hr className='tapp' />
                                 <div className='orderSummary'>
-                                    <div className='kk'> <div>  {t('cart.totalMoneyCost')} {" "} : </div>  {"  "} {totalFlowrs + totalOffers + totalPerfumes + totalProducts}.{t('public.sar')}</div>
+                                    <div className='kk'> <div>  {t('cart.totalMoneyCost')} {" "} : </div>  {"  "} {totalOffers + totalPerfumes + totalProducts}.{t('public.sar')}</div>
                                     <div className='kk'> <div>  {t('cart.totalPointsCost')}   {" "} : </div> {"  "} {pointsCost}.{t('public.point')} </div>
                                     <div className='kk'> <div>  {t('cart.totalPointsEarned')} {" "} :  </div> {"  "} {pointsEarned}.{t('public.point')}  </div>
                                 </div>
@@ -201,18 +184,17 @@ const MyCart = () => {
                         <div className='cartFooter'>
                             <span className='totalCart1'>  {t('cart.totalPriceOfTheOrder')} </span>
                             <div className='totalCart2'>
-                                {totalFlowrs + totalOffers + totalPerfumes + totalProducts}.{t('public.sar')}
+                                {totalOffers + totalPerfumes + totalProducts}.{t('public.sar')}
                             </div>
                         </div>
-                        {(totalFlowrs + totalOffers + totalPerfumes + totalProducts
-                        ) &&
+                        {(totalOffers + totalPerfumes + totalProducts + pointsCost) &&
                             <>
                                 <hr className='hrCart' />
                                 <div className='butten'>
 
                                     <SendOrderModel
                                         cart={cartBroduct}
-                                        handelReload={handelReload}
+                                        handelreload={handelreload}
                                         handelClear={handelClearMyCart}
                                     />
 

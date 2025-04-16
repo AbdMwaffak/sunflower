@@ -21,7 +21,6 @@ export const postNewSize = createAsyncThunk(
       reqobj.value,
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    // console.log(response.data)
     return response.data;
   }
 );

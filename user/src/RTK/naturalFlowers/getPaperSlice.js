@@ -35,7 +35,6 @@ const getPaperSlice = createSlice({
     builder.addCase(getPaper.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
     });
   },
 });

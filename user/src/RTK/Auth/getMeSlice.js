@@ -13,7 +13,6 @@ export const getMe = createAsyncThunk('auth/getMe', async () => {
   const response = await axios.get(`/users/me`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  // console.log(response.data)
   return response.data;
 });
 const getMeSlice = createSlice({

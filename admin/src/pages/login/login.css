@@ -104,3 +104,38 @@
 .unhdiddenIcon {
     display: block;
 }
+
+.err {
+    background-color: rgba(255, 0, 0, 0.126);
+    height: 50px;
+    width: 90%;
+    margin: 0 5%;
+    padding: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.registerBt {
+    width: 86%;
+    height: 40px;
+    background-color: var(--primary-dark);
+    border-radius: 8px;
+    border: 0;
+    margin: 0;
+    color: var(--primary-yellow);
+    transition: all 1ns ease-in-out;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5%;
+    border: 4px solid #F1C92F;
+}
+
+.registerBt:hover {
+    background-color: #eadba0;
+    color: var(--primary-dark);
+}

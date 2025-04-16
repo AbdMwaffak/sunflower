@@ -20,7 +20,6 @@ export const likeArticle = createAsyncThunk(
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    // console.log(response.data)
     return response.data;
   }
 );
@@ -39,13 +38,10 @@ const likeArticleSlice = createSlice({
     builder.addCase(likeArticle.fulfilled, (state, action) => {
       state.data = action.payload;
       state.status = 'successful';
-      console.log(state.status);
     });
     builder.addCase(likeArticle.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
-      // console.log(state.error);
     });
   },
 });

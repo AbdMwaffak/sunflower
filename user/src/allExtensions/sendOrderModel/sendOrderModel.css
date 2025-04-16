@@ -1,3 +1,15 @@
 .sendOrderForm {
   color: var(--primary-dark);
 }
+
+.sendLoding {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 50px;
+  color: var(--primary-yellow);
+  gap: 5px;
+}

@@ -5,6 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const util = require('util');
 const { encrypt } = require('./../utils/endeCode');
+const OTP = require('../utils/OTP');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -22,24 +23,45 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signUp = catchAsync(async (req, res, next) => {
+  const { phone, username } = req.body;
+  const existUser = await User.findOne({ phone });
+  if (existUser) {
+    // res.status(409).send('This phone number is already registered');
+    return next(new AppError('This phone number is already registered ', 409));
+  }
+  if (!username || !phone) {
+    // res.status(409).send('something went wrong');
+    return next(new AppError('something went wrong ', 409));
+  }
+  // 2) check if email is exist and pasword is correct
+  const user = await User.findOne({ phone });
   const newUser = await User.create({
     username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-    confirmPassword: req.body.confirmPassword,
     phone: req.body.phone,
-    gender: req.body.gender,
-    image: req.file
-      ? req.file.filename
-      : 'user_1737852619951_default-avatar-icon-of-social-media-user-vector.jpeg',
     role: req.body.role,
   });
 
-  res.locals._ = encrypt(newUser.id);
-  createSendToken(newUser, 201, res);
+  // Send Code to the phone number (OTP)
+  const otp = OTP.generateOTP();
+  await User.findByIdAndUpdate(newUser.id, { otp });
+  OTP.send(otp, newUser.phone);
+  res.send('Verifying...');
+
+  // Send Token
 });
 
-exports.login = catchAsync(async (req, res, next) => {
+exports.checkOTP = catchAsync(async (req, res, next) => {
+  const { otp, phone } = req.body;
+  const user = await User.findOne({ phone });
+  if (user.otp == otp) {
+    res.locals._ = encrypt(user.id);
+    createSendToken(user, 201, res);
+  } else {
+    return next(new AppError('Wrong OTP , try again ', 409));
+  }
+});
+
+exports.loginOld = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   // 1) check if email and password are inputted
@@ -69,6 +91,32 @@ exports.login = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, res);
 });
 
+exports.login = catchAsync(async (req, res, next) => {
+  let { phone } = req.body;
+
+  if (!phone) {
+    // res.status(404).send('please provide valid phone number 💚');
+    return next(new AppError('please provide correct phone number', 404));
+  }
+  // 2) check if email is exist and pasword is correct
+  const user = await User.findOne({ phone });
+  if (!user) {
+    // res.status(404).send('This phone number is not exist, please signup');
+    return next(
+      new AppError('This phone number is not exist, please signup', 404)
+    );
+  }
+  const host = req.headers.host;
+  if (host === 'dunia.sunflowerworld.shop' && user.role === 'user') {
+    return next(new AppError('Warning', 401));
+  }
+
+  const otp = OTP.generateOTP();
+  await User.findByIdAndUpdate(user.id, { otp });
+  OTP.send(otp, user.phone);
+  res.send('Verifying...');
+});
+
 exports.protect = catchAsync(async (req, res, next) => {
   let token;
   if (
@@ -94,17 +142,18 @@ exports.protect = catchAsync(async (req, res, next) => {
     );
   }
 
-  if (currentUser.changedPasswordAfter(decoded.iat)) {
-    return next(
-      new AppError('User recently changed password , please login again!', 401)
-    );
-  }
+  // if (currentUser.changedPasswordAfter(decoded.iat)) {
+  //   return next(
+  //     new AppError('User recently changed password , please login again!', 401)
+  //   );
+  // }
   req.user = currentUser;
   next();
 });
 
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
+    console.log('ROLE : ', req.user);
     if (!roles.includes(req.user.role)) {
       // roles : ['admin' , 'lead-guide']
       next(

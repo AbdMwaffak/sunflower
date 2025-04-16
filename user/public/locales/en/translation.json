@@ -27,7 +27,18 @@
         "loginMessage": "please login first",
         "image": "your image",
         "name": "Name",
-        "phone": "Phone number"
+        "phone": "Phone number",
+        "back": "back"
+    },
+    "otp": {
+        "verifye": "verify the code",
+        "fiveNum": "enter the 5-digit verification code sent to you.",
+        "didnotReceive": "didn't receive the code?",
+        "resendWithin": "resend within",
+        "seconds": "seconds",
+        "resend": "resend",
+        "vv": "verify",
+        "plzSit": "please enter all fields"
     },
     "home": {
         "ourCategorys": "Our Categorys",
@@ -54,6 +65,7 @@
         "ProductColors": "Product Colors",
         "addtoCart(by money)": "add to cart ",
         "addtoCart(by points)": "add to cart (by points)",
+        "noPoints": "Not available in points",
         "suggestions": "Suggestions",
         "message": "Oops!",
         "message1": " you missed choise Size and Color !",
@@ -64,7 +76,9 @@
         "message00": "Sorry !",
         "message11": "The product cannot be added because there are flowr bouquet in your cart",
         "message22": "You can finish the previous request and trying again",
-        "clean": "Clean My Cart"
+        "clean": "Clean My Cart",
+        "yes": "Yes",
+        "no": "No"
     },
     "flower": {
         "title": "Natural Flower",
@@ -72,6 +86,7 @@
         "number": "Choose the number of flowers in the bouquet",
         "open": "Open this select menu",
         "attachCard": "Do you want to attach a card ?",
+        "attachCard2": "If you want to add a greeting card with the product, write your message and click Yes.",
         "add": "add to cart",
         "yes": "Yes",
         "no": "No",
@@ -129,7 +144,10 @@
         "notes": "Notes",
         "open": "Open this select menu",
         "send": "send",
-        "message": "You haven't added any product to your cart yet"
+        "message": "You haven't added any product to your cart yet",
+        "sendingOrder": "Sending order ...",
+        "success1": "Your order has been received.",
+        "success2": "You will be contacted to confirm your payment"
     },
     "about": {
         "title": "About the store",
@@ -170,7 +188,7 @@
         "on": "on",
         "getIt": "Get it",
         "currentPrice": "Current Price",
-        "previousPrice": "Previous price",
+        "previousprice": "Previous price",
         "offerproducts": "Offer products",
         "addtoCart": "add to cart"
     },

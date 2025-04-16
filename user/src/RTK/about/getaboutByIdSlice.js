@@ -1,7 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import Api from '../../allExtensions/API';
 
 /////////////
 const cookies = new Cookies();
@@ -39,7 +38,6 @@ const getaboutByIdSlice = createSlice({
     builder.addCase(getaboutById.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
     });
   },
 });

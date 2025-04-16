@@ -25,7 +25,20 @@
         "passwordShort": "كلمة المرور قصيرة ,  على الأقل 8 محارف ",
         "newOrder": "طلب جديد من ",
         "messageOrder": " طلب جديد من :",
-        "noOrder": "لا يوجد طلبات جديدة"
+        "noOrder": "لا يوجد طلبات جديدة",
+        "phone": "رقم الهاتف",
+        "back": "رجوع ",
+        "addDis":"اضف الخصم"
+    },
+    "otp": {
+        "verifye": "تحقق من الرمز",
+        "fiveNum": "أدخل رمز التحقق المكون من 5 أرقام المرسل إليك.",
+        "didnotReceive": "لم تستلم الرمز؟",
+        "resendWithin": "إعادة إرسال خلال ",
+        "seconds": "ثانية",
+        "resend": "إعادة الإرسال",
+        "vv": "نحقق",
+        "plzSit": "الرجاء إدخال جميع الخانات"
     },
     "me": {
         "title": "حساب المسؤول",
@@ -71,7 +84,7 @@
         "productImage": "صورة المنتج",
         "productNameAr": "اسم المنتج بالعربية",
         "productNameEn": "اسم المنتج بالإنجليزية",
-        "productPrice": "نطاق السعر",
+        "productPrice": " السعر",
         "productDisAr": "وصف المنتج بالعربية",
         "productDisEn": "وصف المنتج بالإنجليزية",
         "availableSizes": "المقاسات المتاحة",
@@ -91,7 +104,7 @@
         "editProductImgage": "صورة المنتج",
         "editProductNameAr": "اسم المنتج بالعربية",
         "editProductNameEn": "اسم المنتج بالإنجليزية",
-        "editproductPrice": "نطاق السعر",
+        "editproductPrice": " السعر",
         "editProductDisAr": "وصف المنتج بالعربية",
         "editProductDisEn": "وصف المنتج بالإنجليزية",
         "availableSizes": "المقاسات المتاحة",
@@ -330,7 +343,8 @@
         "delivered": "تم التسليم",
         "more": "المزيد من المعلومات",
         "bottle": "زجاجة ",
-        "processing2": " معالجة الطلب"
+        "processing2": " معالجة الطلب",
+        "invois": "الفاتورة"
     },
     "cart": {
         "title": " عربة التسوق خاصتي ",

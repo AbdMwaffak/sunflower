@@ -18,7 +18,6 @@ export const getCategoryById = createAsyncThunk(
     const response = await axios.get(`/category/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );
@@ -37,12 +36,10 @@ const getCategoryByIdSlice = createSlice({
     builder.addCase(getCategoryById.fulfilled, (state, action) => {
       state.data = action.payload;
       state.status = 'successful';
-      // console.log(state.status)
     });
     builder.addCase(getCategoryById.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.payload;
-      console.log(state.status);
     });
   },
 });

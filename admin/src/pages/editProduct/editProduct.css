@@ -108,6 +108,9 @@
     .editProductDisplay {
         grid-column: 2 span;
     }
+    .imgSlider {
+        grid-column: 2 span;
+    }    
 }
 
 .productPrice {
@@ -349,4 +352,22 @@
 
 .ttt {
     width: 100%;
+}
+
+.price2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 98%;
+    height: 50px;
+}
+.pp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33%;
+    background: var(--primary-yellow);
+    border-radius: 8px;
+    height: 40px;
+  
 }

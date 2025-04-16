@@ -19,7 +19,6 @@ export const postArticle = createAsyncThunk(
     const response = await axios.post(`/articles`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data)
     return response.data;
   }
 );

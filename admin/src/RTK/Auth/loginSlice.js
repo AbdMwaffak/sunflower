@@ -5,10 +5,13 @@ import Api from '../../allExtensions/API';
 
 export const postLogin = createAsyncThunk(
   'register/postRegister',
-  async (reqobj) => {
-    const response = await axios.post(`/users/login`, reqobj);
-    console.log(response.data);
-    return response.data;
+  async (userCredentials, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`/users/login`, userCredentials);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
   }
 );
 
@@ -16,30 +19,32 @@ export const postLoginReducer = createSlice({
   name: 'postLogin',
   initialState: {
     data: [],
-    status: null,
+    loading: false,
     error: null,
+  },
+  reducers: {
+    back1: (state) => {
+      state.data = [];
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(postLogin.fulfilled, (state, action) => {
+      state.loading = false;
       state.data = action.payload;
-      state.status = 'success';
-      console.log('success');
-
-      const cookies = new Cookies();
-      cookies.set('adminToken', state.data.token);
-      window.location.pathname = '/MyCategory';
     });
 
     builder.addCase(postLogin.pending, (state, action) => {
-      state.status = 'loading';
-      console.log(state.status);
+      state.loading = true;
+      state.error = null;
     });
     builder.addCase(postLogin.rejected, (state, action) => {
-      state.status = 'failed';
-      state.error = action.error.payload;
-      console.log(state.status);
+      state.loading = false;
+      state.data = [];
+      state.error = action.payload;
     });
   },
 });
 
+export const { back1 } = postLoginReducer.actions;
 export default postLoginReducer.reducer;

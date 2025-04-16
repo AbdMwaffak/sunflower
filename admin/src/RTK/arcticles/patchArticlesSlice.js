@@ -19,7 +19,6 @@ export const patchArticles = createAsyncThunk(
     const response = await axios.patch(`/articles/${value.id}`, value.reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response)
     return response.data;
   }
 );

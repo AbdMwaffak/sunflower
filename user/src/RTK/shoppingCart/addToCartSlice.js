@@ -15,7 +15,6 @@ export const addToCart = createAsyncThunk('cart/addToCart', async (reqobj) => {
   const response = await axios.post(`/shoppingCart`, reqobj, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  // console.log(response.data)
   return response.data;
 });
 const addToCartSlice = createSlice({

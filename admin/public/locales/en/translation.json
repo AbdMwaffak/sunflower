@@ -25,7 +25,20 @@
         "passwordShort": "Password is short ! , at least 8 characters",
         "newOrder": "New order from",
         "messageOrder": " new order from : ",
-        "noOrder": "No now orders"
+        "noOrder": "No now orders",
+        "phone": "Phone number",
+        "back": "back",
+         "addDis":"add discount"
+    },
+    "otp": {
+        "verifye": "verify the code",
+        "fiveNum": "enter the 5-digit verification code sent to you.",
+        "didnotReceive": "didn't receive the code?",
+        "resendWithin": "resend within",
+        "seconds": "seconds",
+        "resend": "resend",
+        "vv": "verify",
+        "plzSit": "please enter all fields"
     },
     "search": {
         "title": "Search results",
@@ -71,7 +84,7 @@
         "productImage": "product image",
         "productNameAr": "Product name Ar",
         "productNameEn": "Product name En",
-        "productPrice": "Reange price",
+        "productPrice": " price",
         "productDisAr": "Product description Ar",
         "productDisEn": "Product description En",
         "availableSizes": "Available sizes",
@@ -91,7 +104,7 @@
         "editProductImgage": "Edit product image",
         "editProductNameAr": "Edit product name Ar",
         "editProductNameEn": "Edit product name En",
-        "editproductPrice": "Reange price",
+        "editproductPrice": " price",
         "editProductDisAr": "Product description Ar",
         "editProductDisEn": "Product description En",
         "availableSizes": "Available sizes",
@@ -330,7 +343,8 @@
         "delivered": "Delivered",
         "more": "More information",
         "bottle": "bottle",
-        "processing2": "Processing request"
+        "processing2": "Processing request",
+        "invois": "invois"
     },
     "cart": {
         "title": "My Cart",
