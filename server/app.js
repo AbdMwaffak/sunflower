@@ -90,7 +90,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
 app.use('/users', userRoutes);
-app.use('/articles', articleRoutes);
+app.use('/api/articles', articleRoutes);
 app.use('/products', productRoutes);
 app.use('/category', categoryRoutes);
 app.use('/perfume', perfumeRoutes);
