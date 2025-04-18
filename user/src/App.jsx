@@ -1,15 +1,16 @@
-import ScrollToTop from "./ScrollToTop";
-import { BrowserRouter as Router, Route, Routes } from "react-router";
-import { lazy, Suspense, useEffect, useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Cookies from "universal-cookie";
-import { useDispatch } from "react-redux";
-import { useTranslation } from "react-i18next";
-import ProtectedRoutes from "./allExtensions/ProtectedRoutes";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { Route, BrowserRouter as Router, Routes } from 'react-router';
+import Cookies from 'universal-cookie';
+import ProtectedRoutes from './allExtensions/ProtectedRoutes';
+import ScrollToTop from './ScrollToTop';
 
-import MyNav from "./allExtensions/nav/MyNav";
-import AppFooter from "./allExtensions/appFooter/AppFooter";
-import Home from "./pages/home/Home";
+import AppFooter from './allExtensions/appFooter/AppFooter';
+import MyNav from './allExtensions/nav/MyNav';
+import './App.css';
+import Home from './pages/home/Home';
 // import Naturalflowers from './pages/naturalflowers/Naturalflowers';
 // import ProductsByCategory from './pages/productsByCategory/ProductsByCategory';
 // import Perfumes from './pages/perfumes/Perfumes';
@@ -28,29 +29,28 @@ import Home from "./pages/home/Home";
 // import Search from './pages/search/Search';
 // import ArticlesById from './pages/articles/ArticlesById';
 const Naturalflowers = lazy(() =>
-  import("./pages/naturalflowers/Naturalflowers")
+  import('./pages/naturalflowers/Naturalflowers')
 );
 const ProductsByCategory = lazy(() =>
-  import("./pages/productsByCategory/ProductsByCategory")
+  import('./pages/productsByCategory/ProductsByCategory')
 );
-const Perfumes = lazy(() => import("./pages/perfumes/Perfumes"));
+const Perfumes = lazy(() => import('./pages/perfumes/Perfumes'));
 const ProductProfile = lazy(() =>
-  import("./pages/productProfile/ProductProfile")
+  import('./pages/productProfile/ProductProfile')
 );
-const Articles = lazy(() => import("./pages/articles/Articles"));
-const About = lazy(() => import("./pages/about/About"));
-const ContactUs = lazy(() => import("./pages/contactUs/ContactUs"));
-const Messages = lazy(() => import("./pages/messages/Messages"));
-const MyOrder = lazy(() => import("./pages/myOrder/MyOrder"));
-const MyFavorites = lazy(() => import("./pages/myFavorites/MyFavorites"));
-const MyCart = lazy(() => import("./pages/myCart/MyCart"));
-const NoMatch = lazy(() => import("./pages/noMatch/NoMatch"));
-const Search = lazy(() => import("./pages/search/Search"));
-const ArticlesById = lazy(() => import("./pages/articles/ArticlesById"));
-const MyAccount = lazy(() => import("./pages/myAccount/MyAccount"));
-import "./App.css";
+const Articles = lazy(() => import('./pages/articles/Articles'));
+const About = lazy(() => import('./pages/about/About'));
+const ContactUs = lazy(() => import('./pages/contactUs/ContactUs'));
+const Messages = lazy(() => import('./pages/messages/Messages'));
+const MyOrder = lazy(() => import('./pages/myOrder/MyOrder'));
+const MyFavorites = lazy(() => import('./pages/myFavorites/MyFavorites'));
+const MyCart = lazy(() => import('./pages/myCart/MyCart'));
+const NoMatch = lazy(() => import('./pages/noMatch/NoMatch'));
+const Search = lazy(() => import('./pages/search/Search'));
+const ArticlesById = lazy(() => import('./pages/articles/ArticlesById'));
+const MyAccount = lazy(() => import('./pages/myAccount/MyAccount'));
 
-import { Component } from "react";
+import { Component } from 'react';
 
 class ErrorBoundary extends Component {
   state = { hasError: false, error: null };
@@ -60,7 +60,7 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error("Component Error:", error, errorInfo);
+    console.error('Component Error:', error, errorInfo);
   }
 
   render() {
@@ -68,21 +68,21 @@ class ErrorBoundary extends Component {
       return (
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
           <div
-            className="noProducts"
-            style={{ maxWidth: "1480px", padding: "10px" }}
+            className='noProducts'
+            style={{ maxWidth: '1480px', padding: '10px' }}
           >
             <h3>Something went wrong</h3>
             <p>{this.state.error.message}</p>
             <p>UI problem </p>
-            <div style={{ width: "50%" }}>
+            <div style={{ width: '50%' }}>
               <button
-                className="formButton5"
+                className='formButton5'
                 onClick={() => this.setState({ hasError: false })}
               >
                 Try Again
@@ -104,7 +104,7 @@ function AppUser() {
   };
   ////////////////////////////////////
   const { t, i18n } = useTranslation();
-  const lng = cookies.get("i18next") || "en";
+  const lng = cookies.get('i18next') || 'en';
   ///////////////////////
   const dispatch = useDispatch();
   ///////////////////////
@@ -114,7 +114,7 @@ function AppUser() {
   ////////////////////
 
   return (
-    <div className="App">
+    <div className='App'>
       <Router
         future={{
           v7_startTransition: true,
@@ -125,12 +125,12 @@ function AppUser() {
         <ScrollToTop />
 
         <Routes>
-          <Route path="/" element={<Home numCounter={numCounter} />} />
-          <Route path="*" element={<NoMatch />} />
+          <Route path='/' element={<Home numCounter={numCounter} />} />
+          <Route path='*' element={<NoMatch />} />
 
           {/* //////////// */}
           <Route
-            path="/perfumes"
+            path='/perfumes'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -141,7 +141,7 @@ function AppUser() {
           />
           {/* //////////// */}
           <Route
-            path="/NaturalFlowers"
+            path='/NaturalFlowers'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -152,7 +152,7 @@ function AppUser() {
           />
           {/* //////////// */}
           <Route
-            path="product/:id"
+            path='product/:id'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -163,7 +163,7 @@ function AppUser() {
           />
           {/* //////////// */}
           <Route
-            path="Search/:searchKey"
+            path='Search/:searchKey'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -174,7 +174,7 @@ function AppUser() {
           />
           {/* //////////// */}
           <Route
-            path="category/:id"
+            path='category/:id'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -185,7 +185,7 @@ function AppUser() {
           />
           {/* //////////// */}
           <Route
-            path="/Articles"
+            path='/articles'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -196,7 +196,7 @@ function AppUser() {
           />
           {/* //////////// */}
           <Route
-            path="Article/:id"
+            path='Article/:id'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -207,7 +207,7 @@ function AppUser() {
           />
           {/* //////////// */}
           <Route
-            path="/ContactUs"
+            path='/ContactUs'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -218,7 +218,7 @@ function AppUser() {
           />
           {/* //////////// */}
           <Route
-            path="/AboutTheStore"
+            path='/AboutTheStore'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -229,7 +229,7 @@ function AppUser() {
           />
           {/* //////////// */}
           <Route
-            path="/StoreMessages"
+            path='/StoreMessages'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -241,7 +241,7 @@ function AppUser() {
           {/* //////////// */}
           <Route element={<ProtectedRoutes />}>
             <Route
-              path="/MyAccount/:userName"
+              path='/MyAccount/:userName'
               element={
                 <ErrorBoundary>
                   <Suspense fallback={<div>Loading...</div>}>
@@ -252,7 +252,7 @@ function AppUser() {
             />
             {/* //////////// */}
             <Route
-              path="/MyFavorites"
+              path='/MyFavorites'
               element={
                 <ErrorBoundary>
                   <Suspense fallback={<div>Loading...</div>}>
@@ -263,7 +263,7 @@ function AppUser() {
             />
             {/* //////////// */}
             <Route
-              path="/MyCart"
+              path='/MyCart'
               element={
                 <ErrorBoundary>
                   <Suspense fallback={<div>Loading...</div>}>
@@ -274,7 +274,7 @@ function AppUser() {
             />
             {/* //////////// */}
             <Route
-              path="/MyOrder "
+              path='/MyOrder '
               element={
                 <ErrorBoundary>
                   <Suspense fallback={<div>Loading...</div>}>
