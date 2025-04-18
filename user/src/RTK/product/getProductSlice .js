@@ -10,7 +10,7 @@ if (cookies.get('token') !== undefined || null) {
 }
 //////////////
 export const getProduct = createAsyncThunk('product/getProduct', async () => {
-  const response = await axios.get(`/api/products`, {
+  const response = await axios.get(`/products`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   // console.log(response.data)

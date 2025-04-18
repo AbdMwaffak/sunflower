@@ -17,7 +17,7 @@ if (token !== '') {
 export const getProductByCategory = createAsyncThunk(
   'product/getProductByCategory',
   async (id) => {
-    const response = await axios.get(`/api/products?category=${id}`, {
+    const response = await axios.get(`/products?category=${id}`, {
       headers: { Authorization: headers },
     });
     return response.data;
