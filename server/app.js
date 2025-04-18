@@ -90,7 +90,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
 app.use('/users', userRoutes);
-app.use('/api/articles', articleRoutes);
+app.use('/articles', articleRoutes);
 app.use('/products', productRoutes);
 app.use('/category', categoryRoutes);
 app.use('/perfume', perfumeRoutes);
@@ -133,7 +133,7 @@ app.get('*', (req, res) => {
 });
 app.all('*', (req, res, next) => {
   next(
-    new AppError(`Can't find this route ${req.originalUrl} on the server`, 404)
+    new AppError(`Can't find this route ${req.originalUrl} on this server`, 404)
   );
 });
 
