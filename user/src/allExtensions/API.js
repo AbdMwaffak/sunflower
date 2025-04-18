@@ -1,2 +1,2 @@
-const Api = 'https://sunflowerworld.shop/api';
+const Api = 'https://sunflowerworld.shop';
 export default Api;
