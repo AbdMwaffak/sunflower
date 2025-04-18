@@ -86,25 +86,25 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
-app.use('/users', userRoutes);
-app.use('/articles', articleRoutes);
-app.use('/products', productRoutes);
-app.use('/category', categoryRoutes);
-app.use('/perfume', perfumeRoutes);
-app.use('/perfumeOrder', perfumeOrderRoutes);
-app.use('/chocolate', chocolateRoutes);
-app.use('/naturalFlowers', naturalFlowerRoutes);
-app.use('/naturalFlowersOrders', naturalFlowerOrderRoutes);
-app.use('/bands', bandRoutes);
-app.use('/papers', paperRoutes);
-app.use('/shoppingCart', shoppingCartRoutes);
-app.use('/offers', offerRoutes);
-app.use('/cities', cityRoutes);
-app.use('/messages', messageRoutes);
-app.use('/aboutus', aboutUsRoutes);
-app.use('/settings', settingRoutes);
-app.use('/orders', orderRoutes);
-app.use('/sse', sseRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/articles', articleRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/category', categoryRoutes);
+app.use('/api/perfume', perfumeRoutes);
+app.use('/api/perfumeOrder', perfumeOrderRoutes);
+app.use('/api/chocolate', chocolateRoutes);
+app.use('/api/naturalFlowers', naturalFlowerRoutes);
+app.use('/api/naturalFlowersOrders', naturalFlowerOrderRoutes);
+app.use('/api/bands', bandRoutes);
+app.use('/api/papers', paperRoutes);
+app.use('/api/shoppingCart', shoppingCartRoutes);
+app.use('/api/offers', offerRoutes);
+app.use('/api/cities', cityRoutes);
+app.use('/api/messages', messageRoutes);
+app.use('/api/aboutus', aboutUsRoutes);
+app.use('/api/settings', settingRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/sse', sseRoutes);
 
 // dunia121247
 app.get('*', (req, res) => {
