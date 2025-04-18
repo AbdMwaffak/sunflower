@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 
   // If the client sends a preflight request with OPTIONS, respond with status 200
   if (req.method === 'OPTIONS') {
-    return res.sendStatus(200); // CORS preflight response
+    return res.sendStatus(200); // CORS preflight response --
   }
 
   next();
