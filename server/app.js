@@ -133,7 +133,7 @@ app.get('*', (req, res) => {
 });
 app.all('*', (req, res, next) => {
   next(
-    new AppError(`Can't find this route ${req.originalUrl} on this server`, 404)
+    new AppError(`Can't find this route ${req.originalUrl} on the server`, 404)
   );
 });
 
