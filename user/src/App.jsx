@@ -185,7 +185,7 @@ function AppUser() {
           />
           {/* //////////// */}
           <Route
-            path='/articles'
+            path='/Articles'
             element={
               <ErrorBoundary>
                 <Suspense fallback={<div>Loading...</div>}>
