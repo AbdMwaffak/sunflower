@@ -10,18 +10,15 @@ app.use(cors());
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 
-const serveUserApp = express.static(path.join(__dirname, '../user/dist'));
-const serveAdminApp = express.static(path.join(__dirname, '../admin/dist'));
-
 app.use((req, res, next) => {
   const host = req.headers.host;
   // Check for user domain
   if (host === 'sunflowerworld.shop' || host === 'www.sunflowerworld.shop') {
-    return serveUserApp(req, res, next);
+    app.use(express.static(path.join(__dirname, '../user/dist')));
   }
   // Check for admin domain
   else if (host === 'dunia.sunflowerworld.shop') {
-    return serveAdminApp(req, res, next);
+    app.use(express.static(path.join(__dirname, '../admin/dist')));
   }
 
   next();
