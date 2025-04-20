@@ -12,7 +12,9 @@ if (cookies.get('token') !== undefined || null) {
 export const getAllBouquets = createAsyncThunk(
   'naturalFlowers/getAllBouquets',
   async () => {
-    const response = await axios.get(`/products?categoryName=natural flowers`);
+    const response = await axios.get(
+      `/api/products?categoryName=natural flowers`
+    );
     return response.data;
   }
 );
