@@ -11,7 +11,7 @@ if (cookies.get('token') !== undefined || null) {
 }
 //////////////
 export const getBand = createAsyncThunk('Band/getBand', async () => {
-  const response = await axios.get(`/api/bands`, {
+  const response = await axios.get(`/bands`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   // console.log(response.data)
