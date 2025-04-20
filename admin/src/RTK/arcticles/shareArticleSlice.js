@@ -15,7 +15,7 @@ if (cookies.get('adminToken') !== undefined || null) {
 export const shareArticle = createAsyncThunk(
   'articles/shareArticle',
   async (id) => {
-    const response = await axios.patch(`/articles/share/${id}`, {
+    const response = await axios.patch(`/api/articles/share/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;

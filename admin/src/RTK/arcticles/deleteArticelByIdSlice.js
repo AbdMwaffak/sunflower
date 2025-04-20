@@ -16,7 +16,7 @@ export const deleteArticelById = createAsyncThunk(
   'articles/deleteArticelById',
   async (reqobj) => {
     const response = await axios.patch(
-      `/articles/delete/${reqobj.id}`,
+      `/api/articles/delete/${reqobj.id}`,
       { pass: reqobj.pass },
       { headers: { Authorization: `Bearer ${token}` } }
     );

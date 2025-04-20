@@ -1,19 +1,17 @@
 .orderClose {
-    width: 98%;
-    /* height: 60px; */
+    width: 98%; 
+color: var(--primary-dark);
     background-color: var(--primary-light);
     border-radius: 8px;
     transition: all 0.5s ease-in-out;
-    /* padding-top: 0; */
     box-shadow: var(--component-shadow);
 }
 
 .orderOpen {
     width: 98%;
-    /* min-height: 200px; */
+    color: var(--primary-dark);
     background-color: var(--primary-light);
     border-radius: 8px;
-    /* padding: 10px; */
     padding-top: 0;
     transition: all 0.5s ease-in-out;
     box-shadow: var(--component-shadow);
@@ -22,11 +20,11 @@
 .orderHader {
     width: 100%;
     padding: 10px 0;
-    /* height: 60px; */
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    color: var(--primary-dark);
 }
 
 .orderArrwClose {
@@ -291,4 +289,8 @@
     .callOrder {
         width: 33%;
     }
+}
+.kk {
+    width: 100%;
+    display: flex;
 }

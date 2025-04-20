@@ -71,7 +71,7 @@ const Messages = () => {
                 <div className='title'>
                     {t("messages.title")}
                 </div>
-                <div className='myAC-top2'>
+                <div className='myAC-top3'>
                     <span className='vv1 ' > {t('me.message')}</span>
                     <hr className='tapp' />
                     <div className='cardContener'>

@@ -16,7 +16,7 @@ if (cookies.get('adminToken') !== undefined || null) {
 export const postArticle = createAsyncThunk(
   'articles/postArticle',
   async (reqobj) => {
-    const response = await axios.post(`/articles`, reqobj, {
+    const response = await axios.post(`/api/articles`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;

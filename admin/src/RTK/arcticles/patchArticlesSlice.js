@@ -16,9 +16,13 @@ if (cookies.get('adminToken') !== undefined || null) {
 export const patchArticles = createAsyncThunk(
   'categories/patchArticles',
   async (value) => {
-    const response = await axios.patch(`/articles/${value.id}`, value.reqobj, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await axios.patch(
+      `/api/articles/${value.id}`,
+      value.reqobj,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     return response.data;
   }
 );

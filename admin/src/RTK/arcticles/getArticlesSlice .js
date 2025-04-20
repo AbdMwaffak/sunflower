@@ -15,7 +15,7 @@ if (cookies.get('adminToken') !== undefined || null) {
 export const getArticles = createAsyncThunk(
   'articles/getArticles',
   async () => {
-    const response = await axios.get(`/articles`, {
+    const response = await axios.get(`/api/articles`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;

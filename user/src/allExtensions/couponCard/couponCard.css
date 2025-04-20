@@ -1,89 +1,90 @@
 .couponCard {
-    width: 207px;
-    height: 300px;
-    background-color: aliceblue;
-    border-radius: 16px;
-    margin-top: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px;
-    box-shadow: 4px 5px 12px black;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    transform-origin: bottom;
+  width: 207px;
+  height: 300px;
+  background-color: aliceblue;
+  border-radius: 16px;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  box-shadow: 4px 5px 12px black;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+  color: var(--primary-dark);
 }
 
 .couponCard:hover .bounce-7 {
-    animation-name: bounce-7;
-    animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+  animation-name: bounce-7;
+  animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
 }
 
 @keyframes bounce-7 {
-    0% {
-        transform: scale(1, 1) translateY(0);
-    }
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
 
-    10% {
-        transform: scale(1.1, .9) translateY(0);
-    }
+  10% {
+    transform: scale(1.1, 0.9) translateY(0);
+  }
 
-    30% {
-        transform: scale(.9, 1.1) translateY(-70px);
-    }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-70px);
+  }
 
-    50% {
-        transform: scale(1.05, .95) translateY(0);
-    }
+  50% {
+    transform: scale(1.05, 0.95) translateY(0);
+  }
 
-    57% {
-        transform: scale(1, 1) translateY(-7px);
-    }
+  57% {
+    transform: scale(1, 1) translateY(-7px);
+  }
 
-    64% {
-        transform: scale(1, 1) translateY(0);
-    }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(0);
-    }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
 }
 
 .CouponImg {
-    width: 100%;
-    margin-top: -80px;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    transform-origin: bottom;
+  width: 100%;
+  margin-top: -80px;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
 }
 
 .CouponText {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .DisValue {
-    font-size: xxx-large;
-    margin: 0px;
-    color: red;
-    font-weight: 900;
-    padding: 0;
+  font-size: xxx-large;
+  margin: 0px;
+  color: red;
+  font-weight: 900;
+  padding: 0;
 }
 
 .getIt {
-    width: 170px;
-    height: 30px;
-    background-color: red;
-    color: white;
-    border: 0;
-    border-radius: 24px;
-    font-size: large;
-    font-weight: bolder;
+  width: 170px;
+  height: 30px;
+  background-color: red;
+  color: white;
+  border: 0;
+  border-radius: 24px;
+  font-size: large;
+  font-weight: bolder;
 }
 
 .discount {
-    display: flex;
-    flex-direction: column;
-    padding: 0px;
-    color: red;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  color: red;
 }

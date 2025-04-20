@@ -16,7 +16,7 @@ export const likeArticle = createAsyncThunk(
   'articles/likeArticle',
   async (id) => {
     const response = await axios.patch(
-      `/articles/like/${id}`,
+      `/api/articles/like/${id}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );

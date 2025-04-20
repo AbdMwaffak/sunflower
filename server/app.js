@@ -89,7 +89,7 @@ app.use(cookieParser());
 app.use('/users', userRoutes);
 app.use('/api/articles', articleRoutes);
 app.use('/products', productRoutes);
-app.use('/category', categoryRoutes);
+app.use('/api/category', categoryRoutes);
 app.use('/perfume', perfumeRoutes);
 app.use('/perfumeOrder', perfumeOrderRoutes);
 app.use('/chocolate', chocolateRoutes);

@@ -1,330 +1,329 @@
 .allshapes {
-    height: calc(100vh-100px);
-    width: 100vw;
-    /* background-color: aliceblue; */
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    z-index: 1000;
-    margin-bottom: 40px;
+  height: calc(100vh-100px);
+  width: 100vw;
+  /* background-color: aliceblue; */
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  margin-bottom: 40px;
 }
 
 .aaImg {
-    width: 100%;
+  width: 100%;
 }
 
-
 .ab {
-    width: 10%;
-    aspect-ratio: 1/1;
-    position: absolute;
-    bottom: 0px;
-    right: 20%;
+  width: 10%;
+  aspect-ratio: 1/1;
+  position: absolute;
+  bottom: 0px;
+  right: 20%;
 
-    animation-duration: 40s;
-    animation-iteration-count: infinite;
-    transform-origin: bottom;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
 }
 
 .aa1 {
-    animation-name: fly1;
+  animation-name: fly1;
 }
 
-.aa1>.aaImg {
-    transform: rotate(30deg);
-    transform: scaleX(-1);
+.aa1 > .aaImg {
+  transform: rotate(30deg);
+  transform: scaleX(-1);
 }
 
 .aa2 {
-    animation-name: fly2;
-    width: 25%;
-    max-width: 200px;
+  animation-name: fly2;
+  width: 25%;
+  max-width: 200px;
 }
 
 .aa3 {
-    animation-name: fly3;
+  animation-name: fly3;
 }
 
 .aa5 {
-    animation-name: fly5;
-    width: 15%;
-    max-width: 180px;
+  animation-name: fly5;
+  width: 15%;
+  max-width: 180px;
 }
 
 .aa4 {
-    animation-name: fly4;
+  animation-name: fly4;
 }
 
 .aa6 {
-    animation-name: fly6;
+  animation-name: fly6;
 }
 
 .aa7 {
-    animation-name: fly7;
+  animation-name: fly7;
 }
 
 .aa8 {
-    animation-name: fly8;
-    width: 15%;
-    max-width: 180px;
+  animation-name: fly8;
+  width: 15%;
+  max-width: 180px;
 }
 
 .aa9 {
-    animation-name: fly9;
+  animation-name: fly9;
 }
 
 .aa10 {
-    animation-name: fly10;
-    width: 25%;
-    max-width: 200px;
+  animation-name: fly10;
+  width: 25%;
+  max-width: 200px;
 }
 
 .aa11 {
-    animation-name: fly11;
+  animation-name: fly11;
 }
 
 .aa12 {
-    animation-name: fly12;
-    width: 15%;
-    max-width: 180px;
+  animation-name: fly12;
+  width: 15%;
+  max-width: 180px;
 }
 
 .aa13 {
-    animation-name: fly13;
+  animation-name: fly13;
 }
 
-.aa1>.aaImg {
-    transform: rotate(30deg);
-    transform: scaleX(-1);
+.aa1 > .aaImg {
+  transform: rotate(30deg);
+  transform: scaleX(-1);
 }
 
-.aa2>.aaImg {
-    transform: scaleX(-1);
+.aa2 > .aaImg {
+  transform: scaleX(-1);
 }
 
-.aa12>.aaImg {
-    transform: scaleX(-1);
+.aa12 > .aaImg {
+  transform: scaleX(-1);
 }
 
 @keyframes fly1 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    20% {
-        transform: scale(1, 1) translateY(-20vh) translateX(-40vw);
-    }
+  20% {
+    transform: scale(1, 1) translateY(-20vh) translateX(-40vw);
+  }
 
-    32% {
-        opacity: 50;
-    }
+  32% {
+    opacity: 50;
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(-40vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(-40vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly2 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    20% {
-        transform: scale(1, 1) translateY(-10vh) translateX(-20vw);
-    }
+  20% {
+    transform: scale(1, 1) translateY(-10vh) translateX(-20vw);
+  }
 
-    30% {
-        opacity: 50;
-    }
+  30% {
+    opacity: 50;
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(-20vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(-20vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly3 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    20% {
-        transform: scale(1, 1) translateY(-20vh) translateX(10vw);
-    }
+  20% {
+    transform: scale(1, 1) translateY(-20vh) translateX(10vw);
+  }
 
-    30% {
-        opacity: 50;
-    }
+  30% {
+    opacity: 50;
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(10vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(10vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly5 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    20% {
-        transform: scale(1, 1) translateY(-10vh) translateX(-60vw);
-    }
+  20% {
+    transform: scale(1, 1) translateY(-10vh) translateX(-60vw);
+  }
 
-    30% {
-        opacity: 50;
-    }
+  30% {
+    opacity: 50;
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(-60vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(-60vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly4 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    20% {
-        transform: scale(1, 1) translateY(-40vh) translateX(5vw);
-    }
+  20% {
+    transform: scale(1, 1) translateY(-40vh) translateX(5vw);
+  }
 
-    30% {
-        opacity: 50;
-    }
+  30% {
+    opacity: 50;
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(5vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(5vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly6 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    20% {
-        transform: scale(1, 1) translateY(-40vh) translateX(-30vw);
-    }
+  20% {
+    transform: scale(1, 1) translateY(-40vh) translateX(-30vw);
+  }
 
-    30% {
-        opacity: 50;
-    }
+  30% {
+    opacity: 50;
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(-30vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(-30vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly7 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    20% {
-        transform: scale(1, 1) translateY(-60vh) translateX(-25vw);
-    }
+  20% {
+    transform: scale(1, 1) translateY(-60vh) translateX(-25vw);
+  }
 
-    30% {
-        opacity: 50;
-    }
+  30% {
+    opacity: 50;
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(-25vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(-25vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly8 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    60% {
-        transform: scale(1, 1) translateY(-60vh) translateX(-50vw);
-    }
+  60% {
+    transform: scale(1, 1) translateY(-60vh) translateX(-50vw);
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(-50vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(-50vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly9 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    65% {
-        transform: scale(1, 1) translateY(-65vh) translateX(-70vw);
-    }
+  65% {
+    transform: scale(1, 1) translateY(-65vh) translateX(-70vw);
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(-70vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(-70vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly10 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    65% {
-        transform: scale(1, 1) translateY(-65vh) translateX(15vw);
-    }
+  65% {
+    transform: scale(1, 1) translateY(-65vh) translateX(15vw);
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(15vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(15vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly11 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    65% {
-        transform: scale(1, 1) translateY(-65vh) translateX(0vw);
-    }
+  65% {
+    transform: scale(1, 1) translateY(-65vh) translateX(0vw);
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(0vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(0vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly12 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    50% {
-        transform: scale(1, 1) translateY(-50vh) translateX(-5vw);
-    }
+  50% {
+    transform: scale(1, 1) translateY(-50vh) translateX(-5vw);
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(-5vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(-5vw);
+    opacity: 0;
+  }
 }
 
 @keyframes fly13 {
-    0% {
-        transform: scale(0, 0);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
 
-    20% {
-        transform: scale(1, 1) translateY(-20vh) translateX(-10vw);
-    }
+  20% {
+    transform: scale(1, 1) translateY(-20vh) translateX(-10vw);
+  }
 
-    100% {
-        transform: scale(1, 1) translateY(-100vh) translateX(-10vw);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(1, 1) translateY(-100vh) translateX(-10vw);
+    opacity: 0;
+  }
 }
