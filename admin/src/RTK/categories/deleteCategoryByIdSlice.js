@@ -16,7 +16,7 @@ export const deleteCategoryById = createAsyncThunk(
   'categories/deleteCategoryById',
   async (id) => {
     const response = await axios.patch(
-      `/category/delete/${id}`,
+      `/api/category/delete/${id}`,
       { pass: 'hi' },
       { headers: { Authorization: `Bearer ${token}` } }
     );

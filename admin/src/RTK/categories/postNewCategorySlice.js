@@ -16,7 +16,7 @@ if (cookies.get('adminToken') !== undefined || null) {
 export const postNewCategory = createAsyncThunk(
   'categories/postNewCategory',
   async (reqobj) => {
-    const response = await axios.post(`/category`, reqobj, {
+    const response = await axios.post(`/api/category`, reqobj, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;

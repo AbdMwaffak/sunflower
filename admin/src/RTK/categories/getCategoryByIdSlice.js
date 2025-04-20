@@ -15,7 +15,7 @@ if (cookies.get('adminToken') !== undefined || null) {
 export const getCategoryById = createAsyncThunk(
   'categories/getCategoryById',
   async (id) => {
-    const response = await axios.get(`/category/${id}`, {
+    const response = await axios.get(`/api/category/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;

@@ -17,7 +17,7 @@ export const stateCategoryById = createAsyncThunk(
   'categories/stateCategoryById',
   async (id) => {
     const response = await axios.patch(
-      `/category/changeState/${id}`,
+      `/api/category/changeState/${id}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
