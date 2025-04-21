@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from "../../allExtensions/productCard/ProductCard"
 import './productsByCategory.css'
-import { useLocation, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { getProductByCategory } from '../../RTK/product/getProductByCategorySlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../../RTK/product/getProductSlice ';
 import Api from '../../allExtensions/API';
 import { getCategory } from '../../RTK/categoris/getCategorySlice';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
+import { getAllBouquets } from '../../RTK/naturalFlowers/getAllBouquetsSlice';
 const ProductsByCategory = (props) => {
     const id = useParams().id
     ////////////////////////////// 
-    const allproducts = useSelector(state => state.getProductByCategory)?.data
+    const allproducts = useSelector(state => id == "NaturalFlowers" ? state.getAllBouquets : state.getProductByCategory)?.data
     const category = useSelector(state => state.getCategory)?.data
     //////////////////////////////
     const [reload, setReload] = useState("")
@@ -35,8 +35,12 @@ const ProductsByCategory = (props) => {
     } else lng = "en"
     //////////////////////////////
     useEffect(() => {
-        dispatch(getProductByCategory(id))
-        dispatch(getCategory(id))
+        if (id == "NaturalFlowers")
+            dispatch(getAllBouquets())
+        else {
+            dispatch(getProductByCategory(id))
+            dispatch(getCategory(id))
+        }
     }, [dispatch, reload])
     //////////////////////////
     useEffect(
@@ -51,8 +55,13 @@ const ProductsByCategory = (props) => {
         <>
             <Toaster />
             <div className='bage'>
+
                 <div className='title'>
-                    {lng == "ar" ? category.nameAr : category.name}
+                    {/* {    id == "NaturalFlowers" 
+                    lng == "ar" ? "الأزهار الطبيعية " : "NaturalFlowers" */}
+
+                    {lng == "ar" ? id == "NaturalFlowers" ? "أزهار طبيعية" : category.nameAr :
+                        id == "NaturalFlowers" ? "NaturalFlowers" : category.name}
                 </div>
                 <div className='categorysName'>
                     {allproducts?.length == 0 &&
