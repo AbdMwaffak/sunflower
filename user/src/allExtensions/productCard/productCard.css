@@ -75,12 +75,12 @@
 }
 
 .pDate {
-    font-size: 10px;
+    font-size: 14px;
     color: var(--title-textColor);
     border-radius: 8px;
     background-color: var(--title-Color);
     width: 100%;
-    height: 23px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: space-around;

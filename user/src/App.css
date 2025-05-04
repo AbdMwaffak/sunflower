@@ -284,13 +284,14 @@
 .res {
   width: 98%;
   display: grid;
-  grid-auto-columns: (max-content 2);
-  grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
+  /* grid-auto-columns: (max-content 2);
+  grid-template-columns: repeat(auto-fit, minmax(390px, 1fr)); */
   gap: 10px;
   justify-items: center;
 }
 
 @media screen and (max-width: 465px) {
+
   .res,
   .perfumesMain,
   .flowersBouquetMain {
@@ -317,6 +318,7 @@
   box-shadow: var(--component-shadow);
   border-radius: 4px;
 }
+
 .yesNo {
   color: var(--component-textColor);
 }
@@ -354,6 +356,7 @@
   text-align: center;
   padding: 5px;
 }
+
 .qq {
   direction: ltr;
 }

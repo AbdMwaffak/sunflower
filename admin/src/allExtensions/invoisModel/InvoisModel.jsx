@@ -4,15 +4,26 @@ import { Col, Form, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useTranslation } from 'react-i18next';
+// import { WhatsappShareButton } from 'react-share';
 ////////////////////////
 import { Path, PDFViewer } from '@react-pdf/renderer';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Page, Text, View, Document, StyleSheet, Font, Image, Svg } from '@react-pdf/renderer';
 import logo from '../../images/blackLogo.png'
+import bankTransfer from '../../images/bankTransfer.svg'
+import { footer } from 'framer-motion/client';
 
 
+
+Font.register({
+  family: 'NotoKufiArabic',
+  src: '/fonts/NotoKufiArabic-VariableFont_wght.ttf',
+  fontWeight: 'bold'
+});
 const styles = StyleSheet.create({
-  page: { padding: 30, fontFamily: 'Helvetica', padding: "50", position: "relative" },
+  page: {
+    padding: 30, fontFamily: 'Helvetica', padding: "50", position: "relative"
+  },
   header: { marginBottom: 20, display: "flex", flexDirection: "row", justifyContent: "space-between", },
   table: {
     display: "table",
@@ -30,6 +41,7 @@ const styles = StyleSheet.create({
   colorCol: { width: "20%", padding: 5, fontSize: "12px", margin: "-1px", fontWeight: "600", marginTop: '5px', backgroundColor: "#f1c92f" },
   title: { fontSize: "24px", fontWeight: "800", color: "#f1c92f" },
   text: { fontSize: "12px" },
+  textar: { fontFamily: 'NotoKufiArabic', fontSize: "12px" },
   image: {
     width: 100,
     height: 100,
@@ -47,30 +59,20 @@ const styles = StyleSheet.create({
     marginTop: "12px"
   },
   footer: {
-    display: "flex",
-    gap:"30px",
-    //  flexDirection: "row",
+    display: "flex", flexDirection: "row",
     position: 'absolute',
-    bottom: "30",
+    bottom: "10",
     left: 0,
     right: 0,
-    // textAlign: 'center',
-    alignItems:"flex-start",
+    textAlign: 'center',
+    justifyContent: "space-around",
+    // fontSize: 10,
     color: "black",
     borderTop: "2px soled #f1c92f",
-    paddingTop: "10px",
-    width:"96%",
-    marginLeft:"2%",
-    marginRight:"2%"
-  },
-  footer1: {
-    width:"100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    margin: "0 30px",
+    paddingTop: "10px"
   },
   icon: {
-    width:'25%',
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -82,19 +84,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     gap: "5px"
-  },
-rs:{
-  borderTop: "2px soled #f1c92f",
-  width:"100%",
-  paddingTop:"10px",
-  fontWeight:"700"
-}
+  }
+
 });
 ///////////////////////
 const InvoicePDF = (props) => (
-  <Document title="Sunflower-World"
-    FileName="pdf">
-    <Page size="A4" title={props?.user?.name} style={styles.page}>
+  //   let svg = { < svg xmlns = "http://www.w3.org/2000/svg" width = { 24} height = { 24} viewBox = "0 0 24 24" > <Path fill="currentColor" d="M15 14v-3h3V9l4 3.5l-4 3.5v-2zm-1-6.3V9H2V7.7L8 4zM7 10h2v5H7zm-4 0h2v5H3zm10 0v2.5l-2 1.8V10zm-3.9 6l-.6.5l1.7 1.5H2v-2zm7.9-1v3h-3v2l-4-3.5l4-3.5v2z"></Path></svg>
+
+  <Document title="test"
+    FileName="bbb">
+    <Page size="A4" title="test" style={styles.page}>
       <View style={styles.header}>
         <View style={styles.logo}>
           <Image
@@ -106,15 +105,15 @@ const InvoicePDF = (props) => (
           </Text>
         </View>
         <View style={styles.user}>
-          <Text style={styles.title}>INVOISE</Text>
+          <Text style={styles.title}>INVOICE</Text>
           <Text style={styles.text}>Date:  {props?.date}</Text>
           <Text style={styles.text}>{" "}</Text>
 
-          <Text style={styles.text}>To :</Text>
-          <Text style={styles.text}>{props?.user?.name}</Text>
-          <Text style={styles.text}>phone: {props?.user?.phone}</Text>
-          <Text style={styles.text}>city: {props?.user?.city}</Text>
-          <Text style={styles.text}>adress: {props?.user?.adress}</Text>
+          <Text style={styles.textar}>To : {props?.user?.name}</Text>
+          {/* <Text style={styles.textuser}>{props?.user?.name}</Text> */}
+          <Text style={styles.textar}>phone: {props?.user?.phone}</Text>
+          <Text style={styles.textar}>city: {props?.user?.city}</Text>
+          <Text style={styles.textar}>adress: {props?.user?.adress}</Text>
 
         </View>
       </View>
@@ -173,24 +172,23 @@ const InvoicePDF = (props) => (
           <View style={styles.totalColName}><Text>{ }</Text></View>
           <View style={styles.totalCol}><Text>{ }</Text></View>
           <View style={styles.colorCol}><Text>SUBTOTAL </Text></View>
-          <View style={styles.colorCol}><Text>{props?.total}.SAR </Text></View>
+          <View style={styles.colorCol}><Text>{props?.total}.sar </Text></View>
         </View>
         <View style={styles.tableRow}>
           <View style={styles.totalColName}><Text>{ }</Text></View>
           <View style={styles.totalCol}><Text>{ }</Text></View>
           <View style={styles.colorCol} ><Text>DISCOUNT  </Text></View>
-          <View style={styles.colorCol}><Text>{props?.discount}.SAR </Text></View>
+          <View style={styles.colorCol}><Text>{props?.discount}% </Text></View>
         </View>
         <View style={styles.tableRow}>
           <View style={styles.totalColName}><Text>{ }</Text></View>
           <View style={styles.totalCol}><Text>{ }</Text></View>
           <View style={styles.colorCol} ><Text>TOTAL  </Text></View>
-          <View style={styles.colorCol}><Text>{props?.total - props?.discount}.SAR</Text></View>
+          <View style={styles.colorCol}><Text>{props?.total - (props?.total * props?.discount / 100)}.sar</Text></View>
         </View>
       </View>
       {/* ///// */}
       <View style={styles.footer}>
-      <View style={styles.footer1}>
         <View style={styles.icon}>
           <View style={styles.div}> <Text>Bank transfer</Text>
             <Svg xmlns="http://www.w3.org/2000/svg" width={26} height={26} viewBox="0 0 512 512" >
@@ -210,20 +208,15 @@ const InvoicePDF = (props) => (
         </View>
 
         <View style={styles.icon}>
-          <View style={styles.div}> <Text>Card</Text>
+          <View style={styles.div}> <Text>Bank transfer</Text>
             <Svg xmlns="http://www.w3.org/2000/svg" width={26} height={26} viewBox="0 0 26 26" >
               <Path fill="currentColor" d="M16.688 0c-.2.008-.393.044-.594.094L2.5 3.406C.892 3.8-.114 5.422.281 7.031l1.906 7.782A2.99 2.99 0 0 0 4 16.875V15c0-2.757 2.243-5 5-5h12.594l-1.875-7.719A3.004 3.004 0 0 0 16.687 0zm1.218 4.313l.813 3.406l-3.375.812l-.844-3.375zM9 12c-1.656 0-3 1.344-3 3v8c0 1.656 1.344 3 3 3h14c1.656 0 3-1.344 3-3v-8c0-1.656-1.344-3-3-3zm0 1.594h14c.771 0 1.406.635 1.406 1.406v1H7.594v-1c0-.771.635-1.406 1.406-1.406M7.594 19h16.812v4c0 .771-.635 1.406-1.406 1.406H9A1.414 1.414 0 0 1 7.594 23z"></Path></Svg>
           </View>
           <Svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 16 16" >
             <Path fill="currentColor" d="M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8"></Path></Svg>
         </View>
-</View>
-      <View style={styles.rs}>
-      <Text>Recipient's signature :</Text>
-        </View>
+
       </View>
-
-
 
     </Page>
 
@@ -270,7 +263,7 @@ function InvoisModel(props) {
             />
           </PDFViewer>
           <Form.Group as={Row} className="mb-1" controlId="form1">
-            <Form.Label column sm="3" >  {t('public.addDis')}   </Form.Label>
+            <Form.Label column sm="3" >  {t('public.addDis')} %  </Form.Label>
             <Col sm="9">
               <Form.Control type="number" required
                 value={dis}
@@ -291,15 +284,8 @@ function InvoisModel(props) {
           </Button>
           <PDFDownloadLink className='loginBT'
             style={{ textDecoration: "none", width: "20%" }}
-            document={<InvoicePDF  
-            order={props?.order}
-            date={props?.date}
-            user={props?.user}
-            store={props?.storeInfo}
-            discount={dis}
-            total={props?.totalOffers + props?.totalPerfumes + props?.totalProducts}
-/>}
-            fileName={props?.user?.name} 
+            document={<InvoicePDF />}
+            fileName="invoice.pdf"
             onClick={handleClose}
           >
             {({ loading }) => (
