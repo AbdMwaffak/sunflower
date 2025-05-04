@@ -1,6 +1,8 @@
 .productCard {
     width: 250px;
     height: 375px;
+    /* width: 100%;
+    height: 100%; */
     background-color: var(--component-Color);
     color: var(--component-textColor);
     display: flex;
@@ -15,6 +17,15 @@
     /* box-shadow: var(--component-shadow); */
     transition: all 0.1s linear;
     gap: 5px;
+}
+
+/* @media screen and (max-width: 465px) { */
+
+@media screen and (max-width: 600px) {
+    .productCard {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .imageCard {
@@ -68,7 +79,7 @@
     color: var(--title-textColor);
     border-radius: 8px;
     background-color: var(--title-Color);
-    width: 50%;
+    width: 100%;
     height: 23px;
     display: flex;
     align-items: center;

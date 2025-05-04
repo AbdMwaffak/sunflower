@@ -102,7 +102,8 @@
         "message": "Oops !",
         "message1": "you missed choise flowersNumber !",
         "message11": "The bouquet cannot be added because there are other products in your cart ",
-        "message22": "you can empty the basket and try again"
+        "message22": "you can empty the basket and try again",
+        "moreBouquet": "more bouquet"
     },
     "perfume": {
         "title": "Perfume",

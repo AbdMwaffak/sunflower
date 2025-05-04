@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useTranslation } from 'react-i18next';
 
-function InfoModel(props) {
+function InvoisModel(props) {
     const [show, setShow] = useState(false);
     const [problem, setProblem] = useState('');
     const handleClose = () => setShow(false);
@@ -61,4 +61,4 @@ function InfoModel(props) {
         </>
     );
 }
-export default InfoModel;
+export default InvoisModel;
