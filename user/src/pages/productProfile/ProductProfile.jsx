@@ -111,8 +111,8 @@ const ProductProfile = (props) => {
     if (cookies.get('token') !== undefined || null) {
       dispatch(getCart());
       dispatch(getMe());
-      dispatch(getSuggested(id));
     }
+    dispatch(getSuggested(id));
   }, [dispatch, id, reload]);
   //////////////////////////
   useEffect(function () {
