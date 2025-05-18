@@ -285,47 +285,47 @@ function LoginModel(props) {
                   className='loginBT'
                   style={{ margin: '0 5%' }}
                 >
-                  {/* {loading1 ? (
-                    <div style={{ display: "flex", gap: "10px" }}>
-                      Please wait{" "}
-                      <svg width={24} height={24} viewBox="0 0 24 24">
-                        <circle cx={4} cy={12} r={3} fill="#1d1d31">
+                  {loading1 ? (
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                      Please wait{' '}
+                      <svg width={24} height={24} viewBox='0 0 24 24'>
+                        <circle cx={4} cy={12} r={3} fill='#1d1d31'>
                           <animate
-                            id="svgSpinners3DotsBounce0"
-                            attributeName="cy"
-                            begin="0;svgSpinners3DotsBounce1.end+0.25s"
-                            calcMode="spline"
-                            dur="0.6s"
-                            keySplines=".33,.66,.66,1;.33,0,.66,.33"
-                            values="12;6;12"
+                            id='svgSpinners3DotsBounce0'
+                            attributeName='cy'
+                            begin='0;svgSpinners3DotsBounce1.end+0.25s'
+                            calcMode='spline'
+                            dur='0.6s'
+                            keySplines='.33,.66,.66,1;.33,0,.66,.33'
+                            values='12;6;12'
                           ></animate>
                         </circle>
-                        <circle cx={12} cy={12} r={3} fill="#1d1d31">
+                        <circle cx={12} cy={12} r={3} fill='#1d1d31'>
                           <animate
-                            attributeName="cy"
-                            begin="svgSpinners3DotsBounce0.begin+0.1s"
-                            calcMode="spline"
-                            dur="0.6s"
-                            keySplines=".33,.66,.66,1;.33,0,.66,.33"
-                            values="12;6;12"
+                            attributeName='cy'
+                            begin='svgSpinners3DotsBounce0.begin+0.1s'
+                            calcMode='spline'
+                            dur='0.6s'
+                            keySplines='.33,.66,.66,1;.33,0,.66,.33'
+                            values='12;6;12'
                           ></animate>
                         </circle>
-                        <circle cx={20} cy={12} r={3} fill="#1d1d31">
+                        <circle cx={20} cy={12} r={3} fill='#1d1d31'>
                           <animate
-                            id="svgSpinners3DotsBounce1"
-                            attributeName="cy"
-                            begin="svgSpinners3DotsBounce0.begin+0.2s"
-                            calcMode="spline"
-                            dur="0.6s"
-                            keySplines=".33,.66,.66,1;.33,0,.66,.33"
-                            values="12;6;12"
+                            id='svgSpinners3DotsBounce1'
+                            attributeName='cy'
+                            begin='svgSpinners3DotsBounce0.begin+0.2s'
+                            calcMode='spline'
+                            dur='0.6s'
+                            keySplines='.33,.66,.66,1;.33,0,.66,.33'
+                            values='12;6;12'
                           ></animate>
                         </circle>
                       </svg>
                     </div>
                   ) : (
-                    t("public.login")
-                  )} */}
+                    t('public.login')
+                  )}
                 </button>
               </Modal.Footer>
             </Form>
