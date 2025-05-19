@@ -126,12 +126,12 @@ function LoginModel(props) {
         <Modal.Body>
           {error1 && (
             <p className='err' style={{ color: 'red' }}>
-              {error1.message}
+              {error1}
             </p>
           )}
           {error2 && (
             <p className='err' style={{ color: 'red' }}>
-              {error2.message}
+              {error2}
             </p>
           )}
           <div
