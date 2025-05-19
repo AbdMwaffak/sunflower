@@ -71,6 +71,7 @@ module.exports = (err, req, res, next) => {
     if (error.name === 'ValidatorError') error = handleValidatorError(error);
 
     sendErrorProd(error, req, res);
+    next();
   }
 };
 
