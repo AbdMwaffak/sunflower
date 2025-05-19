@@ -26,12 +26,12 @@ exports.signUp = catchAsync(async (req, res, next) => {
   const { phone, username } = req.body;
   const existUser = await User.findOne({ phone });
   if (existUser) {
-    // res.status(409).send('This phone number is already registered');
-    return next(new AppError('This phone number is already registered ', 409));
+    res.status(409).send('This phone number is already registered');
+    // return next(new AppError('This phone number is already registered ', 409));
   }
   if (!username || !phone) {
-    // res.status(409).send('something went wrong');
-    return next(new AppError('something went wrong ', 409));
+    res.status(409).send('something went wrong');
+    // return next(new AppError('something went wrong ', 409));
   }
   // 2) check if email is exist and pasword is correct
   const user = await User.findOne({ phone });
@@ -57,7 +57,8 @@ exports.checkOTP = catchAsync(async (req, res, next) => {
     res.locals._ = encrypt(user.id);
     createSendToken(user, 201, res);
   } else {
-    return next(new AppError('Wrong OTP , try again ', 409));
+    res.status(409).send('Wrong OTP , try again');
+    // return next(new AppError('Wrong OTP , try again ', 409));
   }
 });
 
@@ -95,16 +96,16 @@ exports.login = catchAsync(async (req, res, next) => {
   let { phone } = req.body;
 
   if (!phone) {
-    // res.status(404).send('please provide valid phone number 💚');
-    return next(new AppError('please provide correct phone number', 404));
+    res.status(404).send('please provide valid phone number 💚');
+    // return next(new AppError('please provide correct phone number', 404));
   }
   // 2) check if email is exist and pasword is correct
   const user = await User.findOne({ phone });
   if (!user) {
-    // res.status(404).send('This phone number is not exist, please signup');
-    return next(
-      new AppError('This phone number is not exist, please signup', 404)
-    );
+    res.status(404).send('This phone number is not exist, please signup');
+    // return next(
+    //   new AppError('This phone number is not exist, please signup', 404)
+    // );
   }
   const host = req.headers.host;
   if (host === 'dunia.sunflowerworld.shop' && user.role === 'user') {

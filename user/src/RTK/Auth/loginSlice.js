@@ -8,6 +8,7 @@ export const postLogin = createAsyncThunk(
       const response = await axios.post(`/users/login`, userCredentials);
       return response.data;
     } catch (error1) {
+      console.log('error1: ', error1);
       return rejectWithValue(error1.response.data);
     }
   }
@@ -40,6 +41,7 @@ export const postLoginSlice = createSlice({
       state.error1 = null;
     });
     builder.addCase(postLogin.rejected, (state, action) => {
+      console.log('action.payload: ', action.payload);
       state.loading1 = false;
       state.data1 = [];
       state.error1 = action.payload;
